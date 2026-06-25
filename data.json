@@ -128,7 +128,7 @@
   ],
 
   "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリ詳細に『解決策テーマ』として自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ。※顧客に見られて困らない一般化された内容のみ。",
-  "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料（Googleスライド/PDF）URL、doc.type は 'slides' または 'pdf'。flow は図として描画される3ステップ。thumbnailShot は実スクショ（images/slide-*.png 等）で最優先表示。そのファイル名で images/ に置くだけで自動表示され、無ければ自動生成の thumbnail（SVG）に自動フォールバックする（=スクショは置くだけ、data.json 編集不要）。16:9 推奨。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
+  "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料URL、doc.type は 'slides'（Googleスライド）/ 'pdf' / 'page'（リポジトリ内のHTML資料を埋め込み表示。例 m365bpr.html）。flow は図として描画される3ステップ。thumbnailShot は実スクショ（images/slide-*.png 等）で最優先表示。そのファイル名で images/ に置くだけで自動表示され、無ければ自動生成の thumbnail（SVG）に自動フォールバックする（=スクショは置くだけ、data.json 編集不要）。16:9 推奨。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
   "themes": [
     {
       "id": "ai-ax-training",
@@ -213,8 +213,8 @@
         "outcome": "M365投資を“業務改革”の成果へ。日常業務の生産性を実質的に改善。"
       },
       "doc": {
-        "type": "slides",
-        "url": "https://docs.google.com/presentation/d/1d2uQDJFRpOCrUqxZPMBVIlBDgec7H_aRtWsPunukgDY/edit"
+        "type": "page",
+        "url": "m365bpr.html"
       }
     },
 
