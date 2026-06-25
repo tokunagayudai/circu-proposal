@@ -207,7 +207,7 @@ function renderSolutions(items) {
   `).join("");
 }
 
-/* プロ人材アサイン体制例（4象限） */
+/* プロ人材アサイン体制例（線で繋いだ体制図） */
 function renderAssign(items) {
   const grid = $("#assign-grid");
   if (!grid) return;
@@ -217,15 +217,40 @@ function renderAssign(items) {
         <span class="assign-key">${esc(a.key)}</span>
         <span class="assign-sub">${esc(a.subtitle)}</span>
       </div>
-      <div class="assign-items">
-        ${(a.items || []).map((it) => `
-          <div class="assign-item">
-            <span class="assign-item-label">${esc(it.label)}</span>
-            <span class="assign-item-detail">${esc(it.detail)}</span>
-          </div>`).join("")}
-      </div>
+      ${a.diagram === "flow" ? assignFlow(a) : assignTree(a)}
     </article>
   `).join("");
+}
+
+/* ハブ → 各役割をコネクタ線で接続したツリー型 */
+function assignTree(a) {
+  return `
+    <div class="tree">
+      <div class="tree-hub">
+        <span class="th-title">${esc(a.hub || "")}</span>
+        ${a.hubSub ? `<span class="th-sub">${esc(a.hubSub)}</span>` : ""}
+      </div>
+      <div class="tree-branch">
+        ${(a.items || []).map((it) => `
+          <div class="tree-child">
+            <span class="tc-label">${esc(it.label)}</span>
+            <span class="tc-detail">${esc(it.detail)}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+/* 左→右のフロー型（フェーズ進行） */
+function assignFlow(a) {
+  return `
+    <div class="phase-flow">
+      ${(a.items || []).map((it, i) => `
+        ${i > 0 ? `<i class="ti ti-chevron-right phase-arrow"></i>` : ""}
+        <div class="phase-step">
+          <span class="ps-label">${esc(it.label)}</span>
+          <span class="ps-detail">${esc(it.detail)}</span>
+        </div>`).join("")}
+    </div>`;
 }
 
 /* ---------------- セクション4：事例 ---------------- */
