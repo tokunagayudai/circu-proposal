@@ -6,10 +6,10 @@
   <meta name="robots" content="noindex, nofollow">
   <title>サーキュレーション 提案ポータル</title>
 
-  <!-- フォント：M PLUS Rounded 1c ＋ JetBrains Mono -->
+  <!-- フォント：Noto Sans JP（社外向けの落ち着いたトーン）＋ JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Tabler Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
@@ -34,8 +34,9 @@
 
   <!-- ========== ヒーロー ========== -->
   <header class="hero">
-    <h1>課題から、解決策をご一緒に。</h1>
-    <p id="hero-subtitle">プロ人材を「手段」ではなく「解決策」として。テーマ・切り口・体制・使い方からご一緒に考えます。</p>
+    <div class="eyebrow">Solution Portal</div>
+    <h1>「人材」ではなく、「解決策」をご提案します。</h1>
+    <p id="hero-subtitle">貴社の課題に対し、テーマ・切り口・推進体制・進め方までを具体化。プロ人材を手段として、成果につながる解決策をご一緒に描きます。</p>
     <div class="updated" id="hero-updated"></div>
   </header>
 
@@ -124,6 +125,24 @@
     <div class="brand">株式会社サーキュレーション</div>
     <p>本ポータルは商談・レビューMTGでの提案用です。掲載内容は加工済み・公開可能な情報に限られます。</p>
   </footer>
+
+  <!-- ========== テーマ詳細モーダル ========== -->
+  <div class="modal-overlay" id="theme-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="閉じる"><i class="ti ti-x"></i></button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ========== 資料ビューア（Googleスライド / PDF） ========== -->
+  <div class="doc-overlay" id="doc-viewer" hidden>
+    <div class="doc-bar">
+      <span class="doc-title" id="doc-title">資料</span>
+      <a class="doc-open" id="doc-open" href="#" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>新しいタブで開く</a>
+      <button class="doc-close" id="doc-close" aria-label="閉じる"><i class="ti ti-x"></i></button>
+    </div>
+    <iframe class="doc-frame" id="doc-frame" title="資料ビューア" allowfullscreen></iframe>
+  </div>
 
   <script src="app.js"></script>
 </body>
