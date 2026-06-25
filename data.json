@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "サーキュレーション 提案ポータル",
-    "subtitle": "プロ人材を「手段」ではなく「解決策」として。テーマ・切り口・体制・使い方からご一緒に考えます。",
+    "subtitle": "貴社の課題に対し、テーマ・切り口・推進体制・進め方までを具体化。プロ人材を手段として、成果につながる解決策をご一緒に描きます。",
     "lastUpdated": "2026-06-25"
   },
 
@@ -23,39 +23,88 @@
   ],
 
   "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリに自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ（二重管理なし）。isNew:true で NEW バッジ、updated は更新日。※顧客に見られて困らない一般化された内容のみ記載すること。",
+  "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料（Googleスライド/PDF）URL、doc.type は 'slides' または 'pdf'。flow は図として描画される3ステップ。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
   "themes": [
     {
-      "id": "ai-genai-ops",
-      "title": "生成AIの業務実装と社内定着",
-      "angle": "PoCで止めず、現場が毎日使う仕組みまで落とし込む",
-      "summary": "ツール導入だけでは定着しない生成AIを、業務プロセス・教育・ガバナンスまで設計して“使われる状態”にする。",
-      "question": "生成AIを入れてはみたものの、現場で本当に使われていますか？",
-      "categories": ["ai", "dx", "bpr"],
+      "id": "ai-ax-training",
+      "title": "「AI研修 → AX推進」実行支援",
+      "angle": "研修で終わらせず、現場の業務変革（AX）まで実行",
+      "summary": "AIリテラシー研修から現場での実装・定着・全社展開までを一気通貫で伴走します。",
+      "question": "AI研修、受けて終わりになっていませんか？",
+      "categories": ["ai", "hr", "dx"],
       "pickup": true,
       "isNew": true,
-      "updated": "2026-06-20"
+      "updated": "2026-06-24",
+      "detail": {
+        "lead": "「研修を受けた」で終わらせない。AIを“現場で使われる状態”にし、AX（AI Transformation）として全社へ広げます。",
+        "problem": "AI研修を実施しても現場で使われず一過性に終わり、投資が成果につながらない。",
+        "value": "リテラシー研修 → 現場テーマでの実装 → 定着 → 推進体制づくりまでを、AX推進経験のあるプロ人材が伴走します。",
+        "flow": ["AIリテラシー研修", "現場テーマで実装・成果創出", "定着・全社へ横展開"],
+        "points": [
+          "“受けて終わり”にしない実装伴走",
+          "現場テーマで具体的な成果を創出",
+          "AXを推進する人材・体制を社内に残す"
+        ],
+        "outcome": "研修投資をAX成果へ転換。“使われるAI”が現場に定着し、全社の生産性を底上げ。"
+      },
+      "doc": {
+        "type": "slides",
+        "url": "https://docs.google.com/presentation/d/1J-PzWVzOhqUGybO9eJBAgBCiEuPhws6_/edit"
+      }
     },
     {
-      "id": "newbiz-validation",
-      "title": "新規事業の立ち上げ・検証加速",
-      "angle": "事業会社で“やり切った”プロ人材が、仮説検証を伴走",
-      "summary": "アイデア段階から市場検証・初期グロースまで、社内人員だけでは速度が出ない領域を経験者の伴走で前に進める。",
-      "question": "温めている新規事業、検証の打ち手が社内で枯れていませんか？",
-      "categories": ["newbiz", "marketing", "dx"],
+      "id": "ai-newbiz-2026",
+      "title": "AI時代における新規事業 支援",
+      "angle": "激変する環境下での“勝ち筋”を、検証から立ち上げまで",
+      "summary": "AI前提の事業機会探索から、仮説検証・事業化までをプロ人材が伴走します。",
+      "question": "AI時代の新規事業、勝ち筋を描けていますか？",
+      "categories": ["newbiz", "ai", "dx"],
       "pickup": true,
       "isNew": true,
-      "updated": "2026-06-18"
+      "updated": "2026-06-22",
+      "detail": {
+        "lead": "AIが事業環境を一変させるいま、“どこで勝つか”の設計から立ち上げまで。経験者が伴走し、構想を事業に変えます。",
+        "problem": "AIで競争環境が激変する一方、自社の勝ち筋が描けず、検証も社内リソースだけでは速度が出ない。",
+        "value": "AI×自社アセットでの事業機会探索、高速な仮説検証、事業化・初期グロースまでをプロ人材が並走します。",
+        "flow": ["事業機会の探索（AI×自社アセット）", "仮説検証・PoC", "事業化・初期グロース"],
+        "points": [
+          "AIを前提とした事業機会の捉え方",
+          "事業会社経験者による高速検証",
+          "構想で終わらせない実行支援"
+        ],
+        "outcome": "AIを活かした新規事業の、立ち上げ速度と成功確度を高める。"
+      },
+      "doc": {
+        "type": "slides",
+        "url": "https://docs.google.com/presentation/d/1a-Ve0n1RJixfuOtLKKbRqW5W_GiBIxs1tvc_TH6gC7w/edit"
+      }
     },
     {
-      "id": "hr-talent-strategy",
-      "title": "人的資本経営・タレントマネジメント設計",
-      "angle": "開示要請への対応だけでなく、“人で勝つ”仕組みづくり",
-      "summary": "等級・評価・育成・サクセッションを連動させ、人的資本の開示と実態を両立させる制度・運用を設計する。",
-      "question": "人的資本の開示、“数字を埋める”だけになっていませんか？",
-      "categories": ["hr", "governance"],
+      "id": "m365-ai-bpr",
+      "title": "Microsoft 365 × AIプロ人材によるBPR支援",
+      "angle": "ツール導入で終わらせず、業務プロセスそのものを再設計",
+      "summary": "M365・Copilotを前提に業務を再設計し、実装・定着まで伴走します。",
+      "question": "Microsoft 365、入れたものの業務はそのままになっていませんか？",
+      "categories": ["bpr", "ai", "dx"],
       "pickup": true,
-      "isNew": false,
-      "updated": "2026-06-10"
+      "isNew": true,
+      "updated": "2026-06-20",
+      "detail": {
+        "lead": "Copilotを“入れる”だけでは業務は変わりません。M365×AIを前提に業務プロセスごと作り直し、成果に変えます。",
+        "problem": "M365やCopilotを導入しても活用しきれず、業務プロセスは旧来のまま。投資効果が見えない。",
+        "value": "業務の棚卸し・課題特定から、M365×AIを活かした業務再設計（BPR）、実装・定着までをプロ人材が伴走します。",
+        "flow": ["業務棚卸し・課題特定", "M365×AIで業務を再設計", "実装・現場定着"],
+        "points": [
+          "ツール導入ではなく業務再設計",
+          "Copilot等を活かす業務プロセスへ",
+          "現場に定着するまで伴走"
+        ],
+        "outcome": "M365投資を“業務改革”の成果へ。日常業務の生産性を実質的に改善。"
+      },
+      "doc": {
+        "type": "slides",
+        "url": "https://docs.google.com/presentation/d/1d2uQDJFRpOCrUqxZPMBVIlBDgec7H_aRtWsPunukgDY/edit"
+      }
     },
 
     {
