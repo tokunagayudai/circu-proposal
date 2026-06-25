@@ -818,6 +818,36 @@ body.no-scroll { overflow: hidden; }
 .tc-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
 .tc-detail { color: var(--ink-soft); font-size: 0.83rem; }
 
+/* --- 傘型（上段PM → 下段フェーズを束ねる） --- */
+.pm-flow { display: flex; flex-direction: column; align-items: center; }
+.pm-bar {
+  background: var(--blue-d); color: #fff; border-radius: 9px;
+  padding: 11px 20px; text-align: center;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.pm-bar-title { font-weight: 700; font-size: 0.95rem; }
+.pm-bar-sub { font-weight: 500; font-size: 0.76rem; opacity: 0.85; }
+.pm-bus { position: relative; width: 100%; height: 16px; }
+.pm-bus::before {
+  content: ""; position: absolute; left: 50%; top: 0; width: 2px; height: 8px;
+  background: rgba(0, 121, 192, 0.4); transform: translateX(-1px);
+}
+.pm-bus::after {
+  content: ""; position: absolute; left: 8%; right: 8%; top: 8px; height: 2px;
+  background: rgba(0, 121, 192, 0.4);
+}
+.pm-phases { width: 100%; align-items: stretch; }
+.pm-phases .phase-step { position: relative; }
+.pm-phases .phase-step::before {
+  content: ""; position: absolute; left: 50%; top: -8px; width: 2px; height: 8px;
+  background: rgba(0, 121, 192, 0.4); transform: translateX(-1px);
+}
+
+/* 図の下の補足キャプション */
+.assign-caption {
+  margin: 16px 2px 0; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6;
+}
+
 /* --- フロー型（フェーズ進行） --- */
 .phase-flow { display: flex; align-items: stretch; gap: 4px; flex-wrap: wrap; }
 .phase-step {

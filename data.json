@@ -323,21 +323,23 @@
     ]
   },
 
-  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。線で繋いだ体制図として描画。diagram='tree' はハブ（hub/hubSub）から各 items をコネクタ線で接続、diagram='flow' は左→右のフロー。項目追加は items に1件足すだけ。",
+  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。線で繋いだ体制図として描画。diagram='tree'＝ハブ（hub/hubSub）から各 items をコネクタ線で接続、diagram='phase-pm'＝上段PMが下段フェーズを束ねる傘型。caption は図の下に表示する補足文。項目追加は items に1件足すだけ。",
   "assignExamples": [
     {
       "key": "Issue", "subtitle": "課題に合わせた「各タスクリーダー」",
-      "diagram": "tree", "hub": "プロジェクト課題", "hubSub": "全社横断テーマ",
+      "diagram": "tree", "hub": "プロジェクト全体", "hubSub": "全社横断の課題",
+      "caption": "課題（テーマ・課単位）ごとに専任リーダーを立て、横断で並行推進します。",
       "items": [
-        { "label": "戦略・構想", "detail": "IT戦略" },
-        { "label": "ERP", "detail": "PM・PMO／ベンダーコントロール／各テーマ分科会リード" },
-        { "label": "データ基盤", "detail": "PM・PMO／データエンジニア／データサイエンティスト" },
-        { "label": "セキュリティ", "detail": "ポリシー策定／サイバー対策／従業員教育" }
+        { "label": "戦略・構想 リーダー", "detail": "IT戦略 / 全体構想" },
+        { "label": "ERP リーダー", "detail": "PM・PMO／ベンダーコントロール／分科会リード" },
+        { "label": "データ基盤 リーダー", "detail": "PM・PMO／データエンジニア／データサイエンティスト" },
+        { "label": "セキュリティ リーダー", "detail": "ポリシー策定／サイバー対策／従業員教育" }
       ]
     },
     {
       "key": "Phase", "subtitle": "フェーズに合わせた「ジャスト・イン・タイム」",
-      "diagram": "flow",
+      "diagram": "phase-pm", "hub": "プロジェクトPM", "hubSub": "全体を管理・進行",
+      "caption": "PMが全体を管理し、各フェーズに最適なプロ人材を“必要なときに”投入します。",
       "items": [
         { "label": "戦略・構想", "detail": "戦略コンサル／市場調査Pro" },
         { "label": "検証・プロト", "detail": "MVPエンジニア／UXデザイナー" },
@@ -347,7 +349,8 @@
     },
     {
       "key": "Role / Domain", "subtitle": "役割・領域に合わせた「専門家」",
-      "diagram": "tree", "hub": "プロジェクトオーナー", "hubSub": "推進責任者",
+      "diagram": "tree", "hub": "1つのプロジェクト", "hubSub": "役割分担で同時推進",
+      "caption": "ひとつのプロジェクトを役割・領域で細かく分担し、チームで一気に進めます。",
       "items": [
         { "label": "Role：リサーチ", "detail": "リサーチ及びレポーティング" },
         { "label": "Role：MVP開発", "detail": "プロトタイプ作成" },
@@ -356,11 +359,14 @@
       ]
     },
     {
-      "key": "Project", "subtitle": "プロジェクト毎に「専門 PM / PL」",
-      "diagram": "tree", "hub": "専門 PM / PL", "hubSub": "複数案件を統括",
+      "key": "Project", "subtitle": "担当者の複数案件に「専任プロ人材」",
+      "diagram": "tree", "hub": "ご担当者さま", "hubSub": "お一人で複数案件を兼務",
+      "caption": "お一人のご担当者が抱える複数の案件・タスクそれぞれに、専任のプロ人材を配置します。",
       "items": [
-        { "label": "並行プロジェクトの統括", "detail": "複数プロジェクトを専門PM/PLが横断して推進" },
-        { "label": "品質と進行の担保", "detail": "各案件にPM/PLを配置し、品質・進捗・連携を管理" }
+        { "label": "新規事業の立ち上げ", "detail": "配置：事業開発Pro / PM" },
+        { "label": "基幹システム刷新", "detail": "配置：PM・PMO" },
+        { "label": "マーケDX推進", "detail": "配置：マーケター" },
+        { "label": "業務改善・BPR", "detail": "配置：BPR・情シスPro" }
       ]
     }
   ],
