@@ -236,7 +236,8 @@ function renderAssign(items) {
         <span class="assign-key">${esc(a.key)}</span>
         <span class="assign-sub">${esc(a.subtitle)}</span>
       </div>
-      ${a.diagram === "flow" ? assignFlow(a) : assignTree(a)}
+      ${a.diagram === "phase-pm" ? assignPhasePm(a) : a.diagram === "flow" ? assignFlow(a) : assignTree(a)}
+      ${a.caption ? `<p class="assign-caption">${esc(a.caption)}</p>` : ""}
     </article>
   `).join("");
 }
@@ -259,7 +260,26 @@ function assignTree(a) {
     </div>`;
 }
 
-/* 左→右のフロー型（フェーズ進行） */
+/* 上段PMが下段フェーズを束ねる傘型（ジャスト・イン・タイム） */
+function assignPhasePm(a) {
+  const steps = (a.items || []).map((it, i) => `
+    ${i > 0 ? `<i class="ti ti-chevron-right phase-arrow"></i>` : ""}
+    <div class="phase-step">
+      <span class="ps-label">${esc(it.label)}</span>
+      <span class="ps-detail">${esc(it.detail)}</span>
+    </div>`).join("");
+  return `
+    <div class="pm-flow">
+      <div class="pm-bar">
+        <span class="pm-bar-title">${esc(a.hub || "プロジェクトPM")}</span>
+        ${a.hubSub ? `<span class="pm-bar-sub">${esc(a.hubSub)}</span>` : ""}
+      </div>
+      <div class="pm-bus"></div>
+      <div class="phase-flow pm-phases">${steps}</div>
+    </div>`;
+}
+
+/* 左→右のフロー型（フェーズ進行・予備） */
 function assignFlow(a) {
   return `
     <div class="phase-flow">
