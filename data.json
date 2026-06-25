@@ -23,7 +23,7 @@
   ],
 
   "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリに自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ（二重管理なし）。isNew:true で NEW バッジ、updated は更新日。※顧客に見られて困らない一般化された内容のみ記載すること。",
-  "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料（Googleスライド/PDF）URL、doc.type は 'slides' または 'pdf'。flow は図として描画される3ステップ。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
+  "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料（Googleスライド/PDF）URL、doc.type は 'slides' または 'pdf'。flow は図として描画される3ステップ。thumbnail はカード上部とモーダルに表示するビジュアル（images/ 配下のスクショ等。クリック率・可視性が上がるため設定推奨。16:9 推奨、alt 代わりに title を使用）。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
   "themes": [
     {
       "id": "ai-ax-training",
@@ -35,6 +35,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-24",
+      "thumbnail": "images/theme-ai-ax-training.svg",
       "detail": {
         "lead": "「研修を受けた」で終わらせない。AIを“現場で使われる状態”にし、AX（AI Transformation）として全社へ広げます。",
         "problem": "AI研修を実施しても現場で使われず一過性に終わり、投資が成果につながらない。",
@@ -62,6 +63,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-22",
+      "thumbnail": "images/theme-ai-newbiz-2026.svg",
       "detail": {
         "lead": "AIが事業環境を一変させるいま、“どこで勝つか”の設計から立ち上げまで。経験者が伴走し、構想を事業に変えます。",
         "problem": "AIで競争環境が激変する一方、自社の勝ち筋が描けず、検証も社内リソースだけでは速度が出ない。",
@@ -89,6 +91,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-20",
+      "thumbnail": "images/theme-m365-ai-bpr.svg",
       "detail": {
         "lead": "Copilotを“入れる”だけでは業務は変わりません。M365×AIを前提に業務プロセスごと作り直し、成果に変えます。",
         "problem": "M365やCopilotを導入しても活用しきれず、業務プロセスは旧来のまま。投資効果が見えない。",
