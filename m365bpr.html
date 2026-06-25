@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>M365 × AI BPR支援 | サーキュレーション</title>
+<style>
+  :root {
+    --navy:      #0D47A1;
+    --blue:      #1565C0;
+    --blue-mid:  #1976D2;
+    --blue-lt:   #E3F2FD;
+    --blue-pale: #F0F7FF;
+    --teal:      #00695C;
+    --orange:    #E65100;
+    --purple:    #6A1B9A;
+    --green:     #2E7D32;
+    --red:       #C62828;
+    --amber:     #F57F17;
+    --white:     #FFFFFF;
+    --gray-bg:   #F8F9FA;
+    --gray-card: #F1F3F4;
+    --gray-line: #E0E0E0;
+    --text-dark: #1A1A2E;
+    --text-body: #424242;
+    --text-sub:  #757575;
+    --font: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    --radius: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,.08);
+    --shadow-hover: 0 6px 24px rgba(13,71,161,.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    color: var(--text-body);
+    background: var(--white);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 56px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  }
+  .nav-brand {
+    color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .05em;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .nav-brand span { opacity: .6; font-weight: 400; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: rgba(255,255,255,.75); font-size: 12px; text-decoration: none;
+    padding: 6px 12px; border-radius: 4px; transition: all .2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1E88E5 100%);
+    padding: 80px 32px 72px;
+    text-align: center; color: #fff; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+    color: rgba(255,255,255,.9); font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 4vw, 40px); font-weight: 800; line-height: 1.3;
+    margin-bottom: 16px; letter-spacing: -.01em;
+  }
+  .hero h1 em { font-style: normal; color: #FDD835; }
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,.8); max-width: 680px; margin: 0 auto 36px;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 12px;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 36px; font-weight: 800; color: #FDD835; line-height: 1; }
+  .hero-stat .label { font-size: 11px; color: rgba(255,255,255,.7); margin-top: 4px; }
+
+  /* ── SECTION ── */
+  section { padding: 72px 32px; max-width: 1100px; margin: 0 auto; }
+  .section-full { max-width: none; }
+  .section-bg { background: var(--gray-bg); }
+
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-eyebrow {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    letter-spacing: .12em; color: var(--blue); text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-header h2 {
+    font-size: clamp(20px, 3vw, 30px); font-weight: 800; color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+  .section-header p { color: var(--text-sub); font-size: 14px; max-width: 600px; margin: 0 auto; }
+
+  /* ── SUMMARY CARDS（エグゼクティブサマリ） ── */
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+  }
+  .summary-card {
+    background: var(--white); border-radius: var(--radius);
+    border-left: 4px solid var(--blue);
+    padding: 24px 24px 24px 20px;
+    box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+  }
+  .summary-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .summary-card .no {
+    font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: .1em; margin-bottom: 8px;
+  }
+  .summary-card h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+  .summary-card ul { list-style: none; padding: 0; }
+  .summary-card ul li {
+    font-size: 13px; color: var(--text-body); padding: 4px 0 4px 14px; position: relative;
+  }
+  .summary-card ul li::before {
+    content: '●'; position: absolute; left: 0; font-size: 6px;
+    color: var(--blue); top: 8px;
+  }
+
+  /* ── TOOL MAP ── */
+  .tool-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+  }
+  .tool-cat {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .tool-cat:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .tool-cat-header {
+    padding: 12px 16px; color: #fff; font-size: 13px; font-weight: 700;
+  }
+  .tool-cat-body { padding: 14px 16px; }
+  .tool-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; font-size: 13px; color: var(--text-body);
+    border-bottom: 1px solid var(--gray-line);
+  }
+  .tool-item:last-child { border-bottom: none; }
+  .tool-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .phase-bar {
+    display: flex; gap: 0; margin-top: 24px; border-radius: var(--radius); overflow: hidden;
+  }
+  .phase-item {
+    flex: 1; padding: 10px 8px; text-align: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+
+  /* ── LAYER アーキテクチャ ── */
+  .layer-wrap { display: flex; flex-direction: column; gap: 16px; }
+  .layer-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; letter-spacing: .06em;
+    padding: 5px 14px; border-radius: 4px; margin-bottom: 10px;
+  }
+  .layer1-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 900px) { .layer1-grid { grid-template-columns: repeat(6, 1fr); } }
+  .layer-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .layer-card-head {
+    padding: 10px 12px; color: #fff; font-size: 12px; font-weight: 700; line-height: 1.35;
+  }
+  .layer-card-body { padding: 12px; }
+  .layer-card-body li {
+    font-size: 11.5px; color: var(--text-body);
+    padding: 3px 0 3px 12px; position: relative; list-style: none;
+  }
+  .layer-card-body li::before {
+    content: '·'; position: absolute; left: 2px; font-size: 14px; line-height: 1; top: 3px;
+    color: var(--text-sub);
+  }
+  .layer2-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  }
+  @media (min-width: 900px) { .layer2-grid { grid-template-columns: repeat(5, 1fr); } }
+  .layer2-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .layer2-card-head {
+    padding: 10px 12px; color: #fff; font-size: 12px; font-weight: 700;
+  }
+  .layer2-card-body { padding: 12px; }
+  .layer2-card-body li {
+    font-size: 12px; color: var(--text-body);
+    padding: 3px 0 3px 12px; position: relative; list-style: none;
+  }
+  .layer2-card-body li::before { content: '·'; position: absolute; left: 2px; font-size: 14px; top: 3px; color: var(--text-sub); }
+  .tool-tag {
+    margin-top: 10px; padding: 6px 10px; border-radius: 4px;
+    font-size: 10.5px; font-weight: 700; text-align: center;
+    border: 1px solid currentColor;
+  }
+
+  /* ── DEPT BEFORE/AFTER ── */
+  .dept-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 20px;
+  }
+  .dept-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: box-shadow .2s;
+  }
+  .dept-card:hover { box-shadow: var(--shadow-hover); }
+  .dept-head {
+    padding: 12px 18px; color: #fff; font-size: 14px; font-weight: 700;
+  }
+  .dept-body { display: grid; grid-template-columns: 1fr 1fr; }
+  .dept-col { padding: 16px; }
+  .dept-col:first-child { border-right: 1px solid var(--gray-line); }
+  .dept-col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .06em;
+    margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--gray-line);
+  }
+  .dept-col.after .dept-col-label { border-bottom-color: currentColor; }
+  .dept-col ul { list-style: none; padding: 0; }
+  .dept-col ul li { font-size: 12.5px; padding: 4px 0 4px 14px; position: relative; }
+  .dept-col ul li::before { content: '·'; position: absolute; left: 2px; font-size: 14px; top: 3px; color: var(--text-sub); }
+  .dept-tags { display: flex; gap: 6px; padding: 10px 16px; flex-wrap: wrap; background: var(--gray-bg); }
+  .dept-tag {
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 3px;
+    color: #fff;
+  }
+
+  /* ── STRENGTHS ── */
+  .strength-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;
+  }
+  .strength-card {
+    background: var(--white); border-radius: var(--radius);
+    display: flex; gap: 16px; padding: 20px;
+    box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+    border-left: 4px solid var(--blue);
+  }
+  .strength-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .strength-no {
+    font-size: 22px; font-weight: 800; color: var(--blue); line-height: 1;
+    min-width: 32px;
+  }
+  .strength-content h3 { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+  .strength-content .sub { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; }
+  .strength-content ul { list-style: none; padding: 0; }
+  .strength-content ul li { font-size: 12.5px; padding: 3px 0 3px 14px; position: relative; }
+  .strength-content ul li::before { content: '✓'; position: absolute; left: 0; font-size: 11px; color: var(--blue); top: 4px; }
+
+  /* ── ROADMAP ── */
+  .roadmap-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+  }
+  .step-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); position: relative;
+  }
+  .step-head {
+    padding: 16px; color: #fff;
+  }
+  .step-head .step-no { font-size: 11px; font-weight: 700; opacity: .8; letter-spacing: .08em; }
+  .step-head h3 { font-size: 17px; font-weight: 800; margin: 4px 0 2px; }
+  .step-head .step-sub { font-size: 11px; opacity: .8; }
+  .step-period {
+    font-size: 11px; font-weight: 700; padding: 2px 8px;
+    background: rgba(255,255,255,.2); border-radius: 3px; display: inline-block; margin-top: 6px;
+  }
+  .step-output {
+    margin: 12px; padding: 10px 12px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; line-height: 1.4;
+  }
+  .step-body { padding: 0 14px 14px; }
+  .step-body li {
+    font-size: 12.5px; color: var(--text-body);
+    padding: 5px 0 5px 14px; position: relative; list-style: none;
+    border-bottom: 1px solid var(--gray-line);
+  }
+  .step-body li:last-child { border-bottom: none; }
+  .step-body li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--blue-mid);
+  }
+
+  /* ── PROS ── */
+  .pros-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+  }
+  .pro-card {
+    background: var(--white); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+  }
+  .pro-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .pro-card-head {
+    padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .pro-no { font-size: 22px; font-weight: 800; color: #fff; opacity: .9; }
+  .pro-role {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px;
+    background: rgba(255,255,255,.2); color: #fff;
+  }
+  .pro-name { font-size: 18px; font-weight: 800; color: #fff; margin: 4px 0 2px; }
+  .pro-org { font-size: 11px; color: rgba(255,255,255,.8); }
+  .pro-body { padding: 14px 16px; }
+  .pro-desc { font-size: 12.5px; color: var(--text-body); line-height: 1.65; margin-bottom: 12px; }
+  .pro-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .pro-tag {
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    border: 1px solid currentColor;
+  }
+  .pro-new {
+    background: #FDD835; color: #333; font-size: 9px; font-weight: 800;
+    padding: 2px 6px; border-radius: 3px; letter-spacing: .06em;
+    display: inline-block; margin-left: 6px; vertical-align: middle;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 64px 32px; text-align: center; color: #fff;
+  }
+  .cta-section h2 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+  .cta-section p { color: rgba(255,255,255,.75); margin-bottom: 28px; font-size: 15px; }
+  .cta-btn {
+    display: inline-block; background: #FDD835; color: var(--navy);
+    font-size: 14px; font-weight: 800; padding: 14px 36px; border-radius: 6px;
+    text-decoration: none; letter-spacing: .04em;
+    transition: opacity .2s, transform .2s;
+  }
+  .cta-btn:hover { opacity: .9; transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111827; color: rgba(255,255,255,.5);
+    text-align: center; padding: 24px 32px; font-size: 12px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px; background: var(--gray-line); max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    section { padding: 48px 16px; }
+    .hero { padding: 60px 16px 52px; }
+    .dept-grid { grid-template-columns: 1fr; }
+    .dept-body { grid-template-columns: 1fr; }
+    .dept-col:first-child { border-right: none; border-bottom: 1px solid var(--gray-line); }
+    .hero-stats { gap: 24px; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://tokunagayudai.github.io/circu-proposal/" class="nav-brand">
+    C CIRCULATION <span>提案ポータル</span>
+  </a>
+  <div class="nav-links">
+    <a href="#summary">概要</a>
+    <a href="#tools">ツール</a>
+    <a href="#layer">アーキテクチャ</a>
+    <a href="#dept">部門別活用</a>
+    <a href="#roadmap">ロードマップ</a>
+    <a href="#why">強み</a>
+    <a href="#pros">プロ人材</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">テーマ特集 — M365 × AI BPR</div>
+  <h1>導入済みの M365 を、<em>業務改革の武器</em>に。<br>プロ人材が設計・実装・定着まで伴走します。</h1>
+  <p class="hero-sub">既存ライセンス内で、追加投資ゼロから始める業務変革。<br>情シス主導の大規模型から、各部門が自律的に動く「分散型BPR」へ。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">14%</div><div class="label">丸投げ企業の<br>プロジェクト満足度</div></div>
+    <div class="hero-stat"><div class="num">17%</div><div class="label">実作業フェーズの<br>内製化率</div></div>
+    <div class="hero-stat"><div class="num">62%</div><div class="label">IT部門が「守り」に<br>終始している割合</div></div>
+    <div class="hero-stat"><div class="num">36,000<span style="font-size:18px">名</span></div><div class="label">プロ人材<br>ネットワーク</div></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<section id="summary" class="reveal">
+  <div class="section-header">
+    <div class="section-eyebrow">Executive Summary</div>
+    <h2>M365 × AI BPR で実現する 3 つの価値</h2>
+    <p>コア業務集中・工数削減・内製化自走。追加投資ゼロで始め、ROIを確認しながら拡張できます。</p>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="no">01 — 追加投資ゼロ</div>
+      <h3>既存ライセンスで業務設計</h3>
+      <ul>
+        <li>M365既存ライセンス内での業務設計</li>
+        <li>PoC〜本番 1〜3ヶ月・数百万円〜</li>
+        <li>追加AI・SaaS契約による制約なし</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <div class="no">02 — AI × 自動化</div>
+      <h3>ノンコア業務を削減</h3>
+      <ul>
+        <li>ルーティンをPower Automateで自動化</li>
+        <li>Copilot Studioで部門AIを内製推進</li>
+        <li>コア業務実行へ移行し競争力を強化</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <div class="no">03 — 定着化</div>
+      <h3>ROI最大化まで伴走</h3>
+      <ul>
+        <li>「導入だけ」で終わらせない伴走支援</li>
+        <li>社内市民開発者育成で内製化を促進</li>
+        <li>KPIモニタリング方法まで作成フォロー</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TOOL MAP -->
+<section id="tools" class="reveal" style="background: var(--gray-bg); max-width: none; padding: 72px 32px;">
+<div style="max-width: 1100px; margin: 0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow">Tool Map</div>
+    <h2>M365 × Power Platform：業務変革を支えるツール全体マップ</h2>
+    <p>既存M365ライセンス内で、生産性向上・自動化・AI活用・データ可視化まで一気通貫でカバー</p>
+  </div>
+  <div class="tool-grid">
+    <div class="tool-cat">
+      <div class="tool-cat-header" style="background: var(--blue);">個人生産性</div>
+      <div class="tool-cat-body">
+        <div class="tool-item"><span class="tool-dot" style="background:#1565C0"></span>Word / Excel / PowerPoint</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Outlook</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#A4373A"></span>Access</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#007C89"></span>Forms</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>ToDo</div>
+      </div>
+    </div>
+    <div class="tool-cat">
+      <div class="tool-cat-header" style="background: var(--teal);">コミュニケーション & コラボ</div>
+      <div class="tool-cat-body">
+        <div class="tool-item"><span class="tool-dot" style="background:#6264A7"></span>Teams</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#036C70"></span>SharePoint</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>OneDrive</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Exchange</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#7719AA"></span>OneNote</div>
+      </div>
+    </div>
+    <div class="tool-cat">
+      <div class="tool-cat-header" style="background: var(--purple);">Power Platform（市民開発）</div>
+      <div class="tool-cat-body">
+        <div class="tool-item"><span class="tool-dot" style="background:#742774"></span>Power Apps</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0066FF"></span>Power Automate</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#E8A000"></span>Power BI</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#008272"></span>Copilot Studio</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0066FF"></span>PAD（RPA）</div>
+      </div>
+    </div>
+    <div class="tool-cat">
+      <div class="tool-cat-header" style="background: #0D47A1;">AI & Copilot</div>
+      <div class="tool-cat-body">
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>M365 Copilot</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#008272"></span>Copilot Studio</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Azure OpenAI</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>AI Search（RAG）</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#217346"></span>GitHub Copilot</div>
+      </div>
+    </div>
+    <div class="tool-cat">
+      <div class="tool-cat-header" style="background: #37474F;">基盤・セキュリティ</div>
+      <div class="tool-cat-body">
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Azure AD / Entra</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#742774"></span>Dataverse</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Azure Monitor</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Purview / DLP</div>
+        <div class="tool-item"><span class="tool-dot" style="background:#0078D4"></span>Defender</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-bar">
+    <div class="phase-item" style="background:#1565C0;">📋 業務棚卸し・要件定義</div>
+    <div class="phase-item" style="background:#0066FF;">⚡ PoC・自動化実装</div>
+    <div class="phase-item" style="background:#0078D4;">🤖 AI活用・エージェント</div>
+    <div class="phase-item" style="background:#E8A000;">📊 可視化・KPI管理</div>
+    <div class="phase-item" style="background:#37474F;">🔒 ガバナンス・定着化</div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LAYER ARCHITECTURE -->
+<section id="layer" class="reveal">
+  <div class="section-header">
+    <div class="section-eyebrow">Architecture</div>
+    <h2>2層アーキテクチャ：全社基盤（LAYER 1）× 部門個別最適化（LAYER 2）</h2>
+    <p>情シス主導の全社M365基盤と、各部門が自律的に推進する分散型BPRの組み合わせが今後の標準形。</p>
+  </div>
+
+  <div class="layer-wrap">
+    <!-- LAYER 1 -->
+    <div>
+      <div class="layer-label" style="background: #E3F2FD; color: var(--blue);">LAYER 1 — 情シス / DX 部門主導　全社共通 M365 / Azure 基盤プロジェクト</div>
+      <div class="layer1-grid">
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: var(--blue);">M365 基盤設計</div>
+          <ul class="layer-card-body">
+            <li>テナント設計・ライセンス体系</li>
+            <li>グループ・組織単位の設計</li>
+            <li>外部共有ポリシー設定</li>
+            <li>Power Platform 環境の分割設計</li>
+            <li>DLPポリシーの策定・適用</li>
+          </ul>
+        </div>
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: #0D47A1;">ID・認証基盤<br>Azure AD / Entra</div>
+          <ul class="layer-card-body">
+            <li>SSO統合設定</li>
+            <li>MFA全社展開</li>
+            <li>ゼロトラスト方針策定</li>
+            <li>ID ガバナンス・JML自動化</li>
+            <li>ゲスト管理ポリシー</li>
+          </ul>
+        </div>
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: var(--teal);">情報共有基盤<br>SharePoint / Teams</div>
+          <ul class="layer-card-body">
+            <li>全社情報アーキテクチャ設計</li>
+            <li>Teams チャネル設計GL策定</li>
+            <li>SharePoint ナレッジベース構造化</li>
+            <li>Copilot RAG基盤整備</li>
+            <li>ドキュメントライフサイクル管理</li>
+          </ul>
+        </div>
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: var(--purple);">データ統合基盤<br>Dataverse</div>
+          <ul class="layer-card-body">
+            <li>共通データ基盤として環境設計</li>
+            <li>マスターデータ統合設計</li>
+            <li>Salesforce・SAP・基幹連携</li>
+            <li>データ保持ポリシー設計</li>
+            <li>共通データモデルの標準化</li>
+          </ul>
+        </div>
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: var(--amber);">KPI可視化基盤<br>Power BI 共通KPI</div>
+          <ul class="layer-card-body">
+            <li>全社KPI定義書の策定</li>
+            <li>データセット共通基盤化</li>
+            <li>データフロー・データマート設計</li>
+            <li>RLS設計</li>
+            <li>ダッシュボード公開フロー整備</li>
+          </ul>
+        </div>
+        <div class="layer-card">
+          <div class="layer-card-head" style="background: var(--red);">ガバナンス・<br>セキュリティ統制</div>
+          <ul class="layer-card-body">
+            <li>情報分類ポリシーの策定</li>
+            <li>Purview 秘密度ラベル全社適用</li>
+            <li>DLPポリシー設計・適用</li>
+            <li>Copilot・生成AI利用ガバナンス</li>
+            <li>監査ログ取得・SIEM連携</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYER 2 -->
+    <div>
+      <div class="layer-label" style="background: #ECEFF1; color: #546E7A;">LAYER 2 — 各部門別 BPR</div>
+      <div class="layer2-grid">
+        <div class="layer2-card">
+          <div class="layer2-card-head" style="background: var(--blue);">営業部門</div>
+          <ul class="layer2-card-body">
+            <li>営業KPI リアルタイム可視化</li>
+            <li>予実ダッシュボード</li>
+            <li>顧客・案件データの統合DB</li>
+            <li>議事録→SFA 自動更新</li>
+          </ul>
+          <div class="tool-tag" style="color: var(--blue); border-color: var(--blue); margin: 8px;">Copilot / Power Automate / Power BI</div>
+        </div>
+        <div class="layer2-card">
+          <div class="layer2-card-head" style="background: var(--orange);">製造・工場</div>
+          <ul class="layer2-card-body">
+            <li>進捗・工程管理アプリ</li>
+            <li>スマホ対応現場入力</li>
+            <li>工程KPI・アラート自動化</li>
+            <li>作業マニュアル・ナレッジ管理</li>
+          </ul>
+          <div class="tool-tag" style="color: var(--orange); border-color: var(--orange); margin: 8px;">Power Apps / Power BI / PAD(RPA)</div>
+        </div>
+        <div class="layer2-card">
+          <div class="layer2-card-head" style="background: var(--purple);">人事・総務</div>
+          <ul class="layer2-card-body">
+            <li>申請承認フロー自動化</li>
+            <li>採用業務の簡素化・自動化</li>
+            <li>社内ポータルアプリ化</li>
+            <li>規定・マニュアル文書管理</li>
+          </ul>
+          <div class="tool-tag" style="color: var(--purple); border-color: var(--purple); margin: 8px;">Power Automate / Power Apps / Copilot Studio</div>
+        </div>
+        <div class="layer2-card">
+          <div class="layer2-card-head" style="background: var(--green);">経理・財務</div>
+          <ul class="layer2-card-body">
+            <li>請求書承認フロー自動化</li>
+            <li>CF・経営KPI可視化/レポート</li>
+            <li>精算申請アプリ</li>
+            <li>証憑のドキュメント管理</li>
+          </ul>
+          <div class="tool-tag" style="color: var(--green); border-color: var(--green); margin: 8px;">Power Automate / Power BI / Power Apps</div>
+        </div>
+        <div class="layer2-card">
+          <div class="layer2-card-head" style="background: var(--teal);">店舗・SCM</div>
+          <ul class="layer2-card-body">
+            <li>週報自動生成・在庫発注</li>
+            <li>MDサマリー自動配信</li>
+            <li>在庫・発注管理アプリ</li>
+            <li>発注承認・異常値アラート</li>
+          </ul>
+          <div class="tool-tag" style="color: var(--teal); border-color: var(--teal); margin: 8px;">Copilot Studio / Power Apps / Power BI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEPT BEFORE/AFTER -->
+<section id="dept" class="reveal" style="background: var(--gray-bg); max-width: none; padding: 72px 32px;">
+<div style="max-width: 1100px; margin: 0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow">Use Cases</div>
+    <h2>製造・営業・人事・経理：全部門で M365 × AI を即活用できる</h2>
+    <p>どの部門でも「現状業務フロー」に Power Platform × Copilot を組み込むことで、コア業務集中を実現できる</p>
+  </div>
+  <div class="dept-grid">
+    <div class="dept-card">
+      <div class="dept-head" style="background: var(--orange);">[製造] 製造・工場</div>
+      <div class="dept-body">
+        <div class="dept-col before">
+          <div class="dept-col-label" style="color: var(--text-sub);">導入前</div>
+          <ul>
+            <li>紙・ExcelでガントチャートM管理</li>
+            <li>進捗確認に時間がかかる</li>
+            <li>属人化・暗黙知が多い（平均50代超）</li>
+          </ul>
+        </div>
+        <div class="dept-col after" style="color: var(--orange)">
+          <div class="dept-col-label">M365 導入後</div>
+          <ul style="color: var(--text-dark)">
+            <li>Power Appsで進捗リアルタイム入力</li>
+            <li>Power BIで工程KPIを可視化</li>
+            <li>Power Automateでアラート自動通知</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dept-tags">
+        <span class="dept-tag" style="background:#742774">Power Apps</span>
+        <span class="dept-tag" style="background:#E8A000">Power BI</span>
+        <span class="dept-tag" style="background:#0066FF">Power Automate</span>
+      </div>
+    </div>
+    <div class="dept-card">
+      <div class="dept-head" style="background: var(--blue);">[営業] 営業・商談管理</div>
+      <div class="dept-body">
+        <div class="dept-col before">
+          <div class="dept-col-label" style="color: var(--text-sub);">導入前</div>
+          <ul>
+            <li>SFへの商談入力が手動・二重入力</li>
+            <li>会議後の議事録作成に多大な時間</li>
+            <li>週報・日報の作成が現場負担に</li>
+          </ul>
+        </div>
+        <div class="dept-col after" style="color: var(--blue)">
+          <div class="dept-col-label">M365 導入後</div>
+          <ul style="color: var(--text-dark)">
+            <li>M365 Copilotで議事録→SF自動更新</li>
+            <li>Power Appsで営業フロー一元管理</li>
+            <li>Power BIで営業KPIダッシュボード</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dept-tags">
+        <span class="dept-tag" style="background:#0078D4">M365 Copilot</span>
+        <span class="dept-tag" style="background:#0066FF">Power Automate</span>
+        <span class="dept-tag" style="background:#E8A000">Power BI</span>
+      </div>
+    </div>
+    <div class="dept-card">
+      <div class="dept-head" style="background: var(--purple);">[人事] 人事・総務</div>
+      <div class="dept-body">
+        <div class="dept-col before">
+          <div class="dept-col-label" style="color: var(--text-sub);">導入前</div>
+          <ul>
+            <li>申請・承認が紙orメールでバラバラ</li>
+            <li>退職・異動処理の工数が慢性的に大</li>
+            <li>オンボーディングが担当者依存</li>
+          </ul>
+        </div>
+        <div class="dept-col after" style="color: var(--purple)">
+          <div class="dept-col-label">M365 導入後</div>
+          <ul style="color: var(--text-dark)">
+            <li>Power Automateで承認フロー自動化</li>
+            <li>SharePoint + Power Appsで申請一元管理</li>
+            <li>Copilot StudioでオンボーディングBot</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dept-tags">
+        <span class="dept-tag" style="background:#0066FF">Power Automate</span>
+        <span class="dept-tag" style="background:#742774">Power Apps</span>
+        <span class="dept-tag" style="background:#008272">Copilot Studio</span>
+      </div>
+    </div>
+    <div class="dept-card">
+      <div class="dept-head" style="background: var(--green);">[経理] 経理・財務</div>
+      <div class="dept-body">
+        <div class="dept-col before">
+          <div class="dept-col-label" style="color: var(--text-sub);">導入前</div>
+          <ul>
+            <li>請求書・経費精算が紙orExcelで手作業</li>
+            <li>月次決算に多大な工数がかかる</li>
+            <li>経営KPIの可視化が遅く意思決定が後手に</li>
+          </ul>
+        </div>
+        <div class="dept-col after" style="color: var(--green)">
+          <div class="dept-col-label">M365 導入後</div>
+          <ul style="color: var(--text-dark)">
+            <li>Power Automateで請求書承認フロー自動化</li>
+            <li>Power BIで経営KPI・CFリアルタイム可視化</li>
+            <li>Power Appsで精算申請・証憑管理アプリ化</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dept-tags">
+        <span class="dept-tag" style="background:#0066FF">Power Automate</span>
+        <span class="dept-tag" style="background:#E8A000">Power BI</span>
+        <span class="dept-tag" style="background:#742774">Power Apps</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap" class="reveal">
+  <div class="section-header">
+    <div class="section-eyebrow">Roadmap</div>
+    <h2>M365 × BPR 推進ロードマップ</h2>
+    <p>As-Is 分析から全社定着化まで、最短4ヶ月〜。小規模PoCから始め、ROIを確認しながら拡張できます。</p>
+  </div>
+  <div class="roadmap-grid">
+    <div class="step-card">
+      <div class="step-head" style="background: var(--blue);">
+        <div class="step-no">STEP 01</div>
+        <h3>As-Is 分析</h3>
+        <div class="step-sub">業務フロー整備</div>
+        <div class="step-period">1〜2ヶ月</div>
+      </div>
+      <div class="step-output" style="background: #E3F2FD; color: var(--blue);">📋 OUTPUT：業務フロー図・ボトルネックマップ</div>
+      <ul class="step-body">
+        <li>現場ヒアリング（全工程）</li>
+        <li>業務フロー図・オペレーション図作成</li>
+        <li>コア/ノンコア業務の分類</li>
+        <li>ボトルネック・リードタイム特定</li>
+      </ul>
+    </div>
+    <div class="step-card">
+      <div class="step-head" style="background: var(--teal);">
+        <div class="step-no">STEP 02</div>
+        <h3>To-Be 設計</h3>
+        <div class="step-sub">要件定義・アーキテクチャ</div>
+        <div class="step-period">1〜2ヶ月</div>
+      </div>
+      <div class="step-output" style="background: #E0F2F1; color: var(--teal);">🗺️ OUTPUT：アーキテクチャ・実装ロードマップ</div>
+      <ul class="step-body">
+        <li>自動化余地の優先度マトリクス</li>
+        <li>M365ツール選定（適材適所）</li>
+        <li>アーキテクチャ・データ連携設計</li>
+        <li>SaaS要件一覧・RFP作成</li>
+      </ul>
+    </div>
+    <div class="step-card">
+      <div class="step-head" style="background: var(--purple);">
+        <div class="step-no">STEP 03</div>
+        <h3>PoC・実装</h3>
+        <div class="step-sub">試験実装・効果検証</div>
+        <div class="step-period">1〜2ヶ月</div>
+      </div>
+      <div class="step-output" style="background: #F3E5F5; color: var(--purple);">⚡ OUTPUT：動くプロト・工数削減実績（数値）</div>
+      <ul class="step-body">
+        <li>Power Automate PoC（優先業務）</li>
+        <li>Power Appsプロトタイプ開発</li>
+        <li>Copilot Studio Bot試作</li>
+        <li>効果測定・KPI検証（工数削減率）</li>
+      </ul>
+    </div>
+    <div class="step-card">
+      <div class="step-head" style="background: var(--green);">
+        <div class="step-no">STEP 04</div>
+        <h3>展開・定着化</h3>
+        <div class="step-sub">全社展開・内製化自走</div>
+        <div class="step-period">1〜2ヶ月</div>
+      </div>
+      <div class="step-output" style="background: #E8F5E9; color: var(--green);">🚀 OUTPUT：内製PM自走体制・属人化XX%解消</div>
+      <ul class="step-body">
+        <li>現場トレーニング・マニュアル整備</li>
+        <li>全社定着支援</li>
+        <li>KPIモニタリング（Power BI）</li>
+        <li>社内市民開発者育成・内製化推進</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 支援体制 -->
+  <div style="margin-top: 32px; background: #263238; border-radius: var(--radius); padding: 20px 24px;">
+    <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 14px;">👥 支援体制オプション — フェーズ・規模・目的に応じて 1名〜複数体制をカスタマイズ</div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 200px; background: rgba(255,255,255,.08); border-left: 3px solid #1565C0; border-radius: 4px; padding: 12px 16px;">
+        <div style="font-size: 12px; font-weight: 700; color: #90CAF9; margin-bottom: 4px;">🔷 BPR / ITコンサルタント</div>
+        <div style="font-size: 11px; color: #B0BEC5;">M365環境 経験者</div>
+      </div>
+      <div style="flex: 1; min-width: 200px; background: rgba(255,255,255,.08); border-left: 3px solid #00695C; border-radius: 4px; padding: 12px 16px;">
+        <div style="font-size: 12px; font-weight: 700; color: #80CBC4; margin-bottom: 4px;">🟢 業界 / 業務ドメインプロ</div>
+        <div style="font-size: 11px; color: #B0BEC5;">業種・部門知識</div>
+      </div>
+      <div style="flex: 1; min-width: 200px; background: rgba(255,255,255,.08); border-left: 3px solid #6A1B9A; border-radius: 4px; padding: 12px 16px;">
+        <div style="font-size: 12px; font-weight: 700; color: #CE93D8; margin-bottom: 4px;">🟣 Power Platform 実装プロ</div>
+        <div style="font-size: 11px; color: #B0BEC5;">実装エンジニア</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY CIRCULATION -->
+<section id="why" class="reveal" style="background: var(--gray-bg); max-width: none; padding: 72px 32px;">
+<div style="max-width: 1100px; margin: 0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow">Why Circulation</div>
+    <h2>なぜサーキュレーションか：6 つの強み</h2>
+    <p>専門性 × 実行力 × スピード × 定着支援 × 柔軟性 × コスト — 6軸すべてで圧倒的優位を持つのがサーキュレーションです</p>
+  </div>
+  <div class="strength-grid">
+    <div class="strength-card" style="border-left-color: var(--blue);">
+      <div class="strength-no" style="color:var(--blue)">01</div>
+      <div class="strength-content">
+        <h3>M365 × AI 専門性</h3>
+        <div class="sub">技術 × ドメイン知識の二刀流</div>
+        <ul>
+          <li>元マイクロソフト社員などM365専門プロが多数在籍</li>
+          <li>業界・部門ごとのドメイン知識保有者をアサイン可能</li>
+          <li>業務インストールコストがゼロに。クライアントより詳しい場合も</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strength-card" style="border-left-color: var(--orange);">
+      <div class="strength-no" style="color:var(--orange)">02</div>
+      <div class="strength-content">
+        <h3>設計から実装まで</h3>
+        <div class="sub">アーキテクチャ設計 × 動くプロトを作れる</div>
+        <ul>
+          <li>コンサル設計だけでなく、実際に手を動かしてプロトタイプ作成可能</li>
+          <li>Power Platform・Copilot Studio実装経験豊富なエンジニアが揃う</li>
+          <li>要件定義→PoC→本番まで同じプロが一気通貫で担当できる</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strength-card" style="border-left-color: var(--teal);">
+      <div class="strength-no" style="color:var(--teal)">03</div>
+      <div class="strength-content">
+        <h3>圧倒的スピード</h3>
+        <div class="sub">最短1週間でアサイン・即スタート</div>
+        <ul>
+          <li>アサインまで最短1週間。採用・育成コストゼロで即戦力投入</li>
+          <li>小規模PoCから開始し1〜3ヶ月で成果を出す設計</li>
+          <li>必要な時に必要な期間だけ活用。リスクを最小化した進め方</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strength-card" style="border-left-color: var(--purple);">
+      <div class="strength-no" style="color:var(--purple)">04</div>
+      <div class="strength-content">
+        <h3>定着化まで一気通貫</h3>
+        <div class="sub">導入して終わりにしない伴走支援</div>
+        <ul>
+          <li>ADKARモデルによる認知→定着まで体系的な変革管理を実施</li>
+          <li>現場向けマニュアル整備・研修設計・運用ルール構築まで対応</li>
+          <li>Power BIによるKPIモニタリングで効果測定・改善サイクルを継続</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strength-card" style="border-left-color: var(--green);">
+      <div class="strength-no" style="color:var(--green)">05</div>
+      <div class="strength-content">
+        <h3>柔軟な体制設計</h3>
+        <div class="sub">1名〜複数体制・36,000名から補充可能</div>
+        <ul>
+          <li>1名で一気通貫も、複数体制でのチーム支援もカスタマイズ対応</li>
+          <li>不足するケイパビリティは36,000名のプロネットワークから即補充</li>
+          <li>フェーズ途中での体制変更・追加アサインにも柔軟に対応</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strength-card" style="border-left-color: var(--amber);">
+      <div class="strength-no" style="color:var(--amber)">06</div>
+      <div class="strength-content">
+        <h3>コスト優位性</h3>
+        <div class="sub">大手コンサルの 1/3〜1/5 の費用感</div>
+        <ul>
+          <li>大手コンサルに対し数百万円〜でスタート可能</li>
+          <li>M365既存ライセンス内で設計。追加SaaS契約コストも最小化</li>
+          <li>PoC単位での契約も可能。ROIを確認しながら段階的に拡張</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 28px; background: var(--navy); border-radius: var(--radius); padding: 18px 24px; display: flex; align-items: center; gap: 12px;">
+    <div style="width: 4px; height: 40px; background: #FDD835; border-radius: 2px; flex-shrink: 0;"></div>
+    <p style="font-size: 14px; color: #fff; font-weight: 500; line-height: 1.6;">
+      「技術を知り、業務を知り、現場で動かせる」── 36,000名のプロネットワークから、貴社に最適なチームを最短1週間で編成します
+    </p>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRO MEMBERS -->
+<section id="pros" class="reveal">
+  <div class="section-header">
+    <div class="section-eyebrow">Pro Members</div>
+    <h2>参考プロ人材（例）6名の実績・スキル詳細</h2>
+    <p>Microsoft 365でのBPRを支える各カテゴリのプロ人材。課題に応じて最適な方を個別にアサイン可能。</p>
+  </div>
+  <div class="pros-grid">
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--blue);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">01</div>
+          <div class="pro-role">ITアーキテクト / Power Platform</div>
+        </div>
+        <div class="pro-name">Y 氏</div>
+        <div class="pro-org">元 ブレインズコンサルティング</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">ANA の超大規模インフラ構築後、ITコンサルタントへ転身。Power Platform の導入支援・アーキテクチャ設計。大手小売業・大手流通業のM365×Azureデータ基盤構築をリード。生成AIを活用した設計・実装で高速開発。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--blue); border-color:var(--blue)">Power Platform全般</span>
+          <span class="pro-tag" style="color:var(--blue); border-color:var(--blue)">Azure</span>
+          <span class="pro-tag" style="color:var(--blue); border-color:var(--blue)">M365</span>
+          <span class="pro-tag" style="color:var(--blue); border-color:var(--blue)">BPR</span>
+        </div>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--teal);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">02</div>
+          <div class="pro-role">M365 / Copilot 定着化コンサル</div>
+        </div>
+        <div class="pro-name">A 氏</div>
+        <div class="pro-org">ITコンサルタント（IT講師31年）</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">Microsoft 365・Copilot・Power Platformの活用定着を専門とするITコンサルタント。約60プロジェクトに参加。非エンジニア部門向けに業務整理・活用設計・運用ルール整備・定着支援まで一貫対応。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--teal); border-color:var(--teal)">M365 Copilot</span>
+          <span class="pro-tag" style="color:var(--teal); border-color:var(--teal)">Power Platform定着</span>
+          <span class="pro-tag" style="color:var(--teal); border-color:var(--teal)">研修設計</span>
+        </div>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--red);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">03</div>
+          <div class="pro-role">MS出身 IT戦略 × Power Platform実装</div>
+        </div>
+        <div class="pro-name">比嘉 智明 氏 <span class="pro-new">NEW</span></div>
+        <div class="pro-org">株式会社CIOコネクティッド 代表 / 元 日本マイクロソフト（12年）</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">日本マイクロソフトでプリセールスSE・ソリューションアドバイザーとして12年間、マツダ・三井物産・KDDIなど大手企業のIT活用提案を担当。現在はPower Platform全面採用の商談管理システム（参加400社超・商談3,000件超）や製造小売業の在庫・発注管理システムを構築。MBA・中小企業診断士として経営目線での課題設定も可能。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--red); border-color:var(--red)">元日本マイクロソフト</span>
+          <span class="pro-tag" style="color:var(--red); border-color:var(--red)">Power Platform</span>
+          <span class="pro-tag" style="color:var(--red); border-color:var(--red)">MBA</span>
+          <span class="pro-tag" style="color:var(--red); border-color:var(--red)">製造業DX</span>
+        </div>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--purple);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">04</div>
+          <div class="pro-role">Power Platform 実装エンジニア</div>
+        </div>
+        <div class="pro-name">K 氏</div>
+        <div class="pro-org">元 任天堂</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">Nintendo HKで30以上のワークフロー・自動化ソリューションをPower Apps / Power Automate / Power BIで設計・実装。IT全般統制（COSOフレームワーク）・セキュリティオペレーション自動化・BCP計画まで幅広く対応。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--purple); border-color:var(--purple)">Power Apps</span>
+          <span class="pro-tag" style="color:var(--purple); border-color:var(--purple)">Power Automate</span>
+          <span class="pro-tag" style="color:var(--purple); border-color:var(--purple)">IT統制</span>
+        </div>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--orange);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">05</div>
+          <div class="pro-role">Power Platform 実装・市民開発支援</div>
+        </div>
+        <div class="pro-name">Y 氏</div>
+        <div class="pro-org">元 日本マイクロソフト エンジニア</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">Copilot Studio・Power Automate・Power Apps・Dataverse・Office Scriptsでの業務改善システム構築・保守を専門。電機メーカーでの社内申請プラットフォーム構築、業務改善システム市民開発支援（メンター）実績。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--orange); border-color:var(--orange)">Copilot Studio</span>
+          <span class="pro-tag" style="color:var(--orange); border-color:var(--orange)">Dataverse</span>
+          <span class="pro-tag" style="color:var(--orange); border-color:var(--orange)">市民開発支援</span>
+        </div>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-card-head" style="background: var(--green);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="pro-no">06</div>
+          <div class="pro-role">AI導入・定着化支援</div>
+        </div>
+        <div class="pro-name">S 氏</div>
+        <div class="pro-org">AI導入・内製化エンジニア</div>
+      </div>
+      <div class="pro-body">
+        <p class="pro-desc">企業へのAI導入・オンボーディング・定着支援を専門。Copilot Studio・ChatGPT・GAS・n8n・Dify等を用いた業務自動化設計・開発も実施。支援先で生成AI利用率100%・NPS 9.9達成。「組織行動変容」と内製化推進に強み。</p>
+        <div class="pro-tags">
+          <span class="pro-tag" style="color:var(--green); border-color:var(--green)">AI定着化</span>
+          <span class="pro-tag" style="color:var(--green); border-color:var(--green)">Dify / n8n</span>
+          <span class="pro-tag" style="color:var(--green); border-color:var(--green)">組織変革</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>貴社の課題に合わせた<br>ご提案をいたします</h2>
+  <p>M365環境の現状や推進テーマをお聞かせください。<br>まずは30分の情報交換から、お気軽にどうぞ。</p>
+  <a href="https://go.circu.co.jp/e/512121/yoshiki-kiso-60min/42qp7gq/2748347550/h/Hmnc_VaTLJo1l2txNo9tHyMmGQLc79ihRV-VxhZ_LIU" class="cta-btn">📅 打ち合わせ日程を選ぶ</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 株式会社サーキュレーション エンタープライズチーム　｜　本ページは商談・レビューMTGでの提案用です</p>
+</footer>
+
+<script>
+  // スクロールリビール
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // スムーススクロール
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
