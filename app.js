@@ -274,9 +274,11 @@ function assignFlow(a) {
 
 /* ---------------- セクション4：事例 ---------------- */
 function renderCases(data) {
-  $("#cases-named").innerHTML = (data.casesNamed || []).map((c) => `
+  $("#cases-named").innerHTML = (data.casesNamed || []).map((c) => {
+    const onerr = c.imageFallback ? ` onerror="this.onerror=null;this.src='${esc(c.imageFallback)}'"` : "";
+    return `
     <article class="card case-card">
-      <img class="thumb" src="${esc(c.image)}" alt="${esc(c.alt)}" loading="lazy">
+      <img class="thumb" src="${esc(c.image)}" alt="${esc(c.alt)}" loading="lazy"${onerr}>
       <div class="body">
         ${c.industry ? `<div class="industry">${esc(c.industry)}</div>` : ""}
         <h4>${esc(c.title)}</h4>
@@ -286,8 +288,8 @@ function renderCases(data) {
           <a href="${esc(c.sourceUrl)}" target="_blank" rel="noopener">${esc(c.sourceLabel || "出典：自社HP事例ページ")}</a>
         </div>
       </div>
-    </article>
-  `).join("");
+    </article>`;
+  }).join("");
 
   const stat = data.meta && data.meta.projectsStat;
   $("#cases-anon").innerHTML =

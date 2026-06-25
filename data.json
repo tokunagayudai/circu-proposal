@@ -365,33 +365,46 @@
     }
   ],
 
-  "_comment_casesNamed": "セクション4：社名あり事例。出典は自社HP事例ページ（https://circu.co.jp/pro-sharing/cases/）の公開範囲のみ。image は images/ に格納したキャプチャ。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。sourceUrl は必ず併記。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
+  "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ（images/case-*.png）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック（=スクショは images/ に置くだけ、編集不要）。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
   "casesNamed": [
     {
-      "title": "（事例タイトルをHP掲載どおりに記載）",
-      "industry": "業界",
-      "image": "images/case-sample-1.svg",
-      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
-      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
-      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "industry": "不動産",
+      "title": "小田急不動産株式会社",
+      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "image": "images/case-odakyu.png",
+      "imageFallback": "images/case-odakyu.svg",
+      "alt": "小田急不動産 事例（自社HP事例ページ）",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/odakyu-fudosan-date/",
       "sourceLabel": "出典：自社HP事例ページ"
     },
     {
-      "title": "（事例タイトルをHP掲載どおりに記載）",
-      "industry": "業界",
-      "image": "images/case-sample-2.svg",
-      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
-      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
-      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "industry": "メーカー（電機）",
+      "title": "カシオ計算機株式会社",
+      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "image": "images/case-casio.png",
+      "imageFallback": "images/case-casio.svg",
+      "alt": "カシオ計算機 事例（自社HP事例ページ）",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/casio/",
       "sourceLabel": "出典：自社HP事例ページ"
     },
     {
-      "title": "（事例タイトルをHP掲載どおりに記載）",
-      "industry": "業界",
-      "image": "images/case-sample-3.svg",
-      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
-      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
-      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "industry": "メーカー（文具・事務機器）",
+      "title": "マックス株式会社",
+      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "image": "images/case-max.png",
+      "imageFallback": "images/case-max.svg",
+      "alt": "マックス 事例（自社HP事例ページ）",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/max-ltd/",
+      "sourceLabel": "出典：自社HP事例ページ"
+    },
+    {
+      "industry": "旅行",
+      "title": "株式会社エイチ・アイ・エス（H.I.S.）",
+      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "image": "images/case-his.png",
+      "imageFallback": "images/case-his.svg",
+      "alt": "H.I.S. 事例（自社HP事例ページ）",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/h-i-s/",
       "sourceLabel": "出典：自社HP事例ページ"
     }
   ],
