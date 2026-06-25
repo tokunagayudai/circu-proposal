@@ -39,6 +39,19 @@ function renderFlow(steps, mini) {
   return `<div class="flow ${mini ? "flow-mini" : "flow-full"}">${cells}</div>`;
 }
 
+/* サムネイル画像のHTMLを生成。
+   thumbnailShot（実スクショ：images/slide-*.png 等）があれば優先表示し、
+   ファイルが無い／読み込み失敗時は thumbnail（自動生成SVG）に自動フォールバック。
+   → 実スクショは images/ に置くだけで自動的に差し替わる（data.json の編集不要）。 */
+function thumbImg(t, cls) {
+  const shot = t.thumbnailShot;
+  const svg = t.thumbnail;
+  const src = shot || svg;
+  if (!src) return "";
+  const onerr = (shot && svg) ? ` onerror="this.onerror=null;this.src='${esc(svg)}'"` : "";
+  return `<img class="${cls}" src="${esc(src)}" alt="${esc(t.title)} のスライドイメージ" loading="lazy"${onerr}>`;
+}
+
 /* ---------------- セクション1：ピックアップ ---------------- */
 function renderPickup(themes) {
   const grid = $("#pickup-grid");
@@ -50,9 +63,10 @@ function renderPickup(themes) {
   grid.innerHTML = items.map((t) => {
     const d = t.detail || {};
     const clickable = !!(t.detail || t.doc);
+    const thumb = thumbImg(t, "pickup-thumb");
     return `
-    <article class="card pickup-card${t.thumbnail ? " has-thumb" : ""}" ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
-      ${t.thumbnail ? `<img class="pickup-thumb" src="${esc(t.thumbnail)}" alt="${esc(t.title)} のスライドイメージ" loading="lazy">` : ""}
+    <article class="card pickup-card${thumb ? " has-thumb" : ""}" ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
+      ${thumb}
       <div class="pickup-body">
         <div class="badges">
           ${t.isNew ? `<span class="badge badge-new">NEW</span>` : ""}
@@ -195,7 +209,7 @@ function openModal(themeId) {
   $("#modal-body").innerHTML = `
     <div class="modal-eyebrow">Pick Up / 直近ピックアップテーマ</div>
     <h2 class="modal-title" id="modal-title">${esc(t.title)}</h2>
-    ${t.thumbnail ? `<img class="modal-hero" src="${esc(t.thumbnail)}" alt="${esc(t.title)} のスライドイメージ">` : ""}
+    ${thumbImg(t, "modal-hero")}
     ${d.lead ? `<p class="modal-lead">${esc(d.lead)}</p>` : ""}
     <div class="modal-grid">
       ${d.problem ? `
