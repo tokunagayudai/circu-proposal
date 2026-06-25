@@ -194,17 +194,36 @@ function procaseCard(p) {
     </article>`;
 }
 
-/* ---------------- セクション3：解決策の型 ---------------- */
-function renderSolutions(items) {
-  $("#solution-grid").innerHTML = (items || []).map((s) => `
-    <article class="card solution-card">
-      <div class="icon-box"><i class="ti ${esc(s.icon)}"></i></div>
-      <h3>${esc(s.title)}</h3>
-      <p>${esc(s.desc)}</p>
-      ${(s.points && s.points.length)
-        ? `<ul>${s.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
-    </article>
-  `).join("");
+/* ---------------- セクション3：課題解決の要素（放射図） ---------------- */
+function renderElements(ps) {
+  const wrap = $("#elements-diagram");
+  if (!wrap || !ps) return;
+  const els = ps.elements || [];
+  const n = els.length;
+  if (!n) { wrap.innerHTML = ""; return; }
+
+  const cx = 360, cy = 235, rx = 250, ry = 150;
+  let lines = "", nodes = "";
+  els.forEach((label, i) => {
+    const ang = (-90 + i * (360 / n)) * Math.PI / 180;
+    const x = (cx + rx * Math.cos(ang)).toFixed(1);
+    const y = (cy + ry * Math.sin(ang)).toFixed(1);
+    lines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" class="el-line"/>`;
+    nodes += `<g class="el-node">
+      <ellipse cx="${x}" cy="${y}" rx="84" ry="44"></ellipse>
+      <text x="${x}" y="${(parseFloat(y) + 5).toFixed(1)}">${esc(label)}</text>
+    </g>`;
+  });
+
+  wrap.innerHTML = `
+    <svg viewBox="0 0 720 470" class="el-svg" role="img" aria-label="${esc(ps.center || "プロジェクト成功要素")}と構成要素">
+      ${lines}
+      <g class="el-center">
+        <ellipse cx="${cx}" cy="${cy}" rx="100" ry="62"></ellipse>
+        <text x="${cx}" y="${cy + 6}">${esc(ps.center || "プロジェクト成功要素")}</text>
+      </g>
+      ${nodes}
+    </svg>`;
 }
 
 /* プロ人材アサイン体制例（線で繋いだ体制図） */
@@ -423,7 +442,7 @@ function wireEvents() {
     }
     renderPickup(data.themes || []);
     renderCatalog(data);
-    renderSolutions(data.solutionTypes);
+    renderElements(data.projectSuccess);
     renderAssign(data.assignExamples);
     renderCases(data);
     renderPksha(data.pksha);
