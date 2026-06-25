@@ -195,6 +195,21 @@ section { scroll-margin-top: 84px; }
   flex-direction: column;
   cursor: pointer;
 }
+.pickup-card.has-thumb { padding: 0; }
+.pickup-card.has-thumb .pickup-body {
+  padding: 22px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.pickup-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  background: var(--blue-l);
+  border-bottom: 1px solid var(--line);
+}
 .pickup-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .pickup-card .badges {
   display: flex;
@@ -518,6 +533,15 @@ section { scroll-margin-top: 84px; }
 .modal-title {
   font-size: 1.5rem; font-weight: 700; color: var(--blue-d);
   margin: 0 0 14px; line-height: 1.5;
+}
+.modal-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 6px 0 22px;
+  display: block;
 }
 .modal-lead {
   font-size: 1.05rem; font-weight: 500; color: var(--ink);
