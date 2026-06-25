@@ -20,7 +20,7 @@
   --card-radius: 10px;
   --shadow: 0 1px 3px rgba(0, 61, 94, 0.06), 0 6px 18px rgba(0, 61, 94, 0.06);
   --shadow-hover: 0 4px 14px rgba(0, 61, 94, 0.12), 0 14px 34px rgba(0, 61, 94, 0.10);
-  --maxw: 1180px;
+  --maxw: 1440px;
   --font-sans: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
@@ -115,7 +115,7 @@ a { color: var(--blue); }
 }
 .hero p {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
-  max-width: 760px;
+  max-width: 880px;
   margin: 0;
   color: var(--ink-soft);
 }
@@ -186,7 +186,7 @@ section { scroll-margin-top: 84px; }
 /* ---------- セクション1：ピックアップ ---------- */
 .pickup-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   gap: 22px;
 }
 .pickup-card {
