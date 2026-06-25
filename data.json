@@ -338,10 +338,11 @@
     }
   ],
 
-  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。状況に応じた編成パターンを4象限で提示（Issue別／Phase別／Role・Domain別／Project別）。項目追加は items に1件足すだけ。",
+  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。線で繋いだ体制図として描画。diagram='tree' はハブ（hub/hubSub）から各 items をコネクタ線で接続、diagram='flow' は左→右のフロー。項目追加は items に1件足すだけ。",
   "assignExamples": [
     {
       "key": "Issue", "subtitle": "課題に合わせた「各タスクリーダー」",
+      "diagram": "tree", "hub": "プロジェクト課題", "hubSub": "全社横断テーマ",
       "items": [
         { "label": "戦略・構想", "detail": "IT戦略" },
         { "label": "ERP", "detail": "PM・PMO／ベンダーコントロール／各テーマ分科会リード" },
@@ -351,6 +352,7 @@
     },
     {
       "key": "Phase", "subtitle": "フェーズに合わせた「ジャスト・イン・タイム」",
+      "diagram": "flow",
       "items": [
         { "label": "戦略・構想", "detail": "戦略コンサル／市場調査Pro" },
         { "label": "検証・プロト", "detail": "MVPエンジニア／UXデザイナー" },
@@ -360,6 +362,7 @@
     },
     {
       "key": "Role / Domain", "subtitle": "役割・領域に合わせた「専門家」",
+      "diagram": "tree", "hub": "プロジェクトオーナー", "hubSub": "推進責任者",
       "items": [
         { "label": "Role：リサーチ", "detail": "リサーチ及びレポーティング" },
         { "label": "Role：MVP開発", "detail": "プロトタイプ作成" },
@@ -369,6 +372,7 @@
     },
     {
       "key": "Project", "subtitle": "プロジェクト毎に「専門 PM / PL」",
+      "diagram": "tree", "hub": "専門 PM / PL", "hubSub": "複数案件を統括",
       "items": [
         { "label": "並行プロジェクトの統括", "detail": "複数プロジェクトを専門PM/PLが横断して推進" },
         { "label": "品質と進行の担保", "detail": "各案件にPM/PLを配置し、品質・進捗・連携を管理" }
