@@ -8,6 +8,7 @@
 
 const $ = (sel, root = document) => root.querySelector(sel);
 let THEMES_BY_ID = {};
+let DATA = {};
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({
@@ -81,7 +82,7 @@ function renderPickup(themes) {
   }).join("");
 }
 
-/* ---------------- セクション2：カタログ（カテゴリ別） ---------------- */
+/* ---------------- セクション2：カタログ（カテゴリ別アコーディオン） ---------------- */
 function renderCatalog(data) {
   const { categories, themes } = data;
 
@@ -94,30 +95,24 @@ function renderCatalog(data) {
 
   const wrap = $("#catalog-blocks");
   wrap.innerHTML = categories.map((c) => {
-    const matched = themes.filter((t) => (t.categories || []).includes(c.id));
-    if (!matched.length) return "";
-    const cards = matched.map((t) => {
-      const clickable = !!(t.detail || t.doc);
-      const tagNames = (t.categories || [])
-        .map((id) => (categories.find((cc) => cc.id === id) || {}).name)
-        .filter(Boolean);
-      return `
-        <article class="card catalog-card ${clickable ? "clickable" : ""}"
-          ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
-          <h4>${esc(t.title)}</h4>
-          ${t.angle ? `<div class="angle">${esc(t.angle)}</div>` : ""}
-          <p class="summary">${esc(t.summary)}</p>
-          <div class="tags">${tagNames.map((n) => `<span class="tag">${esc(n)}</span>`).join("")}</div>
-        </article>`;
-    }).join("");
+    const relCount = themes.filter((t) => (t.categories || []).includes(c.id)).length;
+    const ch = c.challenges || [];
     return `
-      <div class="category-block" data-cat="${esc(c.id)}" id="cat-${esc(c.id)}">
-        <div class="category-title">
-          <i class="ti ${esc(c.icon)}"></i>
-          <span>${esc(c.name)}</span>
-          <span class="count">${matched.length} テーマ</span>
+      <div class="cat-acc" data-cat="${esc(c.id)}" id="cat-${esc(c.id)}">
+        <button class="cat-acc-head" aria-expanded="false">
+          <span class="cat-ic"><i class="ti ${esc(c.icon)}"></i></span>
+          <span class="cat-meta">
+            <span class="cat-name">${esc(c.name)}</span>
+            ${c.tagline ? `<span class="cat-tagline">${esc(c.tagline)}</span>` : ""}
+          </span>
+          <span class="cat-count">${ch.length}課題 / ${relCount}テーマ</span>
+          <i class="ti ti-chevron-down chev"></i>
+        </button>
+        <div class="cat-acc-body" hidden>
+          ${ch.length ? `<div class="cat-sub">よくある課題</div>
+            <ul class="challenge-list">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+          <button class="btn-detail" data-category="${esc(c.id)}">詳細（課題・解決策・プロ人材事例）を見る<i class="ti ti-arrow-right"></i></button>
         </div>
-        <div class="catalog-grid">${cards}</div>
       </div>`;
   }).join("");
 
@@ -126,7 +121,11 @@ function renderCatalog(data) {
     if (!btn) return;
     const cat = btn.dataset.cat;
     bar.querySelectorAll(".chip").forEach((c) => c.classList.toggle("active", c === btn));
-    applyFilter(cat);
+    document.querySelectorAll(".cat-acc").forEach((acc) => {
+      const match = cat === "all" || acc.dataset.cat === cat;
+      acc.classList.toggle("hidden", !match);
+      if (cat !== "all" && match) setAcc(acc, true);   // 単一カテゴリ選択時は自動で開く
+    });
     if (cat !== "all") {
       const target = $(`#cat-${CSS.escape(cat)}`);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -134,10 +133,65 @@ function renderCatalog(data) {
   });
 }
 
-function applyFilter(cat) {
-  document.querySelectorAll(".category-block").forEach((block) => {
-    block.classList.toggle("hidden", cat !== "all" && block.dataset.cat !== cat);
-  });
+/* アコーディオンの開閉 */
+function setAcc(acc, open) {
+  acc.querySelector(".cat-acc-head").setAttribute("aria-expanded", String(open));
+  acc.querySelector(".cat-acc-body").hidden = !open;
+  acc.classList.toggle("open", open);
+}
+
+/* カテゴリ詳細モーダル（課題一覧 / 解決策テーマ / プロ人材事例） */
+function openCategoryModal(catId) {
+  const c = (DATA.categories || []).find((x) => x.id === catId);
+  if (!c) return;
+  const themes = (DATA.themes || []).filter((t) => (t.categories || []).includes(catId));
+  const cases = (DATA.proCases || []).filter((p) => (p.categories || []).includes(catId));
+  const ch = c.challenges || [];
+
+  $("#modal-body").innerHTML = `
+    <div class="modal-eyebrow">Catalog / 部署・テーマ別</div>
+    <h2 class="modal-title" id="modal-title"><i class="ti ${esc(c.icon)}"></i> ${esc(c.name)}</h2>
+    ${c.tagline ? `<p class="modal-lead">${esc(c.tagline)}</p>` : ""}
+    ${ch.length ? `
+      <div class="cat-modal-sec">
+        <p class="modal-section-label"><i class="ti ti-alert-triangle"></i>よくある課題</p>
+        <ul class="modal-points">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </div>` : ""}
+    ${themes.length ? `
+      <div class="cat-modal-sec">
+        <p class="modal-section-label"><i class="ti ti-bulb"></i>解決策テーマ</p>
+        <div class="sol-list">
+          ${themes.map((t) => `
+            <button class="sol-row" data-theme="${esc(t.id)}">
+              <span class="sol-row-main">
+                <span class="sol-row-title">${esc(t.title)}</span>
+                <span class="sol-row-sum">${esc(t.summary)}</span>
+              </span>
+              <i class="ti ti-chevron-right"></i>
+            </button>`).join("")}
+        </div>
+      </div>` : ""}
+    ${cases.length ? `
+      <div class="cat-modal-sec">
+        <p class="modal-section-label"><i class="ti ti-briefcase"></i>プロ人材事例</p>
+        <div class="procase-list">${cases.map(procaseCard).join("")}</div>
+      </div>` : ""}
+  `;
+  modal().hidden = false;
+  document.body.classList.add("no-scroll");
+}
+
+function procaseCard(p) {
+  return `
+    <article class="procase">
+      <div class="procase-top">
+        <span class="procase-tag">${esc(p.tag)}</span>
+        <span class="procase-scale">${esc(p.scale)}</span>
+      </div>
+      <h4>${esc(p.title)}</h4>
+      <p>${esc(p.summary)}</p>
+      ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
+    </article>`;
 }
 
 /* ---------------- セクション3：解決策の型 ---------------- */
@@ -170,20 +224,20 @@ function renderCases(data) {
     </article>
   `).join("");
 
-  $("#cases-anon").innerHTML = (data.casesAnonymous || []).map((c) => `
-    <article class="card case-card">
-      <div class="body">
-        ${c.industry ? `<div class="industry">${esc(c.industry)}</div>` : ""}
-        <h4>${esc(c.title)}</h4>
-        <div class="meta">
-          ${c.scale ? `<span class="tag">${esc(c.scale)}</span>` : ""}
-          ${c.period ? `<span class="tag">${esc(c.period)}</span>` : ""}
+  const stat = data.meta && data.meta.projectsStat;
+  $("#cases-anon").innerHTML =
+    (stat ? `<div class="stat-band"><i class="ti ti-chart-bar"></i><span>${esc(stat)}</span></div>` : "") +
+    (data.proCases || []).map((p) => `
+      <article class="card case-card">
+        <div class="body">
+          <div class="procase-top"><span class="procase-tag">${esc(p.tag)}</span></div>
+          <div class="industry">${esc(p.scale)}</div>
+          <h4>${esc(p.title)}</h4>
+          <p class="summary">${esc(p.summary)}</p>
+          ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
         </div>
-        <p class="summary">${esc(c.summary)}</p>
-        ${c.sourceNote ? `<div class="anon-note">${esc(c.sourceNote)}</div>` : ""}
-      </div>
-    </article>
-  `).join("");
+      </article>
+    `).join("");
 }
 
 /* ---------------- セクション5：PKSHA ---------------- */
@@ -285,7 +339,14 @@ function wireEvents() {
     const card = e.target.closest("[data-theme]");
     if (card) { openModal(card.dataset.theme); return; }
     const docBtn = e.target.closest("[data-doc-url]");
-    if (docBtn) { openDoc(docBtn.dataset.docUrl, docBtn.dataset.docType, docBtn.dataset.docTitle); }
+    if (docBtn) { openDoc(docBtn.dataset.docUrl, docBtn.dataset.docType, docBtn.dataset.docTitle); return; }
+    const catBtn = e.target.closest("[data-category]");
+    if (catBtn) { openCategoryModal(catBtn.dataset.category); return; }
+    const accHead = e.target.closest(".cat-acc-head");
+    if (accHead) {
+      const acc = accHead.closest(".cat-acc");
+      setAcc(acc, acc.querySelector(".cat-acc-body").hidden);
+    }
   });
   // キーボード（Enter/Space）でカードを開く
   document.addEventListener("keydown", (e) => {
@@ -308,6 +369,7 @@ function wireEvents() {
 (async function init() {
   try {
     const data = await loadData();
+    DATA = data;
     THEMES_BY_ID = Object.fromEntries((data.themes || []).map((t) => [t.id, t]));
     if (data.meta) {
       if (data.meta.subtitle) $("#hero-subtitle").textContent = data.meta.subtitle;
