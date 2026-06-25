@@ -51,15 +51,18 @@ function renderPickup(themes) {
     const d = t.detail || {};
     const clickable = !!(t.detail || t.doc);
     return `
-    <article class="card pickup-card" ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
-      <div class="badges">
-        ${t.isNew ? `<span class="badge badge-new">NEW</span>` : ""}
-        ${t.updated ? `<span class="badge badge-date">更新 ${esc(formatDate(t.updated))}</span>` : ""}
+    <article class="card pickup-card${t.thumbnail ? " has-thumb" : ""}" ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
+      ${t.thumbnail ? `<img class="pickup-thumb" src="${esc(t.thumbnail)}" alt="${esc(t.title)} のスライドイメージ" loading="lazy">` : ""}
+      <div class="pickup-body">
+        <div class="badges">
+          ${t.isNew ? `<span class="badge badge-new">NEW</span>` : ""}
+          ${t.updated ? `<span class="badge badge-date">更新 ${esc(formatDate(t.updated))}</span>` : ""}
+        </div>
+        <h3>${esc(t.title)}</h3>
+        <p class="lead">${esc(d.lead || t.summary)}</p>
+        ${renderFlow(d.flow, true)}
+        ${clickable ? `<div class="card-cta">詳細・資料を見る<i class="ti ti-arrow-right"></i></div>` : ""}
       </div>
-      <h3>${esc(t.title)}</h3>
-      <p class="lead">${esc(d.lead || t.summary)}</p>
-      ${renderFlow(d.flow, true)}
-      ${clickable ? `<div class="card-cta">詳細・資料を見る<i class="ti ti-arrow-right"></i></div>` : ""}
     </article>`;
   }).join("");
 }
@@ -192,6 +195,7 @@ function openModal(themeId) {
   $("#modal-body").innerHTML = `
     <div class="modal-eyebrow">Pick Up / 直近ピックアップテーマ</div>
     <h2 class="modal-title" id="modal-title">${esc(t.title)}</h2>
+    ${t.thumbnail ? `<img class="modal-hero" src="${esc(t.thumbnail)}" alt="${esc(t.title)} のスライドイメージ">` : ""}
     ${d.lead ? `<p class="modal-lead">${esc(d.lead)}</p>` : ""}
     <div class="modal-grid">
       ${d.problem ? `
