@@ -207,6 +207,27 @@ function renderSolutions(items) {
   `).join("");
 }
 
+/* プロ人材アサイン体制例（4象限） */
+function renderAssign(items) {
+  const grid = $("#assign-grid");
+  if (!grid) return;
+  grid.innerHTML = (items || []).map((a) => `
+    <article class="card assign-card">
+      <div class="assign-head">
+        <span class="assign-key">${esc(a.key)}</span>
+        <span class="assign-sub">${esc(a.subtitle)}</span>
+      </div>
+      <div class="assign-items">
+        ${(a.items || []).map((it) => `
+          <div class="assign-item">
+            <span class="assign-item-label">${esc(it.label)}</span>
+            <span class="assign-item-detail">${esc(it.detail)}</span>
+          </div>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
 /* ---------------- セクション4：事例 ---------------- */
 function renderCases(data) {
   $("#cases-named").innerHTML = (data.casesNamed || []).map((c) => `
@@ -378,6 +399,7 @@ function wireEvents() {
     renderPickup(data.themes || []);
     renderCatalog(data);
     renderSolutions(data.solutionTypes);
+    renderAssign(data.assignExamples);
     renderCases(data);
     renderPksha(data.pksha);
     wireEvents();
