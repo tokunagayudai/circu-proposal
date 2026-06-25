@@ -739,6 +739,30 @@ body.no-scroll { overflow: hidden; }
   background: var(--blue-l); border-radius: 6px; padding: 5px 10px;
 }
 
+/* ---------- プロ人材アサイン体制例（4象限） ---------- */
+.assign-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.assign-card { padding: 22px 22px 20px; }
+.assign-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.assign-key {
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.04em; color: #fff; background: var(--blue);
+  border-radius: 6px; padding: 5px 12px; white-space: nowrap;
+}
+.assign-sub { font-weight: 700; color: var(--blue-d); font-size: 0.92rem; }
+.assign-items { display: flex; flex-direction: column; gap: 8px; }
+.assign-item {
+  display: flex; flex-direction: column; gap: 2px;
+  background: #f7fafc; border: 1px solid var(--line);
+  border-left: 3px solid var(--blue-mid);
+  border-radius: 7px; padding: 9px 12px;
+}
+.assign-item-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
+.assign-item-detail { color: var(--ink-soft); font-size: 0.84rem; }
+
 /* ---------- 事例：実績スタットバンド ---------- */
 .stat-band {
   grid-column: 1 / -1;
@@ -754,7 +778,7 @@ body.no-scroll { overflow: hidden; }
   .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
   .hero { padding-top: 40px; }
   .section { padding: 36px 18px; }
-  .pickup-grid, .catalog-grid, .case-grid, .solution-grid, .pksha-grid {
+  .pickup-grid, .catalog-grid, .case-grid, .solution-grid, .pksha-grid, .assign-grid {
     grid-template-columns: 1fr;
   }
   .modal-body { padding: 28px 22px 24px; }
