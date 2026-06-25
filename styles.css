@@ -745,23 +745,71 @@ body.no-scroll { overflow: hidden; }
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
-.assign-card { padding: 22px 22px 20px; }
-.assign-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.assign-card { padding: 22px 22px 22px; }
+.assign-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
 .assign-key {
   font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem;
   letter-spacing: 0.04em; color: #fff; background: var(--blue);
   border-radius: 6px; padding: 5px 12px; white-space: nowrap;
 }
 .assign-sub { font-weight: 700; color: var(--blue-d); font-size: 0.92rem; }
-.assign-items { display: flex; flex-direction: column; gap: 8px; }
-.assign-item {
-  display: flex; flex-direction: column; gap: 2px;
-  background: #f7fafc; border: 1px solid var(--line);
-  border-left: 3px solid var(--blue-mid);
-  border-radius: 7px; padding: 9px 12px;
+
+/* --- ツリー型体制図（ハブ → コネクタ線 → 各役割） --- */
+.tree { display: flex; align-items: stretch; }
+.tree-hub {
+  align-self: center; flex-shrink: 0; width: 132px;
+  background: var(--blue-d); color: #fff;
+  border-radius: 10px; padding: 14px 14px;
+  display: flex; flex-direction: column; gap: 3px; text-align: center;
 }
-.assign-item-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
-.assign-item-detail { color: var(--ink-soft); font-size: 0.84rem; }
+.th-title { font-weight: 700; font-size: 0.92rem; line-height: 1.4; }
+.th-sub { font-weight: 500; font-size: 0.74rem; opacity: 0.85; }
+.tree-branch {
+  position: relative; flex-grow: 1;
+  display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  margin-left: 22px; padding-left: 30px;
+}
+/* 縦のバス線 */
+.tree-branch::before {
+  content: ""; position: absolute; left: 0; top: 18px; bottom: 18px;
+  width: 2px; background: rgba(0, 121, 192, 0.4);
+}
+/* ハブ → バスをつなぐ横線 */
+.tree-branch::after {
+  content: ""; position: absolute; left: -22px; top: 50%;
+  width: 22px; height: 2px; background: rgba(0, 121, 192, 0.4); transform: translateY(-1px);
+}
+.tree-child {
+  position: relative;
+  background: #f7fafc; border: 1px solid var(--line); border-left: 3px solid var(--blue);
+  border-radius: 8px; padding: 10px 13px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+/* バス → 各役割をつなぐ横線 */
+.tree-child::before {
+  content: ""; position: absolute; left: -30px; top: 50%;
+  width: 30px; height: 2px; background: rgba(0, 121, 192, 0.4); transform: translateY(-1px);
+}
+/* 接続点のノード */
+.tree-child::after {
+  content: ""; position: absolute; left: -33px; top: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--blue); transform: translate(0, -50%);
+}
+.tc-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
+.tc-detail { color: var(--ink-soft); font-size: 0.83rem; }
+
+/* --- フロー型（フェーズ進行） --- */
+.phase-flow { display: flex; align-items: stretch; gap: 4px; flex-wrap: wrap; }
+.phase-step {
+  flex: 1 1 0; min-width: 116px;
+  background: #f7fafc; border: 1px solid var(--line); border-top: 3px solid var(--blue);
+  border-radius: 8px; padding: 12px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ps-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
+.ps-detail { color: var(--ink-soft); font-size: 0.82rem; }
+.phase-arrow { align-self: center; color: var(--blue-mid); font-size: 1.1rem; flex-shrink: 0; }
 
 /* ---------- 事例：実績スタットバンド ---------- */
 .stat-band {
