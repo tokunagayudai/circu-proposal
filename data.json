@@ -2,27 +2,132 @@
   "meta": {
     "title": "サーキュレーション 提案ポータル",
     "subtitle": "貴社の課題に対し、テーマ・切り口・推進体制・進め方までを具体化。プロ人材を手段として、成果につながる解決策をご一緒に描きます。",
-    "lastUpdated": "2026-06-25"
+    "lastUpdated": "2026-06-25",
+    "projectsStat": "業界 × 役割 × フェーズを問わず、22,500件+ のプロジェクト実績"
   },
 
-  "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名（https://tabler.io/icons）。",
+  "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名。tagline は見出し横の一言。challenges は『よくある課題』（カードのトグルを開くと表示／詳細モーダルにも表示）。※顧客に見られて困らない一般化された内容のみ。",
   "categories": [
-    { "id": "hr",         "name": "人事",          "icon": "ti-users" },
-    { "id": "finance",    "name": "経理・財務",    "icon": "ti-coin" },
-    { "id": "newbiz",     "name": "新規事業",      "icon": "ti-rocket" },
-    { "id": "scm",        "name": "SCM",           "icon": "ti-truck-delivery" },
-    { "id": "retail",     "name": "小売",          "icon": "ti-building-store" },
-    { "id": "manufactur", "name": "製造",          "icon": "ti-building-factory-2" },
-    { "id": "marketing",  "name": "マーケティング", "icon": "ti-speakerphone" },
-    { "id": "bpr",        "name": "BPR・業務改善",  "icon": "ti-refresh" },
-    { "id": "dx",         "name": "DX",            "icon": "ti-device-laptop" },
-    { "id": "ai",         "name": "AI",            "icon": "ti-robot" },
-    { "id": "dev",        "name": "開発",          "icon": "ti-code" },
-    { "id": "security",   "name": "セキュリティ",   "icon": "ti-shield-lock" },
-    { "id": "governance", "name": "ガバナンス",     "icon": "ti-scale" }
+    {
+      "id": "hr", "name": "人事・組織開発", "icon": "ti-users",
+      "tagline": "“人で勝つ”仕組みと、現場で効く育成を",
+      "challenges": [
+        "OJT体制が整っておらず、若手が専門スキルを身につけられていない",
+        "AX・AIリテラシー研修を導入したいが、内製では設計できない",
+        "次世代リーダー育成に向け、現場で伴走してくれるメンターが必要"
+      ]
+    },
+    {
+      "id": "finance", "name": "経理・財務（CFO）", "icon": "ti-coin",
+      "tagline": "“記録”から“意思決定を回す”経理財務へ",
+      "challenges": [
+        "CFO機能の強化・経理部門の高度化を支援してほしい",
+        "資金調達・財務戦略の立案を実務経験者に依頼したい",
+        "M&A・PMI時の財務DD・統合支援、IPO準備・内部統制構築を任せたい"
+      ]
+    },
+    {
+      "id": "newbiz", "name": "新規事業・事業開発", "icon": "ti-rocket",
+      "tagline": "構想で終わらせず、検証から事業化まで",
+      "challenges": [
+        "新規事業アイデアはあるが、立ち上げ経験のある人材が社内にいない",
+        "PoC・MVP開発からビジネスモデル検証まで短期間で推進したい",
+        "社内コンテスト通過後、担当者1名では推進が難しい"
+      ]
+    },
+    {
+      "id": "scm", "name": "SCM・調達", "icon": "ti-truck-delivery",
+      "tagline": "需給・在庫・調達を一気通貫で最適化",
+      "challenges": [
+        "サプライチェーン最適化に向けたプロセス改革を推進したい",
+        "属人的な発注業務を標準化し、在庫回転率を改善したい",
+        "調達ビジネスのデジタル化・コスト最適化を進めたい"
+      ]
+    },
+    {
+      "id": "retail", "name": "小売・OMO", "icon": "ti-building-store",
+      "tagline": "EC・店舗・顧客データを分断させない",
+      "challenges": [
+        "EC・店舗・顧客データが分断したままになっている",
+        "OMO／オムニチャネルを推進できる人材が社内にいない",
+        "データに基づく品揃え・販促・接客を高度化したい"
+      ]
+    },
+    {
+      "id": "manufactur", "name": "製造・生産改善", "icon": "ti-building-factory-2",
+      "tagline": "現場のカイゼンを残しつつデータで底上げ",
+      "challenges": [
+        "生産性向上・コスト削減を実現できる製造業出身の専門家が必要",
+        "品質を維持しながら省人化・自動化を進めたい",
+        "スマートファクトリー化を段階的に推進したい"
+      ]
+    },
+    {
+      "id": "marketing", "name": "営業・マーケティング", "icon": "ti-speakerphone",
+      "tagline": "勘ではなく数字で打ち手を回す",
+      "challenges": [
+        "デジタルマーケ・CRM強化を推進したいが社内に知見がない",
+        "新規顧客開拓の仕組みを早期に構築したい（RGMの実務伴走）",
+        "グローバル展開に向けた海外マーケ戦略の知見を持つ人が欲しい"
+      ]
+    },
+    {
+      "id": "bpr", "name": "BPR・業務改善", "icon": "ti-refresh",
+      "tagline": "ツール導入の前に“業務そのもの”を作り直す",
+      "challenges": [
+        "属人化・重複・手戻りの多い業務を棚卸しして標準化したい",
+        "ツール導入が目的化し、業務そのものが変わっていない",
+        "全社横断で業務改革を推進できる人材がいない"
+      ]
+    },
+    {
+      "id": "dx", "name": "DX推進・デジタル化", "icon": "ti-device-laptop",
+      "tagline": "号令の次に必要な、推進の型",
+      "challenges": [
+        "各部門がバラバラにDXに取り組み、全社横断で推進できる人材がいない",
+        "DX戦略は策定できたが、現場実装まで落とし込む人材が足りない",
+        "データ基盤整備からAI活用まで一気通貫で見てくれる人を探している"
+      ]
+    },
+    {
+      "id": "ai", "name": "AI活用", "icon": "ti-robot",
+      "tagline": "PoCで止めず、現場で“使われる”状態へ",
+      "challenges": [
+        "生成AIを導入したが、現場で使われず一過性に終わっている",
+        "AIを業務・事業にどう活かすか、勝ち筋が描けていない",
+        "PoC止まりで、本番運用・全社定着まで進まない"
+      ]
+    },
+    {
+      "id": "dev", "name": "情報システム・開発", "icon": "ti-code",
+      "tagline": "丸投げ外注から“自社で握れる”体制へ",
+      "challenges": [
+        "基幹システム刷新のPM・要件定義を担える人材がいない",
+        "ベンダー選定・交渉でコントロールが効かず、言いなりになっている",
+        "クラウド移行・IT基盤整備を推進できる専門家が必要"
+      ]
+    },
+    {
+      "id": "security", "name": "セキュリティ", "icon": "ti-shield-lock",
+      "tagline": "事故対応ではなく“起きない設計”へ",
+      "challenges": [
+        "サイバーセキュリティ対策の方針策定と実装を進めたい",
+        "セキュリティガバナンス強化・文書規定の整備を進めたい",
+        "インシデントが起きてから動く体制から脱却したい"
+      ]
+    },
+    {
+      "id": "governance", "name": "経営企画・ガバナンス", "icon": "ti-scale",
+      "tagline": "管理を増やすより“効く”ガバナンスを",
+      "challenges": [
+        "中期経営計画の策定を支援してくれる実務経験者が必要",
+        "コーポレートガバナンス強化・内部統制整備をスピーディに進めたい",
+        "内部統制・J-SOX対応・内部監査機能の立ち上げを担える人材が必要"
+      ]
+    }
   ],
 
-  "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリに自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ（二重管理なし）。isNew:true で NEW バッジ、updated は更新日。※顧客に見られて困らない一般化された内容のみ記載すること。",
+  "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリ詳細に『解決策テーマ』として自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ。※顧客に見られて困らない一般化された内容のみ。",
   "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで概要モーダルが開きます。doc.url に資料（Googleスライド/PDF）URL、doc.type は 'slides' または 'pdf'。flow は図として描画される3ステップ。thumbnailShot は実スクショ（images/slide-*.png 等）で最優先表示。そのファイル名で images/ に置くだけで自動表示され、無ければ自動生成の thumbnail（SVG）に自動フォールバックする（=スクショは置くだけ、data.json 編集不要）。16:9 推奨。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
   "themes": [
     {
@@ -120,9 +225,7 @@
       "summary": "月次の早期化・予実分析・事業別収益の可視化を進め、経営の打ち手につながる管理会計に作り替える。",
       "question": "経理財務が“記録”止まりで、経営判断に効いていますか？",
       "categories": ["finance", "dx", "bpr"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-28"
+      "pickup": false, "isNew": false, "updated": "2026-05-28"
     },
     {
       "id": "scm-optimize",
@@ -131,9 +234,7 @@
       "summary": "属人化した需給調整を、データに基づく予測と業務設計で標準化し、欠品と過剰在庫の両方を削減する。",
       "question": "在庫の最適化、現場の勘と経験に頼り切っていませんか？",
       "categories": ["scm", "manufactur", "dx"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-20"
+      "pickup": false, "isNew": false, "updated": "2026-05-20"
     },
     {
       "id": "retail-omni",
@@ -142,9 +243,7 @@
       "summary": "オンライン/オフラインの顧客体験を統合し、データに基づく品揃え・販促・接客の高度化を進める。",
       "question": "ECと店舗、顧客データが分断したままになっていませんか？",
       "categories": ["retail", "marketing", "dx"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-15"
+      "pickup": false, "isNew": false, "updated": "2026-05-15"
     },
     {
       "id": "manufactur-smart",
@@ -153,9 +252,7 @@
       "summary": "設備・品質・工程のデータ化を段階的に進め、現場主導の改善とデジタル化を両立させる。",
       "question": "工場のデータ、取れているのに活用しきれていませんか？",
       "categories": ["manufactur", "dx", "bpr"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-12"
+      "pickup": false, "isNew": false, "updated": "2026-05-12"
     },
     {
       "id": "marketing-datadriven",
@@ -164,9 +261,7 @@
       "summary": "顧客データ統合・指標設計・運用体制を整え、勘ではなく数字で打ち手を回すマーケへ転換する。",
       "question": "マーケ施策の効果、ちゃんと測れて次に活かせていますか？",
       "categories": ["marketing", "dx", "ai"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-08"
+      "pickup": false, "isNew": false, "updated": "2026-05-08"
     },
     {
       "id": "bpr-operation",
@@ -175,9 +270,7 @@
       "summary": "属人化・重複・手戻りの多い業務を棚卸しし、標準化と自動化の順序を設計してから実装する。",
       "question": "効率化の前に、その業務そのものは本当に必要ですか？",
       "categories": ["bpr", "dx"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-05-02"
+      "pickup": false, "isNew": false, "updated": "2026-05-02"
     },
     {
       "id": "dx-strategy",
@@ -186,9 +279,7 @@
       "summary": "経営アジェンダとしてのDXを、ロードマップ・体制・人材育成まで含めて設計し、推進を伴走する。",
       "question": "DX、号令はかかったものの推進が止まっていませんか？",
       "categories": ["dx", "bpr", "governance"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-04-25"
+      "pickup": false, "isNew": false, "updated": "2026-04-25"
     },
     {
       "id": "dev-internal",
@@ -197,9 +288,7 @@
       "summary": "要件定義・PM・アーキテクチャの要所をプロ人材で補強し、内製と外部活用のバランスを設計する。",
       "question": "開発、ベンダー任せで“自社で握れない”状態になっていませんか？",
       "categories": ["dev", "dx"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-04-20"
+      "pickup": false, "isNew": false, "updated": "2026-04-20"
     },
     {
       "id": "security-zerotrust",
@@ -208,9 +297,7 @@
       "summary": "現状のリスク棚卸しから、認証・権限・監視の設計、運用ルールの定着までを段階的に進める。",
       "question": "セキュリティ、インシデントが起きてから動く体制になっていませんか？",
       "categories": ["security", "governance", "dx"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-04-15"
+      "pickup": false, "isNew": false, "updated": "2026-04-15"
     },
     {
       "id": "governance-group",
@@ -219,9 +306,7 @@
       "summary": "子会社・海外拠点を含めた管理体制を、リスクと現場負荷のバランスを取りながら再設計する。",
       "question": "拠点が増えるたびに、管理だけが重くなっていませんか？",
       "categories": ["governance", "finance"],
-      "pickup": false,
-      "isNew": false,
-      "updated": "2026-04-10"
+      "pickup": false, "isNew": false, "updated": "2026-04-10"
     }
   ],
 
@@ -253,7 +338,7 @@
     }
   ],
 
-  "_comment_casesNamed": "セクション4：社名あり事例。出典は自社HP事例ページ（https://circu.co.jp/pro-sharing/cases/）の公開範囲のみ。image は images/ に格納したキャプチャ。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。sourceUrl は必ず併記（最新はHPで確認できるように）。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
+  "_comment_casesNamed": "セクション4：社名あり事例。出典は自社HP事例ページ（https://circu.co.jp/pro-sharing/cases/）の公開範囲のみ。image は images/ に格納したキャプチャ。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。sourceUrl は必ず併記。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
   "casesNamed": [
     {
       "title": "（事例タイトルをHP掲載どおりに記載）",
@@ -284,31 +369,55 @@
     }
   ],
 
-  "_comment_casesAnonymous": "匿名事例。匿名化済みスライドの内容のみ。掲載前に必ず『業界・規模・時期の組み合わせで個社が特定されないか』を確認すること。特定リスクがある場合は粒度を粗くする（業界を大分類に、時期を年単位/四半期にぼかす等）。",
-  "casesAnonymous": [
+  "_comment_proCases": "匿名化済みのプロ人材支援事例。匿名化スライド準拠。各カテゴリ詳細モーダルにも categories[] で自動でぶら下がる。掲載前に必ず『業界・規模・役割の組み合わせで個社が特定されないか』を確認すること。tag=領域ラベル / scale=業界・規模（社名なし）/ role=参画したプロ人材像。",
+  "proCases": [
     {
-      "title": "需給調整の標準化で在庫を圧縮",
-      "industry": "製造業（大分類）",
-      "scale": "従業員1,000名規模",
-      "period": "近年",
-      "summary": "属人化していた需給調整を、需要予測と業務設計の見直しで標準化。欠品と過剰在庫を同時に削減した取り組み。",
-      "sourceNote": "匿名化済みスライドより"
+      "categories": ["newbiz"], "tag": "新規事業", "scale": "大手飲料メーカー｜売上1兆円規模",
+      "title": "0→1の新規事業開発、ワークショップから事業化まで推進",
+      "summary": "グローバル拠点を含むメンバーで新規事業開発。アイディエーション〜事業開発・リリースまで実行。",
+      "role": "連続起業家 / VC"
     },
     {
-      "title": "新規事業の検証サイクルを高速化",
-      "industry": "サービス業（大分類）",
-      "scale": "従業員500名規模",
-      "period": "近年",
-      "summary": "社内だけでは速度が出なかった仮説検証を、経験者の伴走で短サイクル化。初期グロースまでの立ち上げを支援。",
-      "sourceNote": "匿名化済みスライドより"
+      "categories": ["scm", "dx"], "tag": "DX / SCM", "scale": "繊維メーカー｜売上1兆円規模",
+      "title": "グローバルSCM刷新と在庫適正化AIの導入",
+      "summary": "属人的な発注業務をAI化。在庫回転率を改善し、数億円規模のキャッシュフロー改善を達成。",
+      "role": "外資系製造業 元CIO"
     },
     {
-      "title": "生成AI活用を全社へ定着",
-      "industry": "情報通信業（大分類）",
-      "scale": "従業員2,000名規模",
-      "period": "近年",
-      "summary": "PoC止まりだった生成AIを、業務プロセス・教育・ガバナンスまで設計し、現場で日常的に使われる状態へ。",
-      "sourceNote": "匿名化済みスライドより"
+      "categories": ["finance", "governance"], "tag": "バックオフィス", "scale": "大手半導体商社｜売上8,000億円規模",
+      "title": "M&A後のPMI完遂と内部統制・連結決算システム導入",
+      "summary": "複数M&A後の複雑な決算業務を改善。管理会計基準を統一し、連結決算の早期化を実現。",
+      "role": "元大手商社 海外CFO"
+    },
+    {
+      "categories": ["marketing", "retail"], "tag": "マーケティング", "scale": "大手飲料メーカー｜売上2,000億円規模",
+      "title": "ECチャネルのマーケ及びCRMで既存顧客のLTVを最大化",
+      "summary": "店舗モデルから直販ECとのオムニチャネルを実行。CRM基盤構築とデータドリブンな広告運用でLTVを最大化。",
+      "role": "大手雑貨ブランド 元事業責任者"
+    },
+    {
+      "categories": ["hr", "governance"], "tag": "HR / ガバナンス", "scale": "電気系商社｜売上5,000億円規模",
+      "title": "コーポレートガバナンス構築とサクセッションプラン策定",
+      "summary": "指名報酬委員会の立ち上げと役員報酬設計。次期執行役員候補のプールを作り、組織の新陳代謝を促進。",
+      "role": "人事コンサルタント"
+    },
+    {
+      "categories": ["dev", "security"], "tag": "IT / セキュリティ", "scale": "大手電機メーカー｜売上1,000億円規模",
+      "title": "基幹システム再構築とセキュリティガバナンス強化",
+      "summary": "レガシーシステムからの脱却。セキュリティ委員会の立ち上げ・文書規定作成、データ基盤構築〜ERP刷新を実現。",
+      "role": "複数大手メーカー系企業CISO"
+    },
+    {
+      "categories": ["manufactur", "scm"], "tag": "生産改善", "scale": "食品メーカー｜売上1,000億円規模",
+      "title": "工場生産性の抜本改善と原価率の低減",
+      "summary": "製造ラインのボトルネック解消と省人化を導入。品質を維持しながら製造原価の大幅削減を実現。",
+      "role": "トヨタ生産方式 熟練指導者"
+    },
+    {
+      "categories": ["governance"], "tag": "ESG / サステナビリティ", "scale": "建設・不動産｜プライム上場",
+      "title": "ESG経営の実装と統合報告書による開示強化",
+      "summary": "マテリアリティ特定からKPI設定、TCFD対応まで支援。ESG評価機関のスコア向上により投資家評価を改善。",
+      "role": "ESG評価機関 出身者"
     }
   ],
 
