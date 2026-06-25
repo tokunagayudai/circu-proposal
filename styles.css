@@ -322,6 +322,66 @@ section { scroll-margin-top: 84px; }
 .chip.active i { color: #fff; }
 .chip i { color: var(--blue); font-size: 1rem; }
 
+.category-block { margin-bottom: 40px; scroll-margin-top: 92px; }
+.category-block.hidden { display: none; }
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--blue-d);
+  padding-bottom: 11px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  letter-spacing: 0.02em;
+}
+.category-title i {
+  font-size: 1.35rem;
+  color: var(--blue);
+}
+.category-title .count {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--blue-mid);
+  font-weight: 700;
+  margin-left: auto;
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+.catalog-card { padding: 20px 20px 18px; }
+.catalog-card.clickable { cursor: pointer; }
+.catalog-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blue-d);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.catalog-card .angle {
+  color: var(--moss);
+  font-weight: 500;
+  font-size: 0.84rem;
+  margin-bottom: 8px;
+}
+.catalog-card .summary {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+.catalog-card .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--blue);
+  background: var(--blue-l);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
 /* ---------- セクション3：解決策の型 ---------- */
 .solution-grid {
   display: grid;
@@ -390,13 +450,8 @@ section { scroll-margin-top: 84px; }
 }
 .case-card .source a { font-weight: 700; text-decoration: none; }
 .case-card .source a:hover { text-decoration: underline; }
-.tag {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--blue);
-  background: var(--blue-l);
-  border-radius: 4px;
-  padding: 2px 8px;
+.anon-note {
+  font-size: 0.76rem; color: var(--moss); margin-top: 12px; opacity: 0.85;
 }
 
 /* ---------- セクション5：PKSHA ---------- */
@@ -684,6 +739,30 @@ body.no-scroll { overflow: hidden; }
   background: var(--blue-l); border-radius: 6px; padding: 5px 10px;
 }
 
+/* ---------- プロ人材アサイン体制例（4象限） ---------- */
+.assign-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.assign-card { padding: 22px 22px 20px; }
+.assign-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.assign-key {
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.04em; color: #fff; background: var(--blue);
+  border-radius: 6px; padding: 5px 12px; white-space: nowrap;
+}
+.assign-sub { font-weight: 700; color: var(--blue-d); font-size: 0.92rem; }
+.assign-items { display: flex; flex-direction: column; gap: 8px; }
+.assign-item {
+  display: flex; flex-direction: column; gap: 2px;
+  background: #f7fafc; border: 1px solid var(--line);
+  border-left: 3px solid var(--blue-mid);
+  border-radius: 7px; padding: 9px 12px;
+}
+.assign-item-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
+.assign-item-detail { color: var(--ink-soft); font-size: 0.84rem; }
+
 /* ---------- 事例：実績スタットバンド ---------- */
 .stat-band {
   grid-column: 1 / -1;
@@ -699,7 +778,7 @@ body.no-scroll { overflow: hidden; }
   .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
   .hero { padding-top: 40px; }
   .section { padding: 36px 18px; }
-  .pickup-grid, .catalog-grid, .case-grid, .solution-grid, .pksha-grid {
+  .pickup-grid, .catalog-grid, .case-grid, .solution-grid, .pksha-grid, .assign-grid {
     grid-template-columns: 1fr;
   }
   .modal-body { padding: 28px 22px 24px; }
