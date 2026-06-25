@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "title": "サーキュレーション 提案ポータル",
+    "subtitle": "プロ人材を「手段」ではなく「解決策」として。テーマ・切り口・体制・使い方からご一緒に考えます。",
+    "lastUpdated": "2026-06-25"
+  },
+
+  "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名（https://tabler.io/icons）。",
+  "categories": [
+    { "id": "hr",         "name": "人事",          "icon": "ti-users" },
+    { "id": "finance",    "name": "経理・財務",    "icon": "ti-coin" },
+    { "id": "newbiz",     "name": "新規事業",      "icon": "ti-rocket" },
+    { "id": "scm",        "name": "SCM",           "icon": "ti-truck-delivery" },
+    { "id": "retail",     "name": "小売",          "icon": "ti-building-store" },
+    { "id": "manufactur", "name": "製造",          "icon": "ti-building-factory-2" },
+    { "id": "marketing",  "name": "マーケティング", "icon": "ti-speakerphone" },
+    { "id": "bpr",        "name": "BPR・業務改善",  "icon": "ti-refresh" },
+    { "id": "dx",         "name": "DX",            "icon": "ti-device-laptop" },
+    { "id": "ai",         "name": "AI",            "icon": "ti-robot" },
+    { "id": "dev",        "name": "開発",          "icon": "ti-code" },
+    { "id": "security",   "name": "セキュリティ",   "icon": "ti-shield-lock" },
+    { "id": "governance", "name": "ガバナンス",     "icon": "ti-scale" }
+  ],
+
+  "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリに自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ（二重管理なし）。isNew:true で NEW バッジ、updated は更新日。※顧客に見られて困らない一般化された内容のみ記載すること。",
+  "themes": [
+    {
+      "id": "ai-genai-ops",
+      "title": "生成AIの業務実装と社内定着",
+      "angle": "PoCで止めず、現場が毎日使う仕組みまで落とし込む",
+      "summary": "ツール導入だけでは定着しない生成AIを、業務プロセス・教育・ガバナンスまで設計して“使われる状態”にする。",
+      "question": "生成AIを入れてはみたものの、現場で本当に使われていますか？",
+      "categories": ["ai", "dx", "bpr"],
+      "pickup": true,
+      "isNew": true,
+      "updated": "2026-06-20"
+    },
+    {
+      "id": "newbiz-validation",
+      "title": "新規事業の立ち上げ・検証加速",
+      "angle": "事業会社で“やり切った”プロ人材が、仮説検証を伴走",
+      "summary": "アイデア段階から市場検証・初期グロースまで、社内人員だけでは速度が出ない領域を経験者の伴走で前に進める。",
+      "question": "温めている新規事業、検証の打ち手が社内で枯れていませんか？",
+      "categories": ["newbiz", "marketing", "dx"],
+      "pickup": true,
+      "isNew": true,
+      "updated": "2026-06-18"
+    },
+    {
+      "id": "hr-talent-strategy",
+      "title": "人的資本経営・タレントマネジメント設計",
+      "angle": "開示要請への対応だけでなく、“人で勝つ”仕組みづくり",
+      "summary": "等級・評価・育成・サクセッションを連動させ、人的資本の開示と実態を両立させる制度・運用を設計する。",
+      "question": "人的資本の開示、“数字を埋める”だけになっていませんか？",
+      "categories": ["hr", "governance"],
+      "pickup": true,
+      "isNew": false,
+      "updated": "2026-06-10"
+    },
+
+    {
+      "id": "finance-fpa",
+      "title": "経営管理・FP&Aの高度化",
+      "angle": "“締めて終わり”から“意思決定を回す”経理財務へ",
+      "summary": "月次の早期化・予実分析・事業別収益の可視化を進め、経営の打ち手につながる管理会計に作り替える。",
+      "question": "経理財務が“記録”止まりで、経営判断に効いていますか？",
+      "categories": ["finance", "dx", "bpr"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-28"
+    },
+    {
+      "id": "scm-optimize",
+      "title": "SCM最適化・在庫適正化",
+      "angle": "需要予測と在庫・調達を一気通貫で見直す",
+      "summary": "属人化した需給調整を、データに基づく予測と業務設計で標準化し、欠品と過剰在庫の両方を削減する。",
+      "question": "在庫の最適化、現場の勘と経験に頼り切っていませんか？",
+      "categories": ["scm", "manufactur", "dx"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-20"
+    },
+    {
+      "id": "retail-omni",
+      "title": "小売・OMO/店舗DX",
+      "angle": "EC・店舗・顧客データを分断させずにつなぐ",
+      "summary": "オンライン/オフラインの顧客体験を統合し、データに基づく品揃え・販促・接客の高度化を進める。",
+      "question": "ECと店舗、顧客データが分断したままになっていませんか？",
+      "categories": ["retail", "marketing", "dx"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-15"
+    },
+    {
+      "id": "manufactur-smart",
+      "title": "スマートファクトリー・製造現場のデジタル化",
+      "angle": "現場のカイゼン文化を残しつつデータで底上げ",
+      "summary": "設備・品質・工程のデータ化を段階的に進め、現場主導の改善とデジタル化を両立させる。",
+      "question": "工場のデータ、取れているのに活用しきれていませんか？",
+      "categories": ["manufactur", "dx", "bpr"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-12"
+    },
+    {
+      "id": "marketing-datadriven",
+      "title": "データドリブン・マーケティング基盤構築",
+      "angle": "施策の“やりっぱなし”をやめ、効果を測れる状態に",
+      "summary": "顧客データ統合・指標設計・運用体制を整え、勘ではなく数字で打ち手を回すマーケへ転換する。",
+      "question": "マーケ施策の効果、ちゃんと測れて次に活かせていますか？",
+      "categories": ["marketing", "dx", "ai"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-08"
+    },
+    {
+      "id": "bpr-operation",
+      "title": "全社業務改善・BPR",
+      "angle": "ツール導入の前に“業務そのもの”を作り直す",
+      "summary": "属人化・重複・手戻りの多い業務を棚卸しし、標準化と自動化の順序を設計してから実装する。",
+      "question": "効率化の前に、その業務そのものは本当に必要ですか？",
+      "categories": ["bpr", "dx"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-02"
+    },
+    {
+      "id": "dx-strategy",
+      "title": "全社DX戦略の策定と推進",
+      "angle": "“DX担当を置く”の次に必要な、推進の型",
+      "summary": "経営アジェンダとしてのDXを、ロードマップ・体制・人材育成まで含めて設計し、推進を伴走する。",
+      "question": "DX、号令はかかったものの推進が止まっていませんか？",
+      "categories": ["dx", "bpr", "governance"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-25"
+    },
+    {
+      "id": "dev-internal",
+      "title": "内製開発体制の立ち上げ・PM補強",
+      "angle": "丸投げ外注から“自社で握れる”開発体制へ",
+      "summary": "要件定義・PM・アーキテクチャの要所をプロ人材で補強し、内製と外部活用のバランスを設計する。",
+      "question": "開発、ベンダー任せで“自社で握れない”状態になっていませんか？",
+      "categories": ["dev", "dx"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-20"
+    },
+    {
+      "id": "security-zerotrust",
+      "title": "セキュリティ強化・ゼロトラスト移行",
+      "angle": "事故対応ではなく“起きない設計”へ先回り",
+      "summary": "現状のリスク棚卸しから、認証・権限・監視の設計、運用ルールの定着までを段階的に進める。",
+      "question": "セキュリティ、インシデントが起きてから動く体制になっていませんか？",
+      "categories": ["security", "governance", "dx"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-15"
+    },
+    {
+      "id": "governance-group",
+      "title": "グループ・グローバルガバナンス強化",
+      "angle": "管理を増やすのではなく“効く”ガバナンスに",
+      "summary": "子会社・海外拠点を含めた管理体制を、リスクと現場負荷のバランスを取りながら再設計する。",
+      "question": "拠点が増えるたびに、管理だけが重くなっていませんか？",
+      "categories": ["governance", "finance"],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-10"
+    }
+  ],
+
+  "_comment_solutionTypes": "セクション3：解決策の型（4つ）。プロ人材という“手段”ではなく“どう解決するか”を見せる。",
+  "solutionTypes": [
+    {
+      "icon": "ti-sitemap",
+      "title": "プロジェクト設計",
+      "desc": "ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計します。",
+      "points": ["論点・ゴールの言語化", "フェーズ分解と検証計画", "意思決定の場づくり"]
+    },
+    {
+      "icon": "ti-users-group",
+      "title": "体制図",
+      "desc": "貴社メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描きます。",
+      "points": ["社内×プロ人材の役割分担", "意思決定者とのレポートライン", "巻き取り・引き継ぎの設計"]
+    },
+    {
+      "icon": "ti-adjustments",
+      "title": "使い方（関与モデル）",
+      "desc": "リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できます。丸ごとでなく“足りない一部”から。",
+      "points": ["リスキリング/伴走型", "PM・推進役としての関与", "開発・特定領域のスポット補強"]
+    },
+    {
+      "icon": "ti-bulb",
+      "title": "テーマ / 切り口",
+      "desc": "課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定めます。",
+      "points": ["論点の引き出しと整理", "優先順位づけ", "他社の取り組みを踏まえた切り口"]
+    }
+  ],
+
+  "_comment_casesNamed": "セクション4：社名あり事例。出典は自社HP事例ページ（https://circu.co.jp/pro-sharing/cases/）の公開範囲のみ。image は images/ に格納したキャプチャ。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。sourceUrl は必ず併記（最新はHPで確認できるように）。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
+  "casesNamed": [
+    {
+      "title": "（事例タイトルをHP掲載どおりに記載）",
+      "industry": "業界",
+      "image": "images/case-sample-1.svg",
+      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
+      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "sourceLabel": "出典：自社HP事例ページ"
+    },
+    {
+      "title": "（事例タイトルをHP掲載どおりに記載）",
+      "industry": "業界",
+      "image": "images/case-sample-2.svg",
+      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
+      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "sourceLabel": "出典：自社HP事例ページ"
+    },
+    {
+      "title": "（事例タイトルをHP掲載どおりに記載）",
+      "industry": "業界",
+      "image": "images/case-sample-3.svg",
+      "alt": "自社HP事例ページのキャプチャ（事例タイトル）",
+      "summary": "HPに公開されている範囲の概要のみを記載（HPにない情報は足さない）。",
+      "sourceUrl": "https://circu.co.jp/pro-sharing/cases/",
+      "sourceLabel": "出典：自社HP事例ページ"
+    }
+  ],
+
+  "_comment_casesAnonymous": "匿名事例。匿名化済みスライドの内容のみ。掲載前に必ず『業界・規模・時期の組み合わせで個社が特定されないか』を確認すること。特定リスクがある場合は粒度を粗くする（業界を大分類に、時期を年単位/四半期にぼかす等）。",
+  "casesAnonymous": [
+    {
+      "title": "需給調整の標準化で在庫を圧縮",
+      "industry": "製造業（大分類）",
+      "scale": "従業員1,000名規模",
+      "period": "近年",
+      "summary": "属人化していた需給調整を、需要予測と業務設計の見直しで標準化。欠品と過剰在庫を同時に削減した取り組み。",
+      "sourceNote": "匿名化済みスライドより"
+    },
+    {
+      "title": "新規事業の検証サイクルを高速化",
+      "industry": "サービス業（大分類）",
+      "scale": "従業員500名規模",
+      "period": "近年",
+      "summary": "社内だけでは速度が出なかった仮説検証を、経験者の伴走で短サイクル化。初期グロースまでの立ち上げを支援。",
+      "sourceNote": "匿名化済みスライドより"
+    },
+    {
+      "title": "生成AI活用を全社へ定着",
+      "industry": "情報通信業（大分類）",
+      "scale": "従業員2,000名規模",
+      "period": "近年",
+      "summary": "PoC止まりだった生成AIを、業務プロセス・教育・ガバナンスまで設計し、現場で日常的に使われる状態へ。",
+      "sourceNote": "匿名化済みスライドより"
+    }
+  ],
+
+  "_comment_pksha": "セクション5（任意）：PKSHAグループ ケイパビリティ。グループの武器を“武器の提示”ではなく“解決策”として紹介。",
+  "pksha": [
+    {
+      "icon": "ti-brain",
+      "title": "AI・アルゴリズムの実装力",
+      "desc": "研究開発で培われたAI技術を、貴社の業務課題に合わせた解決策として実装まで落とし込みます。"
+    },
+    {
+      "icon": "ti-messages",
+      "title": "対話・自動化ソリューション",
+      "desc": "問い合わせ対応や定型業務の自動化を、現場運用に乗る形で導入・定着まで支援します。"
+    },
+    {
+      "icon": "ti-network",
+      "title": "グループ横断のナレッジ",
+      "desc": "グループ各社の知見とプロ人材ネットワークを掛け合わせ、領域を越えた解決策を提示します。"
+    }
+  ]
+}

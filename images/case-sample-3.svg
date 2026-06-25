@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-label="事例キャプチャ プレースホルダー">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8f6ff"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#g)"/>
+  <rect x="0" y="0" width="640" height="6" fill="#0079c0"/>
+  <g fill="#5599be" font-family="'M PLUS Rounded 1c',sans-serif" text-anchor="middle">
+    <text x="320" y="180" font-size="30" font-weight="800" fill="#003d5e">事例キャプチャ 3</text>
+    <text x="320" y="222" font-size="17">自社HP事例ページのキャプチャを</text>
+    <text x="320" y="248" font-size="17">images/case-sample-3.svg と差し替え</text>
+    <text x="320" y="300" font-size="13" fill="#0a6e8c">出典：https://circu.co.jp/pro-sharing/cases/</text>
+  </g>
+</svg>

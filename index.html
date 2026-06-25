@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>サーキュレーション 提案ポータル</title>
+
+  <!-- フォント：M PLUS Rounded 1c ＋ JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== 上部セクションナビ ========== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand"><i class="ti ti-bulb"></i>提案ポータル</div>
+      <div class="nav-links">
+        <a href="#pickup">直近ピックアップ</a>
+        <a href="#catalog">活用カタログ</a>
+        <a href="#solutions">解決策の型</a>
+        <a href="#cases">事例</a>
+        <a href="#pksha">PKSHAグループ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== ヒーロー ========== -->
+  <header class="hero">
+    <h1>課題から、解決策をご一緒に。</h1>
+    <p id="hero-subtitle">プロ人材を「手段」ではなく「解決策」として。テーマ・切り口・体制・使い方からご一緒に考えます。</p>
+    <div class="updated" id="hero-updated"></div>
+  </header>
+
+  <main>
+
+    <!-- ========== セクション1：直近ピックアップテーマ ========== -->
+    <section class="section" id="pickup">
+      <div class="section-head">
+        <i class="ti ti-flame"></i>
+        <div>
+          <div class="section-eyebrow">Pick Up</div>
+          <h2>直近ピックアップテーマ</h2>
+        </div>
+      </div>
+      <p class="section-desc">最近ご相談の多い「いまの論点」です。気になるものがあれば、その場で深掘りしましょう。</p>
+      <div class="pickup-grid" id="pickup-grid"></div>
+    </section>
+
+    <!-- ========== セクション2：部署/テーマ別 活用カタログ ========== -->
+    <section class="section" id="catalog">
+      <div class="section-head">
+        <i class="ti ti-layout-grid"></i>
+        <div>
+          <div class="section-eyebrow">Catalog</div>
+          <h2>部署 / テーマ別 活用カタログ</h2>
+        </div>
+      </div>
+      <p class="section-desc">課題のある領域から探せます。カテゴリを選ぶと、その領域へ移動します。</p>
+      <div class="filter-bar" id="filter-bar"></div>
+      <div id="catalog-blocks"></div>
+    </section>
+
+    <!-- ========== セクション3：解決策の型 ========== -->
+    <section class="section" id="solutions">
+      <div class="section-head">
+        <i class="ti ti-puzzle"></i>
+        <div>
+          <div class="section-eyebrow">How We Solve</div>
+          <h2>解決策の型</h2>
+        </div>
+      </div>
+      <p class="section-desc">「誰を出すか」ではなく「どう解決するか」。4つの型でご提案します。</p>
+      <div class="solution-grid" id="solution-grid"></div>
+    </section>
+
+    <!-- ========== セクション4：事例 ========== -->
+    <section class="section" id="cases">
+      <div class="section-head">
+        <i class="ti ti-briefcase"></i>
+        <div>
+          <div class="section-eyebrow">Cases</div>
+          <h2>事例</h2>
+        </div>
+      </div>
+      <p class="section-desc">「この事例、どんな感じ？」——会話のきっかけにご覧ください。</p>
+
+      <div class="subhead">
+        <i class="ti ti-building"></i>社名あり事例
+        <span class="note">出典：自社HP事例ページ</span>
+      </div>
+      <div class="case-grid" id="cases-named"></div>
+
+      <div class="subhead">
+        <i class="ti ti-eye-off"></i>匿名事例
+        <span class="note">匿名化済みスライドより</span>
+      </div>
+      <div class="case-grid" id="cases-anon"></div>
+    </section>
+
+    <!-- ========== セクション5：PKSHAグループ ケイパビリティ ========== -->
+    <section class="section" id="pksha">
+      <div class="section-head">
+        <i class="ti ti-stack-2"></i>
+        <div>
+          <div class="section-eyebrow">Group Capability</div>
+          <h2>PKSHAグループ ケイパビリティ</h2>
+        </div>
+      </div>
+      <p class="section-desc">グループの強みも、「武器の提示」ではなく解決策としてご活用いただけます。</p>
+      <div class="pksha-grid" id="pksha-grid"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="brand">株式会社サーキュレーション</div>
+    <p>本ポータルは商談・レビューMTGでの提案用です。掲載内容は加工済み・公開可能な情報に限られます。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
