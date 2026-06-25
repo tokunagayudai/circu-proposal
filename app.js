@@ -7,8 +7,8 @@
    ========================================================= */
 
 const $ = (sel, root = document) => root.querySelector(sel);
+let THEMES_BY_ID = {};
 
-// HTMLエスケープ（データはチーム管理だが念のため）
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -27,6 +27,18 @@ async function loadData() {
   return res.json();
 }
 
+/* フロー図（3ステップ）を描画。mini=true でカード内の小型表示 */
+function renderFlow(steps, mini) {
+  if (!steps || !steps.length) return "";
+  const cells = steps.map((s, i) => `
+    ${i > 0 ? `<i class="ti ti-chevron-right arrow"></i>` : ""}
+    <div class="step">
+      <span class="num">STEP ${i + 1}</span>
+      <span class="label">${esc(s)}</span>
+    </div>`).join("");
+  return `<div class="flow ${mini ? "flow-mini" : "flow-full"}">${cells}</div>`;
+}
+
 /* ---------------- セクション1：ピックアップ ---------------- */
 function renderPickup(themes) {
   const grid = $("#pickup-grid");
@@ -35,27 +47,27 @@ function renderPickup(themes) {
     grid.innerHTML = `<p class="empty-note">ピックアップテーマは未設定です。data.json で pickup:true を設定してください。</p>`;
     return;
   }
-  grid.innerHTML = items.map((t) => `
-    <article class="card pickup-card" id="theme-${esc(t.id)}">
+  grid.innerHTML = items.map((t) => {
+    const d = t.detail || {};
+    const clickable = !!(t.detail || t.doc);
+    return `
+    <article class="card pickup-card" ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
       <div class="badges">
         ${t.isNew ? `<span class="badge badge-new">NEW</span>` : ""}
         ${t.updated ? `<span class="badge badge-date">更新 ${esc(formatDate(t.updated))}</span>` : ""}
       </div>
       <h3>${esc(t.title)}</h3>
-      ${t.angle ? `<div class="angle"><i class="ti ti-arrow-badge-right"></i><span>${esc(t.angle)}</span></div>` : ""}
-      <p class="summary">${esc(t.summary)}</p>
-      ${t.question ? `<div class="question"><i class="ti ti-message-2-question"></i><span>${esc(t.question)}</span></div>` : ""}
-    </article>
-  `).join("");
+      <p class="lead">${esc(d.lead || t.summary)}</p>
+      ${renderFlow(d.flow, true)}
+      ${clickable ? `<div class="card-cta">詳細・資料を見る<i class="ti ti-arrow-right"></i></div>` : ""}
+    </article>`;
+  }).join("");
 }
 
 /* ---------------- セクション2：カタログ（カテゴリ別） ---------------- */
-let CURRENT_FILTER = "all";
-
 function renderCatalog(data) {
   const { categories, themes } = data;
 
-  // フィルタチップ（アンカージャンプ兼フィルタ）
   const bar = $("#filter-bar");
   bar.innerHTML =
     `<button class="chip active" data-cat="all"><i class="ti ti-layout-grid"></i>すべて</button>` +
@@ -63,17 +75,18 @@ function renderCatalog(data) {
       `<button class="chip" data-cat="${esc(c.id)}"><i class="ti ${esc(c.icon)}"></i>${esc(c.name)}</button>`
     ).join("");
 
-  // カテゴリブロック
   const wrap = $("#catalog-blocks");
   wrap.innerHTML = categories.map((c) => {
     const matched = themes.filter((t) => (t.categories || []).includes(c.id));
     if (!matched.length) return "";
     const cards = matched.map((t) => {
+      const clickable = !!(t.detail || t.doc);
       const tagNames = (t.categories || [])
         .map((id) => (categories.find((cc) => cc.id === id) || {}).name)
         .filter(Boolean);
       return `
-        <article class="card catalog-card">
+        <article class="card catalog-card ${clickable ? "clickable" : ""}"
+          ${clickable ? `data-theme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.title)} の詳細を開く"` : ""}>
           <h4>${esc(t.title)}</h4>
           ${t.angle ? `<div class="angle">${esc(t.angle)}</div>` : ""}
           <p class="summary">${esc(t.summary)}</p>
@@ -91,12 +104,10 @@ function renderCatalog(data) {
       </div>`;
   }).join("");
 
-  // チップの挙動：フィルタ＋該当領域へスクロール
   bar.addEventListener("click", (e) => {
     const btn = e.target.closest(".chip");
     if (!btn) return;
     const cat = btn.dataset.cat;
-    CURRENT_FILTER = cat;
     bar.querySelectorAll(".chip").forEach((c) => c.classList.toggle("active", c === btn));
     applyFilter(cat);
     if (cat !== "all") {
@@ -114,10 +125,9 @@ function applyFilter(cat) {
 
 /* ---------------- セクション3：解決策の型 ---------------- */
 function renderSolutions(items) {
-  const grid = $("#solution-grid");
-  grid.innerHTML = (items || []).map((s) => `
+  $("#solution-grid").innerHTML = (items || []).map((s) => `
     <article class="card solution-card">
-      <div class="icon-circle"><i class="ti ${esc(s.icon)}"></i></div>
+      <div class="icon-box"><i class="ti ${esc(s.icon)}"></i></div>
       <h3>${esc(s.title)}</h3>
       <p>${esc(s.desc)}</p>
       ${(s.points && s.points.length)
@@ -128,10 +138,7 @@ function renderSolutions(items) {
 
 /* ---------------- セクション4：事例 ---------------- */
 function renderCases(data) {
-  const named = data.casesNamed || [];
-  const anon = data.casesAnonymous || [];
-
-  $("#cases-named").innerHTML = named.map((c) => `
+  $("#cases-named").innerHTML = (data.casesNamed || []).map((c) => `
     <article class="card case-card">
       <img class="thumb" src="${esc(c.image)}" alt="${esc(c.alt)}" loading="lazy">
       <div class="body">
@@ -146,7 +153,7 @@ function renderCases(data) {
     </article>
   `).join("");
 
-  $("#cases-anon").innerHTML = anon.map((c) => `
+  $("#cases-anon").innerHTML = (data.casesAnonymous || []).map((c) => `
     <article class="card case-card">
       <div class="body">
         ${c.industry ? `<div class="industry">${esc(c.industry)}</div>` : ""}
@@ -164,8 +171,7 @@ function renderCases(data) {
 
 /* ---------------- セクション5：PKSHA ---------------- */
 function renderPksha(items) {
-  const grid = $("#pksha-grid");
-  grid.innerHTML = (items || []).map((p) => `
+  $("#pksha-grid").innerHTML = (items || []).map((p) => `
     <article class="card pksha-card">
       <i class="ti ${esc(p.icon)} lead"></i>
       <h3>${esc(p.title)}</h3>
@@ -174,10 +180,117 @@ function renderPksha(items) {
   `).join("");
 }
 
+/* ---------------- テーマ詳細モーダル ---------------- */
+const modal = () => $("#theme-modal");
+
+function openModal(themeId) {
+  const t = THEMES_BY_ID[themeId];
+  if (!t) return;
+  const d = t.detail || {};
+  const hasDoc = t.doc && t.doc.url;
+
+  $("#modal-body").innerHTML = `
+    <div class="modal-eyebrow">Pick Up / 直近ピックアップテーマ</div>
+    <h2 class="modal-title" id="modal-title">${esc(t.title)}</h2>
+    ${d.lead ? `<p class="modal-lead">${esc(d.lead)}</p>` : ""}
+    <div class="modal-grid">
+      ${d.problem ? `
+        <div class="modal-block problem">
+          <h4><i class="ti ti-alert-triangle"></i>こんな課題に</h4>
+          <p>${esc(d.problem)}</p>
+        </div>` : ""}
+      ${d.value ? `
+        <div class="modal-block value">
+          <h4><i class="ti ti-bulb"></i>提供価値</h4>
+          <p>${esc(d.value)}</p>
+        </div>` : ""}
+    </div>
+    ${d.flow && d.flow.length ? `<p class="modal-section-label">進め方</p>${renderFlow(d.flow, false)}` : ""}
+    ${d.points && d.points.length
+      ? `<ul class="modal-points">${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+    ${d.outcome ? `
+      <div class="modal-outcome">
+        <i class="ti ti-target-arrow"></i><span>${esc(d.outcome)}</span>
+      </div>` : ""}
+    <div class="modal-actions">
+      ${hasDoc
+        ? `<button class="btn-primary" data-doc-url="${esc(t.doc.url)}" data-doc-type="${esc(t.doc.type || "slides")}" data-doc-title="${esc(t.title)}">
+             <i class="ti ti-presentation"></i>資料を確認する
+           </button>
+           <a class="btn-secondary" href="${esc(t.doc.url)}" target="_blank" rel="noopener">
+             <i class="ti ti-external-link"></i>新しいタブで開く
+           </a>`
+        : `<span class="empty-note">資料は準備中です。</span>`}
+    </div>
+  `;
+  modal().hidden = false;
+  document.body.classList.add("no-scroll");
+}
+
+function closeModal() {
+  modal().hidden = true;
+  if ($("#doc-viewer").hidden) document.body.classList.remove("no-scroll");
+}
+
+/* ---------------- 資料ビューア ---------------- */
+function buildEmbedUrl(url, type) {
+  if (type === "slides") {
+    const m = String(url).match(/presentation\/d\/([^/]+)/);
+    if (m) return `https://docs.google.com/presentation/d/${m[1]}/embed?start=false&loop=false`;
+  }
+  if (type === "pdf") {
+    const drive = String(url).match(/\/d\/([^/]+)/);
+    if (drive) return `https://drive.google.com/file/d/${drive[1]}/preview`;
+    return url;
+  }
+  return url;
+}
+
+function openDoc(url, type, title) {
+  $("#doc-frame").src = buildEmbedUrl(url, type);
+  $("#doc-open").href = url;
+  $("#doc-title").textContent = title || "資料";
+  $("#doc-viewer").hidden = false;
+  document.body.classList.add("no-scroll");
+}
+
+function closeDoc() {
+  $("#doc-viewer").hidden = true;
+  $("#doc-frame").src = "about:blank";
+  if (modal().hidden) document.body.classList.remove("no-scroll");
+}
+
+/* ---------------- イベント配線 ---------------- */
+function wireEvents() {
+  // カードクリック → モーダル
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-theme]");
+    if (card) { openModal(card.dataset.theme); return; }
+    const docBtn = e.target.closest("[data-doc-url]");
+    if (docBtn) { openDoc(docBtn.dataset.docUrl, docBtn.dataset.docType, docBtn.dataset.docTitle); }
+  });
+  // キーボード（Enter/Space）でカードを開く
+  document.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-theme]")) {
+      e.preventDefault();
+      openModal(e.target.dataset.theme);
+    }
+    if (e.key === "Escape") {
+      if (!$("#doc-viewer").hidden) closeDoc();
+      else if (!modal().hidden) closeModal();
+    }
+  });
+  // 閉じる
+  $("#modal-close").addEventListener("click", closeModal);
+  modal().addEventListener("click", (e) => { if (e.target === modal()) closeModal(); });
+  $("#doc-close").addEventListener("click", closeDoc);
+}
+
 /* ---------------- 起動 ---------------- */
 (async function init() {
   try {
     const data = await loadData();
+    THEMES_BY_ID = Object.fromEntries((data.themes || []).map((t) => [t.id, t]));
     if (data.meta) {
       if (data.meta.subtitle) $("#hero-subtitle").textContent = data.meta.subtitle;
       if (data.meta.lastUpdated) $("#hero-updated").textContent = `最終更新：${formatDate(data.meta.lastUpdated)}`;
@@ -187,6 +300,7 @@ function renderPksha(items) {
     renderSolutions(data.solutionTypes);
     renderCases(data);
     renderPksha(data.pksha);
+    wireEvents();
   } catch (err) {
     console.error(err);
     document.querySelector("main").insertAdjacentHTML("afterbegin",
