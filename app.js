@@ -97,6 +97,7 @@ function renderCatalog(data) {
   wrap.innerHTML = categories.map((c) => {
     const relCount = themes.filter((t) => (t.categories || []).includes(c.id)).length;
     const ch = c.challenges || [];
+    const kw = c.keywords || [];
     return `
       <div class="cat-acc" data-cat="${esc(c.id)}" id="cat-${esc(c.id)}">
         <button class="cat-acc-head" aria-expanded="false">
@@ -104,6 +105,7 @@ function renderCatalog(data) {
           <span class="cat-meta">
             <span class="cat-name">${esc(c.name)}</span>
             ${c.tagline ? `<span class="cat-tagline">${esc(c.tagline)}</span>` : ""}
+            ${kw.length ? `<span class="cat-keywords">${kw.map((k) => `<span class="kw">${esc(k)}</span>`).join("")}</span>` : ""}
           </span>
           <span class="cat-count">${ch.length}課題 / ${relCount}テーマ</span>
           <i class="ti ti-chevron-down chev"></i>
@@ -152,6 +154,7 @@ function openCategoryModal(catId) {
     <div class="modal-eyebrow">Catalog / 部署・テーマ別</div>
     <h2 class="modal-title" id="modal-title"><i class="ti ${esc(c.icon)}"></i> ${esc(c.name)}</h2>
     ${c.tagline ? `<p class="modal-lead">${esc(c.tagline)}</p>` : ""}
+    ${(c.keywords || []).length ? `<div class="cat-keywords modal-keywords">${c.keywords.map((k) => `<span class="kw">${esc(k)}</span>`).join("")}</div>` : ""}
     ${ch.length ? `
       <div class="cat-modal-sec">
         <p class="modal-section-label"><i class="ti ti-alert-triangle"></i>よくある課題</p>
@@ -226,23 +229,90 @@ function renderElements(ps) {
     </svg>`;
 }
 
-/* プロ人材アサイン体制例（線で繋いだ体制図） */
+/* プロ人材アサイン体制例（切り口ごとに別々の図で描き分け） */
 function renderAssign(items) {
   const grid = $("#assign-grid");
   if (!grid) return;
+  const diagram = (a) => {
+    switch (a.diagram) {
+      case "lanes": return assignLanes(a);
+      case "phase-pm": return assignPhasePm(a);
+      case "cluster": return assignCluster(a);
+      case "staffed": return assignStaffed(a);
+      case "flow": return assignFlow(a);
+      default: return assignTree(a);
+    }
+  };
   grid.innerHTML = (items || []).map((a) => `
     <article class="card assign-card">
       <div class="assign-head">
         <span class="assign-key">${esc(a.key)}</span>
         <span class="assign-sub">${esc(a.subtitle)}</span>
       </div>
-      ${a.diagram === "phase-pm" ? assignPhasePm(a) : a.diagram === "flow" ? assignFlow(a) : assignTree(a)}
+      <div class="assign-diagram">${diagram(a)}</div>
       ${a.caption ? `<p class="assign-caption">${esc(a.caption)}</p>` : ""}
     </article>
   `).join("");
 }
 
-/* ハブ → 各役割をコネクタ線で接続したツリー型 */
+/* Issue型：プロジェクト全体の下に、課題（課単位）ごとの専任リーダーを並列レーンで配置 */
+function assignLanes(a) {
+  return `
+    <div class="lanes">
+      <div class="lanes-top">
+        <span class="lt-title">${esc(a.hub || "プロジェクト全体")}</span>
+        ${a.hubSub ? `<span class="lt-sub">${esc(a.hubSub)}</span>` : ""}
+      </div>
+      <div class="lanes-bus"></div>
+      <div class="lanes-row">
+        ${(a.items || []).map((it) => `
+          <div class="lane">
+            <span class="lane-head">${esc(it.label)}</span>
+            <span class="lane-body">${esc(it.detail)}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+/* Role/Domain型：1つのプロジェクトを中心に、役割・領域を放射状に分担し同時推進 */
+function assignCluster(a) {
+  return `
+    <div class="cluster">
+      <div class="cluster-core">
+        <span class="cc-title">${esc(a.hub || "1つのプロジェクト")}</span>
+        ${a.hubSub ? `<span class="cc-sub">${esc(a.hubSub)}</span>` : ""}
+      </div>
+      <div class="cluster-grid">
+        ${(a.items || []).map((it) => `
+          <div class="cluster-chip">
+            <span class="ch-label">${esc(it.label)}</span>
+            <span class="ch-detail">${esc(it.detail)}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+/* Project型：1人のご担当者から複数案件がぶら下がり、各案件に専任プロ人材を配置 */
+function assignStaffed(a) {
+  return `
+    <div class="staffed">
+      <div class="staffed-owner">
+        <i class="ti ti-user"></i>
+        <span class="so-title">${esc(a.hub || "ご担当者さま")}</span>
+        ${a.hubSub ? `<span class="so-sub">${esc(a.hubSub)}</span>` : ""}
+      </div>
+      <div class="staffed-rows">
+        ${(a.items || []).map((it) => `
+          <div class="staffed-row">
+            <span class="sr-project">${esc(it.label)}</span>
+            <i class="ti ti-arrow-right sr-arrow"></i>
+            <span class="sr-pro"><i class="ti ti-user-star"></i>${esc(it.detail)}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+/* ハブ → 各役割をコネクタ線で接続したツリー型（予備） */
 function assignTree(a) {
   return `
     <div class="tree">
@@ -347,11 +417,55 @@ function openModal(themeId) {
   const d = t.detail || {};
   const hasDoc = t.doc && t.doc.url;
 
+  // マイルストーン（期間・やること・アウトプット）
+  const milestones = (d.milestones && d.milestones.length) ? `
+    <section class="ds-sec">
+      <p class="ds-label"><i class="ti ti-flag"></i>マイルストーン</p>
+      <ol class="ms-timeline">
+        ${d.milestones.map((m) => `
+          <li class="ms-item">
+            <span class="ms-period">${esc(m.period || "")}</span>
+            <div class="ms-main">
+              <span class="ms-title">${esc(m.title || "")}</span>
+              ${m.work ? `<span class="ms-work">${esc(m.work)}</span>` : ""}
+              ${m.output ? `<span class="ms-output"><i class="ti ti-file-text"></i>${esc(m.output)}</span>` : ""}
+            </div>
+          </li>`).join("")}
+      </ol>
+    </section>` : "";
+
+  // 参画するプロ人材像（役割・ミッション）
+  const proProfile = (d.proProfile && d.proProfile.length) ? `
+    <section class="ds-sec">
+      <p class="ds-label"><i class="ti ti-users"></i>参画するプロ人材像</p>
+      <div class="pro-profile">
+        ${d.proProfile.map((p) => `
+          <div class="pp-card">
+            <span class="pp-role"><i class="ti ti-user-star"></i>${esc(p.role || "")}</span>
+            ${p.mission ? `<span class="pp-mission">${esc(p.mission)}</span>` : ""}
+          </div>`).join("")}
+      </div>
+    </section>` : "";
+
+  // 主な成果物
+  const deliverables = (d.deliverables && d.deliverables.length) ? `
+    <section class="ds-sec">
+      <p class="ds-label"><i class="ti ti-package"></i>主な成果物</p>
+      <div class="deliverables">
+        ${d.deliverables.map((x) => `<span class="dv-chip">${esc(x)}</span>`).join("")}
+      </div>
+    </section>` : "";
+
   $("#modal-body").innerHTML = `
     <div class="modal-eyebrow">Pick Up / 直近ピックアップテーマ</div>
     <h2 class="modal-title" id="modal-title">${esc(t.title)}</h2>
     ${thumbImg(t, "modal-hero")}
     ${d.lead ? `<p class="modal-lead">${esc(d.lead)}</p>` : ""}
+    ${d.background ? `
+      <section class="ds-sec ds-background">
+        <p class="ds-label"><i class="ti ti-info-circle"></i>課題の背景</p>
+        <p class="ds-text">${esc(d.background)}</p>
+      </section>` : ""}
     <div class="modal-grid">
       ${d.problem ? `
         <div class="modal-block problem">
@@ -364,9 +478,15 @@ function openModal(themeId) {
           <p>${esc(d.value)}</p>
         </div>` : ""}
     </div>
-    ${d.flow && d.flow.length ? `<p class="modal-section-label">進め方</p>${renderFlow(d.flow, false)}` : ""}
-    ${d.points && d.points.length
-      ? `<ul class="modal-points">${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+    ${d.flow && d.flow.length ? `<section class="ds-sec"><p class="ds-label"><i class="ti ti-route"></i>進め方</p>${renderFlow(d.flow, false)}</section>` : ""}
+    ${milestones}
+    ${proProfile}
+    ${d.points && d.points.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-check"></i>このテーマのポイント</p>
+        <ul class="modal-points">${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
+      </section>` : ""}
+    ${deliverables}
     ${d.outcome ? `
       <div class="modal-outcome">
         <i class="ti ti-target-arrow"></i><span>${esc(d.outcome)}</span>
@@ -374,13 +494,14 @@ function openModal(themeId) {
     <div class="modal-actions">
       ${hasDoc
         ? `<button class="btn-primary" data-doc-url="${esc(t.doc.url)}" data-doc-type="${esc(t.doc.type || "slides")}" data-doc-title="${esc(t.title)}">
-             <i class="ti ti-presentation"></i>資料を確認する
+             <i class="ti ti-presentation"></i>資料（全文）を確認する
            </button>
            <a class="btn-secondary" href="${esc(t.doc.url)}" target="_blank" rel="noopener">
              <i class="ti ti-external-link"></i>新しいタブで開く
            </a>`
         : `<span class="empty-note">資料は準備中です。</span>`}
     </div>
+    ${hasDoc ? `<p class="modal-doc-note"><i class="ti ti-download"></i>資料はダウンロードして社内でご活用いただけます。</p>` : ""}
   `;
   modal().hidden = false;
   document.body.classList.add("no-scroll");
