@@ -495,7 +495,7 @@ section { scroll-margin-top: 84px; }
   position: relative;
   background: #fff;
   border-radius: 14px;
-  max-width: 760px;
+  max-width: 940px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 30, 50, 0.3);
   animation: modal-in 0.2s ease;
@@ -587,6 +587,78 @@ section { scroll-margin-top: 84px; }
   font-weight: 500; font-size: 0.96rem; margin-bottom: 26px;
 }
 .modal-outcome i { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ---------- テーマ詳細：資料サマリのページ風セクション ---------- */
+.ds-sec { margin: 0 0 26px; }
+.ds-label {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.92rem; font-weight: 700; color: var(--blue-d);
+  margin: 0 0 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--blue-l); letter-spacing: 0.02em;
+}
+.ds-label i { color: var(--blue); font-size: 1.1rem; }
+.ds-text { margin: 0; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.85; }
+.ds-background { background: #f7fafc; border-radius: 10px; padding: 18px 20px; }
+.ds-background .ds-label { border-bottom-color: rgba(0, 121, 192, 0.18); }
+
+/* マイルストーン（タイムライン） */
+.ms-timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.ms-timeline::before {
+  content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px;
+  width: 2px; background: rgba(0, 121, 192, 0.25);
+}
+.ms-item { position: relative; display: flex; gap: 16px; padding: 0 0 18px 30px; }
+.ms-item:last-child { padding-bottom: 0; }
+.ms-item::before {
+  content: ""; position: absolute; left: 1px; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--blue);
+}
+.ms-period {
+  flex-shrink: 0; min-width: 70px;
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
+  color: var(--moss); padding-top: 1px;
+}
+.ms-main { display: flex; flex-direction: column; gap: 4px; }
+.ms-title { font-weight: 700; color: var(--blue-d); font-size: 0.96rem; }
+.ms-work { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
+.ms-output {
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  font-size: 0.8rem; font-weight: 700; color: var(--blue);
+  background: var(--blue-l); border-radius: 6px; padding: 3px 9px; margin-top: 2px;
+}
+.ms-output i { font-size: 0.95rem; }
+
+/* 参画するプロ人材像 */
+.pro-profile {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;
+}
+.pp-card {
+  background: #f7fafc; border: 1px solid var(--line); border-left: 3px solid var(--blue);
+  border-radius: 9px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px;
+}
+.pp-role {
+  display: flex; align-items: center; gap: 7px;
+  font-weight: 700; color: var(--blue-d); font-size: 0.92rem;
+}
+.pp-role i { color: var(--moss); font-size: 1.05rem; flex-shrink: 0; }
+.pp-mission { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+
+/* 主な成果物 */
+.deliverables { display: flex; flex-wrap: wrap; gap: 8px; }
+.dv-chip {
+  display: inline-flex; align-items: center;
+  font-size: 0.84rem; font-weight: 500; color: var(--blue-d);
+  background: #fff; border: 1px solid rgba(0, 121, 192, 0.3);
+  border-radius: 7px; padding: 6px 12px;
+}
+
+.modal-doc-note {
+  display: flex; align-items: center; gap: 7px;
+  margin: 14px 0 0; font-size: 0.82rem; color: var(--moss);
+}
+.modal-doc-note i { font-size: 1rem; }
+
 .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .btn-primary {
   flex: 1 1 auto;
@@ -681,6 +753,13 @@ body.no-scroll { overflow: hidden; }
 .cat-meta { display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0; }
 .cat-name { font-weight: 700; color: var(--blue-d); font-size: 1.08rem; }
 .cat-tagline { color: var(--ink-soft); font-size: 0.85rem; }
+.cat-keywords { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.kw {
+  font-size: 0.74rem; font-weight: 500; color: var(--blue-d);
+  background: var(--blue-l); border: 1px solid rgba(0, 121, 192, 0.18);
+  border-radius: 999px; padding: 2px 11px; white-space: nowrap;
+}
+.modal-keywords { margin: 0 0 20px; }
 .cat-count {
   font-family: var(--font-mono); font-size: 0.72rem; color: var(--blue-mid);
   font-weight: 700; white-space: nowrap;
@@ -818,6 +897,109 @@ body.no-scroll { overflow: hidden; }
 .tc-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; }
 .tc-detail { color: var(--ink-soft); font-size: 0.83rem; }
 
+.assign-diagram { min-height: 0; }
+
+/* --- Issue型：レーン（プロジェクト全体 → 並列の専任リーダー） --- */
+.lanes { display: flex; flex-direction: column; align-items: center; }
+.lanes-top {
+  background: var(--blue-d); color: #fff; border-radius: 9px;
+  padding: 11px 22px; text-align: center; min-width: 60%;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.lt-title { font-weight: 700; font-size: 0.95rem; }
+.lt-sub { font-weight: 500; font-size: 0.76rem; opacity: 0.85; }
+.lanes-bus { position: relative; width: 100%; height: 16px; }
+.lanes-bus::before {
+  content: ""; position: absolute; left: 50%; top: 0; width: 2px; height: 8px;
+  background: rgba(0, 121, 192, 0.4); transform: translateX(-1px);
+}
+.lanes-bus::after {
+  content: ""; position: absolute; left: 12%; right: 12%; top: 8px; height: 2px;
+  background: rgba(0, 121, 192, 0.4);
+}
+.lanes-row { display: flex; gap: 10px; width: 100%; }
+.lane {
+  position: relative; flex: 1 1 0; min-width: 0;
+  background: #f7fafc; border: 1px solid var(--line); border-top: 3px solid var(--blue);
+  border-radius: 8px; padding: 11px 12px; display: flex; flex-direction: column; gap: 5px;
+}
+.lane::before {
+  content: ""; position: absolute; left: 50%; top: -8px; width: 2px; height: 8px;
+  background: rgba(0, 121, 192, 0.4); transform: translateX(-1px);
+}
+.lane-head { font-weight: 700; color: var(--blue-d); font-size: 0.88rem; line-height: 1.4; }
+.lane-body { color: var(--ink-soft); font-size: 0.8rem; line-height: 1.5; }
+
+/* --- Role/Domain型：1プロジェクトを中心に役割・領域を分担（放射クラスター） --- */
+.cluster { display: flex; flex-direction: column; align-items: center; }
+.cluster-core {
+  background: linear-gradient(135deg, var(--blue), var(--moss)); color: #fff;
+  border-radius: 999px; padding: 13px 26px; text-align: center;
+  display: flex; flex-direction: column; gap: 2px; box-shadow: var(--shadow);
+}
+.cc-title { font-weight: 700; font-size: 0.95rem; }
+.cc-sub { font-weight: 500; font-size: 0.74rem; opacity: 0.9; }
+.cluster-grid {
+  position: relative; margin-top: 18px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;
+}
+.cluster-grid::before {
+  content: ""; position: absolute; left: 50%; top: -18px; width: 2px; height: 18px;
+  background: rgba(0, 121, 192, 0.4); transform: translateX(-1px);
+}
+.cluster-chip {
+  background: #fff; border: 1px solid rgba(0, 121, 192, 0.28);
+  border-radius: 9px; padding: 10px 13px; display: flex; flex-direction: column; gap: 3px;
+}
+.ch-label { font-weight: 700; color: var(--blue-d); font-size: 0.85rem; line-height: 1.4; }
+.ch-detail { color: var(--ink-soft); font-size: 0.79rem; line-height: 1.45; }
+
+/* --- Project型：1人の担当者 → 複数案件、各案件に専任プロを配置 --- */
+.staffed { display: flex; align-items: stretch; gap: 0; }
+.staffed-owner {
+  align-self: center; flex-shrink: 0; width: 116px;
+  background: var(--blue-d); color: #fff; border-radius: 10px;
+  padding: 16px 12px; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; text-align: center;
+}
+.staffed-owner i { font-size: 1.5rem; }
+.so-title { font-weight: 700; font-size: 0.9rem; line-height: 1.4; }
+.so-sub { font-weight: 500; font-size: 0.72rem; opacity: 0.85; }
+.staffed-rows {
+  position: relative; flex-grow: 1;
+  display: flex; flex-direction: column; justify-content: center; gap: 9px;
+  margin-left: 20px; padding-left: 26px;
+}
+.staffed-rows::before {
+  content: ""; position: absolute; left: 0; top: 16px; bottom: 16px;
+  width: 2px; background: rgba(0, 121, 192, 0.4);
+}
+.staffed-rows::after {
+  content: ""; position: absolute; left: -20px; top: 50%;
+  width: 20px; height: 2px; background: rgba(0, 121, 192, 0.4); transform: translateY(-1px);
+}
+.staffed-row {
+  position: relative; display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  background: #f7fafc; border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px;
+}
+.staffed-row::before {
+  content: ""; position: absolute; left: -26px; top: 50%;
+  width: 26px; height: 2px; background: rgba(0, 121, 192, 0.4); transform: translateY(-1px);
+}
+.staffed-row::after {
+  content: ""; position: absolute; left: -29px; top: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--blue); transform: translate(0, -50%);
+}
+.sr-project { font-weight: 700; color: var(--blue-d); font-size: 0.86rem; }
+.sr-arrow { color: var(--blue-mid); font-size: 0.95rem; flex-shrink: 0; }
+.sr-pro {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.8rem; font-weight: 700; color: var(--moss);
+  background: var(--blue-l); border-radius: 6px; padding: 4px 10px;
+}
+.sr-pro i { font-size: 0.95rem; }
+
 /* --- 傘型（上段PM → 下段フェーズを束ねる） --- */
 .pm-flow { display: flex; flex-direction: column; align-items: center; }
 .pm-bar {
@@ -884,4 +1066,8 @@ body.no-scroll { overflow: hidden; }
   .cat-acc-body { padding-left: 22px; }
   .procase-list { grid-template-columns: 1fr; }
   .cat-count { display: none; }
+  .lanes-row { flex-wrap: wrap; }
+  .lane { flex: 1 1 44%; }
+  .ms-item { gap: 10px; }
+  .ms-period { min-width: 58px; }
 }
