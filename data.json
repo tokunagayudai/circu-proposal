@@ -464,7 +464,7 @@
     }
   ],
 
-  "_comment_proCases": "匿名化済みのプロ人材支援事例（SF由来データを個社特定されないよう加工）。カードをクリックすると詳細（企業プロフィール／支援プロセス／背景・課題／支援内容／プロ人材像）が開く。各カテゴリ詳細（テーマ）モーダルにも categories[] で自動でぶら下がる。※掲載前に必ず『業界・規模・役割の組み合わせで個社が特定されないか』を確認。社名・個人名・金額・契約情報は一切載せない。フィールド：id=一意キー / categories=ぶら下げるカテゴリ / tag=領域ラベル / industry=業界（一般化）/ scale=規模帯（売上額なし）/ period=支援期間 / commitment=支援工数 / title / summary=一覧用の短い要約 / process=支援プロセス（矢印表示）/ challenges=背景・課題 / support=支援内容 / role=参画したプロ人材像。事例追加はこの配列に1件足すだけ（フェーズ08案件を匿名化して追記）。",
+  "_comment_proCases": "匿名化済みのプロ人材支援事例（SF由来データを個社特定されないよう加工）。カードをクリックすると詳細（企業プロフィール／支援プロセス／背景・課題／支援内容／取り組みロードマップ／プロ人材の役割）が開く。各カテゴリ詳細（テーマ）モーダルにも categories[] で自動でぶら下がる。※掲載前に必ず『業界・規模・役割の組み合わせで個社が特定されないか』を確認。社名・個人名・金額・契約情報は一切載せない。フィールド：id / categories / tag / industry（一般化）/ scale（規模帯）/ period / commitment / title / summary / process（支援プロセス）/ challenges（背景・課題）/ support（支援内容）/ roadmap（取り組みロードマップ：period・title・output）/ proRoles（プロ人材の役割：role・mission）/ role（一覧カード用の代表ロール）。事例追加はこの配列に1件足すだけ。",
   "proCases": [
     {
       "id": "case-newbiz-intra", "categories": ["newbiz", "hr"], "tag": "新規事業",
