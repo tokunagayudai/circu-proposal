@@ -420,13 +420,13 @@
     }
   ],
 
-  "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ（images/case-*.png）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック（=スクショは images/ に置くだけ、編集不要）。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
+  "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ／自社HP画像URL（http〜）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャ／画像は定期的に見直す。",
   "casesNamed": [
     {
       "industry": "不動産",
       "title": "小田急不動産株式会社",
       "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
-      "image": "images/case-odakyu.png",
+      "image": "https://circu.co.jp/pro-sharing/wp-content/uploads/2026/06/%E5%BA%97%E8%88%97%E5%86%99%E7%9C%9F%EF%BC%88%E7%94%BA%E7%94%B0%E5%BA%97%EF%BC%89.jpg",
       "imageFallback": "images/case-odakyu.svg",
       "alt": "小田急不動産 事例（自社HP事例ページ）",
       "sourceUrl": "https://circu.co.jp/pro-sharing/cases/odakyu-fudosan-date/",
