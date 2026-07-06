@@ -8,6 +8,7 @@
 
 const $ = (sel, root = document) => root.querySelector(sel);
 let THEMES_BY_ID = {};
+let CASES_BY_ID = {};
 let DATA = {};
 
 function esc(s) {
@@ -113,7 +114,7 @@ function renderCatalog(data) {
         <div class="cat-acc-body" hidden>
           ${ch.length ? `<div class="cat-sub">よくある課題</div>
             <ul class="challenge-list">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
-          <button class="btn-detail" data-category="${esc(c.id)}">詳細（課題・解決策・プロ人材事例）を見る<i class="ti ti-arrow-right"></i></button>
+          <button class="btn-detail" data-category="${esc(c.id)}">このテーマの課題・解決策・事例をまとめて見る<i class="ti ti-arrow-right"></i></button>
         </div>
       </div>`;
   }).join("");
@@ -176,24 +177,27 @@ function openCategoryModal(catId) {
       </div>` : ""}
     ${cases.length ? `
       <div class="cat-modal-sec">
-        <p class="modal-section-label"><i class="ti ti-briefcase"></i>プロ人材事例</p>
-        <div class="procase-list">${cases.map(procaseCard).join("")}</div>
+        <p class="modal-section-label"><i class="ti ti-briefcase"></i>プロ人材事例<span class="sec-count">${cases.length}件</span></p>
+        <div class="procase-list">${cases.map((p) => procaseCard(p, catId)).join("")}</div>
       </div>` : ""}
   `;
   modal().hidden = false;
   document.body.classList.add("no-scroll");
 }
 
-function procaseCard(p) {
+function procaseCard(p, fromCat) {
+  const clickable = !!p.id;
+  const scale = [p.industry, p.scale].filter(Boolean).join(" / ") || p.scale || "";
   return `
-    <article class="procase">
+    <article class="procase${clickable ? " clickable" : ""}"${clickable ? ` data-case="${esc(p.id)}"${fromCat ? ` data-from-cat="${esc(fromCat)}"` : ""} role="button" tabindex="0"` : ""}>
       <div class="procase-top">
         <span class="procase-tag">${esc(p.tag)}</span>
-        <span class="procase-scale">${esc(p.scale)}</span>
+        <span class="procase-scale">${esc(scale)}</span>
       </div>
       <h4>${esc(p.title)}</h4>
       <p>${esc(p.summary)}</p>
       ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
+      ${clickable ? `<span class="procase-cta">詳細を見る<i class="ti ti-arrow-right"></i></span>` : ""}
     </article>`;
 }
 
@@ -384,17 +388,64 @@ function renderCases(data) {
   const stat = data.meta && data.meta.projectsStat;
   $("#cases-anon").innerHTML =
     (stat ? `<div class="stat-band"><i class="ti ti-chart-bar"></i><span>${esc(stat)}</span></div>` : "") +
-    (data.proCases || []).map((p) => `
-      <article class="card case-card">
+    (data.proCases || []).map((p) => {
+      const clickable = !!p.id;
+      const scale = [p.industry, p.scale].filter(Boolean).join(" / ") || p.scale || "";
+      return `
+      <article class="card case-card${clickable ? " clickable" : ""}"${clickable ? ` data-case="${esc(p.id)}" role="button" tabindex="0"` : ""}>
         <div class="body">
           <div class="procase-top"><span class="procase-tag">${esc(p.tag)}</span></div>
-          <div class="industry">${esc(p.scale)}</div>
+          <div class="industry">${esc(scale)}</div>
           <h4>${esc(p.title)}</h4>
           <p class="summary">${esc(p.summary)}</p>
           ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
+          ${clickable ? `<div class="card-cta">詳細を見る<i class="ti ti-arrow-right"></i></div>` : ""}
         </div>
-      </article>
-    `).join("");
+      </article>`;
+    }).join("");
+}
+
+/* ---------------- 支援事例 詳細モーダル（匿名） ---------------- */
+function openCaseModal(caseId, fromCat) {
+  const p = CASES_BY_ID[caseId];
+  if (!p) return;
+  const profile = [
+    ["業界", p.industry], ["規模", p.scale], ["支援期間", p.period], ["支援工数", p.commitment],
+  ].filter(([, v]) => v);
+
+  $("#modal-body").innerHTML = `
+    ${fromCat ? `<button class="modal-back" data-category="${esc(fromCat)}"><i class="ti ti-arrow-left"></i>テーマに戻る</button>` : ""}
+    <div class="modal-eyebrow">Case / 支援事例（匿名）</div>
+    <h2 class="modal-title" id="modal-title">${esc(p.title)}</h2>
+    ${p.tag ? `<div class="case-tags"><span class="procase-tag">${esc(p.tag)}</span></div>` : ""}
+    ${profile.length ? `
+      <div class="case-profile">
+        ${profile.map(([k, v]) => `<div class="cp-item"><span class="cp-k">${esc(k)}</span><span class="cp-v">${esc(v)}</span></div>`).join("")}
+      </div>` : ""}
+    ${p.process && p.process.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-route"></i>支援プロセス</p>
+        <div class="case-flow">${p.process.map((s, i) => `${i > 0 ? `<i class="ti ti-chevron-right cf-arrow"></i>` : ""}<span class="cf-step">${esc(s)}</span>`).join("")}</div>
+      </section>` : ""}
+    ${p.challenges && p.challenges.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-alert-triangle"></i>背景・課題</p>
+        <ul class="case-list">${p.challenges.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </section>` : ""}
+    ${p.support && p.support.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-bulb"></i>支援内容</p>
+        <ul class="case-list">${p.support.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </section>` : ""}
+    ${p.role ? `
+      <div class="case-pro">
+        <i class="ti ti-user-star"></i>
+        <div><span class="cpro-k">参画したプロ人材</span><span class="cpro-v">${esc(p.role)}</span></div>
+      </div>` : ""}
+    <p class="modal-doc-note"><i class="ti ti-info-circle"></i>個社が特定されないよう加工した匿名事例です。</p>
+  `;
+  modal().hidden = false;
+  document.body.classList.add("no-scroll");
 }
 
 /* ---------------- セクション5：PKSHA ---------------- */
@@ -544,12 +595,14 @@ function closeDoc() {
 function wireEvents() {
   // カードクリック → モーダル
   document.addEventListener("click", (e) => {
-    const card = e.target.closest("[data-theme]");
-    if (card) { openModal(card.dataset.theme); return; }
     const docBtn = e.target.closest("[data-doc-url]");
     if (docBtn) { openDoc(docBtn.dataset.docUrl, docBtn.dataset.docType, docBtn.dataset.docTitle); return; }
+    const caseEl = e.target.closest("[data-case]");
+    if (caseEl) { openCaseModal(caseEl.dataset.case, caseEl.dataset.fromCat); return; }
     const catBtn = e.target.closest("[data-category]");
     if (catBtn) { openCategoryModal(catBtn.dataset.category); return; }
+    const card = e.target.closest("[data-theme]");
+    if (card) { openModal(card.dataset.theme); return; }
     const accHead = e.target.closest(".cat-acc-head");
     if (accHead) {
       const acc = accHead.closest(".cat-acc");
@@ -558,7 +611,10 @@ function wireEvents() {
   });
   // キーボード（Enter/Space）でカードを開く
   document.addEventListener("keydown", (e) => {
-    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-theme]")) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-case]")) {
+      e.preventDefault();
+      openCaseModal(e.target.dataset.case, e.target.dataset.fromCat);
+    } else if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-theme]")) {
       e.preventDefault();
       openModal(e.target.dataset.theme);
     }
@@ -579,6 +635,7 @@ function wireEvents() {
     const data = await loadData();
     DATA = data;
     THEMES_BY_ID = Object.fromEntries((data.themes || []).map((t) => [t.id, t]));
+    CASES_BY_ID = Object.fromEntries((data.proCases || []).filter((p) => p.id).map((p) => [p.id, p]));
     if (data.meta) {
       if (data.meta.subtitle) $("#hero-subtitle").textContent = data.meta.subtitle;
       if (data.meta.lastUpdated) $("#hero-updated").textContent = `最終更新：${formatDate(data.meta.lastUpdated)}`;
