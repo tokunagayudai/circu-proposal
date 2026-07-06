@@ -908,6 +908,7 @@ body.no-scroll { overflow: hidden; }
 }
 .cp-k { font-size: 0.72rem; font-weight: 700; color: var(--blue-mid); font-family: var(--font-mono); }
 .cp-v { font-size: 0.92rem; font-weight: 700; color: var(--blue-d); }
+
 /* 支援プロセス：番号付きステップ */
 .case-steps { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; }
 .cs-step {
