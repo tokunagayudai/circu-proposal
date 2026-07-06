@@ -420,7 +420,7 @@
     }
   ],
 
-  "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ（images/case-*.png）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック（=スクショは images/ に置くだけ、編集不要）。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャは定期的に貼り直す。",
+  "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ／自社HP画像URL（http〜）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャ／画像は定期的に見直す。",
   "casesNamed": [
     {
       "industry": "不動産",
