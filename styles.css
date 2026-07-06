@@ -817,6 +817,67 @@ body.no-scroll { overflow: hidden; }
   font-size: 0.8rem; font-weight: 700; color: var(--moss);
   background: var(--blue-l); border-radius: 6px; padding: 5px 10px;
 }
+.procase.clickable { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.procase.clickable:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); transform: translateY(-2px); }
+.procase.clickable:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.procase-cta {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
+  font-size: 0.82rem; font-weight: 700; color: var(--blue);
+}
+.procase-cta i { transition: transform 0.15s; }
+.procase.clickable:hover .procase-cta i { transform: translateX(3px); }
+.sec-count {
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+  color: var(--blue-mid); margin-left: 8px;
+}
+.case-card.clickable { cursor: pointer; }
+.case-card.clickable:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ---------- 支援事例 詳細モーダル ---------- */
+.modal-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #f1f5f8; color: var(--blue-d); border: none;
+  font-family: inherit; font-weight: 700; font-size: 0.86rem;
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 16px;
+  transition: background 0.15s;
+}
+.modal-back:hover { background: var(--blue-l); }
+.modal-back i { transition: transform 0.15s; }
+.modal-back:hover i { transform: translateX(-3px); }
+.case-tags { display: flex; gap: 8px; margin: 0 0 18px; }
+.case-profile {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px; margin: 0 0 26px;
+}
+.cp-item {
+  background: #f7fafc; border: 1px solid var(--line); border-radius: 9px;
+  padding: 11px 14px; display: flex; flex-direction: column; gap: 3px;
+}
+.cp-k { font-size: 0.72rem; font-weight: 700; color: var(--blue-mid); font-family: var(--font-mono); }
+.cp-v { font-size: 0.92rem; font-weight: 700; color: var(--blue-d); }
+.case-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.cf-step {
+  background: var(--blue-l); border: 1px solid rgba(0, 121, 192, 0.18);
+  border-radius: 7px; padding: 8px 14px; font-size: 0.85rem; font-weight: 700; color: var(--blue-d);
+}
+.cf-arrow { color: var(--blue-mid); font-size: 1rem; flex-shrink: 0; }
+.case-list { margin: 0; padding: 0; list-style: none; }
+.case-list li {
+  position: relative; padding-left: 22px; margin-bottom: 9px;
+  font-size: 0.94rem; color: var(--ink); line-height: 1.7;
+}
+.case-list li::before {
+  content: "\25B8"; position: absolute; left: 0; top: 1px; color: var(--blue-mid); font-weight: 700;
+}
+.case-pro {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, var(--blue-d), var(--moss)); color: #fff;
+  border-radius: 10px; padding: 16px 18px; margin: 4px 0 8px;
+}
+.case-pro > i { font-size: 1.6rem; flex-shrink: 0; }
+.case-pro div { display: flex; flex-direction: column; gap: 2px; }
+.cpro-k { font-size: 0.74rem; font-weight: 700; opacity: 0.85; font-family: var(--font-mono); }
+.cpro-v { font-size: 1rem; font-weight: 700; }
 
 /* ---------- 課題解決の要素（放射図） ---------- */
 .elements-diagram { margin: 4px 0 8px; }
