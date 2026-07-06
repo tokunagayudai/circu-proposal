@@ -476,11 +476,36 @@ function openCaseModal(caseId, fromCat) {
             <ul>${p.support.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
           </section>` : ""}
       </div>` : ""}
-    ${p.role ? `
+    ${p.roadmap && p.roadmap.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-flag"></i>取り組みロードマップ</p>
+        <ol class="ms-timeline">
+          ${p.roadmap.map((m) => `
+            <li class="ms-item">
+              <span class="ms-period">${esc(m.period || "")}</span>
+              <div class="ms-main">
+                <span class="ms-title">${esc(m.title || "")}</span>
+                ${m.work ? `<span class="ms-work">${esc(m.work)}</span>` : ""}
+                ${m.output ? `<span class="ms-output"><i class="ti ti-file-text"></i>${esc(m.output)}</span>` : ""}
+              </div>
+            </li>`).join("")}
+        </ol>
+      </section>` : ""}
+    ${p.proRoles && p.proRoles.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-users"></i>プロ人材の役割</p>
+        <div class="pro-profile">
+          ${p.proRoles.map((r) => `
+            <div class="pp-card">
+              <span class="pp-role"><i class="ti ti-user-star"></i>${esc(r.role || "")}</span>
+              ${r.mission ? `<span class="pp-mission">${esc(r.mission)}</span>` : ""}
+            </div>`).join("")}
+        </div>
+      </section>` : (p.role ? `
       <div class="case-pro">
         <i class="ti ti-user-star"></i>
         <div><span class="cpro-k">参画したプロ人材</span><span class="cpro-v">${esc(p.role)}</span></div>
-      </div>` : ""}
+      </div>` : "")}
     <p class="modal-doc-note"><i class="ti ti-info-circle"></i>個社が特定されないよう加工した匿名事例です。</p>
   `;
   modal().hidden = false;
