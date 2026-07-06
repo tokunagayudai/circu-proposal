@@ -83,6 +83,42 @@ function renderPickup(themes) {
   }).join("");
 }
 
+/* ---------------- 経営テーマ俯瞰マップ ---------------- */
+/* 全社を横断する「変革テーマ」と、部門・機能ごとの「機能テーマ」に分けて一覧表示。
+   タイルをクリックすると data-category 経由でテーマ詳細（課題・解決策・事例）が開く。 */
+const TRANSFORM_CATS = new Set(["newbiz", "dx", "ai", "bpr"]);
+
+function renderAgendaMap(categories) {
+  const wrap = $("#agenda-map");
+  if (!wrap) return;
+  const bands = [
+    { key: "transform", label: "全社・変革テーマ", sub: "事業全体を横断して変える", filter: (c) => TRANSFORM_CATS.has(c.id) },
+    { key: "function", label: "部門・機能テーマ", sub: "部門・機能ごとに強化する", filter: (c) => !TRANSFORM_CATS.has(c.id) },
+  ];
+  const tile = (c) => `
+    <button class="agenda-tile" data-category="${esc(c.id)}" aria-label="${esc(c.name)} の課題・解決策・事例を見る">
+      <span class="at-ic"><i class="ti ${esc(c.icon)}"></i></span>
+      <span class="at-body">
+        <span class="at-name">${esc(c.name)}</span>
+        ${c.tagline ? `<span class="at-tag">${esc(c.tagline)}</span>` : ""}
+      </span>
+    </button>`;
+  wrap.innerHTML = `
+    <div class="agenda-top"><i class="ti ti-building-skyscraper"></i>全社経営 / 事業成長</div>
+    ${bands.map((b) => {
+      const items = (categories || []).filter(b.filter);
+      if (!items.length) return "";
+      return `
+        <div class="agenda-band agenda-${b.key}">
+          <div class="agenda-band-head">
+            <span class="ab-label">${b.label}</span>
+            <span class="ab-sub">${b.sub}</span>
+          </div>
+          <div class="agenda-tiles">${items.map(tile).join("")}</div>
+        </div>`;
+    }).join("")}`;
+}
+
 /* ---------------- セクション2：カタログ（カテゴリ別アコーディオン） ---------------- */
 function renderCatalog(data) {
   const { categories, themes } = data;
@@ -425,18 +461,21 @@ function openCaseModal(caseId, fromCat) {
     ${p.process && p.process.length ? `
       <section class="ds-sec">
         <p class="ds-label"><i class="ti ti-route"></i>支援プロセス</p>
-        <div class="case-flow">${p.process.map((s, i) => `${i > 0 ? `<i class="ti ti-chevron-right cf-arrow"></i>` : ""}<span class="cf-step">${esc(s)}</span>`).join("")}</div>
+        <div class="case-steps">${p.process.map((s, i) => `${i > 0 ? `<i class="ti ti-chevron-right cs-arrow"></i>` : ""}<span class="cs-step"><span class="cs-n">${i + 1}</span><span class="cs-label">${esc(s)}</span></span>`).join("")}</div>
       </section>` : ""}
-    ${p.challenges && p.challenges.length ? `
-      <section class="ds-sec">
-        <p class="ds-label"><i class="ti ti-alert-triangle"></i>背景・課題</p>
-        <ul class="case-list">${p.challenges.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </section>` : ""}
-    ${p.support && p.support.length ? `
-      <section class="ds-sec">
-        <p class="ds-label"><i class="ti ti-bulb"></i>支援内容</p>
-        <ul class="case-list">${p.support.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </section>` : ""}
+    ${(p.challenges && p.challenges.length) || (p.support && p.support.length) ? `
+      <div class="case-cols">
+        ${p.challenges && p.challenges.length ? `
+          <section class="case-col problem">
+            <p class="cc-h"><i class="ti ti-alert-triangle"></i>背景・課題</p>
+            <ul>${p.challenges.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+          </section>` : ""}
+        ${p.support && p.support.length ? `
+          <section class="case-col support">
+            <p class="cc-h"><i class="ti ti-bulb"></i>支援内容（打ち手）</p>
+            <ul>${p.support.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+          </section>` : ""}
+      </div>` : ""}
     ${p.role ? `
       <div class="case-pro">
         <i class="ti ti-user-star"></i>
@@ -641,6 +680,7 @@ function wireEvents() {
       if (data.meta.lastUpdated) $("#hero-updated").textContent = `最終更新：${formatDate(data.meta.lastUpdated)}`;
     }
     renderPickup(data.themes || []);
+    renderAgendaMap(data.categories || []);
     renderCatalog(data);
     renderElements(data.projectSuccess);
     renderAssign(data.assignExamples);
