@@ -514,6 +514,33 @@ section { scroll-margin-top: 84px; }
   font-size: 0.76rem; color: var(--moss); margin-top: 12px; opacity: 0.85;
 }
 
+/* ---------- 事例ライブラリ：検索・カテゴリ絞り込みツールバー ---------- */
+.case-lib-toolbar {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 14px;
+}
+.case-lib-search {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid var(--line); border-radius: 9px;
+  padding: 10px 14px; max-width: 420px;
+  box-shadow: var(--shadow);
+}
+.case-lib-search i { color: var(--blue-mid); flex-shrink: 0; }
+.case-lib-search input {
+  border: none; outline: none; font-family: inherit; font-size: 0.92rem;
+  color: var(--ink); flex-grow: 1; background: transparent; min-width: 0;
+}
+.case-lib-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-count {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+  background: rgba(0, 121, 192, 0.12); color: var(--blue-d);
+  border-radius: 999px; padding: 1px 7px;
+}
+.chip.active .chip-count { background: rgba(255, 255, 255, 0.25); color: #fff; }
+.case-lib-status {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--blue-mid); font-weight: 700;
+}
+
 /* ---------- セクション5：PKSHA ---------- */
 .pksha-grid {
   display: grid;
@@ -862,30 +889,29 @@ body.no-scroll { overflow: hidden; }
 .sol-row-title { font-weight: 700; color: var(--blue-d); font-size: 0.98rem; }
 .sol-row-sum { color: var(--ink-soft); font-size: 0.85rem; }
 .sol-row > i { color: var(--blue-mid); flex-shrink: 0; }
-.procase-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.procase { border: 1px solid var(--line); border-radius: 10px; padding: 15px 16px; background: #fff; }
+.procase-hero-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.procase-hero {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  text-align: left; background: #f7fafc; border: 1px solid var(--line);
+  border-radius: 9px; padding: 12px 14px; cursor: pointer;
+  font-family: inherit; transition: background 0.15s, border-color 0.15s;
+}
+.procase-hero:hover { background: var(--blue-l); border-color: var(--blue-mid); }
+.procase-hero:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.ph-title { font-weight: 700; color: var(--blue-d); font-size: 0.92rem; flex-grow: 1; }
+.ph-role { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; }
+.ph-role i { color: var(--blue-mid); }
+.ph-arrow { color: var(--blue-mid); flex-shrink: 0; }
 .procase-top { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .procase-tag {
   font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--blue-d);
   border-radius: 4px; padding: 3px 8px;
 }
-.procase-scale { font-size: 0.76rem; color: var(--ink-soft); font-weight: 500; font-family: var(--font-mono); }
-.procase h4 { font-size: 0.98rem; font-weight: 700; color: var(--blue-d); margin: 0 0 6px; line-height: 1.5; }
-.procase p { font-size: 0.86rem; color: var(--ink-soft); margin: 0 0 10px; }
 .procase-role {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 0.8rem; font-weight: 700; color: var(--moss);
   background: var(--blue-l); border-radius: 6px; padding: 5px 10px;
 }
-.procase.clickable { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
-.procase.clickable:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); transform: translateY(-2px); }
-.procase.clickable:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.procase-cta {
-  display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
-  font-size: 0.82rem; font-weight: 700; color: var(--blue);
-}
-.procase-cta i { transition: transform 0.15s; }
-.procase.clickable:hover .procase-cta i { transform: translateX(3px); }
 .sec-count {
   font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
   color: var(--blue-mid); margin-left: 8px;
@@ -1206,7 +1232,6 @@ body.no-scroll { overflow: hidden; }
   .modal-grid { grid-template-columns: 1fr; }
   .modal-title { font-size: 1.3rem; }
   .cat-acc-body { padding-left: 22px; }
-  .procase-list { grid-template-columns: 1fr; }
   .cat-count { display: none; }
   .lanes-row { flex-wrap: wrap; }
   .lane { flex: 1 1 44%; }

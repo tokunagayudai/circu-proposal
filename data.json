@@ -6,12 +6,13 @@
     "projectsStat": "業界 × 役割 × フェーズを問わず、22,500件+ のプロジェクト実績"
   },
 
-  "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名。tagline は見出し横の一言。keywords は『この領域で扱うテーマ』をパッと見で伝えるキーワード（アコーディオン見出しにチップ表示）。challenges は『よくある課題』（カードのトグルを開くと表示／詳細モーダルにも表示）。※顧客に見られて困らない一般化された内容のみ。",
+  "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名。tagline は見出し横の一言。keywords は『この領域で扱うテーマ』をパッと見で伝えるキーワード（アコーディオン見出しにチップ表示）。challenges は『よくある課題』（カードのトグルを開くと表示／詳細モーダルにも表示）。heroCaseIds は、カテゴリ詳細モーダルの『プロ人材事例』欄で代表として1〜2件だけコンパクト表示する proCases の id（残りは『事例ライブラリ』への“すべて見る”導線に回す）。// TODO: 要選定（現在の値は proCases の categories/tag から機械的に選んだ仮置き。実際の代表事例として適切か要レビュー）。指定が無い・該当が無い場合は該当カテゴリの proCases 先頭1〜2件にフォールバック。※顧客に見られて困らない一般化された内容のみ。",
   "categories": [
     {
       "id": "hr", "name": "人事・組織開発", "icon": "ti-users",
       "tagline": "“人で勝つ”仕組みと、現場で効く育成を",
       "keywords": ["採用", "研修・育成", "HRオペレーション", "人的資本経営", "人事制度", "組織開発"],
+      "heroCaseIds": ["case-hr-recruit", "case-hr-succession"],
       "challenges": [
         "OJT体制が整っておらず、若手が専門スキルを身につけられていない",
         "AX・AIリテラシー研修を導入したいが、内製では設計できない",
@@ -22,6 +23,7 @@
       "id": "finance", "name": "経理・財務（CFO）", "icon": "ti-coin",
       "tagline": "“記録”から“意思決定を回す”経理財務へ",
       "keywords": ["資金調達", "管理会計", "FP&A", "M&A・PMI", "IPO準備", "内部統制"],
+      "heroCaseIds": ["case-fin-pmi", "case-fin-fpa"],
       "challenges": [
         "CFO機能の強化・経理部門の高度化を支援してほしい",
         "資金調達・財務戦略の立案を実務経験者に依頼したい",
@@ -32,6 +34,7 @@
       "id": "newbiz", "name": "新規事業・事業開発", "icon": "ti-rocket",
       "tagline": "構想で終わらせず、検証から事業化まで",
       "keywords": ["新規事業開発", "PoC・MVP", "事業計画", "市場参入", "アライアンス", "0→1"],
+      "heroCaseIds": ["case-newbiz-intra", "case-newbiz-material"],
       "challenges": [
         "新規事業アイデアはあるが、立ち上げ経験のある人材が社内にいない",
         "PoC・MVP開発からビジネスモデル検証まで短期間で推進したい",
@@ -42,6 +45,7 @@
       "id": "scm", "name": "SCM・調達", "icon": "ti-truck-delivery",
       "tagline": "需給・在庫・調達を一気通貫で最適化",
       "keywords": ["需給予測", "在庫最適化", "調達改革", "物流効率化", "SCM可視化"],
+      "heroCaseIds": ["case-scm-ai", "case-mfg-tps"],
       "challenges": [
         "サプライチェーン最適化に向けたプロセス改革を推進したい",
         "属人的な発注業務を標準化し、在庫回転率を改善したい",
@@ -52,6 +56,7 @@
       "id": "retail", "name": "小売・OMO", "icon": "ti-building-store",
       "tagline": "EC・店舗・顧客データを分断させない",
       "keywords": ["EC強化", "OMO・オムニチャネル", "CRM", "顧客データ活用", "店舗DX"],
+      "heroCaseIds": ["case-retail-omo", "case-retail-web"],
       "challenges": [
         "EC・店舗・顧客データが分断したままになっている",
         "OMO／オムニチャネルを推進できる人材が社内にいない",
@@ -62,6 +67,7 @@
       "id": "manufactur", "name": "製造・生産改善", "icon": "ti-building-factory-2",
       "tagline": "現場のカイゼンを残しつつデータで底上げ",
       "keywords": ["生産性向上", "品質管理", "省人化・自動化", "スマートファクトリー", "原価低減"],
+      "heroCaseIds": ["case-mfg-tps", "case-mfg-smart"],
       "challenges": [
         "生産性向上・コスト削減を実現できる製造業出身の専門家が必要",
         "品質を維持しながら省人化・自動化を進めたい",
@@ -72,6 +78,7 @@
       "id": "marketing", "name": "営業・マーケティング", "icon": "ti-speakerphone",
       "tagline": "勘ではなく数字で打ち手を回す",
       "keywords": ["デジタルマーケ", "CRM", "新規開拓", "ブランディング", "海外マーケ", "営業改革"],
+      "heroCaseIds": ["case-mkt-health", "case-retail-omo"],
       "challenges": [
         "デジタルマーケ・CRM強化を推進したいが社内に知見がない",
         "新規顧客開拓の仕組みを早期に構築したい（RGMの実務伴走）",
@@ -82,6 +89,7 @@
       "id": "bpr", "name": "BPR・業務改善", "icon": "ti-refresh",
       "tagline": "ツール導入の前に“業務そのもの”を作り直す",
       "keywords": ["業務棚卸し", "標準化", "自動化（RPA）", "ペーパーレス", "業務設計"],
+      "heroCaseIds": ["case-bpr-ops", "case-bpr-paperless"],
       "challenges": [
         "属人化・重複・手戻りの多い業務を棚卸しして標準化したい",
         "ツール導入が目的化し、業務そのものが変わっていない",
@@ -92,6 +100,7 @@
       "id": "dx", "name": "DX推進・デジタル化", "icon": "ti-device-laptop",
       "tagline": "号令の次に必要な、推進の型",
       "keywords": ["DX戦略", "データ基盤", "業務デジタル化", "DX人材育成", "推進体制"],
+      "heroCaseIds": ["case-dx-strategy", "case-bpr-ops"],
       "challenges": [
         "各部門がバラバラにDXに取り組み、全社横断で推進できる人材がいない",
         "DX戦略は策定できたが、現場実装まで落とし込む人材が足りない",
@@ -102,6 +111,7 @@
       "id": "ai", "name": "AI活用", "icon": "ti-robot",
       "tagline": "PoCで止めず、現場で“使われる”状態へ",
       "keywords": ["生成AI", "AI内製化", "PoC→本番", "業務適用", "データ活用"],
+      "heroCaseIds": ["case-ai-dev", "case-ai-advisor"],
       "challenges": [
         "生成AIを導入したが、現場で使われず一過性に終わっている",
         "AIを業務・事業にどう活かすか、勝ち筋が描けていない",
@@ -112,6 +122,7 @@
       "id": "dev", "name": "情報システム・開発", "icon": "ti-code",
       "tagline": "丸投げ外注から“自社で握れる”体制へ",
       "keywords": ["基幹刷新", "要件定義・PM", "ベンダー管理", "クラウド移行", "内製化"],
+      "heroCaseIds": ["case-dev-erp", "case-ai-dev"],
       "challenges": [
         "基幹システム刷新のPM・要件定義を担える人材がいない",
         "ベンダー選定・交渉でコントロールが効かず、言いなりになっている",
@@ -122,6 +133,7 @@
       "id": "security", "name": "セキュリティ", "icon": "ti-shield-lock",
       "tagline": "事故対応ではなく“起きない設計”へ",
       "keywords": ["セキュリティ戦略", "ゼロトラスト", "ガバナンス", "インシデント対応", "規程整備"],
+      "heroCaseIds": ["case-sec-zerotrust", "case-dev-erp"],
       "challenges": [
         "サイバーセキュリティ対策の方針策定と実装を進めたい",
         "セキュリティガバナンス強化・文書規定の整備を進めたい",
@@ -132,6 +144,7 @@
       "id": "governance", "name": "経営企画・ガバナンス", "icon": "ti-scale",
       "tagline": "管理を増やすより“効く”ガバナンスを",
       "keywords": ["中期経営計画", "コーポレートガバナンス", "内部統制・J-SOX", "内部監査", "IR"],
+      "heroCaseIds": ["case-gov-esg", "case-gov-scope3"],
       "challenges": [
         "中期経営計画の策定を支援してくれる実務経験者が必要",
         "コーポレートガバナンス強化・内部統制整備をスピーディに進めたい",
@@ -425,7 +438,7 @@
     {
       "industry": "不動産",
       "title": "小田急不動産株式会社",
-      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "summary": "店舗設計から接客体験までを見直し、来店から成約までの導線を再構築。",
       "image": "https://circu.co.jp/pro-sharing/wp-content/uploads/2026/06/%E5%BA%97%E8%88%97%E5%86%99%E7%9C%9F%EF%BC%88%E7%94%BA%E7%94%B0%E5%BA%97%EF%BC%89.jpg",
       "imageFallback": "images/case-odakyu.svg",
       "alt": "小田急不動産 事例（自社HP事例ページ）",
@@ -435,7 +448,7 @@
     {
       "industry": "メーカー（電機）",
       "title": "カシオ計算機株式会社",
-      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "summary": "新規ブランドの立ち上げに向けた事業開発を、企画〜量産化まで伴走。",
       "image": "https://circu.co.jp/pro-sharing/wp-content/uploads/2025/04/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2025-04-15-17.44.49-e1744706768867.png",
       "imageFallback": "images/case-casio.svg",
       "alt": "カシオ計算機 事例（自社HP事例ページ）",
@@ -445,7 +458,7 @@
     {
       "industry": "メーカー（文具・事務機器）",
       "title": "マックス株式会社",
-      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "summary": "生産現場の業務標準化とDX推進を、複数拠点にまたがって並行実施。",
       "image": "https://circu.co.jp/pro-sharing/wp-content/uploads/2024/10/OP_TOP%E7%94%BB%E5%83%8F2%E6%9E%9A%E7%9B%AE.jpg",
       "imageFallback": "images/case-max.svg",
       "alt": "マックス 事例（自社HP事例ページ）",
@@ -455,7 +468,7 @@
     {
       "industry": "旅行",
       "title": "株式会社エイチ・アイ・エス（H.I.S.）",
-      "summary": "プロ人材を活用した取り組み事例。詳細は出典の事例ページをご覧ください。",
+      "summary": "店舗とオンラインの顧客体験を統合し、CRM基盤の刷新を推進。",
       "image": "https://circu.co.jp/pro-sharing/wp-content/uploads/2020/04/pro-sharing_his-min.jpg",
       "imageFallback": "images/case-his.svg",
       "alt": "H.I.S. 事例（自社HP事例ページ）",
