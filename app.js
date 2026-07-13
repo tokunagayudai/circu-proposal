@@ -240,38 +240,6 @@ function procaseHero(p, fromCat) {
     </button>`;
 }
 
-/* ---------------- セクション3：課題解決の要素（放射図） ---------------- */
-function renderElements(ps) {
-  const wrap = $("#elements-diagram");
-  if (!wrap || !ps) return;
-  const els = ps.elements || [];
-  const n = els.length;
-  if (!n) { wrap.innerHTML = ""; return; }
-
-  const cx = 360, cy = 235, rx = 250, ry = 150;
-  let lines = "", nodes = "";
-  els.forEach((label, i) => {
-    const ang = (-90 + i * (360 / n)) * Math.PI / 180;
-    const x = (cx + rx * Math.cos(ang)).toFixed(1);
-    const y = (cy + ry * Math.sin(ang)).toFixed(1);
-    lines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" class="el-line"/>`;
-    nodes += `<g class="el-node">
-      <ellipse cx="${x}" cy="${y}" rx="84" ry="44"></ellipse>
-      <text x="${x}" y="${(parseFloat(y) + 5).toFixed(1)}">${esc(label)}</text>
-    </g>`;
-  });
-
-  wrap.innerHTML = `
-    <svg viewBox="0 0 720 470" class="el-svg" role="img" aria-label="${esc(ps.center || "プロジェクト成功要素")}と構成要素">
-      ${lines}
-      <g class="el-center">
-        <ellipse cx="${cx}" cy="${cy}" rx="100" ry="62"></ellipse>
-        <text x="${cx}" y="${cy + 6}">${esc(ps.center || "プロジェクト成功要素")}</text>
-      </g>
-      ${nodes}
-    </svg>`;
-}
-
 /* プロ人材アサイン体制例（切り口ごとに別々の図で描き分け） */
 function renderAssign(items) {
   const grid = $("#assign-grid");
@@ -677,7 +645,7 @@ function openModal(themeId) {
   $("#modal-body").innerHTML = `
     <div class="modal-eyebrow">Pick Up / 直近ピックアップテーマ</div>
     <h2 class="modal-title" id="modal-title">${esc(t.title)}</h2>
-    ${thumbImg(t, "modal-hero")}
+    ${docEmbedHtml(t)}
     ${d.lead ? `<p class="modal-lead">${esc(d.lead)}</p>` : ""}
     ${d.background ? `
       <section class="ds-sec ds-background">
@@ -711,10 +679,7 @@ function openModal(themeId) {
       </div>` : ""}
     <div class="modal-actions">
       ${hasDoc
-        ? `<button class="btn-primary" data-doc-url="${esc(t.doc.url)}" data-doc-type="${esc(t.doc.type || "slides")}" data-doc-title="${esc(t.title)}">
-             <i class="ti ti-presentation"></i>資料（全文）を確認する
-           </button>
-           <a class="btn-secondary" href="${esc(t.doc.url)}" target="_blank" rel="noopener">
+        ? `<a class="btn-secondary" href="${esc(t.doc.url)}" target="_blank" rel="noopener">
              <i class="ti ti-external-link"></i>新しいタブで開く
            </a>`
         : `<span class="empty-note">資料は準備中です。</span>`}
@@ -727,10 +692,10 @@ function openModal(themeId) {
 
 function closeModal() {
   modal().hidden = true;
-  if ($("#doc-viewer").hidden) document.body.classList.remove("no-scroll");
+  document.body.classList.remove("no-scroll");
 }
 
-/* ---------------- 資料ビューア ---------------- */
+/* 資料URLをそのまま埋め込み表示できる形式に変換（Googleスライド／PDF／同梱HTMLページ） */
 function buildEmbedUrl(url, type) {
   if (type === "slides") {
     const m = String(url).match(/presentation\/d\/([^/]+)/);
@@ -744,26 +709,17 @@ function buildEmbedUrl(url, type) {
   return url;
 }
 
-function openDoc(url, type, title) {
-  $("#doc-frame").src = buildEmbedUrl(url, type);
-  $("#doc-open").href = url;
-  $("#doc-title").textContent = title || "資料";
-  $("#doc-viewer").hidden = false;
-  document.body.classList.add("no-scroll");
-}
-
-function closeDoc() {
-  $("#doc-viewer").hidden = true;
-  $("#doc-frame").src = "about:blank";
-  if (modal().hidden) document.body.classList.remove("no-scroll");
+/* テーマ詳細モーダルの冒頭：資料があればその場で埋め込み表示し、無ければサムネイル画像にフォールバック */
+function docEmbedHtml(t) {
+  if (!(t.doc && t.doc.url)) return thumbImg(t, "modal-hero");
+  const src = buildEmbedUrl(t.doc.url, t.doc.type || "slides");
+  return `<div class="modal-hero-embed"><iframe src="${esc(src)}" title="${esc(t.title)} の資料" loading="lazy" allowfullscreen></iframe></div>`;
 }
 
 /* ---------------- イベント配線 ---------------- */
 function wireEvents() {
   // カードクリック → モーダル
   document.addEventListener("click", (e) => {
-    const docBtn = e.target.closest("[data-doc-url]");
-    if (docBtn) { openDoc(docBtn.dataset.docUrl, docBtn.dataset.docType, docBtn.dataset.docTitle); return; }
     const viewAllBtn = e.target.closest("[data-viewall-cat]");
     if (viewAllBtn) { closeModal(); goToCaseLibrary(viewAllBtn.dataset.viewallCat); return; }
     const caseEl = e.target.closest("[data-case]");
@@ -787,15 +743,11 @@ function wireEvents() {
       e.preventDefault();
       openModal(e.target.dataset.theme);
     }
-    if (e.key === "Escape") {
-      if (!$("#doc-viewer").hidden) closeDoc();
-      else if (!modal().hidden) closeModal();
-    }
+    if (e.key === "Escape" && !modal().hidden) closeModal();
   });
   // 閉じる
   $("#modal-close").addEventListener("click", closeModal);
   modal().addEventListener("click", (e) => { if (e.target === modal()) closeModal(); });
-  $("#doc-close").addEventListener("click", closeDoc);
 }
 
 /* ---------------- 起動 ---------------- */
@@ -814,7 +766,6 @@ function wireEvents() {
     renderPickup(data.themes || []);
     renderAgendaMap(data.categories || []);
     renderCatalog(data);
-    renderElements(data.projectSuccess);
     renderAssign(data.assignExamples);
     renderCases(data);
     renderPksha(data.pksha);
