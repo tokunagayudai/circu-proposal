@@ -701,8 +701,10 @@ function wireEvents() {
     THEMES_BY_ID = Object.fromEntries((data.themes || []).map((t) => [t.id, t]));
     CASES_BY_ID = Object.fromEntries((data.proCases || []).filter((p) => p.id).map((p) => [p.id, p]));
     if (data.meta) {
-      if (data.meta.subtitle) $("#hero-subtitle").textContent = data.meta.subtitle;
-      if (data.meta.lastUpdated) $("#hero-updated").textContent = `最終更新：${formatDate(data.meta.lastUpdated)}`;
+      const hs = $("#hero-subtitle");
+      if (hs && data.meta.subtitle) hs.textContent = data.meta.subtitle;
+      const hu = $("#hero-updated");
+      if (hu && data.meta.lastUpdated) hu.textContent = `最終更新：${formatDate(data.meta.lastUpdated)}`;
     }
     renderPickup(data.themes || []);
     renderAgendaMap(data.categories || []);

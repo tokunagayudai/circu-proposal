@@ -125,6 +125,13 @@ a { color: var(--blue); }
   font-size: 0.78rem;
   color: var(--moss);
 }
+/* スリムヘッダー（見出し文を撤去し、最終更新のみ表示） */
+.hero-slim {
+  padding: 22px 24px 2px;
+}
+.hero-slim .updated {
+  margin-top: 0;
+}
 
 /* ---------- セクション共通 ---------- */
 section { scroll-margin-top: 84px; }
