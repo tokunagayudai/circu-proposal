@@ -283,10 +283,6 @@ function openAssignCase(key) {
       <div class="case-profile">
         ${profile.map(([k, v]) => `<div class="cp-item"><span class="cp-k">${esc(k)}</span><span class="cp-v">${esc(v)}</span></div>`).join("")}
       </div>` : ""}
-    ${cs.stats && cs.stats.length ? `
-      <div class="case-kpis">
-        ${cs.stats.map((s) => `<div class="kpi"><span class="kpi-v">${esc(s.v)}</span><span class="kpi-k">${esc(s.k)}</span></div>`).join("")}
-      </div>` : ""}
     ${cs.headline ? `<div class="case-headline"><i class="ti ti-quote"></i><span>${esc(cs.headline)}</span></div>` : ""}
     <section class="ds-sec">
       <p class="ds-label"><i class="ti ti-sitemap"></i>アサイン体制</p>
