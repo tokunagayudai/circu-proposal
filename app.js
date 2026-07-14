@@ -86,7 +86,7 @@ function renderPickup(themes) {
 /* ---------------- 経営テーマ俯瞰マップ ---------------- */
 /* 全社を横断する「変革テーマ」と、部門・機能ごとの「機能テーマ」に分けて一覧表示。
    タイルをクリックすると data-category 経由でテーマ詳細（課題・解決策・事例）が開く。 */
-const TRANSFORM_CATS = new Set(["newbiz", "dx", "ai", "bpr"]);
+const TRANSFORM_CATS = new Set(["newbiz", "dx", "ai", "bpr", "manda", "esg", "global"]);
 
 function renderAgendaMap(categories) {
   const wrap = $("#agenda-map");
