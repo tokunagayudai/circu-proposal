@@ -72,7 +72,6 @@ function renderPickup(themes) {
       <div class="pickup-body">
         <div class="badges">
           ${t.isNew ? `<span class="badge badge-new">NEW</span>` : ""}
-          ${t.updated ? `<span class="badge badge-date">更新 ${esc(formatDate(t.updated))}</span>` : ""}
         </div>
         <h3>${esc(t.title)}</h3>
         <p class="lead">${esc(d.lead || t.summary)}</p>
