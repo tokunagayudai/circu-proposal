@@ -254,16 +254,110 @@ function renderAssign(items) {
       default: return assignTree(a);
     }
   };
-  grid.innerHTML = (items || []).map((a) => `
-    <article class="card assign-card">
+  grid.innerHTML = (items || []).map((a) => {
+    const has = !!a.case;
+    return `
+    <article class="card assign-card${has ? " clickable" : ""}"${has ? ` data-assign="${esc(a.key)}" role="button" tabindex="0" aria-label="${esc(a.key)}型の匿名事例を開く"` : ""}>
       <div class="assign-head">
         <span class="assign-key">${esc(a.key)}</span>
         <span class="assign-sub">${esc(a.subtitle)}</span>
       </div>
       <div class="assign-diagram">${diagram(a)}</div>
       ${a.caption ? `<p class="assign-caption">${esc(a.caption)}</p>` : ""}
-    </article>
-  `).join("");
+      ${has ? `<div class="card-cta assign-cta">この切り口の匿名事例を見る<i class="ti ti-arrow-right"></i></div>` : ""}
+    </article>`;
+  }).join("");
+}
+
+/* アサイン体制の匿名事例モーダル（Layer / プロファイル / KPI / 体制図 / 背景・取り組み） */
+function openAssignCase(key) {
+  const a = (DATA.assignExamples || []).find((x) => x.key === key);
+  if (!a || !a.case) return;
+  const cs = a.case;
+  const profile = [["業界", cs.industry], ["部門", cs.dept], ["支援期間", cs.period]].filter(([, v]) => v);
+
+  $("#modal-body").innerHTML = `
+    <div class="modal-eyebrow">Case / アサイン体制の匿名事例</div>
+    <h2 class="modal-title" id="modal-title">${cs.layer ? `<span class="case-layer">${esc(cs.layer)}</span>` : ""}${esc(cs.patternTitle || a.subtitle)}</h2>
+    ${profile.length ? `
+      <div class="case-profile">
+        ${profile.map(([k, v]) => `<div class="cp-item"><span class="cp-k">${esc(k)}</span><span class="cp-v">${esc(v)}</span></div>`).join("")}
+      </div>` : ""}
+    ${cs.stats && cs.stats.length ? `
+      <div class="case-kpis">
+        ${cs.stats.map((s) => `<div class="kpi"><span class="kpi-v">${esc(s.v)}</span><span class="kpi-k">${esc(s.k)}</span></div>`).join("")}
+      </div>` : ""}
+    ${cs.headline ? `<div class="case-headline"><i class="ti ti-quote"></i><span>${esc(cs.headline)}</span></div>` : ""}
+    <section class="ds-sec">
+      <p class="ds-label"><i class="ti ti-sitemap"></i>アサイン体制</p>
+      <div class="assign-diagram assign-diagram-lg">${assignCaseDiagram(cs, a)}</div>
+      ${a.caption ? `<p class="assign-caption">${esc(a.caption)}</p>` : ""}
+    </section>
+    ${cs.background ? `
+      <section class="ds-sec ds-background">
+        <p class="ds-label"><i class="ti ti-info-circle"></i>背景・課題</p>
+        <p class="ds-text">${esc(cs.background)}</p>
+      </section>` : ""}
+    ${cs.approach && cs.approach.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-route"></i>取り組み</p>
+        <ol class="case-approach">${cs.approach.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+      </section>` : ""}
+    ${cs.structureNotes && cs.structureNotes.length ? `
+      <section class="ds-sec">
+        <p class="ds-label"><i class="ti ti-users"></i>体制のポイント</p>
+        <ul class="modal-points">${cs.structureNotes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </section>` : ""}
+    <p class="modal-doc-note"><i class="ti ti-info-circle"></i>個社が特定されないよう加工した匿名事例です。</p>
+  `;
+  modal().hidden = false;
+  document.body.classList.add("no-scroll");
+}
+
+/* 事例モーダル内の体制図：case.diagram（無ければ親の diagram）で描き分け。'org' は専用の体制図 */
+function assignCaseDiagram(cs, parent) {
+  const kind = cs.diagram || parent.diagram;
+  const a = {
+    hub: cs.hub || parent.hub,
+    hubSub: cs.hubSub || parent.hubSub,
+    items: cs.items || parent.items,
+  };
+  switch (kind) {
+    case "org": return assignOrg(cs.org);
+    case "lanes": return assignLanes(a);
+    case "phase-pm": return assignPhasePm(a);
+    case "cluster": return assignCluster(a);
+    case "staffed": return assignStaffed(a);
+    case "flow": return assignFlow(a);
+    default: return assignTree(a);
+  }
+}
+
+/* 体制図（org）：顧客の部長＋伴走PM（プロ）をヘッドに、テーマ別プロ→課長→メンバーを縦に並べる */
+function assignOrg(org) {
+  if (!org) return "";
+  const node = (n, extra = "") => `
+    <div class="co-node ${n.side === "pro" ? "co-pro" : "co-client"} ${extra}">
+      <span class="co-role">${esc(n.role)}</span>
+      ${n.tag ? `<span class="co-tag">${esc(n.tag)}</span>` : ""}
+      ${n.side ? `<span class="co-side">${n.side === "pro" ? "プロ人材" : "顧客"}</span>` : ""}
+    </div>`;
+  const head = (org.head || []).map((n, i) =>
+    `${i > 0 ? `<i class="ti ti-arrows-left-right co-hlink"></i>` : ""}${node(n)}`).join("");
+  const cols = (org.cols || []).map((c) => `
+    <div class="co-col">
+      ${node({ role: c.pro, tag: c.tag, side: "pro" }, "co-pro-sm")}
+      <i class="ti ti-chevron-down co-vlink"></i>
+      ${node({ role: "課長", side: "client" }, "co-kacho")}
+      <i class="ti ti-chevron-down co-vlink"></i>
+      <div class="co-node co-member"><span class="co-role">メンバー</span></div>
+    </div>`).join("");
+  return `
+    <div class="case-org">
+      <div class="co-head">${head}</div>
+      <div class="co-bus"></div>
+      <div class="co-cols">${cols}</div>
+    </div>`;
 }
 
 /* Issue型：プロジェクト全体の下に、課題（課単位）ごとの専任リーダーを並列レーンで配置 */
@@ -722,6 +816,8 @@ function wireEvents() {
   document.addEventListener("click", (e) => {
     const viewAllBtn = e.target.closest("[data-viewall-cat]");
     if (viewAllBtn) { closeModal(); goToCaseLibrary(viewAllBtn.dataset.viewallCat); return; }
+    const assignEl = e.target.closest("[data-assign]");
+    if (assignEl) { openAssignCase(assignEl.dataset.assign); return; }
     const caseEl = e.target.closest("[data-case]");
     if (caseEl) { openCaseModal(caseEl.dataset.case, caseEl.dataset.fromCat); return; }
     const catBtn = e.target.closest("[data-category]");
@@ -736,7 +832,10 @@ function wireEvents() {
   });
   // キーボード（Enter/Space）でカードを開く
   document.addEventListener("keydown", (e) => {
-    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-case]")) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-assign]")) {
+      e.preventDefault();
+      openAssignCase(e.target.dataset.assign);
+    } else if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-case]")) {
       e.preventDefault();
       openCaseModal(e.target.dataset.case, e.target.dataset.fromCat);
     } else if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-theme]")) {
