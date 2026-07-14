@@ -304,7 +304,6 @@ function openAssignCase(key) {
         <p class="ds-label"><i class="ti ti-users"></i>体制のポイント</p>
         <ul class="modal-points">${cs.structureNotes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
       </section>` : ""}
-    <p class="modal-doc-note"><i class="ti ti-info-circle"></i>個社が特定されないよう加工した匿名事例です。</p>
   `;
   modal().hidden = false;
   document.body.classList.add("no-scroll");
@@ -313,13 +312,14 @@ function openAssignCase(key) {
 /* 事例モーダル内の体制図：case.diagram（無ければ親の diagram）で描き分け。'org' は専用の体制図 */
 function assignCaseDiagram(cs, parent) {
   const kind = cs.diagram || parent.diagram;
+  if (kind === "gantt") return assignGantt(cs.lanes, { hub: cs.hub || parent.hub, hubSub: cs.hubSub || parent.hubSub });
+  if (kind === "org") return assignOrg(cs.org);
   const a = {
     hub: cs.hub || parent.hub,
     hubSub: cs.hubSub || parent.hubSub,
     items: cs.items || parent.items,
   };
   switch (kind) {
-    case "org": return assignOrg(cs.org);
     case "lanes": return assignLanes(a);
     case "phase-pm": return assignPhasePm(a);
     case "cluster": return assignCluster(a);
@@ -365,6 +365,37 @@ function assignOrg(org) {
       <div class="co-head">${head}</div>
       <div class="co-bus"></div>
       <div class="co-cols">${cols}</div>
+    </div>`;
+}
+
+/* ガント型：一連の本流フェーズ（上段）＋ 途中から始まる別軸トラック（下段）を時間軸で揃えて描画 */
+function assignGantt(lanes, hub) {
+  if (!lanes) return "";
+  const n = (lanes.cols || []).length;
+  const hubHtml = hub && hub.hub ? `
+    <div class="g-hub">
+      <span class="g-hub-title"><i class="ti ti-shield-check"></i>${esc(hub.hub)}</span>
+      ${hub.hubSub ? `<span class="g-hub-sub">${esc(hub.hubSub)}</span>` : ""}
+    </div>` : "";
+  const main = (lanes.main || []).map((m, i, arr) => `
+    <div class="g-cell g-main${i < arr.length - 1 ? " has-arrow" : ""}" style="grid-row:1;grid-column:${i + 1}">
+      <span class="g-step-n">STEP ${i + 1}</span>
+      <span class="g-label">${esc(m.label)}</span>
+      ${m.detail ? `<span class="g-detail">${esc(m.detail)}</span>` : ""}
+    </div>`).join("");
+  const tracks = (lanes.tracks || []).map((t, i) => `
+    <div class="g-cell g-track" style="grid-row:${i + 2};grid-column:${t.start} / ${(t.end || n) + 1}">
+      <span class="g-track-flag"><i class="ti ti-arrow-fork"></i>別軸で並行</span>
+      <span class="g-label">${esc(t.label)}</span>
+      ${t.detail ? `<span class="g-detail">${esc(t.detail)}</span>` : ""}
+    </div>`).join("");
+  return `
+    <div class="gantt">
+      ${hubHtml}
+      <div class="g-bus"></div>
+      <div class="g-grid" style="grid-template-columns:repeat(${n}, minmax(122px, 1fr))">
+        ${main}${tracks}
+      </div>
     </div>`;
 }
 

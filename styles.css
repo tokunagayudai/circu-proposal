@@ -1248,6 +1248,37 @@ body.no-scroll { overflow: hidden; }
   flex: 1 1 0; display: flex; flex-direction: column; align-items: stretch; gap: 4px;
 }
 
+/* --- ガント型（本流フェーズ＋別軸トラックを時間軸で整列） --- */
+.gantt { min-width: 660px; }
+.g-hub {
+  background: linear-gradient(135deg, var(--blue-d), var(--moss)); color: #fff;
+  border-radius: 9px; padding: 12px 18px; text-align: center;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.g-hub-title { font-weight: 700; font-size: 0.98rem; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.g-hub-sub { font-size: 0.8rem; opacity: 0.92; }
+.g-bus { width: 2px; height: 16px; background: var(--blue-mid); margin: 0 auto; opacity: 0.5; }
+.g-grid { display: grid; column-gap: 16px; row-gap: 10px; }
+.g-cell {
+  border-radius: 8px; padding: 11px 12px; position: relative;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.g-main { background: #f7fafc; border: 1px solid var(--line); border-top: 3px solid var(--blue); }
+.g-main.has-arrow::after {
+  content: "\25B8"; position: absolute; right: -12px; top: 50%;
+  transform: translateY(-50%); color: var(--blue-mid); font-size: 1rem; z-index: 1;
+}
+.g-step-n { font-family: var(--font-mono); font-size: 0.64rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; }
+.g-label { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; line-height: 1.4; }
+.g-detail { color: var(--ink-soft); font-size: 0.8rem; line-height: 1.5; }
+.g-track { background: #fdf4ec; border: 1px solid rgba(237, 125, 49, 0.35); border-left: 3px solid var(--orange); }
+.g-track .g-label { color: #b45f1e; }
+.g-track-flag {
+  align-self: flex-start; font-family: var(--font-mono); font-weight: 700;
+  font-size: 0.62rem; letter-spacing: 0.03em; color: #fff; background: var(--orange);
+  border-radius: 4px; padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px;
+}
+
 /* ---------- レスポンシブ ---------- */
 @media (max-width: 640px) {
   .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
