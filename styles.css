@@ -1241,6 +1241,12 @@ body.no-scroll { overflow: hidden; }
 .co-kacho .co-role { font-size: 0.82rem; }
 .co-member { background: #f7fafc; border: 1px dashed var(--blue-mid); padding: 7px 10px; }
 .co-member .co-role { color: var(--ink-soft); font-size: 0.82rem; }
+/* PMプロ人材の下を「課長 / サブのプロ人材」に分岐する列（ERP 等） */
+.co-col-wide { flex: 1.7 1 0; min-width: 220px; }
+.co-split { display: flex; gap: 8px; align-items: flex-start; }
+.co-subcol {
+  flex: 1 1 0; display: flex; flex-direction: column; align-items: stretch; gap: 4px;
+}
 
 /* ---------- レスポンシブ ---------- */
 @media (max-width: 640px) {

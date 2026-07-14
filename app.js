@@ -340,14 +340,26 @@ function assignOrg(org) {
     </div>`;
   const head = (org.head || []).map((n, i) =>
     `${i > 0 ? `<i class="ti ti-arrows-left-right co-hlink"></i>` : ""}${node(n)}`).join("");
-  const cols = (org.cols || []).map((c) => `
-    <div class="co-col">
-      ${node({ role: c.pro, tag: c.tag, side: "pro" }, "co-pro-sm")}
-      <i class="ti ti-chevron-down co-vlink"></i>
-      ${node({ role: "課長", side: "client" }, "co-kacho")}
-      <i class="ti ti-chevron-down co-vlink"></i>
-      <div class="co-node co-member"><span class="co-role">メンバー</span></div>
-    </div>`).join("");
+  const chev = `<i class="ti ti-chevron-down co-vlink"></i>`;
+  const member = `<div class="co-node co-member"><span class="co-role">メンバー</span></div>`;
+  const col = (c) => {
+    const parts = [node({ role: c.pro, tag: c.tag, side: "pro" }, "co-pro-sm")];
+    if (c.subPro) {
+      // PMプロ人材の下を分岐：左＝課長（→メンバー）／右＝サブのプロ人材（PMO 等）
+      const left = [node({ role: "課長", side: "client" }, "co-kacho")];
+      if (c.member !== false) left.push(chev, member);
+      parts.push(chev, `
+        <div class="co-split">
+          <div class="co-subcol">${left.join("")}</div>
+          <div class="co-subcol">${node({ role: c.subPro.role, tag: c.subPro.tag, side: "pro" }, "co-pro-sm")}</div>
+        </div>`);
+    } else {
+      if (c.kacho !== false) parts.push(chev, node({ role: "課長", side: "client" }, "co-kacho"));
+      if (c.member !== false) parts.push(chev, member);
+    }
+    return `<div class="co-col${c.subPro ? " co-col-wide" : ""}">${parts.join("")}</div>`;
+  };
+  const cols = (org.cols || []).map(col).join("");
   return `
     <div class="case-org">
       <div class="co-head">${head}</div>
