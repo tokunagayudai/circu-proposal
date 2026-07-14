@@ -119,67 +119,34 @@ function renderAgendaMap(categories) {
     }).join("")}`;
 }
 
-/* ---------------- セクション2：カタログ（カテゴリ別アコーディオン） ---------------- */
+/* ---------------- セクション2：テーマ検索（俯瞰マップのタイルを絞り込み） ---------------- */
 function renderCatalog(data) {
-  const { categories, themes } = data;
-
-  const bar = $("#filter-bar");
-  bar.innerHTML =
-    `<button class="chip active" data-cat="all"><i class="ti ti-layout-grid"></i>すべて</button>` +
-    categories.map((c) =>
-      `<button class="chip" data-cat="${esc(c.id)}"><i class="ti ${esc(c.icon)}"></i>${esc(c.name)}</button>`
-    ).join("");
-
-  const wrap = $("#catalog-blocks");
-  wrap.innerHTML = categories.map((c) => {
-    const relCount = themes.filter((t) => (t.categories || []).includes(c.id)).length;
-    const ch = c.challenges || [];
-    const kw = c.keywords || [];
-    return `
-      <div class="cat-acc" data-cat="${esc(c.id)}" id="cat-${esc(c.id)}">
-        <button class="cat-acc-head" aria-expanded="false">
-          <span class="cat-ic"><i class="ti ${esc(c.icon)}"></i></span>
-          <span class="cat-meta">
-            <span class="cat-name">${esc(c.name)}</span>
-            ${c.tagline ? `<span class="cat-tagline">${esc(c.tagline)}</span>` : ""}
-            ${kw.length ? `<span class="cat-keywords">${kw.map((k) => `<span class="kw">${esc(k)}</span>`).join("")}</span>` : ""}
-          </span>
-          <span class="cat-count">${ch.length}課題 / ${relCount}テーマ</span>
-          <i class="ti ti-chevron-down chev"></i>
-        </button>
-        <div class="cat-acc-body" hidden>
-          ${ch.length ? `<div class="cat-sub">よくある課題</div>
-            <ul class="challenge-list">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
-          <button class="btn-detail" data-category="${esc(c.id)}">このテーマの課題・解決策・事例をまとめて見る<i class="ti ti-arrow-right"></i></button>
-        </div>
-      </div>`;
-  }).join("");
-
-  bar.addEventListener("click", (e) => {
-    const btn = e.target.closest(".chip");
-    if (!btn) return;
-    const cat = btn.dataset.cat;
-    bar.querySelectorAll(".chip").forEach((c) => c.classList.toggle("active", c === btn));
-    document.querySelectorAll(".cat-acc").forEach((acc) => {
-      const match = cat === "all" || acc.dataset.cat === cat;
-      acc.classList.toggle("hidden", !match);
-      if (cat !== "all" && match) setAcc(acc, true);   // 単一カテゴリ選択時は自動で開く
+  const input = $("#theme-search-input");
+  if (!input) return;
+  const idx = {};
+  (data.categories || []).forEach((c) => {
+    const cCases = (data.proCases || []).filter((p) => (p.categories || []).includes(c.id));
+    idx[c.id] = [c.name, c.tagline, ...(c.keywords || []), ...(c.challenges || []),
+      ...cCases.flatMap((p) => [p.title, p.summary, p.tag, p.industry])]
+      .filter(Boolean).join(" ").toLowerCase();
+  });
+  const empty = $("#theme-empty");
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    document.querySelectorAll(".agenda-tile").forEach((t) => {
+      const match = !q || (idx[t.dataset.category] || "").includes(q);
+      t.classList.toggle("hidden", !match);
+      if (match) visible++;
     });
-    if (cat !== "all") {
-      const target = $(`#cat-${CSS.escape(cat)}`);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document.querySelectorAll(".agenda-band").forEach((b) => {
+      b.classList.toggle("hidden", !b.querySelector(".agenda-tile:not(.hidden)"));
+    });
+    if (empty) empty.hidden = visible > 0;
   });
 }
 
-/* アコーディオンの開閉 */
-function setAcc(acc, open) {
-  acc.querySelector(".cat-acc-head").setAttribute("aria-expanded", String(open));
-  acc.querySelector(".cat-acc-body").hidden = !open;
-  acc.classList.toggle("open", open);
-}
-
-/* カテゴリ詳細モーダル（課題一覧 / 解決策テーマ / プロ人材事例） */
+/* テーマ詳細ハブ：タブ（課題 / 解決策・プロ人材 / 支援事例）を切り替えて深掘り */
 function openCategoryModal(catId) {
   const c = (DATA.categories || []).find((x) => x.id === catId);
   if (!c) return;
@@ -187,50 +154,63 @@ function openCategoryModal(catId) {
   const cases = (DATA.proCases || []).filter((p) => (p.categories || []).includes(catId));
   const ch = c.challenges || [];
 
+  // タブ1：課題
+  const challengesPanel = ch.length
+    ? `<ul class="modal-points">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
+    : `<p class="hub-note">ヒアリングの上で、課題を一緒に整理します。</p>`;
+
+  // タブ2：解決策・プロ人材（深掘りテーマ＋参画するプロ人材）
+  const solThemes = themes.length ? `
+    <p class="modal-section-label"><i class="ti ti-bulb"></i>深掘りテーマ</p>
+    <div class="sol-list">
+      ${themes.map((t) => `
+        <button class="sol-row" data-theme="${esc(t.id)}">
+          <span class="sol-row-main">
+            <span class="sol-row-title">${esc(t.title)}</span>
+            <span class="sol-row-sum">${esc(t.summary)}</span>
+          </span>
+          <i class="ti ti-chevron-right"></i>
+        </button>`).join("")}
+    </div>` : "";
+  const prosWithRole = cases.filter((p) => p.role);
+  const proBlock = prosWithRole.length ? `
+    <p class="modal-section-label"><i class="ti ti-user-star"></i>参画するプロ人材（例）</p>
+    <div class="hub-pros">
+      ${prosWithRole.map((p) => `
+        <button class="hub-pro" data-case="${esc(p.id)}" data-from-cat="${esc(catId)}">
+          <span class="hp-role"><i class="ti ti-user-star"></i>${esc(p.role)}</span>
+          <span class="hp-ctx">${esc(p.title)}</span>
+          <i class="ti ti-chevron-right hp-arrow"></i>
+        </button>`).join("")}
+    </div>` : "";
+  const solutionPanel = (solThemes || proBlock)
+    ? solThemes + proBlock
+    : `<p class="hub-note">ご状況に合わせて最適なプロ人材を編成し、解決策を設計します。まずはご相談ください。</p>`;
+
+  // タブ3：支援事例
+  const casesPanel = cases.length
+    ? `<div class="procase-hero-list">${cases.map((p) => procaseHero(p, catId)).join("")}</div>`
+    : `<p class="hub-note">この切り口の匿名事例は準備中です。近い領域の事例をご案内できますので、お気軽にご相談ください。</p>`;
+
   $("#modal-body").innerHTML = `
-    <div class="modal-eyebrow">Catalog / 部署・テーマ別</div>
+    <div class="modal-eyebrow">Theme / 経営テーマ</div>
     <h2 class="modal-title" id="modal-title"><i class="ti ${esc(c.icon)}"></i> ${esc(c.name)}</h2>
     ${c.tagline ? `<p class="modal-lead">${esc(c.tagline)}</p>` : ""}
     ${(c.keywords || []).length ? `<div class="cat-keywords modal-keywords">${c.keywords.map((k) => `<span class="kw">${esc(k)}</span>`).join("")}</div>` : ""}
-    ${ch.length ? `
-      <div class="cat-modal-sec">
-        <p class="modal-section-label"><i class="ti ti-alert-triangle"></i>よくある課題</p>
-        <ul class="modal-points">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      </div>` : ""}
-    ${themes.length ? `
-      <div class="cat-modal-sec">
-        <p class="modal-section-label"><i class="ti ti-bulb"></i>解決策テーマ</p>
-        <div class="sol-list">
-          ${themes.map((t) => `
-            <button class="sol-row" data-theme="${esc(t.id)}">
-              <span class="sol-row-main">
-                <span class="sol-row-title">${esc(t.title)}</span>
-                <span class="sol-row-sum">${esc(t.summary)}</span>
-              </span>
-              <i class="ti ti-chevron-right"></i>
-            </button>`).join("")}
-        </div>
-      </div>` : ""}
-    ${cases.length ? `
-      <div class="cat-modal-sec">
-        <p class="modal-section-label"><i class="ti ti-briefcase"></i>プロ人材事例<span class="sec-count">${cases.length}件</span></p>
-        <div class="procase-hero-list">${heroCasesFor(c, cases).map((p) => procaseHero(p, catId)).join("")}</div>
-        <button class="btn-detail" data-viewall-cat="${esc(catId)}">この条件の事例をすべて見る（${cases.length}件）<i class="ti ti-arrow-right"></i></button>
-      </div>` : ""}
+    <div class="hub-tabs" role="tablist">
+      <button class="hub-tab active" data-tab="challenges"><i class="ti ti-alert-triangle"></i>課題</button>
+      <button class="hub-tab" data-tab="solution"><i class="ti ti-bulb"></i>解決策・プロ人材</button>
+      <button class="hub-tab" data-tab="cases"><i class="ti ti-briefcase"></i>支援事例${cases.length ? `<span class="tab-count">${cases.length}</span>` : ""}</button>
+    </div>
+    <div class="hub-panel" data-panel="challenges">${challengesPanel}</div>
+    <div class="hub-panel" data-panel="solution" hidden>${solutionPanel}</div>
+    <div class="hub-panel" data-panel="cases" hidden>${casesPanel}</div>
   `;
   modal().hidden = false;
   document.body.classList.add("no-scroll");
 }
 
-/* カテゴリの代表事例（1〜2件）を選ぶ。heroCaseIds 指定を優先し、無ければ該当事例の先頭からフォールバック */
-function heroCasesFor(category, casesInCategory) {
-  const ids = category.heroCaseIds || [];
-  const byId = casesInCategory.filter((p) => ids.includes(p.id));
-  const ordered = ids.map((id) => byId.find((p) => p.id === id)).filter(Boolean);
-  return ordered.length ? ordered : casesInCategory.slice(0, 2);
-}
-
-/* カテゴリ詳細モーダル内の代表事例：フルカードではなくタイトル＋役割のみのコンパクト表示 */
+/* テーマハブ内の事例：タイトル＋役割のコンパクト表示（押すと詳細＋テーマに戻る） */
 function procaseHero(p, fromCat) {
   return `
     <button class="procase-hero" data-case="${esc(p.id)}" data-from-cat="${esc(fromCat)}">
@@ -506,9 +486,7 @@ function assignFlow(a) {
     </div>`;
 }
 
-/* ---------------- セクション4：事例 ---------------- */
-let CASE_LIB = null; // 事例ライブラリの絞り込み操作を外部（カテゴリ詳細モーダル）から呼べるようにする
-
+/* ---------------- セクション4：事例（社名あり＋実績スタット） ---------------- */
 function renderCases(data) {
   $("#cases-named").innerHTML = (data.casesNamed || []).map((c) => {
     const onerr = c.imageFallback ? ` onerror="this.onerror=null;this.src='${esc(c.imageFallback)}'"` : "";
@@ -530,118 +508,6 @@ function renderCases(data) {
   const stat = data.meta && data.meta.projectsStat;
   const statEl = $("#cases-stat");
   if (statEl) statEl.innerHTML = stat ? `<div class="stat-band"><i class="ti ti-chart-bar"></i><span>${esc(stat)}</span></div>` : "";
-
-  setupCaseLibrary(data.categories || [], data.proCases || []);
-}
-
-function caseCardHtml(p) {
-  const clickable = !!p.id;
-  return `
-    <article class="card case-card${clickable ? " clickable" : ""}"${clickable ? ` data-case="${esc(p.id)}" role="button" tabindex="0"` : ""}>
-      <div class="body">
-        <div class="procase-top"><span class="procase-tag">${esc(p.tag)}</span></div>
-        ${p.industry ? `<div class="industry">${esc(p.industry)}</div>` : ""}
-        <h4>${esc(p.title)}</h4>
-        <p class="summary">${esc(p.summary)}</p>
-        ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
-        ${clickable ? `<div class="card-cta">詳細を見る<i class="ti ti-arrow-right"></i></div>` : ""}
-      </div>
-    </article>`;
-}
-
-/* 事例ライブラリ：キーワード検索 ＋ カテゴリ複数選択の絞り込み UI と状態管理 */
-function setupCaseLibrary(categories, cases) {
-  const toolbar = $("#cases-toolbar");
-  const results = $("#cases-anon");
-  if (!toolbar || !results) return;
-
-  const countByCat = {};
-  categories.forEach((c) => { countByCat[c.id] = cases.filter((p) => (p.categories || []).includes(c.id)).length; });
-
-  const state = { search: "", cats: new Set(parseCaseHash()) };
-
-  toolbar.innerHTML = `
-    <div class="case-lib-search">
-      <i class="ti ti-search"></i>
-      <input type="text" id="case-lib-search-input" placeholder="キーワードで検索（タイトル・要約・業界）" aria-label="事例ライブラリをキーワードで検索">
-    </div>
-    <div class="case-lib-chips">
-      ${categories.map((c) => `
-        <button type="button" class="chip case-lib-chip" data-cat="${esc(c.id)}">
-          <i class="ti ${esc(c.icon)}"></i>${esc(c.name)}<span class="chip-count">${countByCat[c.id] || 0}</span>
-        </button>`).join("")}
-    </div>
-    <div class="case-lib-status" id="case-lib-status" aria-live="polite"></div>
-  `;
-
-  const searchInput = $("#case-lib-search-input", toolbar);
-  const statusEl = $("#case-lib-status", toolbar);
-
-  function matches(p) {
-    if (state.cats.size && !(p.categories || []).some((c) => state.cats.has(c))) return false;
-    if (state.search) {
-      const q = state.search.toLowerCase();
-      const hay = [p.title, p.summary, p.industry].filter(Boolean).join(" ").toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
-    return true;
-  }
-
-  function render() {
-    const filtered = cases.filter(matches);
-    statusEl.textContent = `${cases.length}件中${filtered.length}件を表示`;
-    results.innerHTML = filtered.length ? filtered.map(caseCardHtml).join("")
-      : `<p class="empty-note">条件に一致する事例がありません</p>`;
-    toolbar.querySelectorAll(".case-lib-chip").forEach((btn) => {
-      btn.classList.toggle("active", state.cats.has(btn.dataset.cat));
-    });
-  }
-
-  function syncHash() {
-    if (state.cats.size) {
-      history.replaceState(null, "", `#cases?cat=${[...state.cats].map(encodeURIComponent).join(",")}`);
-    } else if (/^#cases\?/.test(location.hash)) {
-      history.replaceState(null, "", "#cases");
-    }
-  }
-
-  searchInput.addEventListener("input", (e) => {
-    state.search = e.target.value.trim();
-    render();
-  });
-  toolbar.addEventListener("click", (e) => {
-    const chip = e.target.closest(".case-lib-chip");
-    if (!chip) return;
-    const cat = chip.dataset.cat;
-    if (state.cats.has(cat)) state.cats.delete(cat); else state.cats.add(cat);
-    render();
-    syncHash();
-  });
-
-  CASE_LIB = {
-    filterByCategory(catId) {
-      state.cats = new Set([catId]);
-      render();
-      syncHash();
-    },
-  };
-
-  render();
-}
-
-/* URL の #cases?cat=id1,id2 からカテゴリ絞り込みを読み取る（直接リンク用） */
-function parseCaseHash() {
-  const m = String(location.hash || "").match(/^#cases\?(.*)$/);
-  if (!m) return [];
-  const cat = new URLSearchParams(m[1]).get("cat");
-  return cat ? cat.split(",").filter(Boolean) : [];
-}
-
-/* 「この条件の事例をすべて見る」→ 事例ライブラリまでスクロールし、該当カテゴリで絞り込む */
-function goToCaseLibrary(catId) {
-  if (CASE_LIB) CASE_LIB.filterByCategory(catId);
-  const target = $("#case-library-head");
-  if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /* ---------------- 支援事例 詳細モーダル（匿名） ---------------- */
@@ -821,6 +687,14 @@ function closeModal() {
   document.body.classList.remove("no-scroll");
 }
 
+/* テーマハブのタブ切り替え（課題 / 解決策・プロ人材 / 支援事例） */
+function switchHubTab(tab) {
+  const body = tab.closest(".modal-body");
+  if (!body) return;
+  body.querySelectorAll(".hub-tab").forEach((t) => t.classList.toggle("active", t === tab));
+  body.querySelectorAll(".hub-panel").forEach((p) => { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+}
+
 /* 資料URLをそのまま埋め込み表示できる形式に変換（Googleスライド／PDF／同梱HTMLページ） */
 function buildEmbedUrl(url, type) {
   if (type === "slides") {
@@ -846,8 +720,8 @@ function docEmbedHtml(t) {
 function wireEvents() {
   // カードクリック → モーダル
   document.addEventListener("click", (e) => {
-    const viewAllBtn = e.target.closest("[data-viewall-cat]");
-    if (viewAllBtn) { closeModal(); goToCaseLibrary(viewAllBtn.dataset.viewallCat); return; }
+    const tab = e.target.closest(".hub-tab");
+    if (tab) { switchHubTab(tab); return; }
     const assignEl = e.target.closest("[data-assign]");
     if (assignEl) { openAssignCase(assignEl.dataset.assign); return; }
     const caseEl = e.target.closest("[data-case]");
@@ -856,11 +730,6 @@ function wireEvents() {
     if (catBtn) { openCategoryModal(catBtn.dataset.category); return; }
     const card = e.target.closest("[data-theme]");
     if (card) { openModal(card.dataset.theme); return; }
-    const accHead = e.target.closest(".cat-acc-head");
-    if (accHead) {
-      const acc = accHead.closest(".cat-acc");
-      setAcc(acc, acc.querySelector(".cat-acc-body").hidden);
-    }
   });
   // キーボード（Enter/Space）でカードを開く
   document.addEventListener("keydown", (e) => {
@@ -901,10 +770,6 @@ function wireEvents() {
     renderCases(data);
     renderPksha(data.pksha);
     wireEvents();
-    if (/^#cases\?/.test(location.hash)) {
-      const target = $("#case-library-head");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   } catch (err) {
     console.error(err);
     document.querySelector("main").insertAdjacentHTML("afterbegin",

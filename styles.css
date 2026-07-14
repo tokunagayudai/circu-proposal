@@ -1300,6 +1300,61 @@ body.no-scroll { overflow: hidden; }
   border-radius: 4px; padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px;
 }
 
+/* ---------- テーマ検索（俯瞰マップの絞り込み） ---------- */
+.theme-search {
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border: 1px solid rgba(0, 121, 192, 0.25);
+  border-radius: 10px; padding: 11px 16px; margin: 0 0 18px;
+  box-shadow: var(--shadow);
+}
+.theme-search i { color: var(--blue-mid); font-size: 1.15rem; flex-shrink: 0; }
+.theme-search input {
+  border: 0; outline: 0; background: transparent; width: 100%;
+  font-family: inherit; font-size: 0.98rem; color: var(--ink);
+}
+.agenda-tile.hidden, .agenda-band.hidden { display: none; }
+.theme-empty { color: var(--ink-soft); font-size: 0.95rem; padding: 8px 2px; }
+
+/* ---------- テーマハブ：タブ切り替え ---------- */
+.hub-tabs {
+  display: flex; gap: 4px; margin: 22px 0 20px;
+  border-bottom: 2px solid var(--line); flex-wrap: wrap;
+}
+.hub-tab {
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  font-family: inherit; font-size: 0.95rem; font-weight: 700; color: var(--ink-soft);
+  padding: 10px 16px; display: inline-flex; align-items: center; gap: 7px;
+  border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.hub-tab i { font-size: 1.05rem; }
+.hub-tab:hover { color: var(--blue-d); }
+.hub-tab.active { color: var(--blue-d); border-bottom-color: var(--blue); }
+.tab-count {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  background: var(--blue); color: #fff; border-radius: 999px; padding: 1px 8px;
+}
+.hub-panel { animation: hubfade 0.18s ease; }
+@keyframes hubfade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.hub-note {
+  color: var(--ink-soft); font-size: 0.95rem; line-height: 1.7;
+  background: #f7fafc; border: 1px dashed var(--line); border-radius: 10px; padding: 18px 20px; margin: 0;
+}
+/* 解決策タブ：参画するプロ人材 */
+.hub-pros { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.hub-pro {
+  appearance: none; cursor: pointer; text-align: left; width: 100%;
+  background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--moss);
+  border-radius: 9px; padding: 12px 14px;
+  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "role arrow" "ctx arrow";
+  align-items: center; column-gap: 10px; transition: background 0.15s, border-color 0.15s;
+}
+.hub-pro:hover { background: var(--blue-l); border-left-color: var(--blue); }
+.hp-role { grid-area: role; font-weight: 700; color: var(--blue-d); font-size: 0.92rem; display: inline-flex; align-items: center; gap: 7px; }
+.hp-role i { color: var(--moss); }
+.hp-ctx { grid-area: ctx; color: var(--ink-soft); font-size: 0.82rem; line-height: 1.5; }
+.hp-arrow { grid-area: arrow; color: var(--blue-mid); }
+
 /* ---------- レスポンシブ ---------- */
 @media (max-width: 640px) {
   .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
