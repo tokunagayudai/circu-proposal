@@ -316,34 +316,37 @@ function assignOrg(org) {
     <div class="co-node ${n.side === "pro" ? "co-pro" : "co-client"} ${extra}">
       <span class="co-role">${esc(n.role)}</span>
       ${n.tag ? `<span class="co-tag">${esc(n.tag)}</span>` : ""}
-      ${n.side ? `<span class="co-side">${n.side === "pro" ? "プロ人材" : "顧客"}</span>` : ""}
+    </div>`;
+  const legend = `
+    <div class="co-legend">
+      <span class="co-lg co-lg-client">顧客</span>
+      <span class="co-lg co-lg-pro">サーキュレーションのプロ人材</span>
     </div>`;
   const head = (org.head || []).map((n, i) =>
     `${i > 0 ? `<i class="ti ti-arrows-left-right co-hlink"></i>` : ""}${node(n)}`).join("");
-  const chev = `<i class="ti ti-chevron-down co-vlink"></i>`;
   const member = `<div class="co-node co-member"><span class="co-role">メンバー</span></div>`;
   const col = (c) => {
     const parts = [node({ role: c.pro, tag: c.tag, side: "pro" }, "co-pro-sm")];
     if (c.subPro) {
       // PMプロ人材の下を分岐：左＝課長（→メンバー）／右＝サブのプロ人材（PMO 等）
       const left = [node({ role: "課長", side: "client" }, "co-kacho")];
-      if (c.member !== false) left.push(chev, member);
-      parts.push(chev, `
+      if (c.member !== false) left.push(member);
+      parts.push(`
         <div class="co-split">
           <div class="co-subcol">${left.join("")}</div>
           <div class="co-subcol">${node({ role: c.subPro.role, tag: c.subPro.tag, side: "pro" }, "co-pro-sm")}</div>
         </div>`);
     } else {
-      if (c.kacho !== false) parts.push(chev, node({ role: "課長", side: "client" }, "co-kacho"));
-      if (c.member !== false) parts.push(chev, member);
+      if (c.kacho !== false) parts.push(node({ role: "課長", side: "client" }, "co-kacho"));
+      if (c.member !== false) parts.push(member);
     }
     return `<div class="co-col${c.subPro ? " co-col-wide" : ""}">${parts.join("")}</div>`;
   };
   const cols = (org.cols || []).map(col).join("");
   return `
     <div class="case-org">
+      ${legend}
       <div class="co-head">${head}</div>
-      <div class="co-bus"></div>
       <div class="co-cols">${cols}</div>
     </div>`;
 }
