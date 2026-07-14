@@ -5,14 +5,25 @@
     "lastUpdated": "2026-06-26",
     "projectsStat": "業界 × 役割 × フェーズを問わず、22,500件+ のプロジェクト実績"
   },
-
   "_comment_categories": "セクション2のカテゴリ定義。順番がそのまま表示順・ナビ順になります。カテゴリ追加はこの配列に1件足すだけ。icon は Tabler Icons のクラス名。tagline は見出し横の一言。keywords は『この領域で扱うテーマ』をパッと見で伝えるキーワード（アコーディオン見出しにチップ表示）。challenges は『よくある課題』（カードのトグルを開くと表示／詳細モーダルにも表示）。heroCaseIds は、カテゴリ詳細モーダルの『プロ人材事例』欄で代表として1〜2件だけコンパクト表示する proCases の id（残りは『事例ライブラリ』への“すべて見る”導線に回す）。// TODO: 要選定（現在の値は proCases の categories/tag から機械的に選んだ仮置き。実際の代表事例として適切か要レビュー）。指定が無い・該当が無い場合は該当カテゴリの proCases 先頭1〜2件にフォールバック。※顧客に見られて困らない一般化された内容のみ。",
   "categories": [
     {
-      "id": "hr", "name": "人事・組織開発", "icon": "ti-users",
+      "id": "hr",
+      "name": "人事・組織開発",
+      "icon": "ti-users",
       "tagline": "“人で勝つ”仕組みと、現場で効く育成を",
-      "keywords": ["採用", "研修・育成", "HRオペレーション", "人的資本経営", "人事制度", "組織開発"],
-      "heroCaseIds": ["case-hr-recruit", "case-hr-succession"],
+      "keywords": [
+        "採用",
+        "研修・育成",
+        "HRオペレーション",
+        "人的資本経営",
+        "人事制度",
+        "組織開発"
+      ],
+      "heroCaseIds": [
+        "case-hr-recruit",
+        "case-hr-succession"
+      ],
       "challenges": [
         "OJT体制が整っておらず、若手が専門スキルを身につけられていない",
         "AX・AIリテラシー研修を導入したいが、内製では設計できない",
@@ -20,10 +31,22 @@
       ]
     },
     {
-      "id": "finance", "name": "経理・財務（CFO）", "icon": "ti-coin",
+      "id": "finance",
+      "name": "経理・財務（CFO）",
+      "icon": "ti-coin",
       "tagline": "“記録”から“意思決定を回す”経理財務へ",
-      "keywords": ["資金調達", "管理会計", "FP&A", "M&A・PMI", "IPO準備", "内部統制"],
-      "heroCaseIds": ["case-fin-pmi", "case-fin-fpa"],
+      "keywords": [
+        "資金調達",
+        "管理会計",
+        "FP&A",
+        "M&A・PMI",
+        "IPO準備",
+        "内部統制"
+      ],
+      "heroCaseIds": [
+        "case-fin-pmi",
+        "case-fin-fpa"
+      ],
       "challenges": [
         "CFO機能の強化・経理部門の高度化を支援してほしい",
         "資金調達・財務戦略の立案を実務経験者に依頼したい",
@@ -31,10 +54,22 @@
       ]
     },
     {
-      "id": "newbiz", "name": "新規事業・事業開発", "icon": "ti-rocket",
+      "id": "newbiz",
+      "name": "新規事業・事業開発",
+      "icon": "ti-rocket",
       "tagline": "構想で終わらせず、検証から事業化まで",
-      "keywords": ["新規事業開発", "PoC・MVP", "事業計画", "市場参入", "アライアンス", "0→1"],
-      "heroCaseIds": ["case-newbiz-intra", "case-newbiz-material"],
+      "keywords": [
+        "新規事業開発",
+        "PoC・MVP",
+        "事業計画",
+        "市場参入",
+        "アライアンス",
+        "0→1"
+      ],
+      "heroCaseIds": [
+        "case-newbiz-intra",
+        "case-newbiz-material"
+      ],
       "challenges": [
         "新規事業アイデアはあるが、立ち上げ経験のある人材が社内にいない",
         "PoC・MVP開発からビジネスモデル検証まで短期間で推進したい",
@@ -42,10 +77,21 @@
       ]
     },
     {
-      "id": "scm", "name": "SCM・調達", "icon": "ti-truck-delivery",
+      "id": "scm",
+      "name": "SCM・調達",
+      "icon": "ti-truck-delivery",
       "tagline": "需給・在庫・調達を一気通貫で最適化",
-      "keywords": ["需給予測", "在庫最適化", "調達改革", "物流効率化", "SCM可視化"],
-      "heroCaseIds": ["case-scm-ai", "case-mfg-tps"],
+      "keywords": [
+        "需給予測",
+        "在庫最適化",
+        "調達改革",
+        "物流効率化",
+        "SCM可視化"
+      ],
+      "heroCaseIds": [
+        "case-scm-ai",
+        "case-mfg-tps"
+      ],
       "challenges": [
         "サプライチェーン最適化に向けたプロセス改革を推進したい",
         "属人的な発注業務を標準化し、在庫回転率を改善したい",
@@ -53,10 +99,21 @@
       ]
     },
     {
-      "id": "retail", "name": "小売・OMO", "icon": "ti-building-store",
+      "id": "retail",
+      "name": "小売・OMO",
+      "icon": "ti-building-store",
       "tagline": "EC・店舗・顧客データを分断させない",
-      "keywords": ["EC強化", "OMO・オムニチャネル", "CRM", "顧客データ活用", "店舗DX"],
-      "heroCaseIds": ["case-retail-omo", "case-retail-web"],
+      "keywords": [
+        "EC強化",
+        "OMO・オムニチャネル",
+        "CRM",
+        "顧客データ活用",
+        "店舗DX"
+      ],
+      "heroCaseIds": [
+        "case-retail-omo",
+        "case-retail-web"
+      ],
       "challenges": [
         "EC・店舗・顧客データが分断したままになっている",
         "OMO／オムニチャネルを推進できる人材が社内にいない",
@@ -64,10 +121,21 @@
       ]
     },
     {
-      "id": "manufactur", "name": "製造・生産改善", "icon": "ti-building-factory-2",
+      "id": "manufactur",
+      "name": "製造・生産改善",
+      "icon": "ti-building-factory-2",
       "tagline": "現場のカイゼンを残しつつデータで底上げ",
-      "keywords": ["生産性向上", "品質管理", "省人化・自動化", "スマートファクトリー", "原価低減"],
-      "heroCaseIds": ["case-mfg-tps", "case-mfg-smart"],
+      "keywords": [
+        "生産性向上",
+        "品質管理",
+        "省人化・自動化",
+        "スマートファクトリー",
+        "原価低減"
+      ],
+      "heroCaseIds": [
+        "case-mfg-tps",
+        "case-mfg-smart"
+      ],
       "challenges": [
         "生産性向上・コスト削減を実現できる製造業出身の専門家が必要",
         "品質を維持しながら省人化・自動化を進めたい",
@@ -75,10 +143,22 @@
       ]
     },
     {
-      "id": "marketing", "name": "営業・マーケティング", "icon": "ti-speakerphone",
+      "id": "marketing",
+      "name": "営業・マーケティング",
+      "icon": "ti-speakerphone",
       "tagline": "勘ではなく数字で打ち手を回す",
-      "keywords": ["デジタルマーケ", "CRM", "新規開拓", "ブランディング", "海外マーケ", "営業改革"],
-      "heroCaseIds": ["case-mkt-health", "case-retail-omo"],
+      "keywords": [
+        "デジタルマーケ",
+        "CRM",
+        "新規開拓",
+        "ブランディング",
+        "海外マーケ",
+        "営業改革"
+      ],
+      "heroCaseIds": [
+        "case-mkt-health",
+        "case-retail-omo"
+      ],
       "challenges": [
         "デジタルマーケ・CRM強化を推進したいが社内に知見がない",
         "新規顧客開拓の仕組みを早期に構築したい（RGMの実務伴走）",
@@ -86,10 +166,21 @@
       ]
     },
     {
-      "id": "bpr", "name": "BPR・業務改善", "icon": "ti-refresh",
+      "id": "bpr",
+      "name": "BPR・業務改善",
+      "icon": "ti-refresh",
       "tagline": "ツール導入の前に“業務そのもの”を作り直す",
-      "keywords": ["業務棚卸し", "標準化", "自動化（RPA）", "ペーパーレス", "業務設計"],
-      "heroCaseIds": ["case-bpr-ops", "case-bpr-paperless"],
+      "keywords": [
+        "業務棚卸し",
+        "標準化",
+        "自動化（RPA）",
+        "ペーパーレス",
+        "業務設計"
+      ],
+      "heroCaseIds": [
+        "case-bpr-ops",
+        "case-bpr-paperless"
+      ],
       "challenges": [
         "属人化・重複・手戻りの多い業務を棚卸しして標準化したい",
         "ツール導入が目的化し、業務そのものが変わっていない",
@@ -97,10 +188,21 @@
       ]
     },
     {
-      "id": "dx", "name": "DX推進・デジタル化", "icon": "ti-device-laptop",
+      "id": "dx",
+      "name": "DX推進・デジタル化",
+      "icon": "ti-device-laptop",
       "tagline": "号令の次に必要な、推進の型",
-      "keywords": ["DX戦略", "データ基盤", "業務デジタル化", "DX人材育成", "推進体制"],
-      "heroCaseIds": ["case-dx-strategy", "case-bpr-ops"],
+      "keywords": [
+        "DX戦略",
+        "データ基盤",
+        "業務デジタル化",
+        "DX人材育成",
+        "推進体制"
+      ],
+      "heroCaseIds": [
+        "case-dx-strategy",
+        "case-bpr-ops"
+      ],
       "challenges": [
         "各部門がバラバラにDXに取り組み、全社横断で推進できる人材がいない",
         "DX戦略は策定できたが、現場実装まで落とし込む人材が足りない",
@@ -108,10 +210,21 @@
       ]
     },
     {
-      "id": "ai", "name": "AI活用", "icon": "ti-robot",
+      "id": "ai",
+      "name": "AI活用",
+      "icon": "ti-robot",
       "tagline": "PoCで止めず、現場で“使われる”状態へ",
-      "keywords": ["生成AI", "AI内製化", "PoC→本番", "業務適用", "データ活用"],
-      "heroCaseIds": ["case-ai-dev", "case-ai-advisor"],
+      "keywords": [
+        "生成AI",
+        "AI内製化",
+        "PoC→本番",
+        "業務適用",
+        "データ活用"
+      ],
+      "heroCaseIds": [
+        "case-ai-dev",
+        "case-ai-advisor"
+      ],
       "challenges": [
         "生成AIを導入したが、現場で使われず一過性に終わっている",
         "AIを業務・事業にどう活かすか、勝ち筋が描けていない",
@@ -119,10 +232,21 @@
       ]
     },
     {
-      "id": "dev", "name": "情報システム・開発", "icon": "ti-code",
+      "id": "dev",
+      "name": "情報システム・開発",
+      "icon": "ti-code",
       "tagline": "丸投げ外注から“自社で握れる”体制へ",
-      "keywords": ["基幹刷新", "要件定義・PM", "ベンダー管理", "クラウド移行", "内製化"],
-      "heroCaseIds": ["case-dev-erp", "case-ai-dev"],
+      "keywords": [
+        "基幹刷新",
+        "要件定義・PM",
+        "ベンダー管理",
+        "クラウド移行",
+        "内製化"
+      ],
+      "heroCaseIds": [
+        "case-dev-erp",
+        "case-ai-dev"
+      ],
       "challenges": [
         "基幹システム刷新のPM・要件定義を担える人材がいない",
         "ベンダー選定・交渉でコントロールが効かず、言いなりになっている",
@@ -130,10 +254,21 @@
       ]
     },
     {
-      "id": "security", "name": "セキュリティ", "icon": "ti-shield-lock",
+      "id": "security",
+      "name": "セキュリティ",
+      "icon": "ti-shield-lock",
       "tagline": "事故対応ではなく“起きない設計”へ",
-      "keywords": ["セキュリティ戦略", "ゼロトラスト", "ガバナンス", "インシデント対応", "規程整備"],
-      "heroCaseIds": ["case-sec-zerotrust", "case-dev-erp"],
+      "keywords": [
+        "セキュリティ戦略",
+        "ゼロトラスト",
+        "ガバナンス",
+        "インシデント対応",
+        "規程整備"
+      ],
+      "heroCaseIds": [
+        "case-sec-zerotrust",
+        "case-dev-erp"
+      ],
       "challenges": [
         "サイバーセキュリティ対策の方針策定と実装を進めたい",
         "セキュリティガバナンス強化・文書規定の整備を進めたい",
@@ -141,10 +276,21 @@
       ]
     },
     {
-      "id": "governance", "name": "経営企画・ガバナンス", "icon": "ti-scale",
+      "id": "governance",
+      "name": "経営企画・ガバナンス",
+      "icon": "ti-scale",
       "tagline": "管理を増やすより“効く”ガバナンスを",
-      "keywords": ["中期経営計画", "コーポレートガバナンス", "内部統制・J-SOX", "内部監査", "IR"],
-      "heroCaseIds": ["case-gov-esg", "case-gov-scope3"],
+      "keywords": [
+        "中期経営計画",
+        "コーポレートガバナンス",
+        "内部統制・J-SOX",
+        "内部監査",
+        "IR"
+      ],
+      "heroCaseIds": [
+        "case-gov-esg",
+        "case-gov-scope3"
+      ],
       "challenges": [
         "中期経営計画の策定を支援してくれる実務経験者が必要",
         "コーポレートガバナンス強化・内部統制整備をスピーディに進めたい",
@@ -152,7 +298,6 @@
       ]
     }
   ],
-
   "_comment_themes": "テーマは“ここ1箇所”で定義。pickup:true → セクション1（旬・推し）に自動表示。categories[] → セクション2（網羅カタログ）の各カテゴリ詳細に『解決策テーマ』として自動でぶら下がる。テーマ追加＝この配列に1件追加するだけ。※顧客に見られて困らない一般化された内容のみ。",
   "_comment_pickupDetail": "pickup:true のテーマは detail を持たせると、カードクリックで“資料サマリのページ”が開きます（資料をダウンロードしなくても内容が読める）。detail の各フィールド：lead=リード文／background=課題の背景／problem=こんな課題に／value=提供価値／flow=進め方3ステップ（図化）／milestones=マイルストーン（期間・やること・アウトプット）／proProfile=参画するプロ人材像（役割・ミッション）／points=ポイント／deliverables=主な成果物／outcome=得られる成果。doc.url に資料URL、doc.type は 'slides'（Googleスライド）/ 'pdf' / 'page'（リポジトリ内のHTML資料を埋め込み表示。例 m365bpr.html）。資料ボタンから全文の確認・社内向けのダウンロードができる。thumbnailShot は実スクショ（images/slide-*.png 等）で最優先表示し、無ければ自動生成の thumbnail（SVG）に自動フォールバック（=スクショは置くだけ、data.json 編集不要）。16:9 推奨。※資料は公開URLからリンクされるため、Google側の共有設定（閲覧可能範囲）を必ず確認すること。",
   "themes": [
@@ -162,7 +307,11 @@
       "angle": "研修で終わらせず、現場の業務変革（AX）まで実行",
       "summary": "AIリテラシー研修から現場での実装・定着・全社展開までを一気通貫で伴走します。",
       "question": "AI研修、受けて終わりになっていませんか？",
-      "categories": ["ai", "hr", "dx"],
+      "categories": [
+        "ai",
+        "hr",
+        "dx"
+      ],
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-24",
@@ -173,23 +322,56 @@
         "background": "多くの企業が生成AI研修を実施していますが、『研修は受けたが日常業務は変わらない』という声が大半です。ツールやリテラシーの習得と、実際の業務変革（AX）の間には大きな隔たりがあり、現場で使われる状態まで設計・伴走できる人材が社内に不足しています。",
         "problem": "AI研修を実施しても現場で使われず一過性に終わり、投資が成果につながらない。",
         "value": "リテラシー研修 → 現場テーマでの実装 → 定着 → 推進体制づくりまでを、AX推進経験のあるプロ人材が伴走します。",
-        "flow": ["AIリテラシー研修", "現場テーマで実装・成果創出", "定着・全社へ横展開"],
+        "flow": [
+          "AIリテラシー研修",
+          "現場テーマで実装・成果創出",
+          "定着・全社へ横展開"
+        ],
         "milestones": [
-          { "period": "〜1ヶ月", "title": "リテラシー研修・適用テーマ選定", "work": "全社／部門別の研修と、成果が出やすい業務テーマの洗い出し", "output": "研修実施 / 適用テーマ候補リスト" },
-          { "period": "2〜3ヶ月", "title": "現場テーマで実装・成果創出", "work": "選定テーマでAIを業務に組み込み、効果を検証", "output": "業務プロトタイプ / 効果測定レポート" },
-          { "period": "4〜6ヶ月", "title": "定着・全社へ横展開", "work": "運用ルール整備・社内推進体制づくり・横展開", "output": "運用ガイドライン / 推進体制・人材" }
+          {
+            "period": "〜1ヶ月",
+            "title": "リテラシー研修・適用テーマ選定",
+            "work": "全社／部門別の研修と、成果が出やすい業務テーマの洗い出し",
+            "output": "研修実施 / 適用テーマ候補リスト"
+          },
+          {
+            "period": "2〜3ヶ月",
+            "title": "現場テーマで実装・成果創出",
+            "work": "選定テーマでAIを業務に組み込み、効果を検証",
+            "output": "業務プロトタイプ / 効果測定レポート"
+          },
+          {
+            "period": "4〜6ヶ月",
+            "title": "定着・全社へ横展開",
+            "work": "運用ルール整備・社内推進体制づくり・横展開",
+            "output": "運用ガイドライン / 推進体制・人材"
+          }
         ],
         "proProfile": [
-          { "role": "AX推進リード", "mission": "研修から業務実装・定着までの全体設計と進行を担う" },
-          { "role": "生成AI実装エンジニア", "mission": "現場テーマでのプロトタイプ構築・ツール連携" },
-          { "role": "研修ファシリテーター", "mission": "役職・職種に合わせたリテラシー研修の設計と実施" }
+          {
+            "role": "AX推進リード",
+            "mission": "研修から業務実装・定着までの全体設計と進行を担う"
+          },
+          {
+            "role": "生成AI実装エンジニア",
+            "mission": "現場テーマでのプロトタイプ構築・ツール連携"
+          },
+          {
+            "role": "研修ファシリテーター",
+            "mission": "役職・職種に合わせたリテラシー研修の設計と実施"
+          }
         ],
         "points": [
           "“受けて終わり”にしない実装伴走",
           "現場テーマで具体的な成果を創出",
           "AXを推進する人材・体制を社内に残す"
         ],
-        "deliverables": ["研修カリキュラム・教材", "業務適用プロトタイプ", "効果測定レポート", "運用ガイドライン・推進体制"],
+        "deliverables": [
+          "研修カリキュラム・教材",
+          "業務適用プロトタイプ",
+          "効果測定レポート",
+          "運用ガイドライン・推進体制"
+        ],
         "outcome": "研修投資をAX成果へ転換。“使われるAI”が現場に定着し、全社の生産性を底上げ。"
       },
       "doc": {
@@ -203,7 +385,11 @@
       "angle": "激変する環境下での“勝ち筋”を、検証から立ち上げまで",
       "summary": "AI前提の事業機会探索から、仮説検証・事業化までをプロ人材が伴走します。",
       "question": "AI時代の新規事業、勝ち筋を描けていますか？",
-      "categories": ["newbiz", "ai", "dx"],
+      "categories": [
+        "newbiz",
+        "ai",
+        "dx"
+      ],
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-22",
@@ -214,23 +400,56 @@
         "background": "生成AIの台頭で事業環境が急速に変化し、既存の勝ち筋が通用しなくなりつつあります。一方で『どこで・どう勝つか』を描ける人材や、検証を高速に回せる体制が社内に不足し、構想が前に進まないケースが増えています。",
         "problem": "AIで競争環境が激変する一方、自社の勝ち筋が描けず、検証も社内リソースだけでは速度が出ない。",
         "value": "AI×自社アセットでの事業機会探索、高速な仮説検証、事業化・初期グロースまでをプロ人材が並走します。",
-        "flow": ["事業機会の探索（AI×自社アセット）", "仮説検証・PoC", "事業化・初期グロース"],
+        "flow": [
+          "事業機会の探索（AI×自社アセット）",
+          "仮説検証・PoC",
+          "事業化・初期グロース"
+        ],
         "milestones": [
-          { "period": "〜1ヶ月", "title": "事業機会の探索", "work": "AI×自社アセットで狙う領域・仮説を整理", "output": "事業仮説 / 狙う市場の定義" },
-          { "period": "2〜4ヶ月", "title": "仮説検証・PoC", "work": "顧客検証・プロトタイプで筋の良さを見極め", "output": "検証結果 / 事業計画ドラフト" },
-          { "period": "5ヶ月〜", "title": "事業化・初期グロース", "work": "立ち上げ実行と初期の伸ばし方を設計・推進", "output": "立ち上げ計画 / 初期KPI" }
+          {
+            "period": "〜1ヶ月",
+            "title": "事業機会の探索",
+            "work": "AI×自社アセットで狙う領域・仮説を整理",
+            "output": "事業仮説 / 狙う市場の定義"
+          },
+          {
+            "period": "2〜4ヶ月",
+            "title": "仮説検証・PoC",
+            "work": "顧客検証・プロトタイプで筋の良さを見極め",
+            "output": "検証結果 / 事業計画ドラフト"
+          },
+          {
+            "period": "5ヶ月〜",
+            "title": "事業化・初期グロース",
+            "work": "立ち上げ実行と初期の伸ばし方を設計・推進",
+            "output": "立ち上げ計画 / 初期KPI"
+          }
         ],
         "proProfile": [
-          { "role": "事業開発リード（連続起業家／事業会社出身）", "mission": "構想〜立ち上げの意思決定と推進を伴走" },
-          { "role": "リサーチ・市場分析", "mission": "市場性・競合・AI活用余地の調査と整理" },
-          { "role": "MVPエンジニア / UX", "mission": "検証用プロトタイプの高速開発" }
+          {
+            "role": "事業開発リード（連続起業家／事業会社出身）",
+            "mission": "構想〜立ち上げの意思決定と推進を伴走"
+          },
+          {
+            "role": "リサーチ・市場分析",
+            "mission": "市場性・競合・AI活用余地の調査と整理"
+          },
+          {
+            "role": "MVPエンジニア / UX",
+            "mission": "検証用プロトタイプの高速開発"
+          }
         ],
         "points": [
           "AIを前提とした事業機会の捉え方",
           "事業会社経験者による高速検証",
           "構想で終わらせない実行支援"
         ],
-        "deliverables": ["事業仮説・市場定義", "検証結果レポート", "事業計画", "MVP / プロトタイプ"],
+        "deliverables": [
+          "事業仮説・市場定義",
+          "検証結果レポート",
+          "事業計画",
+          "MVP / プロトタイプ"
+        ],
         "outcome": "AIを活かした新規事業の、立ち上げ速度と成功確度を高める。"
       },
       "doc": {
@@ -244,7 +463,11 @@
       "angle": "ツール導入で終わらせず、業務プロセスそのものを再設計",
       "summary": "M365・Copilotを前提に業務を再設計し、実装・定着まで伴走します。",
       "question": "Microsoft 365、入れたものの業務はそのままになっていませんか？",
-      "categories": ["bpr", "ai", "dx"],
+      "categories": [
+        "bpr",
+        "ai",
+        "dx"
+      ],
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-20",
@@ -255,23 +478,56 @@
         "background": "Microsoft 365 や Copilot を導入したものの、業務プロセスは旧来のままで『ツールはあるのに業務が変わらない』状態に陥りがちです。ツール活用の前に、業務そのものを再設計しなければ投資効果は得られません。",
         "problem": "M365やCopilotを導入しても活用しきれず、業務プロセスは旧来のまま。投資効果が見えない。",
         "value": "業務の棚卸し・課題特定から、M365×AIを活かした業務再設計（BPR）、実装・定着までをプロ人材が伴走します。",
-        "flow": ["業務棚卸し・課題特定", "M365×AIで業務を再設計", "実装・現場定着"],
+        "flow": [
+          "業務棚卸し・課題特定",
+          "M365×AIで業務を再設計",
+          "実装・現場定着"
+        ],
         "milestones": [
-          { "period": "〜1ヶ月", "title": "業務棚卸し・課題特定", "work": "対象業務の可視化と、再設計すべきプロセスの特定", "output": "業務一覧 / 課題・優先順位" },
-          { "period": "2〜3ヶ月", "title": "M365×AIで業務を再設計", "work": "Copilot等を前提に業務フローを再設計し試行", "output": "新業務フロー / 試行結果" },
-          { "period": "4〜6ヶ月", "title": "実装・現場定着", "work": "全体展開と、運用ルール・教育による定着", "output": "運用ルール / 定着・効果測定" }
+          {
+            "period": "〜1ヶ月",
+            "title": "業務棚卸し・課題特定",
+            "work": "対象業務の可視化と、再設計すべきプロセスの特定",
+            "output": "業務一覧 / 課題・優先順位"
+          },
+          {
+            "period": "2〜3ヶ月",
+            "title": "M365×AIで業務を再設計",
+            "work": "Copilot等を前提に業務フローを再設計し試行",
+            "output": "新業務フロー / 試行結果"
+          },
+          {
+            "period": "4〜6ヶ月",
+            "title": "実装・現場定着",
+            "work": "全体展開と、運用ルール・教育による定着",
+            "output": "運用ルール / 定着・効果測定"
+          }
         ],
         "proProfile": [
-          { "role": "BPRコンサルタント", "mission": "業務プロセスの再設計と改善効果の設計" },
-          { "role": "M365 / Copilot活用エキスパート", "mission": "M365・AIを前提とした業務フローの具体化" },
-          { "role": "情シス・チェンジマネジメント", "mission": "全社展開・教育・定着の推進" }
+          {
+            "role": "BPRコンサルタント",
+            "mission": "業務プロセスの再設計と改善効果の設計"
+          },
+          {
+            "role": "M365 / Copilot活用エキスパート",
+            "mission": "M365・AIを前提とした業務フローの具体化"
+          },
+          {
+            "role": "情シス・チェンジマネジメント",
+            "mission": "全社展開・教育・定着の推進"
+          }
         ],
         "points": [
           "ツール導入ではなく業務再設計",
           "Copilot等を活かす業務プロセスへ",
           "現場に定着するまで伴走"
         ],
-        "deliverables": ["業務棚卸し一覧", "再設計後の業務フロー", "M365活用ルール", "効果測定レポート"],
+        "deliverables": [
+          "業務棚卸し一覧",
+          "再設計後の業務フロー",
+          "M365活用ルール",
+          "効果測定レポート"
+        ],
         "outcome": "M365投資を“業務改革”の成果へ。日常業務の生産性を実質的に改善。"
       },
       "doc": {
@@ -279,15 +535,20 @@
         "url": "https://docs.google.com/presentation/d/1d2uQDJFRpOCrUqxZPMBVIlBDgec7H_aRtWsPunukgDY/edit"
       }
     },
-
     {
       "id": "finance-fpa",
       "title": "経営管理・FP&Aの高度化",
       "angle": "“締めて終わり”から“意思決定を回す”経理財務へ",
       "summary": "月次の早期化・予実分析・事業別収益の可視化を進め、経営の打ち手につながる管理会計に作り替える。",
       "question": "経理財務が“記録”止まりで、経営判断に効いていますか？",
-      "categories": ["finance", "dx", "bpr"],
-      "pickup": false, "isNew": false, "updated": "2026-05-28"
+      "categories": [
+        "finance",
+        "dx",
+        "bpr"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-28"
     },
     {
       "id": "scm-optimize",
@@ -295,8 +556,14 @@
       "angle": "需要予測と在庫・調達を一気通貫で見直す",
       "summary": "属人化した需給調整を、データに基づく予測と業務設計で標準化し、欠品と過剰在庫の両方を削減する。",
       "question": "在庫の最適化、現場の勘と経験に頼り切っていませんか？",
-      "categories": ["scm", "manufactur", "dx"],
-      "pickup": false, "isNew": false, "updated": "2026-05-20"
+      "categories": [
+        "scm",
+        "manufactur",
+        "dx"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-20"
     },
     {
       "id": "retail-omni",
@@ -304,8 +571,14 @@
       "angle": "EC・店舗・顧客データを分断させずにつなぐ",
       "summary": "オンライン/オフラインの顧客体験を統合し、データに基づく品揃え・販促・接客の高度化を進める。",
       "question": "ECと店舗、顧客データが分断したままになっていませんか？",
-      "categories": ["retail", "marketing", "dx"],
-      "pickup": false, "isNew": false, "updated": "2026-05-15"
+      "categories": [
+        "retail",
+        "marketing",
+        "dx"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-15"
     },
     {
       "id": "manufactur-smart",
@@ -313,8 +586,14 @@
       "angle": "現場のカイゼン文化を残しつつデータで底上げ",
       "summary": "設備・品質・工程のデータ化を段階的に進め、現場主導の改善とデジタル化を両立させる。",
       "question": "工場のデータ、取れているのに活用しきれていませんか？",
-      "categories": ["manufactur", "dx", "bpr"],
-      "pickup": false, "isNew": false, "updated": "2026-05-12"
+      "categories": [
+        "manufactur",
+        "dx",
+        "bpr"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-12"
     },
     {
       "id": "marketing-datadriven",
@@ -322,8 +601,14 @@
       "angle": "施策の“やりっぱなし”をやめ、効果を測れる状態に",
       "summary": "顧客データ統合・指標設計・運用体制を整え、勘ではなく数字で打ち手を回すマーケへ転換する。",
       "question": "マーケ施策の効果、ちゃんと測れて次に活かせていますか？",
-      "categories": ["marketing", "dx", "ai"],
-      "pickup": false, "isNew": false, "updated": "2026-05-08"
+      "categories": [
+        "marketing",
+        "dx",
+        "ai"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-08"
     },
     {
       "id": "bpr-operation",
@@ -331,8 +616,13 @@
       "angle": "ツール導入の前に“業務そのもの”を作り直す",
       "summary": "属人化・重複・手戻りの多い業務を棚卸しし、標準化と自動化の順序を設計してから実装する。",
       "question": "効率化の前に、その業務そのものは本当に必要ですか？",
-      "categories": ["bpr", "dx"],
-      "pickup": false, "isNew": false, "updated": "2026-05-02"
+      "categories": [
+        "bpr",
+        "dx"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-05-02"
     },
     {
       "id": "dx-strategy",
@@ -340,8 +630,14 @@
       "angle": "“DX担当を置く”の次に必要な、推進の型",
       "summary": "経営アジェンダとしてのDXを、ロードマップ・体制・人材育成まで含めて設計し、推進を伴走する。",
       "question": "DX、号令はかかったものの推進が止まっていませんか？",
-      "categories": ["dx", "bpr", "governance"],
-      "pickup": false, "isNew": false, "updated": "2026-04-25"
+      "categories": [
+        "dx",
+        "bpr",
+        "governance"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-25"
     },
     {
       "id": "dev-internal",
@@ -349,8 +645,13 @@
       "angle": "丸投げ外注から“自社で握れる”開発体制へ",
       "summary": "要件定義・PM・アーキテクチャの要所をプロ人材で補強し、内製と外部活用のバランスを設計する。",
       "question": "開発、ベンダー任せで“自社で握れない”状態になっていませんか？",
-      "categories": ["dev", "dx"],
-      "pickup": false, "isNew": false, "updated": "2026-04-20"
+      "categories": [
+        "dev",
+        "dx"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-20"
     },
     {
       "id": "security-zerotrust",
@@ -358,8 +659,14 @@
       "angle": "事故対応ではなく“起きない設計”へ先回り",
       "summary": "現状のリスク棚卸しから、認証・権限・監視の設計、運用ルールの定着までを段階的に進める。",
       "question": "セキュリティ、インシデントが起きてから動く体制になっていませんか？",
-      "categories": ["security", "governance", "dx"],
-      "pickup": false, "isNew": false, "updated": "2026-04-15"
+      "categories": [
+        "security",
+        "governance",
+        "dx"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-15"
     },
     {
       "id": "governance-group",
@@ -367,59 +674,335 @@
       "angle": "管理を増やすのではなく“効く”ガバナンスに",
       "summary": "子会社・海外拠点を含めた管理体制を、リスクと現場負荷のバランスを取りながら再設計する。",
       "question": "拠点が増えるたびに、管理だけが重くなっていませんか？",
-      "categories": ["governance", "finance"],
-      "pickup": false, "isNew": false, "updated": "2026-04-10"
+      "categories": [
+        "governance",
+        "finance"
+      ],
+      "pickup": false,
+      "isNew": false,
+      "updated": "2026-04-10"
     }
   ],
-
-  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。アサインの切り口ごとに“別々の図”で描き分ける。diagram の種類：'lanes'＝Issue型（プロジェクト全体の下に、課題・課単位の専任リーダーを並列レーンで配置）/ 'phase-pm'＝Phase型（上段PMが下段フェーズを束ね、左→右に進む傘型）/ 'cluster'＝Role/Domain型（1つのプロジェクトを中心に、細かい役割・領域を放射状に分担し同時推進）/ 'staffed'＝Project型（1人のご担当者から複数案件がぶら下がり、各案件に専任プロ人材を配置）。caption は図の下の補足文。各 items は { label, detail }。",
+  "_comment_assignExamples": "セクション3『プロ人材アサイン体制例』。アサインの切り口ごとに“別々の図”で描き分ける。diagram の種類：'lanes'＝Issue型（プロジェクト全体の下に、課題・課単位の専任リーダーを並列レーンで配置）/ 'phase-pm'＝Phase型（上段PMが下段フェーズを束ね、左→右に進む傘型）/ 'cluster'＝Role/Domain型（1つのプロジェクトを中心に、細かい役割・領域を放射状に分担し同時推進）/ 'staffed'＝Project型（1人のご担当者から複数案件がぶら下がり、各案件に専任プロ人材を配置）。caption は図の下の補足文。各 items は { label, detail }。 各切り口に case を持たせると、そのカードがクリック可能になり匿名事例モーダル（Layer/プロファイル/KPI/体制図/背景・取り組み）が開く。case.diagram:'org' は 部長＋PM のヘッドの下に テーマ別プロ→課長→メンバー を並べる体制図。その他は case.items / hub / hubSub を渡すと親と同じ図種を事例用の内容で描画。掲載は必ず匿名化（社名・個社特定情報は不可）。",
   "assignExamples": [
     {
-      "key": "Issue", "subtitle": "課題に合わせた「各タスクリーダー」",
-      "diagram": "lanes", "hub": "プロジェクト全体", "hubSub": "全社横断の課題を分解",
+      "key": "Issue",
+      "subtitle": "課題に合わせた「各タスクリーダー」",
+      "diagram": "lanes",
+      "hub": "プロジェクト全体",
+      "hubSub": "全社横断の課題を分解",
       "caption": "課題（テーマ・課単位）ごとに専任リーダーを立て、レーンを分けて横断で並行推進します。",
       "items": [
-        { "label": "戦略・構想 リーダー", "detail": "IT戦略 / 全体構想" },
-        { "label": "ERP リーダー", "detail": "PM・PMO／ベンダーコントロール／分科会リード" },
-        { "label": "データ基盤 リーダー", "detail": "PM・PMO／データエンジニア／データサイエンティスト" },
-        { "label": "セキュリティ リーダー", "detail": "ポリシー策定／サイバー対策／従業員教育" }
-      ]
+        {
+          "label": "戦略・構想 リーダー",
+          "detail": "IT戦略 / 全体構想"
+        },
+        {
+          "label": "ERP リーダー",
+          "detail": "PM・PMO／ベンダーコントロール／分科会リード"
+        },
+        {
+          "label": "データ基盤 リーダー",
+          "detail": "PM・PMO／データエンジニア／データサイエンティスト"
+        },
+        {
+          "label": "セキュリティ リーダー",
+          "detail": "ポリシー策定／サイバー対策／従業員教育"
+        }
+      ],
+      "case": {
+        "layer": "Layer 2",
+        "patternTitle": "担当者深耕（1担当者 × 複数PJT）",
+        "industry": "電機・計測機器メーカー",
+        "dept": "デジタル戦略部門（新設）",
+        "period": "2025年〜継続中",
+        "stats": [
+          {
+            "k": "対応プロジェクト",
+            "v": "5件"
+          },
+          {
+            "k": "プロ人材",
+            "v": "4名"
+          },
+          {
+            "k": "プロジェクト評価",
+            "v": "100%"
+          },
+          {
+            "k": "プロ解約",
+            "v": "0件"
+          }
+        ],
+        "headline": "部長の右腕PMを起点に、複数テーマを同時並行でスピード解決",
+        "diagram": "org",
+        "org": {
+          "head": [
+            {
+              "role": "DX担当部長",
+              "tag": "複数の課を統括",
+              "side": "client"
+            },
+            {
+              "role": "PM",
+              "tag": "部長の右腕・全体構想／進捗を統括",
+              "side": "pro"
+            }
+          ],
+          "cols": [
+            {
+              "pro": "ERP・基幹刷新",
+              "tag": "PM・PMO／ベンダーコントロール／AS-IS整理"
+            },
+            {
+              "pro": "セキュリティ",
+              "tag": "ポリシー策定／サイバー対策／従業員教育"
+            },
+            {
+              "pro": "ポータル立ち上げ",
+              "tag": "社内ポータルの企画・構築"
+            },
+            {
+              "pro": "個人情報保護",
+              "tag": "個人情報保護体制の構築"
+            },
+            {
+              "pro": "PMO・基幹刷新",
+              "tag": "全体進行管理／基幹システム刷新"
+            }
+          ]
+        },
+        "background": "全社的にDXが進んでおらず、社内に変革を牽引できる人材が不在。新体制としてDX担当部長が着任し、複数の課を統括する立場となったが、構想を形にする実行力が課題だった。",
+        "approach": [
+          "まず部長の『右腕』となるPMをアサイン。部長と共にマイルストーン・全体アーキテクチャ・全体構想を描き、必要なDX推進機能と役割を定義した。",
+          "最初の一手としてERPに着手。全体フロー・アーキテクチャ・基幹システムのAS-IS整理を実施。",
+          "その後、セキュリティ／ポータル立ち上げ／個人情報保護体制の構築／ERP構築／PMO／基幹システム刷新を並行して支援。"
+        ],
+        "structureNotes": [
+          "ヘッドに顧客のDX部長と伴走PM（プロ人材）が並走し、全体を統括。",
+          "その下に各課題・テーマ専任のプロ人材を配置し、横断で並行推進。",
+          "各プロ人材は部長・PMへ状況報告と進捗管理を行い、現場メンバーと直接やりとり。",
+          "各プロ人材の横に顧客の課長、その下にメンバーが入り、二人三脚で推進。"
+        ]
+      }
     },
     {
-      "key": "Phase", "subtitle": "フェーズに合わせた「ジャスト・イン・タイム」",
-      "diagram": "phase-pm", "hub": "プロジェクトPM", "hubSub": "全体を管理・進行",
+      "key": "Phase",
+      "subtitle": "フェーズに合わせた「ジャスト・イン・タイム」",
+      "diagram": "phase-pm",
+      "hub": "プロジェクトPM",
+      "hubSub": "全体を管理・進行",
       "caption": "PMが全体を管理し、各フェーズに最適なプロ人材を“必要なときに”投入します。",
       "items": [
-        { "label": "戦略・構想", "detail": "戦略コンサル／市場調査Pro" },
-        { "label": "検証・プロト", "detail": "MVPエンジニア／UXデザイナー" },
-        { "label": "実装・グロース", "detail": "マーケター／組織構築Pro" },
-        { "label": "基盤・内製化", "detail": "BPR・情シス／採用Pro" }
-      ]
+        {
+          "label": "戦略・構想",
+          "detail": "戦略コンサル／市場調査Pro"
+        },
+        {
+          "label": "検証・プロト",
+          "detail": "MVPエンジニア／UXデザイナー"
+        },
+        {
+          "label": "実装・グロース",
+          "detail": "マーケター／組織構築Pro"
+        },
+        {
+          "label": "基盤・内製化",
+          "detail": "BPR・情シス／採用Pro"
+        }
+      ],
+      "case": {
+        "layer": "Layer 1",
+        "patternTitle": "プロジェクト内役割（1PJT × 複数プロ）",
+        "industry": "大手総合電機メーカー",
+        "dept": "イノベーション部門",
+        "period": "2025年〜継続中",
+        "stats": [
+          {
+            "k": "対応プロジェクト",
+            "v": "7件"
+          },
+          {
+            "k": "プロ人材",
+            "v": "9名"
+          },
+          {
+            "k": "プロジェクト評価",
+            "v": "100%"
+          },
+          {
+            "k": "プロ解約",
+            "v": "0件"
+          }
+        ],
+        "headline": "7つのフェーズで全9名のプロ人材が事業化スピードを最大化",
+        "hub": "プロジェクトPM（プロ人材）",
+        "hubSub": "全フェーズを統括・進行",
+        "items": [
+          {
+            "label": "ビジコン設計",
+            "detail": "ビジネスコンテストの設計・事務局運営"
+          },
+          {
+            "label": "メンタリング・選考",
+            "detail": "事業メンターとして伴走"
+          },
+          {
+            "label": "検証・プロト",
+            "detail": "MVP開発／マーケティング"
+          },
+          {
+            "label": "実装・グロース",
+            "detail": "事業グロース支援"
+          },
+          {
+            "label": "中長期戦略",
+            "detail": "既存事業連携・事業計画策定"
+          },
+          {
+            "label": "基盤・内製化",
+            "detail": "業務オペレーション改善"
+          }
+        ],
+        "background": "新規事業・イノベーション創出を担う部門で、構想から事業化までを一気通貫で推進する体制が必要だった。",
+        "approach": [
+          "ビジネスコンテスト（ビジコン）の設計・事務局運営から着手。",
+          "メンタリング・最終選考では事業メンターとして伴走。",
+          "検証・プロトタイプ段階でMVP開発・マーケティングを支援。",
+          "実装・グロース、中長期戦略、基盤・内製化（業務オペレーション改善）まで、各フェーズに最適なプロを投入。"
+        ],
+        "structureNotes": [
+          "全体を管理するPMのもと、各フェーズに『必要なときに・必要なプロ』を投入。",
+          "構想〜事業化まで途切れなく専門人材が入れ替わり伴走。"
+        ]
+      }
     },
     {
-      "key": "Role / Domain", "subtitle": "役割・領域に合わせた「専門家」",
-      "diagram": "cluster", "hub": "1つのプロジェクト", "hubSub": "役割・領域で分担し同時推進",
+      "key": "Role / Domain",
+      "subtitle": "役割・領域に合わせた「専門家」",
+      "diagram": "cluster",
+      "hub": "1つのプロジェクト",
+      "hubSub": "役割・領域で分担し同時推進",
       "caption": "ひとつのプロジェクトを役割・領域で細かく分担し、専門家チームで一気に進めます。",
       "items": [
-        { "label": "Role：リサーチ", "detail": "リサーチ及びレポーティング" },
-        { "label": "Role：MVP開発", "detail": "プロトタイプ作成" },
-        { "label": "Domain：業界有識者", "detail": "医療・農業 ほか" },
-        { "label": "Domain：市場 / 技術専門家", "detail": "東南アジア・北米欧州／半導体・薬事" }
+        {
+          "label": "Role：リサーチ",
+          "detail": "リサーチ及びレポーティング"
+        },
+        {
+          "label": "Role：MVP開発",
+          "detail": "プロトタイプ作成"
+        },
+        {
+          "label": "Domain：業界有識者",
+          "detail": "医療・農業 ほか"
+        },
+        {
+          "label": "Domain：市場 / 技術専門家",
+          "detail": "東南アジア・北米欧州／半導体・薬事"
+        }
       ]
     },
     {
-      "key": "Project", "subtitle": "担当者の複数案件に「専任プロ人材」",
-      "diagram": "staffed", "hub": "ご担当者さま", "hubSub": "お一人で複数案件を兼務",
+      "key": "Project",
+      "subtitle": "担当者の複数案件に「専任プロ人材」",
+      "diagram": "staffed",
+      "hub": "ご担当者さま",
+      "hubSub": "お一人で複数案件を兼務",
       "caption": "お一人のご担当者が抱える複数の案件それぞれに、専任のプロ人材を配置します。",
       "items": [
-        { "label": "新規事業の立ち上げ", "detail": "事業開発Pro / PM" },
-        { "label": "基幹システム刷新", "detail": "PM・PMO" },
-        { "label": "マーケDX推進", "detail": "マーケター" },
-        { "label": "業務改善・BPR", "detail": "BPR・情シスPro" }
-      ]
+        {
+          "label": "新規事業の立ち上げ",
+          "detail": "事業開発Pro / PM"
+        },
+        {
+          "label": "基幹システム刷新",
+          "detail": "PM・PMO"
+        },
+        {
+          "label": "マーケDX推進",
+          "detail": "マーケター"
+        },
+        {
+          "label": "業務改善・BPR",
+          "detail": "BPR・情シスPro"
+        }
+      ],
+      "case": {
+        "layer": "Layer 3",
+        "patternTitle": "部署内拡張（1部署 × 複数担当者）",
+        "industry": "大手飲料メーカー",
+        "dept": "デジタル部門",
+        "period": "2022年〜継続中",
+        "stats": [
+          {
+            "k": "対応プロジェクト",
+            "v": "14件"
+          },
+          {
+            "k": "プロ人材",
+            "v": "16名"
+          },
+          {
+            "k": "プロジェクト評価",
+            "v": "92%"
+          },
+          {
+            "k": "プロ解約",
+            "v": "1件"
+          }
+        ],
+        "headline": "1部署内で複数担当者・14案件が並行し、多角並列に課題を解決",
+        "hub": "デジタル部門",
+        "hubSub": "複数担当者 × 14案件を横断",
+        "items": [
+          {
+            "label": "ビジョン策定",
+            "detail": "DXコンサル"
+          },
+          {
+            "label": "採用ページ刷新",
+            "detail": "採用UI/UX"
+          },
+          {
+            "label": "マーケティング戦略",
+            "detail": "マーケター"
+          },
+          {
+            "label": "CRM実行戦略",
+            "detail": "CRM／メルマガ・チャネル施策"
+          },
+          {
+            "label": "業務プロセス改善",
+            "detail": "BPR"
+          },
+          {
+            "label": "AI活用検討",
+            "detail": "AI専門家"
+          },
+          {
+            "label": "新規技術の活用検討",
+            "detail": "業界専門家・事業企画"
+          },
+          {
+            "label": "データ分析・基盤",
+            "detail": "データサイエンティスト／アプリ開発"
+          }
+        ],
+        "background": "デジタル部門内の複数チーム・担当者がそれぞれ課題を抱え、案件が同時多発的に発生。個別に人材を探すのではなく、部署横断で最適なプロをアサインする体制が求められた。",
+        "approach": [
+          "ビジョン策定・DX構想から、採用・マーケ・CRM・業務改善・AI活用まで幅広い案件に対応。",
+          "プロジェクト／担当者ごとに専任のプロ人材を配置し、全16名が同時並行で稼働。",
+          "案件横断で知見を共有し、多角並列に課題解決を推進。"
+        ],
+        "structureNotes": [
+          "ひとつの部署の中で複数担当者が抱える案件それぞれに、専任のプロ人材を配置。",
+          "案件ごとに最適な専門性（DX・採用・マーケ・CRM・BPR・AI・データ 等）をアサイン。",
+          "部署全体で多角並列に取り組むことで、活用が部署内へ面的に広がる。"
+        ]
+      }
     }
   ],
-
   "_comment_casesNamed": "セクション4：社名あり事例。出典は各社の自社HP事例ページのみ。image は実キャプチャ／自社HP画像URL（http〜）を最優先表示し、無ければ imageFallback（プレースホルダーSVG）に自動フォールバック。title/summary は各事例ページ（sourceUrl）の公開内容を転記すること。掲載範囲はHP公開範囲に厳密に留め、HPにない情報を足さない。【運用】HP更新時に齟齬が出るためキャプチャ／画像は定期的に見直す。",
   "casesNamed": [
     {
@@ -463,15 +1046,27 @@
       "sourceLabel": "出典：自社HP事例ページ"
     }
   ],
-
   "_comment_proCases": "匿名化済みのプロ人材支援事例（SF由来データを個社特定されないよう加工）。カードをクリックすると詳細（企業プロフィール／支援プロセス／背景・課題／支援内容／取り組みロードマップ／プロ人材の役割）が開く。各カテゴリ詳細（テーマ）モーダルにも categories[] で自動でぶら下がる。※掲載前に必ず『業界・規模・役割の組み合わせで個社が特定されないか』を確認。社名・個人名・金額・契約情報は一切載せない。フィールド：id / categories / tag / industry（一般化）/ scale（規模帯）/ period / commitment / title / summary / process（支援プロセス）/ challenges（背景・課題）/ support（支援内容）/ roadmap（取り組みロードマップ：period・title・output）/ proRoles（プロ人材の役割：role・mission）/ role（一覧カード用の代表ロール）。事例追加はこの配列に1件足すだけ。",
   "proCases": [
     {
-      "id": "case-newbiz-intra", "categories": ["newbiz", "hr"], "tag": "新規事業",
-      "industry": "建材・住宅設備メーカー", "scale": "上場企業", "period": "6ヶ月〜継続", "commitment": "週1〜2日のハンズオン支援",
+      "id": "case-newbiz-intra",
+      "categories": [
+        "newbiz",
+        "hr"
+      ],
+      "tag": "新規事業",
+      "industry": "建材・住宅設備メーカー",
+      "scale": "上場企業",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1〜2日のハンズオン支援",
       "title": "新規事業の探索から社内ベンチャー制度の立ち上げ・運用まで",
       "summary": "事業機会の探索・評価から、社内ベンチャー制度の設計・事務局運営までを一気通貫で伴走。",
-      "process": ["事業機会の探索", "フィジビリティ評価", "制度設計", "立ち上げ・運用"],
+      "process": [
+        "事業機会の探索",
+        "フィジビリティ評価",
+        "制度設計",
+        "立ち上げ・運用"
+      ],
       "challenges": [
         "新規事業を継続的に生み出す仕組みが社内になく、取り組みが単発で終わっていた",
         "事業アイデアの評価基準が曖昧で、意思決定が属人的になっていた",
@@ -483,22 +1078,52 @@
         "社内ベンチャー制度の設計と事務局運営のハンズオン支援"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "事業機会の探索・現状把握", "output": "有望テーマ候補 / 評価軸" },
-        { "period": "2〜3ヶ月", "title": "フィジビリティ評価・制度設計", "output": "評価手法 / 制度設計書" },
-        { "period": "4ヶ月〜", "title": "社内ベンチャー制度の立ち上げ・運用", "output": "事務局運営 / 応募・採択プロセス" }
+        {
+          "period": "〜1ヶ月",
+          "title": "事業機会の探索・現状把握",
+          "output": "有望テーマ候補 / 評価軸"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "フィジビリティ評価・制度設計",
+          "output": "評価手法 / 制度設計書"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "社内ベンチャー制度の立ち上げ・運用",
+          "output": "事務局運営 / 応募・採択プロセス"
+        }
       ],
       "proRoles": [
-        { "role": "新規事業立ち上げリード", "mission": "事業探索から制度設計・運用まで全体を伴走" },
-        { "role": "事務局運営サポート", "mission": "社内公募・審査プロセスの設計と運営支援" }
+        {
+          "role": "新規事業立ち上げリード",
+          "mission": "事業探索から制度設計・運用まで全体を伴走"
+        },
+        {
+          "role": "事務局運営サポート",
+          "mission": "社内公募・審査プロセスの設計と運営支援"
+        }
       ],
       "role": "事業会社出身の新規事業立ち上げ経験者"
     },
     {
-      "id": "case-newbiz-material", "categories": ["newbiz"], "tag": "新規事業",
-      "industry": "素材・エレクトロニクスメーカー", "scale": "大手", "period": "6ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-newbiz-material",
+      "categories": [
+        "newbiz"
+      ],
+      "tag": "新規事業",
+      "industry": "素材・エレクトロニクスメーカー",
+      "scale": "大手",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "保有技術を核とした新規事業の用途開発・事業化支援",
       "summary": "自社技術の出口（用途・市場）探索から事業性検証、事業計画の策定までを支援。",
-      "process": ["市場・用途探索", "顧客・事業性検証", "事業計画", "立ち上げ"],
+      "process": [
+        "市場・用途探索",
+        "顧客・事業性検証",
+        "事業計画",
+        "立ち上げ"
+      ],
       "challenges": [
         "保有する技術の出口（用途・市場）が定まらず、事業化が進まなかった",
         "BtoB新規事業を推進した経験を持つ人材が社内に不足していた",
@@ -510,22 +1135,53 @@
         "事業計画の策定と推進の伴走"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "市場・用途探索", "output": "狙う用途・市場の仮説" },
-        { "period": "2〜4ヶ月", "title": "顧客・事業性検証", "output": "検証結果 / 事業性評価" },
-        { "period": "5ヶ月〜", "title": "事業計画・立ち上げ", "output": "事業計画書" }
+        {
+          "period": "〜1ヶ月",
+          "title": "市場・用途探索",
+          "output": "狙う用途・市場の仮説"
+        },
+        {
+          "period": "2〜4ヶ月",
+          "title": "顧客・事業性検証",
+          "output": "検証結果 / 事業性評価"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "事業計画・立ち上げ",
+          "output": "事業計画書"
+        }
       ],
       "proRoles": [
-        { "role": "事業開発リード（大手メーカー出身）", "mission": "技術の用途探索から事業化までの意思決定を伴走" },
-        { "role": "リサーチ担当", "mission": "市場・競合・用途の調査とレポーティング" }
+        {
+          "role": "事業開発リード（大手メーカー出身）",
+          "mission": "技術の用途探索から事業化までの意思決定を伴走"
+        },
+        {
+          "role": "リサーチ担当",
+          "mission": "市場・競合・用途の調査とレポーティング"
+        }
       ],
       "role": "大手メーカー出身の事業開発プロ"
     },
     {
-      "id": "case-newbiz-health", "categories": ["newbiz", "ai"], "tag": "新規事業",
-      "industry": "ヘルスケア・バイオ系スタートアップ", "scale": "スタートアップ", "period": "3ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-newbiz-health",
+      "categories": [
+        "newbiz",
+        "ai"
+      ],
+      "tag": "新規事業",
+      "industry": "ヘルスケア・バイオ系スタートアップ",
+      "scale": "スタートアップ",
+      "period": "3ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "ヘルスケアデータプラットフォーム事業の構想・検証支援",
       "summary": "データを活かした新規事業の勝ち筋設計から、市場・規制調査、PoC設計までを伴走。",
-      "process": ["事業構想", "市場・規制調査", "PoC設計", "事業計画"],
+      "process": [
+        "事業構想",
+        "市場・規制調査",
+        "PoC設計",
+        "事業計画"
+      ],
       "challenges": [
         "データを活用した事業モデルの勝ち筋が描けていなかった",
         "医療・規制ドメインの知見が社内に不足していた",
@@ -537,22 +1193,53 @@
         "事業計画・資金調達ストーリーの整理"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "事業構想・市場/規制調査", "output": "事業構想 / 規制マップ" },
-        { "period": "2〜3ヶ月", "title": "PoC設計・検証", "output": "PoC計画 / 検証結果" },
-        { "period": "3ヶ月〜", "title": "事業計画の整理", "output": "事業計画 / 資金調達ストーリー" }
+        {
+          "period": "〜1ヶ月",
+          "title": "事業構想・市場/規制調査",
+          "output": "事業構想 / 規制マップ"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "PoC設計・検証",
+          "output": "PoC計画 / 検証結果"
+        },
+        {
+          "period": "3ヶ月〜",
+          "title": "事業計画の整理",
+          "output": "事業計画 / 資金調達ストーリー"
+        }
       ],
       "proRoles": [
-        { "role": "ヘルスケア事業開発リード", "mission": "事業モデルの勝ち筋設計と検証を主導" },
-        { "role": "データ／規制アドバイザー", "mission": "医療データ活用・規制対応の助言" }
+        {
+          "role": "ヘルスケア事業開発リード",
+          "mission": "事業モデルの勝ち筋設計と検証を主導"
+        },
+        {
+          "role": "データ／規制アドバイザー",
+          "mission": "医療データ活用・規制対応の助言"
+        }
       ],
       "role": "ヘルスケア領域の事業開発／データ専門家"
     },
     {
-      "id": "case-mkt-health", "categories": ["marketing", "newbiz"], "tag": "マーケティング",
-      "industry": "ヘルスケア・バイオ系スタートアップ", "scale": "スタートアップ", "period": "3ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-mkt-health",
+      "categories": [
+        "marketing",
+        "newbiz"
+      ],
+      "tag": "マーケティング",
+      "industry": "ヘルスケア・バイオ系スタートアップ",
+      "scale": "スタートアップ",
+      "period": "3ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "新規ヘルスケアサービスの認知拡大とブランド／UX戦略",
       "summary": "サービスの訴求設計から認知拡大施策まで、ブランドとUXの両面で立ち上げを支援。",
-      "process": ["現状・市場分析", "ブランド／メッセージ設計", "認知拡大施策", "検証・改善"],
+      "process": [
+        "現状・市場分析",
+        "ブランド／メッセージ設計",
+        "認知拡大施策",
+        "検証・改善"
+      ],
       "challenges": [
         "新規サービスの訴求・勝ち筋が定まっていなかった",
         "ブランドやUXを設計できる専門人材が不足していた",
@@ -564,22 +1251,53 @@
         "認知拡大施策の実行支援と改善"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "現状・市場分析", "output": "ターゲット / ポジショニング" },
-        { "period": "2ヶ月目", "title": "ブランド・UX設計", "output": "ブランド指針 / メッセージ" },
-        { "period": "3ヶ月〜", "title": "認知拡大施策の実行・改善", "output": "施策計画 / 効果測定" }
+        {
+          "period": "〜1ヶ月",
+          "title": "現状・市場分析",
+          "output": "ターゲット / ポジショニング"
+        },
+        {
+          "period": "2ヶ月目",
+          "title": "ブランド・UX設計",
+          "output": "ブランド指針 / メッセージ"
+        },
+        {
+          "period": "3ヶ月〜",
+          "title": "認知拡大施策の実行・改善",
+          "output": "施策計画 / 効果測定"
+        }
       ],
       "proRoles": [
-        { "role": "マーケ／ブランディングリード", "mission": "訴求設計から施策実行までを伴走" },
-        { "role": "UXデザイナー", "mission": "顧客体験の設計・改善" }
+        {
+          "role": "マーケ／ブランディングリード",
+          "mission": "訴求設計から施策実行までを伴走"
+        },
+        {
+          "role": "UXデザイナー",
+          "mission": "顧客体験の設計・改善"
+        }
       ],
       "role": "消費財・ヘルスケア領域のマーケ／ブランディング経験者"
     },
     {
-      "id": "case-hr-recruit", "categories": ["hr", "marketing"], "tag": "採用・組織",
-      "industry": "ネット広告・IT企業", "scale": "中堅", "period": "12ヶ月〜継続", "commitment": "週2日程度のハンズオン支援",
+      "id": "case-hr-recruit",
+      "categories": [
+        "hr",
+        "marketing"
+      ],
+      "tag": "採用・組織",
+      "industry": "ネット広告・IT企業",
+      "scale": "中堅",
+      "period": "12ヶ月〜継続",
+      "commitment": "週2日程度のハンズオン支援",
       "title": "データ分析に基づく採用戦略の再構築と定着率改善",
       "summary": "退職データ分析による課題特定から、採用ブランディング刷新・ダイレクト採用体制の構築までを実装で支援。",
-      "process": ["退職・組織分析", "採用戦略策定", "ダイレクト採用実装", "選考・定着改善"],
+      "process": [
+        "退職・組織分析",
+        "採用戦略策定",
+        "ダイレクト採用実装",
+        "選考・定着改善"
+      ],
       "challenges": [
         "採用が特定エージェント依存でコストが高騰していた",
         "求める人材要件が曖昧で、面接官ごとに評価基準がばらついていた",
@@ -591,23 +1309,57 @@
         "選考プロセスの標準化と定着に向けた組織改善"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "退職・組織データ分析", "output": "課題マップ / 要因分析" },
-        { "period": "2〜3ヶ月", "title": "採用戦略・ブランディング再設計", "output": "採用要件 / 訴求メッセージ" },
-        { "period": "4ヶ月〜", "title": "ダイレクト採用の実装・定着改善", "output": "スカウト運用 / 選考基準・1on1改善" }
+        {
+          "period": "〜1ヶ月",
+          "title": "退職・組織データ分析",
+          "output": "課題マップ / 要因分析"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "採用戦略・ブランディング再設計",
+          "output": "採用要件 / 訴求メッセージ"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "ダイレクト採用の実装・定着改善",
+          "output": "スカウト運用 / 選考基準・1on1改善"
+        }
       ],
       "proRoles": [
-        { "role": "採用戦略リード", "mission": "データ分析から採用設計・実装までを主導" },
-        { "role": "スカウト運用担当", "mission": "スカウト文面作成〜運用の実働" },
-        { "role": "組織開発アドバイザー", "mission": "定着に向けた1on1・組織施策の助言" }
+        {
+          "role": "採用戦略リード",
+          "mission": "データ分析から採用設計・実装までを主導"
+        },
+        {
+          "role": "スカウト運用担当",
+          "mission": "スカウト文面作成〜運用の実働"
+        },
+        {
+          "role": "組織開発アドバイザー",
+          "mission": "定着に向けた1on1・組織施策の助言"
+        }
       ],
       "role": "採用・人材領域の実務経験を持つプロ（事業会社／エージェント出身）"
     },
     {
-      "id": "case-hr-succession", "categories": ["hr", "governance"], "tag": "HR / ガバナンス",
-      "industry": "専門商社", "scale": "大手", "period": "6ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-hr-succession",
+      "categories": [
+        "hr",
+        "governance"
+      ],
+      "tag": "HR / ガバナンス",
+      "industry": "専門商社",
+      "scale": "大手",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "コーポレートガバナンス構築とサクセッションプラン策定",
       "summary": "指名報酬委員会の立ち上げ・役員報酬設計から、次世代リーダーの候補者プール構築までを支援。",
-      "process": ["現状分析", "委員会設計", "報酬設計", "候補者プール構築"],
+      "process": [
+        "現状分析",
+        "委員会設計",
+        "報酬設計",
+        "候補者プール構築"
+      ],
       "challenges": [
         "コーポレートガバナンス体制の整備が追いついていなかった",
         "役員報酬の設計・運用に専門知見が必要だった",
@@ -619,21 +1371,49 @@
         "サクセッションプラン（候補者プール）の策定"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "現状分析・委員会設計", "output": "ガバナンス現状評価 / 委員会案" },
-        { "period": "3〜4ヶ月", "title": "役員報酬制度の設計", "output": "報酬制度設計書" },
-        { "period": "5ヶ月〜", "title": "サクセッションプラン策定", "output": "候補者プール / 育成計画" }
+        {
+          "period": "〜2ヶ月",
+          "title": "現状分析・委員会設計",
+          "output": "ガバナンス現状評価 / 委員会案"
+        },
+        {
+          "period": "3〜4ヶ月",
+          "title": "役員報酬制度の設計",
+          "output": "報酬制度設計書"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "サクセッションプラン策定",
+          "output": "候補者プール / 育成計画"
+        }
       ],
       "proRoles": [
-        { "role": "人事・組織ガバナンスのプロ", "mission": "委員会立ち上げ〜報酬・後継者設計を伴走" }
+        {
+          "role": "人事・組織ガバナンスのプロ",
+          "mission": "委員会立ち上げ〜報酬・後継者設計を伴走"
+        }
       ],
       "role": "人事・組織ガバナンスのプロ（人事コンサルタント）"
     },
     {
-      "id": "case-fin-pmi", "categories": ["finance", "governance"], "tag": "経理・財務",
-      "industry": "専門商社", "scale": "大手", "period": "12ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-fin-pmi",
+      "categories": [
+        "finance",
+        "governance"
+      ],
+      "tag": "経理・財務",
+      "industry": "専門商社",
+      "scale": "大手",
+      "period": "12ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "M&A後のPMI完遂と内部統制・連結決算システム導入",
       "summary": "複数M&A後の複雑な決算業務を改善。管理会計基準を統一し、連結決算の早期化を実現。",
-      "process": ["現状把握", "基準統一", "システム導入", "決算早期化"],
+      "process": [
+        "現状把握",
+        "基準統一",
+        "システム導入",
+        "決算早期化"
+      ],
       "challenges": [
         "複数M&A後の決算業務が複雑化し、締めに時間がかかっていた",
         "グループ間で管理会計基準が統一されていなかった",
@@ -645,22 +1425,52 @@
         "連結決算システムの導入と決算早期化"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "決算業務の現状把握", "output": "課題整理 / 統一方針" },
-        { "period": "3〜6ヶ月", "title": "管理会計基準の統一・内部統制整備", "output": "統一基準 / 統制フロー" },
-        { "period": "7ヶ月〜", "title": "連結決算システム導入・早期化", "output": "新システム / 決算早期化" }
+        {
+          "period": "〜2ヶ月",
+          "title": "決算業務の現状把握",
+          "output": "課題整理 / 統一方針"
+        },
+        {
+          "period": "3〜6ヶ月",
+          "title": "管理会計基準の統一・内部統制整備",
+          "output": "統一基準 / 統制フロー"
+        },
+        {
+          "period": "7ヶ月〜",
+          "title": "連結決算システム導入・早期化",
+          "output": "新システム / 決算早期化"
+        }
       ],
       "proRoles": [
-        { "role": "元海外CFO", "mission": "PMI全体設計と決算高度化を主導" },
-        { "role": "連結決算スペシャリスト", "mission": "システム導入と実務標準化の支援" }
+        {
+          "role": "元海外CFO",
+          "mission": "PMI全体設計と決算高度化を主導"
+        },
+        {
+          "role": "連結決算スペシャリスト",
+          "mission": "システム導入と実務標準化の支援"
+        }
       ],
       "role": "元大手企業 海外CFO"
     },
     {
-      "id": "case-fin-fpa", "categories": ["finance"], "tag": "経営管理",
-      "industry": "メーカー", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-fin-fpa",
+      "categories": [
+        "finance"
+      ],
+      "tag": "経営管理",
+      "industry": "メーカー",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "管理会計・FP&Aの高度化による経営の見える化",
       "summary": "月次の早期化と事業別採算の可視化を進め、経営判断に効く管理会計へと作り替え。",
-      "process": ["現状分析", "管理会計設計", "予実の仕組み化", "運用定着"],
+      "process": [
+        "現状分析",
+        "管理会計設計",
+        "予実の仕組み化",
+        "運用定着"
+      ],
       "challenges": [
         "月次が“締めて終わり”で、経営判断に活かせていなかった",
         "事業別の採算・収益性が見えていなかった",
@@ -672,21 +1482,49 @@
         "経営会議への落とし込みと運用定着"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "現状分析", "output": "管理会計の課題整理" },
-        { "period": "2〜3ヶ月", "title": "管理会計・KPI設計", "output": "KPI体系 / レポート様式" },
-        { "period": "4ヶ月〜", "title": "予実の仕組み化・運用定着", "output": "予実プロセス / 経営会議への実装" }
+        {
+          "period": "〜1ヶ月",
+          "title": "現状分析",
+          "output": "管理会計の課題整理"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "管理会計・KPI設計",
+          "output": "KPI体系 / レポート様式"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "予実の仕組み化・運用定着",
+          "output": "予実プロセス / 経営会議への実装"
+        }
       ],
       "proRoles": [
-        { "role": "元CFO／経営企画", "mission": "管理会計の設計から運用定着までを伴走" }
+        {
+          "role": "元CFO／経営企画",
+          "mission": "管理会計の設計から運用定着までを伴走"
+        }
       ],
       "role": "事業会社出身の元CFO／経営企画"
     },
     {
-      "id": "case-scm-ai", "categories": ["scm", "dx"], "tag": "DX / SCM",
-      "industry": "繊維・アパレルメーカー", "scale": "大手", "period": "12ヶ月〜継続", "commitment": "週2日",
+      "id": "case-scm-ai",
+      "categories": [
+        "scm",
+        "dx"
+      ],
+      "tag": "DX / SCM",
+      "industry": "繊維・アパレルメーカー",
+      "scale": "大手",
+      "period": "12ヶ月〜継続",
+      "commitment": "週2日",
       "title": "グローバルSCM刷新と在庫適正化に向けた需要予測の高度化",
       "summary": "属人的な発注業務を見直し、データに基づく需要予測で在庫回転率とキャッシュフローを改善。",
-      "process": ["現状分析", "需要予測設計", "業務標準化", "定着・改善"],
+      "process": [
+        "現状分析",
+        "需要予測設計",
+        "業務標準化",
+        "定着・改善"
+      ],
       "challenges": [
         "発注業務が属人化し、欠品と過剰在庫が併存していた",
         "需給調整がデータに基づいておらず、精度が上がらなかった",
@@ -698,22 +1536,53 @@
         "発注業務の標準化と在庫適正化"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "需給・在庫の現状分析", "output": "課題・ボトルネック整理" },
-        { "period": "3〜6ヶ月", "title": "需要予測の設計・試行", "output": "予測モデル / 試行結果" },
-        { "period": "7ヶ月〜", "title": "発注業務の標準化・在庫適正化", "output": "標準業務 / 在庫改善" }
+        {
+          "period": "〜2ヶ月",
+          "title": "需給・在庫の現状分析",
+          "output": "課題・ボトルネック整理"
+        },
+        {
+          "period": "3〜6ヶ月",
+          "title": "需要予測の設計・試行",
+          "output": "予測モデル / 試行結果"
+        },
+        {
+          "period": "7ヶ月〜",
+          "title": "発注業務の標準化・在庫適正化",
+          "output": "標準業務 / 在庫改善"
+        }
       ],
       "proRoles": [
-        { "role": "元CIO（外資系製造業）", "mission": "SCM刷新の全体設計を主導" },
-        { "role": "データサイエンティスト", "mission": "需要予測モデルの構築" }
+        {
+          "role": "元CIO（外資系製造業）",
+          "mission": "SCM刷新の全体設計を主導"
+        },
+        {
+          "role": "データサイエンティスト",
+          "mission": "需要予測モデルの構築"
+        }
       ],
       "role": "外資系製造業 元CIO"
     },
     {
-      "id": "case-mfg-tps", "categories": ["manufactur", "scm"], "tag": "生産改善",
-      "industry": "食品メーカー", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "月数回の現場指導",
+      "id": "case-mfg-tps",
+      "categories": [
+        "manufactur",
+        "scm"
+      ],
+      "tag": "生産改善",
+      "industry": "食品メーカー",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "月数回の現場指導",
       "title": "工場生産性の抜本改善と原価率の低減",
       "summary": "製造ラインのボトルネック解消と省人化を、品質を維持しながら実装。製造原価を大幅に改善。",
-      "process": ["現場診断", "改善計画", "改善実装", "定着"],
+      "process": [
+        "現場診断",
+        "改善計画",
+        "改善実装",
+        "定着"
+      ],
       "challenges": [
         "製造ラインにボトルネックがあり、生産性が頭打ちだった",
         "省人化・自動化の進め方が描けていなかった",
@@ -725,21 +1594,49 @@
         "品質を維持した原価低減の定着"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "現場診断", "output": "ボトルネック特定" },
-        { "period": "2〜4ヶ月", "title": "改善計画・実装", "output": "改善案 / 省人化施策" },
-        { "period": "5ヶ月〜", "title": "定着", "output": "標準化 / 原価改善の定着" }
+        {
+          "period": "〜1ヶ月",
+          "title": "現場診断",
+          "output": "ボトルネック特定"
+        },
+        {
+          "period": "2〜4ヶ月",
+          "title": "改善計画・実装",
+          "output": "改善案 / 省人化施策"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "定着",
+          "output": "標準化 / 原価改善の定着"
+        }
       ],
       "proRoles": [
-        { "role": "トヨタ生産方式の熟練指導者", "mission": "現場診断から改善・定着まで指導" }
+        {
+          "role": "トヨタ生産方式の熟練指導者",
+          "mission": "現場診断から改善・定着まで指導"
+        }
       ],
       "role": "トヨタ生産方式の熟練指導者"
     },
     {
-      "id": "case-mfg-smart", "categories": ["manufactur", "dx"], "tag": "スマートファクトリー",
-      "industry": "電機・部品メーカー", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-mfg-smart",
+      "categories": [
+        "manufactur",
+        "dx"
+      ],
+      "tag": "スマートファクトリー",
+      "industry": "電機・部品メーカー",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "スマートファクトリー化と品質・省人化の段階的推進",
       "summary": "設備・品質・工程のデータ化を段階的に進め、現場主導の改善とデジタル化を両立。",
-      "process": ["現場診断", "データ化設計", "改善実装", "定着"],
+      "process": [
+        "現場診断",
+        "データ化設計",
+        "改善実装",
+        "定着"
+      ],
       "challenges": [
         "品質・工程データが取れておらず、改善が勘に頼っていた",
         "省人化・自動化の進め方が描けていなかった",
@@ -751,21 +1648,49 @@
         "省人化・自動化の段階的な導入"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "現場診断・データ化設計", "output": "データ化計画" },
-        { "period": "2〜4ヶ月", "title": "品質・工程の可視化", "output": "可視化ダッシュボード" },
-        { "period": "5ヶ月〜", "title": "省人化・自動化の段階導入", "output": "自動化施策 / 定着" }
+        {
+          "period": "〜1ヶ月",
+          "title": "現場診断・データ化設計",
+          "output": "データ化計画"
+        },
+        {
+          "period": "2〜4ヶ月",
+          "title": "品質・工程の可視化",
+          "output": "可視化ダッシュボード"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "省人化・自動化の段階導入",
+          "output": "自動化施策 / 定着"
+        }
       ],
       "proRoles": [
-        { "role": "生産技術／IEプロ", "mission": "データ化から省人化までを伴走" }
+        {
+          "role": "生産技術／IEプロ",
+          "mission": "データ化から省人化までを伴走"
+        }
       ],
       "role": "製造業出身の生産技術／IEプロ"
     },
     {
-      "id": "case-retail-omo", "categories": ["marketing", "retail"], "tag": "マーケティング",
-      "industry": "消費財ブランド", "scale": "中堅", "period": "12ヶ月〜継続", "commitment": "週2日",
+      "id": "case-retail-omo",
+      "categories": [
+        "marketing",
+        "retail"
+      ],
+      "tag": "マーケティング",
+      "industry": "消費財ブランド",
+      "scale": "中堅",
+      "period": "12ヶ月〜継続",
+      "commitment": "週2日",
       "title": "ECチャネルのマーケ・CRMで既存顧客のLTVを最大化",
       "summary": "店舗モデルから直販ECとのオムニチャネルへ。CRM基盤とデータドリブンな運用でLTVを最大化。",
-      "process": ["現状分析", "CRM基盤構築", "施策運用", "LTV改善"],
+      "process": [
+        "現状分析",
+        "CRM基盤構築",
+        "施策運用",
+        "LTV改善"
+      ],
       "challenges": [
         "EC・店舗・顧客データが分断していた",
         "オムニチャネルを推進できる人材が社内にいなかった",
@@ -777,22 +1702,54 @@
         "オムニチャネル体験の設計とLTV改善"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "現状分析", "output": "顧客データ課題整理" },
-        { "period": "3〜6ヶ月", "title": "CRM基盤構築", "output": "統合顧客基盤" },
-        { "period": "7ヶ月〜", "title": "施策運用・LTV改善", "output": "広告・販促運用 / LTV向上" }
+        {
+          "period": "〜2ヶ月",
+          "title": "現状分析",
+          "output": "顧客データ課題整理"
+        },
+        {
+          "period": "3〜6ヶ月",
+          "title": "CRM基盤構築",
+          "output": "統合顧客基盤"
+        },
+        {
+          "period": "7ヶ月〜",
+          "title": "施策運用・LTV改善",
+          "output": "広告・販促運用 / LTV向上"
+        }
       ],
       "proRoles": [
-        { "role": "元事業責任者（大手ブランド）", "mission": "オムニチャネル戦略と運用を主導" },
-        { "role": "CRM／広告運用スペシャリスト", "mission": "データドリブンな施策運用" }
+        {
+          "role": "元事業責任者（大手ブランド）",
+          "mission": "オムニチャネル戦略と運用を主導"
+        },
+        {
+          "role": "CRM／広告運用スペシャリスト",
+          "mission": "データドリブンな施策運用"
+        }
       ],
       "role": "大手ブランド 元事業責任者"
     },
     {
-      "id": "case-retail-web", "categories": ["retail", "newbiz", "dx"], "tag": "OMO / 事業化",
-      "industry": "建材・住宅設備メーカー", "scale": "上場企業", "period": "6ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-retail-web",
+      "categories": [
+        "retail",
+        "newbiz",
+        "dx"
+      ],
+      "tag": "OMO / 事業化",
+      "industry": "建材・住宅設備メーカー",
+      "scale": "上場企業",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "既存事業のWebサービス化・オンライン販路の構築",
       "summary": "既存事業のオンライン化構想から、サービス設計・立ち上げ・運用までを伴走。",
-      "process": ["事業構想", "サービス設計", "開発・立ち上げ", "運用"],
+      "process": [
+        "事業構想",
+        "サービス設計",
+        "開発・立ち上げ",
+        "運用"
+      ],
       "challenges": [
         "既存事業をオンライン化する構想が固まっていなかった",
         "Web／ECの立ち上げ知見が社内になかった",
@@ -804,21 +1761,49 @@
         "立ち上げと運用の支援"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "事業構想", "output": "オンライン化構想" },
-        { "period": "2〜4ヶ月", "title": "サービス・UX設計、開発", "output": "サービス設計 / MVP" },
-        { "period": "5ヶ月〜", "title": "立ち上げ・運用", "output": "リリース / 運用体制" }
+        {
+          "period": "〜1ヶ月",
+          "title": "事業構想",
+          "output": "オンライン化構想"
+        },
+        {
+          "period": "2〜4ヶ月",
+          "title": "サービス・UX設計、開発",
+          "output": "サービス設計 / MVP"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "立ち上げ・運用",
+          "output": "リリース / 運用体制"
+        }
       ],
       "proRoles": [
-        { "role": "EC／新規事業立ち上げ経験者", "mission": "構想から立ち上げ・運用までを伴走" }
+        {
+          "role": "EC／新規事業立ち上げ経験者",
+          "mission": "構想から立ち上げ・運用までを伴走"
+        }
       ],
       "role": "EC／新規事業立ち上げ経験者"
     },
     {
-      "id": "case-bpr-ops", "categories": ["bpr", "dx"], "tag": "BPR / 業務改善",
-      "industry": "中堅企業（管理部門）", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-bpr-ops",
+      "categories": [
+        "bpr",
+        "dx"
+      ],
+      "tag": "BPR / 業務改善",
+      "industry": "中堅企業（管理部門）",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "管理部門の業務棚卸しと標準化・自動化",
       "summary": "属人化・重複・手戻りの多い業務を棚卸しし、標準化と自動化の順序を設計して実装。",
-      "process": ["業務棚卸し", "課題特定", "標準化設計", "自動化・定着"],
+      "process": [
+        "業務棚卸し",
+        "課題特定",
+        "標準化設計",
+        "自動化・定着"
+      ],
       "challenges": [
         "属人化・重複・手戻りの多い業務が放置されていた",
         "ツール導入が目的化し、業務そのものが変わっていなかった",
@@ -830,21 +1815,48 @@
         "自動化の順序設計と現場への定着"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "業務棚卸し・課題特定", "output": "業務一覧 / 課題マップ" },
-        { "period": "2〜3ヶ月", "title": "標準化設計", "output": "標準業務フロー" },
-        { "period": "4ヶ月〜", "title": "自動化・定着", "output": "自動化 / 運用定着" }
+        {
+          "period": "〜1ヶ月",
+          "title": "業務棚卸し・課題特定",
+          "output": "業務一覧 / 課題マップ"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "標準化設計",
+          "output": "標準業務フロー"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "自動化・定着",
+          "output": "自動化 / 運用定着"
+        }
       ],
       "proRoles": [
-        { "role": "BPR・業務改革のプロ", "mission": "棚卸しから標準化・自動化・定着まで主導" }
+        {
+          "role": "BPR・業務改革のプロ",
+          "mission": "棚卸しから標準化・自動化・定着まで主導"
+        }
       ],
       "role": "BPR・業務改革のプロ"
     },
     {
-      "id": "case-bpr-paperless", "categories": ["bpr"], "tag": "BPR / 業務改善",
-      "industry": "メーカー（間接部門）", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-bpr-paperless",
+      "categories": [
+        "bpr"
+      ],
+      "tag": "BPR / 業務改善",
+      "industry": "メーカー（間接部門）",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "全社業務の棚卸しとペーパーレス・標準化",
       "summary": "紙・手作業・属人化の多い間接業務を棚卸しし、標準化とデジタル化で効率を底上げ。",
-      "process": ["棚卸し", "標準化", "デジタル化", "定着"],
+      "process": [
+        "棚卸し",
+        "標準化",
+        "デジタル化",
+        "定着"
+      ],
       "challenges": [
         "紙・手作業・属人化が多く、生産性が上がらなかった",
         "部門ごとにやり方がバラバラで非効率だった",
@@ -856,21 +1868,49 @@
         "運用ルールの整備と定着"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "棚卸し", "output": "業務一覧" },
-        { "period": "2〜3ヶ月", "title": "標準化・デジタル化", "output": "標準フロー / ペーパーレス化" },
-        { "period": "4ヶ月〜", "title": "定着", "output": "運用ルール" }
+        {
+          "period": "〜1ヶ月",
+          "title": "棚卸し",
+          "output": "業務一覧"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "標準化・デジタル化",
+          "output": "標準フロー / ペーパーレス化"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "定着",
+          "output": "運用ルール"
+        }
       ],
       "proRoles": [
-        { "role": "業務改革・情シスのプロ", "mission": "棚卸しからデジタル化・定着までを伴走" }
+        {
+          "role": "業務改革・情シスのプロ",
+          "mission": "棚卸しからデジタル化・定着までを伴走"
+        }
       ],
       "role": "業務改革・情シスのプロ"
     },
     {
-      "id": "case-dx-strategy", "categories": ["dx", "governance"], "tag": "DX推進",
-      "industry": "中堅企業", "scale": "中堅", "period": "12ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-dx-strategy",
+      "categories": [
+        "dx",
+        "governance"
+      ],
+      "tag": "DX推進",
+      "industry": "中堅企業",
+      "scale": "中堅",
+      "period": "12ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "全社DX戦略の策定と推進体制づくり",
       "summary": "現状評価から戦略・ロードマップ策定、推進体制の設計・現場実装までを伴走。",
-      "process": ["現状評価", "戦略・ロードマップ", "体制設計", "推進伴走"],
+      "process": [
+        "現状評価",
+        "戦略・ロードマップ",
+        "体制設計",
+        "推進伴走"
+      ],
       "challenges": [
         "各部門がバラバラにDXに取り組み、全社で推進できていなかった",
         "戦略はあるが現場実装に落とし込めていなかった",
@@ -882,21 +1922,49 @@
         "現場実装の伴走"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "現状評価", "output": "DX成熟度評価" },
-        { "period": "3〜5ヶ月", "title": "戦略・ロードマップ策定", "output": "DX戦略 / ロードマップ" },
-        { "period": "6ヶ月〜", "title": "推進体制構築・現場実装", "output": "推進体制 / 実装伴走" }
+        {
+          "period": "〜2ヶ月",
+          "title": "現状評価",
+          "output": "DX成熟度評価"
+        },
+        {
+          "period": "3〜5ヶ月",
+          "title": "戦略・ロードマップ策定",
+          "output": "DX戦略 / ロードマップ"
+        },
+        {
+          "period": "6ヶ月〜",
+          "title": "推進体制構築・現場実装",
+          "output": "推進体制 / 実装伴走"
+        }
       ],
       "proRoles": [
-        { "role": "DX推進責任者経験者", "mission": "戦略策定から推進・実装までを伴走" }
+        {
+          "role": "DX推進責任者経験者",
+          "mission": "戦略策定から推進・実装までを伴走"
+        }
       ],
       "role": "DX推進責任者の経験者"
     },
     {
-      "id": "case-ai-dev", "categories": ["ai", "dev"], "tag": "AI活用",
-      "industry": "印刷・情報コミュニケーション大手", "scale": "大手", "period": "6ヶ月〜継続", "commitment": "週1〜2日",
+      "id": "case-ai-dev",
+      "categories": [
+        "ai",
+        "dev"
+      ],
+      "tag": "AI活用",
+      "industry": "印刷・情報コミュニケーション大手",
+      "scale": "大手",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1〜2日",
       "title": "AI活用テーマの整理から技術検証・実装まで",
       "summary": "AIをどの業務・事業に使うかの整理からPoC、実装・運用までを一気通貫で支援。",
-      "process": ["課題整理", "PoC", "実装", "運用・内製化"],
+      "process": [
+        "課題整理",
+        "PoC",
+        "実装",
+        "運用・内製化"
+      ],
       "challenges": [
         "AIをどの業務・事業に使うか定まっていなかった",
         "PoC止まりで本番運用まで進まなかった",
@@ -908,21 +1976,49 @@
         "運用・内製化の支援"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "課題整理", "output": "AI活用テーマ一覧" },
-        { "period": "2〜3ヶ月", "title": "PoC", "output": "PoC結果 / 効果検証" },
-        { "period": "4ヶ月〜", "title": "実装・運用／内製化", "output": "本番実装 / 運用体制" }
+        {
+          "period": "〜1ヶ月",
+          "title": "課題整理",
+          "output": "AI活用テーマ一覧"
+        },
+        {
+          "period": "2〜3ヶ月",
+          "title": "PoC",
+          "output": "PoC結果 / 効果検証"
+        },
+        {
+          "period": "4ヶ月〜",
+          "title": "実装・運用／内製化",
+          "output": "本番実装 / 運用体制"
+        }
       ],
       "proRoles": [
-        { "role": "AI／アルゴリズム開発の専門家", "mission": "PoCから実装・内製化までを主導" }
+        {
+          "role": "AI／アルゴリズム開発の専門家",
+          "mission": "PoCから実装・内製化までを主導"
+        }
       ],
       "role": "AI／アルゴリズム開発の専門家"
     },
     {
-      "id": "case-ai-advisor", "categories": ["ai", "dev"], "tag": "技術顧問",
-      "industry": "ヘルスケア・バイオ系スタートアップ", "scale": "スタートアップ", "period": "3ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-ai-advisor",
+      "categories": [
+        "ai",
+        "dev"
+      ],
+      "tag": "技術顧問",
+      "industry": "ヘルスケア・バイオ系スタートアップ",
+      "scale": "スタートアップ",
+      "period": "3ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "プロダクトの医療ドメイン・技術顧問支援",
       "summary": "医療ドメインと技術の両面から、開発方針の意思決定を顧問として支援。",
-      "process": ["要件整理", "技術・規制レビュー", "開発方針策定", "伴走"],
+      "process": [
+        "要件整理",
+        "技術・規制レビュー",
+        "開発方針策定",
+        "伴走"
+      ],
       "challenges": [
         "医療ドメインと技術の両面を見られる人材が不在だった",
         "規制・品質要件の勘所が分からなかった",
@@ -934,21 +2030,49 @@
         "開発方針の意思決定支援"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "要件整理・技術/規制レビュー", "output": "要件 / リスク整理" },
-        { "period": "2ヶ月目", "title": "開発方針の策定", "output": "技術方針 / アーキ指針" },
-        { "period": "3ヶ月〜", "title": "開発の伴走", "output": "意思決定サポート" }
+        {
+          "period": "〜1ヶ月",
+          "title": "要件整理・技術/規制レビュー",
+          "output": "要件 / リスク整理"
+        },
+        {
+          "period": "2ヶ月目",
+          "title": "開発方針の策定",
+          "output": "技術方針 / アーキ指針"
+        },
+        {
+          "period": "3ヶ月〜",
+          "title": "開発の伴走",
+          "output": "意思決定サポート"
+        }
       ],
       "proRoles": [
-        { "role": "医療×技術のドメイン顧問", "mission": "医療・規制・技術の観点から開発を助言" }
+        {
+          "role": "医療×技術のドメイン顧問",
+          "mission": "医療・規制・技術の観点から開発を助言"
+        }
       ],
       "role": "医療 × 技術のドメイン顧問"
     },
     {
-      "id": "case-dev-erp", "categories": ["dev", "security"], "tag": "IT / セキュリティ",
-      "industry": "電機メーカー", "scale": "大手", "period": "12ヶ月〜継続", "commitment": "週2日",
+      "id": "case-dev-erp",
+      "categories": [
+        "dev",
+        "security"
+      ],
+      "tag": "IT / セキュリティ",
+      "industry": "電機メーカー",
+      "scale": "大手",
+      "period": "12ヶ月〜継続",
+      "commitment": "週2日",
       "title": "基幹システム再構築とセキュリティガバナンス強化",
       "summary": "レガシー脱却に向けたデータ基盤構築〜ERP刷新と、セキュリティ委員会・規程の整備を並行推進。",
-      "process": ["現状評価", "要件定義", "刷新・実装", "ガバナンス整備"],
+      "process": [
+        "現状評価",
+        "要件定義",
+        "刷新・実装",
+        "ガバナンス整備"
+      ],
       "challenges": [
         "レガシーシステムが刷新できず、開発を自社で握れていなかった",
         "セキュリティガバナンスの整備が追いついていなかった",
@@ -960,22 +2084,53 @@
         "ベンダーコントロールの内製化支援"
       ],
       "roadmap": [
-        { "period": "〜2ヶ月", "title": "現状評価・要件定義", "output": "要件定義書" },
-        { "period": "3〜9ヶ月", "title": "データ基盤構築・ERP刷新", "output": "新基盤 / ERP" },
-        { "period": "10ヶ月〜", "title": "セキュリティガバナンス整備", "output": "委員会 / 文書規程" }
+        {
+          "period": "〜2ヶ月",
+          "title": "現状評価・要件定義",
+          "output": "要件定義書"
+        },
+        {
+          "period": "3〜9ヶ月",
+          "title": "データ基盤構築・ERP刷新",
+          "output": "新基盤 / ERP"
+        },
+        {
+          "period": "10ヶ月〜",
+          "title": "セキュリティガバナンス整備",
+          "output": "委員会 / 文書規程"
+        }
       ],
       "proRoles": [
-        { "role": "CISO経験者", "mission": "刷新PMとセキュリティ統制を主導" },
-        { "role": "ERP／データ基盤PM", "mission": "要件定義〜実装のプロジェクト管理" }
+        {
+          "role": "CISO経験者",
+          "mission": "刷新PMとセキュリティ統制を主導"
+        },
+        {
+          "role": "ERP／データ基盤PM",
+          "mission": "要件定義〜実装のプロジェクト管理"
+        }
       ],
       "role": "複数の大手メーカーで務めたCISO"
     },
     {
-      "id": "case-sec-zerotrust", "categories": ["security", "governance"], "tag": "セキュリティ",
-      "industry": "中堅企業", "scale": "中堅", "period": "6ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-sec-zerotrust",
+      "categories": [
+        "security",
+        "governance"
+      ],
+      "tag": "セキュリティ",
+      "industry": "中堅企業",
+      "scale": "中堅",
+      "period": "6ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "セキュリティガバナンス強化・ゼロトラスト移行",
       "summary": "リスク棚卸しから方針策定、認証・権限・監視の設計、運用ルールの定着までを段階的に推進。",
-      "process": ["リスク棚卸し", "方針策定", "設計・実装", "運用定着"],
+      "process": [
+        "リスク棚卸し",
+        "方針策定",
+        "設計・実装",
+        "運用定着"
+      ],
       "challenges": [
         "インシデントが起きてから動く後追いの体制だった",
         "セキュリティ方針・規程が未整備だった",
@@ -987,21 +2142,48 @@
         "規程整備と運用ルールの定着"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "リスク棚卸し・方針策定", "output": "リスク一覧 / 方針" },
-        { "period": "2〜4ヶ月", "title": "認証・権限・監視の設計／実装", "output": "設計書 / 実装" },
-        { "period": "5ヶ月〜", "title": "規程整備・運用定着", "output": "規程 / 運用ルール" }
+        {
+          "period": "〜1ヶ月",
+          "title": "リスク棚卸し・方針策定",
+          "output": "リスク一覧 / 方針"
+        },
+        {
+          "period": "2〜4ヶ月",
+          "title": "認証・権限・監視の設計／実装",
+          "output": "設計書 / 実装"
+        },
+        {
+          "period": "5ヶ月〜",
+          "title": "規程整備・運用定着",
+          "output": "規程 / 運用ルール"
+        }
       ],
       "proRoles": [
-        { "role": "セキュリティ責任者（CISO）経験者", "mission": "方針策定から実装・定着までを主導" }
+        {
+          "role": "セキュリティ責任者（CISO）経験者",
+          "mission": "方針策定から実装・定着までを主導"
+        }
       ],
       "role": "セキュリティ責任者（CISO）の経験者"
     },
     {
-      "id": "case-gov-esg", "categories": ["governance"], "tag": "ESG / サステナビリティ",
-      "industry": "建設・不動産", "scale": "プライム上場", "period": "12ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-gov-esg",
+      "categories": [
+        "governance"
+      ],
+      "tag": "ESG / サステナビリティ",
+      "industry": "建設・不動産",
+      "scale": "プライム上場",
+      "period": "12ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "ESG経営の実装と統合報告書による開示強化",
       "summary": "マテリアリティ特定からKPI設定、TCFD対応まで支援し、投資家評価の向上に貢献。",
-      "process": ["マテリアリティ特定", "KPI設定", "開示対応", "評価向上"],
+      "process": [
+        "マテリアリティ特定",
+        "KPI設定",
+        "開示対応",
+        "評価向上"
+      ],
       "challenges": [
         "ESG経営の実装と開示への対応が追いついていなかった",
         "マテリアリティ（重要課題）の特定・KPI設計に知見が必要だった",
@@ -1013,21 +2195,49 @@
         "統合報告書による開示強化"
       ],
       "roadmap": [
-        { "period": "〜3ヶ月", "title": "マテリアリティ特定", "output": "重要課題 / KPI案" },
-        { "period": "4〜8ヶ月", "title": "KPI設定・開示対応", "output": "KPI体系 / TCFD対応" },
-        { "period": "9ヶ月〜", "title": "統合報告書による開示強化", "output": "統合報告書" }
+        {
+          "period": "〜3ヶ月",
+          "title": "マテリアリティ特定",
+          "output": "重要課題 / KPI案"
+        },
+        {
+          "period": "4〜8ヶ月",
+          "title": "KPI設定・開示対応",
+          "output": "KPI体系 / TCFD対応"
+        },
+        {
+          "period": "9ヶ月〜",
+          "title": "統合報告書による開示強化",
+          "output": "統合報告書"
+        }
       ],
       "proRoles": [
-        { "role": "ESG評価機関出身者", "mission": "マテリアリティ〜開示強化を伴走" }
+        {
+          "role": "ESG評価機関出身者",
+          "mission": "マテリアリティ〜開示強化を伴走"
+        }
       ],
       "role": "ESG評価機関の出身者"
     },
     {
-      "id": "case-gov-scope3", "categories": ["governance", "manufactur"], "tag": "ESG / GHG算定",
-      "industry": "建材・住宅設備メーカー", "scale": "上場企業", "period": "3ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-gov-scope3",
+      "categories": [
+        "governance",
+        "manufactur"
+      ],
+      "tag": "ESG / GHG算定",
+      "industry": "建材・住宅設備メーカー",
+      "scale": "上場企業",
+      "period": "3ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "GHG（Scope3）算定・排出量の可視化と開示支援",
       "summary": "算定範囲の設計からデータ収集の仕組みづくり、算定・開示までを支援。",
-      "process": ["算定範囲設計", "データ収集設計", "算定", "開示"],
+      "process": [
+        "算定範囲設計",
+        "データ収集設計",
+        "算定",
+        "開示"
+      ],
       "challenges": [
         "Scope3の算定手法・範囲が定まっていなかった",
         "算定に必要なデータ収集の仕組みがなかった",
@@ -1039,21 +2249,49 @@
         "算定と開示ドキュメントの整備"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "算定範囲・手法の設計", "output": "算定範囲定義" },
-        { "period": "2ヶ月目", "title": "データ収集プロセス構築", "output": "収集フロー" },
-        { "period": "3ヶ月〜", "title": "算定・開示整備", "output": "算定結果 / 開示資料" }
+        {
+          "period": "〜1ヶ月",
+          "title": "算定範囲・手法の設計",
+          "output": "算定範囲定義"
+        },
+        {
+          "period": "2ヶ月目",
+          "title": "データ収集プロセス構築",
+          "output": "収集フロー"
+        },
+        {
+          "period": "3ヶ月〜",
+          "title": "算定・開示整備",
+          "output": "算定結果 / 開示資料"
+        }
       ],
       "proRoles": [
-        { "role": "サステナビリティ／GHG算定の専門家", "mission": "算定設計から開示までを伴走" }
+        {
+          "role": "サステナビリティ／GHG算定の専門家",
+          "mission": "算定設計から開示までを伴走"
+        }
       ],
       "role": "サステナビリティ／GHG算定の専門家"
     },
     {
-      "id": "case-gov-ip", "categories": ["governance", "newbiz"], "tag": "事業化 / 知財",
-      "industry": "印刷・情報コミュニケーション大手", "scale": "大手", "period": "3ヶ月〜継続", "commitment": "週1日程度",
+      "id": "case-gov-ip",
+      "categories": [
+        "governance",
+        "newbiz"
+      ],
+      "tag": "事業化 / 知財",
+      "industry": "印刷・情報コミュニケーション大手",
+      "scale": "大手",
+      "period": "3ヶ月〜継続",
+      "commitment": "週1日程度",
       "title": "保有知財を活かした新規ライセンスサービスの立ち上げ",
       "summary": "知財の事業化構想から、ライセンススキームの設計・立ち上げまでを支援。",
-      "process": ["構想", "スキーム設計", "体制構築", "立ち上げ"],
+      "process": [
+        "構想",
+        "スキーム設計",
+        "体制構築",
+        "立ち上げ"
+      ],
       "challenges": [
         "保有する知財を事業化する“型”がなかった",
         "ライセンススキーム設計の知見が不足していた",
@@ -1065,17 +2303,31 @@
         "立ち上げ・運用の支援"
       ],
       "roadmap": [
-        { "period": "〜1ヶ月", "title": "事業構想", "output": "事業コンセプト" },
-        { "period": "2ヶ月目", "title": "スキーム設計", "output": "ライセンススキーム" },
-        { "period": "3ヶ月〜", "title": "体制構築・立ち上げ", "output": "立ち上げ計画" }
+        {
+          "period": "〜1ヶ月",
+          "title": "事業構想",
+          "output": "事業コンセプト"
+        },
+        {
+          "period": "2ヶ月目",
+          "title": "スキーム設計",
+          "output": "ライセンススキーム"
+        },
+        {
+          "period": "3ヶ月〜",
+          "title": "体制構築・立ち上げ",
+          "output": "立ち上げ計画"
+        }
       ],
       "proRoles": [
-        { "role": "知財／ライセンスビジネスの専門家", "mission": "事業構想からスキーム・立ち上げを伴走" }
+        {
+          "role": "知財／ライセンスビジネスの専門家",
+          "mission": "事業構想からスキーム・立ち上げを伴走"
+        }
       ],
       "role": "知財／ライセンスビジネスの専門家"
     }
   ],
-
   "_comment_pksha": "セクション5（任意）：PKSHAグループ ケイパビリティ。グループの武器を“武器の提示”ではなく“解決策”として紹介。",
   "pksha": [
     {
