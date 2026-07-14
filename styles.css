@@ -930,6 +930,27 @@ body.no-scroll { overflow: hidden; }
 .cs-label { font-weight: 700; color: var(--blue-d); font-size: 0.85rem; line-height: 1.4; }
 .cs-arrow { align-self: center; color: var(--blue-mid); font-size: 1rem; flex-shrink: 0; }
 
+/* 取り組みロードマップ：左→右のフロー（期間バッジ＋やること＋成果物） */
+.rm-flow { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; }
+.rm-step {
+  flex: 1 1 0; min-width: 150px;
+  background: var(--blue-l); border: 1px solid rgba(0, 121, 192, 0.18);
+  border-radius: 8px; padding: 12px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.rm-period {
+  align-self: flex-start; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  color: #fff; background: var(--blue); border-radius: 4px; padding: 2px 9px; letter-spacing: 0.03em;
+}
+.rm-title { font-weight: 700; color: var(--blue-d); font-size: 0.9rem; line-height: 1.45; }
+.rm-work { color: var(--ink-soft); font-size: 0.82rem; line-height: 1.55; }
+.rm-output {
+  display: inline-flex; align-items: flex-start; gap: 5px;
+  color: var(--moss); font-size: 0.78rem; font-weight: 600; line-height: 1.5;
+}
+.rm-output i { flex-shrink: 0; margin-top: 2px; }
+.rm-arrow { align-self: center; color: var(--blue-mid); font-size: 1rem; flex-shrink: 0; }
+
 /* 背景・課題 ↔ 支援内容 を左右で対比 */
 .case-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 24px; }
 .case-col { border-radius: 10px; padding: 16px 18px; }

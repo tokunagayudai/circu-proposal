@@ -536,12 +536,11 @@ function renderCases(data) {
 
 function caseCardHtml(p) {
   const clickable = !!p.id;
-  const scale = [p.industry, p.scale].filter(Boolean).join(" / ") || p.scale || "";
   return `
     <article class="card case-card${clickable ? " clickable" : ""}"${clickable ? ` data-case="${esc(p.id)}" role="button" tabindex="0"` : ""}>
       <div class="body">
         <div class="procase-top"><span class="procase-tag">${esc(p.tag)}</span></div>
-        <div class="industry">${esc(scale)}</div>
+        ${p.industry ? `<div class="industry">${esc(p.industry)}</div>` : ""}
         <h4>${esc(p.title)}</h4>
         <p class="summary">${esc(p.summary)}</p>
         ${p.role ? `<div class="procase-role"><i class="ti ti-user-star"></i>${esc(p.role)}</div>` : ""}
@@ -650,7 +649,7 @@ function openCaseModal(caseId, fromCat) {
   const p = CASES_BY_ID[caseId];
   if (!p) return;
   const profile = [
-    ["業界", p.industry], ["規模", p.scale], ["支援期間", p.period], ["支援工数", p.commitment],
+    ["業界", p.industry], ["支援期間", p.period], ["支援工数", p.commitment],
   ].filter(([, v]) => v);
 
   $("#modal-body").innerHTML = `
@@ -662,11 +661,6 @@ function openCaseModal(caseId, fromCat) {
       <div class="case-profile">
         ${profile.map(([k, v]) => `<div class="cp-item"><span class="cp-k">${esc(k)}</span><span class="cp-v">${esc(v)}</span></div>`).join("")}
       </div>` : ""}
-    ${p.process && p.process.length ? `
-      <section class="ds-sec">
-        <p class="ds-label"><i class="ti ti-route"></i>支援プロセス</p>
-        <div class="case-steps">${p.process.map((s, i) => `${i > 0 ? `<i class="ti ti-chevron-right cs-arrow"></i>` : ""}<span class="cs-step"><span class="cs-n">${i + 1}</span><span class="cs-label">${esc(s)}</span></span>`).join("")}</div>
-      </section>` : ""}
     ${(p.challenges && p.challenges.length) || (p.support && p.support.length) ? `
       <div class="case-cols">
         ${p.challenges && p.challenges.length ? `
@@ -682,18 +676,17 @@ function openCaseModal(caseId, fromCat) {
       </div>` : ""}
     ${p.roadmap && p.roadmap.length ? `
       <section class="ds-sec">
-        <p class="ds-label"><i class="ti ti-flag"></i>取り組みロードマップ</p>
-        <ol class="ms-timeline">
-          ${p.roadmap.map((m) => `
-            <li class="ms-item">
-              <span class="ms-period">${esc(m.period || "")}</span>
-              <div class="ms-main">
-                <span class="ms-title">${esc(m.title || "")}</span>
-                ${m.work ? `<span class="ms-work">${esc(m.work)}</span>` : ""}
-                ${m.output ? `<span class="ms-output"><i class="ti ti-file-text"></i>${esc(m.output)}</span>` : ""}
-              </div>
-            </li>`).join("")}
-        </ol>
+        <p class="ds-label"><i class="ti ti-route"></i>取り組みロードマップ</p>
+        <div class="rm-flow">
+          ${p.roadmap.map((m, i) => `
+            ${i > 0 ? `<i class="ti ti-chevron-right rm-arrow"></i>` : ""}
+            <div class="rm-step">
+              <span class="rm-period">${esc(m.period || "")}</span>
+              <span class="rm-title">${esc(m.title || "")}</span>
+              ${m.work ? `<span class="rm-work">${esc(m.work)}</span>` : ""}
+              ${m.output ? `<span class="rm-output"><i class="ti ti-file-text"></i>${esc(m.output)}</span>` : ""}
+            </div>`).join("")}
+        </div>
       </section>` : ""}
     ${p.proRoles && p.proRoles.length ? `
       <section class="ds-sec">
