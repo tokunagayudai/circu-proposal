@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>「選ぶ」から「育てる」へ ─ 上流設計と現場改善が交わるAI時代のツール戦略｜CIRCULATION</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+  :root{
+    --navy:#1A3A5C; --blue:#0079C0; --blue-mid:#4FA3D1; --blue-pale:#9CC3E0;
+    --blue-tint:#EAF3FA; --blue-tint2:#DCEBF7; --ink:#2B3440; --sub:#6B7684; --line:#E3E8EE; --white:#FFFFFF;
+    --slide-w:1280px; --slide-h:720px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#EEF2F6;font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Yu Gothic UI','Meiryo','Noto Sans JP',sans-serif;color:var(--ink);}
+  .topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;font-size:12.5px;letter-spacing:.03em;}
+  .topbar .crumb{opacity:.75;} .topbar .crumb b{color:#fff;opacity:1;}
+  .topbar .dl{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:7px 18px;font-size:12.5px;font-weight:700;letter-spacing:.03em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .deck{padding:36px 0 90px;}
+  .slide-frame{width:1280px;height:720px;margin:0 auto 30px;position:relative;}
+  .slide{width:var(--slide-w);height:var(--slide-h);background:#fff;position:absolute;top:0;left:0;transform-origin:top left;box-shadow:0 6px 22px rgba(20,40,60,.12);padding:40px 56px 32px;overflow:hidden;}
+  .bar{display:inline-block;width:5px;height:1em;background:var(--blue);margin-right:11px;vertical-align:-2px;border-radius:1px;}
+  h1.h-title{font-size:19.5px;font-weight:700;color:var(--navy);line-height:1.4;margin:0 0 14px;}
+  .logo{position:absolute;top:26px;right:54px;font-weight:700;color:var(--navy);font-size:13px;letter-spacing:.04em;}
+  .pageno{position:absolute;bottom:16px;right:54px;font-size:10px;color:#B7C0CA;letter-spacing:.05em;}
+  .conf{position:absolute;bottom:16px;left:54px;font-size:10px;color:#B7C0CA;letter-spacing:.03em;}
+  .section-tag{position:absolute;top:28px;left:54px;font-size:10.5px;color:var(--sub);letter-spacing:.03em;}
+  .section-tag b{color:var(--blue);}
+  .headblock{margin-top:20px;}
+
+  .cover, .closing{background:linear-gradient(120deg,var(--navy) 0%, #0F2A44 60%, var(--blue) 145%);color:#fff;display:flex;flex-direction:column;justify-content:center;}
+  .cover .service, .closing .service{font-size:12.5px;letter-spacing:.28em;color:#9FCBEB;font-weight:700;margin-bottom:26px;}
+  .cover h1{font-size:38px;font-weight:700;line-height:1.48;margin:0 0 8px;}
+  .cover h1 .accent{color:#BFE0F5;}
+  .cover .lede{font-size:15px;color:#CFE3F2;font-weight:400;line-height:1.9;margin:20px 0 44px;max-width:780px;}
+  .cover .pitch{font-size:13.5px;color:#BFD9EC;line-height:1.9;} .cover .pitch b{color:#fff;font-weight:700;}
+  .cover .brand, .closing .brand{position:absolute;bottom:44px;left:64px;font-size:19px;font-weight:700;letter-spacing:.08em;}
+  .curve{position:absolute;right:-120px;top:-140px;width:640px;height:640px;border:1.5px solid rgba(255,255,255,.16);border-radius:50%;}
+  .curve.c2{right:-40px;top:120px;width:340px;height:340px;border-color:rgba(255,255,255,.12);}
+  .closing{align-items:center;text-align:center;}
+  .closing .mark{width:56px;height:56px;margin:0 auto 24px;border-radius:50%;border:1.5px solid #BFE0F5;}
+  .closing h2{font-size:23px;font-weight:700;line-height:1.7;margin:0 0 10px;}
+  .closing .tag{font-size:12.5px;color:#AFCFE7;letter-spacing:.08em;margin-bottom:32px;}
+  .closing .btns{display:flex;gap:16px;}
+  .closing .btn{padding:12px 28px;border-radius:24px;font-size:13px;font-weight:700;text-decoration:none;}
+  .closing .btn.primary{background:#fff;color:var(--navy);}
+  .closing .btn.ghost{border:1.3px solid rgba(255,255,255,.55);color:#fff;}
+  .closing .copyright{position:absolute;bottom:26px;font-size:10px;color:#9FB6C8;letter-spacing:.03em;}
+
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-top:6px;}
+  .toc-block .num{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.04em;}
+  .toc-block h3{font-size:14.5px;font-weight:700;color:var(--navy);margin:5px 0 9px;}
+  .toc-block ul{margin:0;padding:0;list-style:none;}
+  .toc-block li{font-size:11.4px;color:var(--sub);padding:5px 0;border-bottom:1px dashed var(--line);}
+  .toc-block li:before{content:"── ";color:#C7D3DD;}
+
+  .banner{background:var(--navy);color:#fff;font-size:14px;font-weight:700;border-radius:4px;padding:14px 20px;margin:0 0 16px;line-height:1.6;}
+  .banner .hl{color:#BFE0F5;}
+  .cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .card{background:var(--blue-tint);border-radius:4px;padding:15px 17px;}
+  .card h4{font-size:12.6px;font-weight:700;color:var(--navy);margin:0 0 9px;line-height:1.5;}
+  .card .no{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:4px;letter-spacing:.03em;}
+  .card ul{margin:0;padding:0 0 0 3px;list-style:none;font-size:11.3px;color:var(--ink);line-height:1.8;}
+  .card ul li{position:relative;padding-left:13px;}
+  .card ul li:before{content:"・";position:absolute;left:-2px;color:var(--blue);}
+
+  .stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:14px;}
+  .stat{border:1px solid var(--line);border-radius:4px;padding:13px 15px;}
+  .stat .num{font-size:22px;font-weight:700;color:var(--navy);line-height:1.15;}
+  .stat .num span{font-size:12px;font-weight:700;color:var(--blue);}
+  .stat .lbl{font-size:10.2px;color:var(--ink);margin-top:6px;line-height:1.55;}
+  .stat .src{font-size:9px;color:#9AA6B0;margin-top:6px;}
+
+  .funnel{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;}
+  .funnel-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:9px;}
+  .funnel-row{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .funnel-label{width:128px;flex:none;font-size:10.3px;font-weight:700;color:var(--navy);}
+  .funnel-bar-wrap{flex:1;background:#F1F4F7;border-radius:3px;height:22px;}
+  .funnel-bar{height:22px;border-radius:3px;display:flex;align-items:center;padding-left:10px;color:#fff;font-size:10.5px;font-weight:700;}
+  .funnel-pct{width:58px;flex:none;text-align:right;font-size:12px;font-weight:700;color:var(--navy);}
+
+  .checklist{margin-top:12px;border:1px solid var(--line);border-radius:4px;padding:13px 17px;background:#FAFBFC;}
+  .checklist .ctitle{font-size:10.8px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+  .checklist ul{margin:0;padding:0;list-style:none;}
+  .checklist li{font-size:10.6px;color:var(--ink);line-height:1.65;padding-left:20px;position:relative;margin-bottom:5px;}
+  .checklist li:before{content:"□";position:absolute;left:0;color:var(--blue);font-size:11px;}
+  .checklist .cresult{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:10px;font-weight:700;color:var(--navy);}
+
+  .note-box{margin-top:12px;background:var(--blue-tint);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;padding:12px 17px;}
+  .note-box .ctitle{font-size:10.8px;font-weight:700;color:var(--navy);margin-bottom:7px;}
+  .note-box p{font-size:10.3px;color:var(--ink);line-height:1.65;margin:0;}
+
+  .wall-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;}
+  .wall{border:1px solid var(--line);border-radius:4px;padding:13px 15px;}
+  .wall .no{font-size:16px;font-weight:700;color:var(--blue);line-height:1;margin-bottom:6px;}
+  .wall h5{font-size:11.6px;font-weight:700;color:var(--ink);margin:0 0 7px;line-height:1.45;}
+  .wall p{font-size:9.8px;color:var(--sub);line-height:1.58;margin:0 0 8px;}
+  .wall .fix{background:var(--blue-tint);border-radius:3px;padding:6px 9px;font-size:9.8px;font-weight:700;color:var(--navy);line-height:1.5;}
+  .wall .fix b{color:var(--blue);}
+
+  .phase-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:10px;border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+  .phase{padding:13px 15px;background:#fff;border-right:1px solid var(--line);}
+  .phase:last-child{border-right:none;background:var(--navy);color:#fff;}
+  .phase .tag{font-size:9.5px;font-weight:700;letter-spacing:.04em;color:var(--blue);}
+  .phase:last-child .tag{color:#BFE0F5;}
+  .phase h5{font-size:11.6px;font-weight:700;margin:5px 0 7px;}
+  .phase ul{margin:0;padding:0;list-style:none;font-size:9.7px;line-height:1.68;}
+  .phase ul li{position:relative;padding-left:11px;color:var(--sub);}
+  .phase:last-child ul li{color:#D7E6F0;}
+  .phase ul li:before{content:"・";position:absolute;left:-1px;color:var(--blue);}
+  .phase:last-child ul li:before{color:#BFE0F5;}
+
+  .refbox{margin-top:10px;background:var(--blue-tint);border-radius:4px;padding:10px 15px;}
+  .refbox h5{font-size:10.6px;font-weight:700;color:var(--navy);margin:0 0 5px;}
+  .refbox p{font-size:9.8px;color:var(--ink);line-height:1.6;margin:0;}
+  .refbox b{color:var(--blue);}
+
+  .layer-map{margin-top:10px;display:flex;flex-direction:column;gap:7px;}
+  .layer-row{display:flex;align-items:center;gap:10px;}
+  .layer-row .chip{width:140px;flex:none;font-size:11px;font-weight:700;color:#fff;border-radius:4px;padding:11px 8px;text-align:center;line-height:1.4;}
+  .layer-row .bar2{flex:1;height:38px;border-radius:4px;background:var(--blue-tint);display:flex;align-items:center;padding:0 16px;font-size:10.8px;color:var(--ink);font-weight:400;justify-content:space-between;}
+  .layer-row .dest{width:172px;flex:none;font-size:9.8px;font-weight:700;text-align:center;border-radius:4px;padding:7px 8px;line-height:1.45;background:var(--blue-tint2);color:var(--navy);border:1px solid #BFD9EC;}
+  .l-ui .chip{background:var(--blue-pale);} .l-logic .chip{background:var(--blue);} .l-data .chip{background:var(--navy);}
+
+  .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;}
+  .tagrow span{background:var(--blue-tint);color:var(--navy);font-size:10.3px;font-weight:700;padding:6px 13px;border-radius:3px;}
+  .tagrow-label{font-size:10px;color:var(--sub);margin:11px 0 6px;}
+
+  .layer4-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:10px;}
+  .layer4{border-radius:4px;padding:14px 13px;color:#fff;min-height:120px;}
+  .layer4 .lno{font-size:10px;font-weight:700;opacity:.85;letter-spacing:.04em;}
+  .layer4 h5{font-size:12px;font-weight:700;margin:9px 0 7px;line-height:1.4;}
+  .layer4 p{font-size:9.6px;line-height:1.6;margin:0;opacity:.92;}
+  .ly1{background:#5C7A93;} .ly2{background:var(--blue);} .ly3{background:var(--navy);} .ly4{background:#7D93A3;}
+
+  .compare-mini{width:100%;border-collapse:collapse;margin-top:12px;font-size:9.8px;}
+  .compare-mini th,.compare-mini td{border:1px solid var(--line);padding:7px 9px;text-align:center;line-height:1.5;}
+  .compare-mini th{background:var(--navy);color:#fff;font-weight:700;font-size:9.4px;}
+  .compare-mini td:first-child,.compare-mini th:first-child{text-align:left;font-weight:700;color:var(--navy);background:var(--blue-tint);}
+
+  .matrix{width:100%;border-collapse:collapse;margin-top:10px;font-size:10.2px;}
+  .matrix th,.matrix td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  .matrix th{background:var(--navy);color:#fff;font-weight:700;font-size:10.2px;}
+  .matrix td.layer{background:var(--blue-tint);font-weight:700;color:var(--navy);width:200px;}
+  .matrix td b{color:var(--navy);}
+  .matrix .hi{background:var(--blue-tint2);}
+
+  .insight{margin-top:10px;background:var(--navy);color:#fff;border-radius:4px;padding:12px 17px;font-size:10.8px;line-height:1.7;}
+  .insight b{color:#BFE0F5;font-weight:700;}
+  .insight .lbl{display:block;font-size:9px;font-weight:700;letter-spacing:.1em;color:#BFE0F5;margin-bottom:4px;}
+
+  /* old vs new model (integration slide) */
+  .om-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .om-col{border-radius:4px;border:1px solid var(--line);overflow:hidden;}
+  .om-head{padding:11px 16px;font-size:12px;font-weight:700;color:#fff;}
+  .om-old .om-head{background:#7D8B98;}
+  .om-new .om-head{background:var(--navy);}
+  .om-body{padding:13px 16px;background:#fff;}
+  .om-body .role{font-size:10px;font-weight:700;color:var(--blue);margin-top:8px;}
+  .om-body .role:first-child{margin-top:0;}
+  .om-body p{font-size:10.3px;color:var(--ink);line-height:1.6;margin:3px 0 0;}
+  .om-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--blue);}
+
+  .ladder-caption{font-size:10.3px;color:var(--sub);text-align:right;margin:0 4px 7px;}
+  .ladder-caption b{color:var(--blue);}
+  .ladder-row{display:flex;align-items:flex-end;gap:14px;}
+  .lcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;}
+  .lcard{background:#fff;border:1px solid var(--line);border-radius:4px;padding:13px 14px;position:relative;z-index:2;}
+  .lcard .lno{font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;}
+  .lcard .lno .who{background:var(--blue-tint);color:var(--navy);font-size:8.7px;font-weight:700;padding:2px 7px;border-radius:8px;}
+  .lcard h5{font-size:12.3px;font-weight:700;color:var(--navy);margin:0 0 6px;}
+  .lcard .ldef{font-size:10px;color:var(--ink);line-height:1.6;margin:0 0 7px;}
+  .lcard .lex-title{font-size:9px;font-weight:700;color:var(--blue);margin:7px 0 4px;padding-top:7px;border-top:1px dashed var(--line);}
+  .lcard ul.lex{margin:0;padding:0;list-style:none;}
+  .lcard ul.lex li{font-size:9.3px;color:var(--sub);line-height:1.55;padding-left:11px;position:relative;margin-bottom:3px;}
+  .lcard ul.lex li:before{content:"・";position:absolute;left:-1px;color:var(--blue-mid);}
+  .lbar{border-radius:0 0 4px 4px;color:#fff;text-align:center;font-size:10px;font-weight:700;letter-spacing:.04em;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .lbar span{display:block;font-size:8px;font-weight:400;opacity:.85;margin-top:3px;}
+  .s1{background:var(--blue-pale);} .s2{background:var(--blue);} .s3{background:var(--navy);}
+
+  .combo-wrap{display:flex;gap:22px;margin-top:10px;}
+  .combo-steps{width:150px;flex:none;position:relative;padding-left:2px;}
+  .combo-steps:before{content:"";position:absolute;left:15px;top:16px;bottom:38px;width:1px;background:var(--line);}
+  .combo-step{display:flex;gap:10px;margin-bottom:25px;position:relative;}
+  .combo-step .cnum{width:30px;height:22px;border-radius:3px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11.5px;flex:none;z-index:2;}
+  .combo-step .clabel{font-size:11.3px;font-weight:700;color:var(--navy);padding-top:2px;line-height:1.35;}
+  .combo-table{flex:1;border-collapse:collapse;width:100%;font-size:9.5px;}
+  .combo-table th{background:var(--navy);color:#fff;padding:7px 9px;text-align:left;font-size:9.1px;font-weight:700;}
+  .combo-table td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;line-height:1.46;}
+  .combo-table tr:nth-child(2) td{background:#FAFBFC;}
+
+  .orc-wrap{display:flex;gap:18px;margin-top:8px;align-items:flex-start;}
+  .orc-diagram{width:500px;flex:none;background:var(--blue-tint);border-radius:4px;padding:15px;text-align:center;}
+  .orc-hub{width:130px;height:40px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;margin:0 auto;}
+  .orc-trunk{width:1px;height:12px;background:var(--blue-mid);margin:0 auto;}
+  .orc-bus{height:1px;background:var(--blue-mid);margin:0 auto 12px;width:92%;position:relative;}
+  .orc-bus .lbl{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--blue-tint);padding:0 7px;font-size:8.7px;color:var(--blue);font-weight:700;}
+  .orc-agents{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+  .orc-agent{background:#fff;border:1px solid #BFD9EC;border-radius:4px;padding:9px 5px;text-align:center;font-size:9.2px;font-weight:700;color:var(--navy);}
+  .orc-points{flex:1;}
+  .orc-point{display:flex;gap:10px;margin-bottom:9px;}
+  .orc-point .n{width:20px;height:20px;border-radius:3px;background:var(--navy);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;}
+  .orc-point p{margin:0;font-size:10.2px;line-height:1.5;color:var(--ink);}
+  .orc-point p b{color:var(--navy);}
+  .pattern-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:9px;}
+  .pattern{border:1px solid var(--line);border-radius:4px;padding:10px 13px;}
+  .pattern h5{font-size:10.5px;font-weight:700;color:var(--navy);margin:0 0 4px;}
+  .pattern p{font-size:9.2px;color:var(--sub);line-height:1.5;margin:0;}
+
+  .ba-wrap{display:flex;gap:12px;margin-top:10px;}
+  .ba-col{flex:1;border-radius:4px;padding:11px 14px;border:1px solid var(--line);}
+  .ba-after{background:var(--blue-tint);border-color:#BFD9EC;}
+  .ba-col .btag{font-size:9px;font-weight:700;letter-spacing:.03em;margin-bottom:6px;display:block;color:var(--navy);}
+  .ba-col p{font-size:9.7px;line-height:1.58;margin:0;color:var(--ink);}
+
+  .roadmap{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;margin-top:8px;border-radius:4px;overflow:visible;border:1px solid var(--line);}
+  .rstep{border-right:1px solid var(--line);position:relative;}
+  .rstep:last-child{border-right:none;}
+  .rstep .head{background:var(--navy);color:#fff;padding:9px 12px;font-size:10.8px;font-weight:700;position:relative;}
+  .rstep .head span{display:block;font-size:8.7px;font-weight:400;color:#BFE0F5;margin-top:2px;}
+  .rstep .head > span{display:block;font-size:10.8px;font-weight:700;color:#fff;}
+  .rstep:not(:last-child) .head:after{content:"›";position:absolute;right:-11px;top:5px;font-size:17px;color:#fff;font-weight:700;z-index:3;}
+  .rstep .body{padding:9px 12px;font-size:9.5px;color:var(--ink);line-height:1.56;background:#fff;min-height:100px;}
+  .rstep .body li{list-style:none;position:relative;padding-left:10px;margin-bottom:4px;}
+  .rstep .body li:before{content:"・";position:absolute;left:-1px;color:var(--blue);}
+  .rstep .out{background:var(--blue-tint);font-size:9.1px;color:var(--navy);font-weight:700;padding:7px 12px;}
+  .rstaff{background:#F4F7FA;border:1px solid var(--line);border-top:none;padding:9px 18px;font-size:9.5px;color:var(--sub);border-radius:0 0 4px 4px;}
+  .rstaff b{color:var(--navy);}
+
+  .gantt{margin-top:12px;border-top:1px solid var(--line);padding-top:11px;}
+  .gantt-title{font-size:10.2px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+  .gantt-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
+  .gantt-label{width:150px;flex:none;font-size:9.4px;font-weight:700;color:var(--navy);}
+  .gantt-track{flex:1;height:15px;background:#F1F4F7;border-radius:3px;position:relative;}
+  .gantt-fill{position:absolute;top:0;height:15px;border-radius:3px;}
+  .gantt-months{display:flex;padding-left:160px;font-size:8px;color:var(--sub);margin-top:4px;}
+  .gantt-months span{flex:1;text-align:center;}
+
+  .strength-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:9px;}
+  .strength{border:1px solid var(--line);border-radius:4px;padding:13px 13px;}
+  .strength .tagline{display:inline-block;background:var(--navy);color:#fff;font-size:9px;font-weight:700;padding:3px 9px;border-radius:2px;margin-bottom:8px;}
+  .strength h5{font-size:11.6px;font-weight:700;color:var(--navy);margin:0 0 7px;}
+  .strength ul{margin:0;padding:0;list-style:none;font-size:9.6px;color:var(--sub);line-height:1.72;}
+  .strength ul li{position:relative;padding-left:10px;}
+  .strength ul li:before{content:"・";position:absolute;left:-1px;color:var(--blue);}
+  .strength-pro{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);display:flex;gap:9px;align-items:flex-start;}
+  .strength-pro .avatar{width:26px;height:26px;flex:none;}
+  .strength-pro .role{font-size:9.8px;font-weight:700;color:var(--blue);margin-bottom:3px;}
+  .strength-pro p{font-size:9.4px;color:var(--sub);line-height:1.55;margin:0;}
+
+  .pro-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:9px;}
+  .pro{border:1px solid var(--line);border-radius:4px;padding:12px 14px;}
+  .pro .ptop{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .pro .avatar{width:30px;height:30px;border-radius:50%;background:var(--blue-tint2);flex:none;position:relative;}
+  .pro .avatar:before{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#BFD9EC;top:6px;left:9.5px;}
+  .pro .avatar:after{content:"";position:absolute;width:17px;height:9px;border-radius:9px 9px 0 0;background:#BFD9EC;bottom:3px;left:6.5px;}
+  .pro .role{font-size:9.2px;font-weight:700;color:var(--blue);}
+  .pro h5{font-size:11.3px;font-weight:700;color:var(--ink);margin:0 0 6px;line-height:1.4;}
+  .pro p{font-size:9.5px;color:var(--sub);line-height:1.6;margin:0 0 7px;}
+  .pro .tags{font-size:8.7px;color:var(--navy);font-weight:700;background:var(--blue-tint);border-radius:2px;padding:3px 8px;display:inline-block;}
+
+  .case-top{display:flex;gap:16px;margin-top:4px;}
+  .case-badges{display:flex;flex-direction:column;gap:8px;width:172px;flex:none;}
+  .case-badge{background:var(--blue-tint);border-radius:3px;padding:8px 11px;}
+  .case-badge .k{font-size:8.8px;color:var(--sub);}
+  .case-badge .v{font-size:11.3px;font-weight:700;color:var(--navy);margin-top:2px;}
+  .case-body{flex:1;}
+  .case-block{margin-bottom:9px;}
+  .case-block .tag{display:inline-block;font-size:9.2px;font-weight:700;color:#fff;background:var(--navy);border-radius:2px;padding:2px 8px;margin-bottom:6px;}
+  .case-block ul{margin:0;padding:0 0 0 2px;list-style:none;font-size:9.7px;line-height:1.6;color:var(--ink);}
+  .case-block ul li{position:relative;padding-left:13px;}
+  .case-block ul li:before{content:"・";position:absolute;left:-1px;color:var(--blue);}
+  .case-note{margin-top:7px;font-size:8.7px;color:var(--sub);background:#F4F7FA;border-radius:3px;padding:6px 9px;}
+
+  .metric-row{display:flex;align-items:center;gap:9px;margin-bottom:6px;}
+  .metric-label{width:170px;flex:none;font-size:9.2px;color:var(--navy);font-weight:700;}
+  .metric-bars{flex:1;display:flex;flex-direction:column;gap:2px;}
+  .metric-bar{height:12px;border-radius:2px;display:flex;align-items:center;}
+  .metric-bar.before{background:#E4E9EE;}
+  .metric-bar.after{background:var(--blue);}
+  .metric-bar span{font-size:7.7px;color:var(--ink);padding-left:6px;font-weight:700;white-space:nowrap;}
+  .metric-bar.after span{color:#fff;}
+
+  .quote-box{margin-top:9px;background:var(--blue-tint);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;padding:10px 15px;}
+  .quote-box p{font-size:10.2px;color:var(--navy);line-height:1.62;margin:0;font-weight:700;}
+  .quote-box .qwho{font-size:8.7px;color:var(--sub);margin-top:6px;font-weight:400;}
+
+  .rating td:first-child{text-align:left;}
+  .rating .sym{font-size:13px;font-weight:700;}
+  .rating .g{color:var(--blue);} .rating .y{color:#7C8894;} .rating .r{color:#A6B0BA;}
+  .rating .hicol{background:var(--blue-tint);}
+  .rating .subtxt{font-size:9px;font-weight:400;color:var(--ink);}
+
+  /* ===== Icons ===== */
+  .ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:middle;}
+  .wall .whead{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+  .wall .icn{width:30px;height:30px;border-radius:7px;background:var(--blue-tint);color:var(--navy);display:flex;align-items:center;justify-content:center;flex:none;}
+  .wall .icn .ic{width:16px;height:16px;}
+  .layer-row .chip .ic{width:18px;height:18px;margin-bottom:4px;display:block;margin-left:auto;margin-right:auto;color:#fff;}
+  .layer4 .icn{width:30px;height:30px;color:#fff;margin-bottom:8px;}
+  .layer4 .icn .ic{width:22px;height:22px;}
+  .rstep .head{display:flex;align-items:center;gap:8px;}
+  .rstep .head .ic{width:15px;height:15px;color:#BFE0F5;flex:none;}
+  .lcard .icn{width:32px;height:32px;border-radius:7px;background:var(--blue-tint);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+  .lcard .icn .ic{width:18px;height:18px;}
+
+  /* ===== Funnel SVG ===== */
+  .funnel-chart{display:flex;gap:22px;align-items:center;margin-top:10px;}
+  .funnel-svg{flex:none;}
+  .funnel-legend{flex:1;display:flex;flex-direction:column;gap:9px;}
+  .fl-row{display:flex;align-items:center;gap:10px;}
+  .fl-dot{width:11px;height:11px;border-radius:2px;flex:none;}
+  .fl-label{font-size:10.6px;color:var(--navy);font-weight:700;flex:1;}
+  .fl-pct{font-size:13px;font-weight:700;color:var(--navy);}
+
+  /* ===== Radar chart ===== */
+  .radar-wrap{display:flex;gap:24px;align-items:center;margin:10px 0 14px;flex-wrap:wrap;}
+  .radar-legend{display:flex;flex-direction:column;gap:8px;}
+  .rl-row{display:flex;align-items:center;gap:8px;font-size:10.8px;color:var(--ink);}
+  .rl-swatch{width:13px;height:13px;border-radius:3px;flex:none;}
+
+  /* ===== Flow diagram (upstream-frontline) ===== */
+  .flow-diagram{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 0 6px;}
+  .flow-node{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+  .flow-node .ic{width:24px;height:24px;}
+  .flow-label{font-size:9.5px;color:var(--sub);text-align:center;margin-top:5px;}
+  .flow-node-wrap{display:flex;flex-direction:column;align-items:center;}
+  .flow-connector{flex:1;height:2px;position:relative;min-width:40px;}
+
+
+  @media print{
+    html,body{background:#fff;} .topbar{display:none;} .deck{padding:0;}
+    .slide-frame{width:1280px!important;height:720px!important;margin:0!important;}
+    .slide{box-shadow:none;transform:none!important;break-after:page;page-break-after:always;}
+    .slide-frame:last-child .slide{break-after:auto;page-break-after:auto;}
+  }
+  @page{size:1280px 720px;margin:0;}
+
+  /* ===== Architecture diagram ===== */
+  .arch{margin-top:8px;}
+  .arch-box{border-radius:6px;padding:13px 18px;color:#fff;}
+  .arch-top{background:var(--navy);text-align:center;}
+  .arch-mid{background:var(--blue);text-align:center;}
+  .arch-label{font-size:9.5px;font-weight:700;opacity:.85;letter-spacing:.05em;}
+  .arch-title{font-size:13.5px;font-weight:700;margin:3px 0 4px;}
+  .arch-desc{font-size:9.8px;opacity:.92;line-height:1.55;max-width:680px;margin:0 auto;}
+  .arch-trunk{width:2px;height:12px;background:var(--blue-mid);margin:0 auto;}
+  .arch-arrow-d{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--blue-mid);margin:0 auto;}
+  .arch-bus-wrap{position:relative;height:30px;}
+  .arch-bus-line{position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--blue-mid);}
+  .arch-bus-drop{position:absolute;top:0;width:2px;height:30px;background:var(--blue-mid);}
+  .arch-bus-drop.l{left:25%;} .arch-bus-drop.r{right:25%;}
+  .arch-bus-arrow{position:absolute;bottom:-6px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--blue-mid);}
+  .arch-bus-arrow.l{left:calc(25% - 5px);} .arch-bus-arrow.r{right:calc(25% - 5px);}
+  .arch-bottom-row{display:flex;gap:16px;}
+  .arch-bottom-row .arch-box{flex:1;background:#fff;border:1.5px solid var(--navy);color:var(--ink);}
+  .arch-bottom-row .arch-title{color:var(--navy);text-align:left;}
+  .arch-bottom-row .arch-label{color:var(--blue);}
+  .arch-bottom-row .arch-desc{color:var(--sub);max-width:none;text-align:left;margin:0;}
+  .arch-subgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:10px;}
+  .arch-sub{background:var(--blue-tint);border-radius:4px;padding:7px 5px;text-align:center;font-size:9.8px;font-weight:700;color:var(--navy);}
+  .arch-sub span{display:block;font-size:8.2px;font-weight:400;color:var(--sub);margin-top:2px;}
+  .arch-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+  .arch-tags span{font-size:8.8px;background:var(--blue-tint);color:var(--navy);padding:3px 8px;border-radius:2px;font-weight:700;}
+  .arch-sizerow{display:flex;gap:8px;margin-top:8px;font-size:9px;}
+  .arch-sizerow .sz{flex:1;background:rgba(255,255,255,.14);border-radius:4px;padding:6px 9px;text-align:left;}
+  .arch-sizerow .sz b{display:block;font-size:9px;margin-bottom:2px;color:#BFE0F5;}
+
+  /* ladder progression connector */
+  .ladder-flow{display:flex;align-items:center;justify-content:center;gap:4px;margin:6px 0 10px;}
+  .ladder-flow .lf-dot{width:7px;height:7px;border-radius:50%;background:var(--blue-pale);}
+  .ladder-flow .lf-dot:nth-child(3){background:var(--blue);}
+  .ladder-flow .lf-dot:nth-child(5){background:var(--navy);}
+  .ladder-flow .lf-line{width:60px;height:1.5px;background:var(--line);}
+
+  @media print{
+    html,body{background:#fff;} .topbar{display:none;} .deck{padding:0;}
+    .slide-frame{width:1280px!important;height:720px!important;margin:0!important;}
+    .slide{box-shadow:none;transform:none!important;break-after:page;page-break-after:always;}
+    .slide-frame:last-child .slide{break-after:auto;page-break-after:auto;}
+  }
+  @page{size:1280px 720px;margin:0;}
+
+
+  body.portal{background:#F3F6F9;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px;}
+  .hero{background:linear-gradient(120deg,var(--navy) 0%, #0F2A44 60%, var(--blue) 145%);color:#fff;padding:56px 40px 0;}
+  .hero-inner{max-width:1040px;margin:0 auto;}
+  .hero .service{font-size:12px;letter-spacing:.28em;color:#9FCBEB;font-weight:700;margin-bottom:20px;}
+  .hero h1{font-size:32px;font-weight:700;line-height:1.5;margin:0 0 18px;}
+  .hero h1 .accent{color:#BFE0F5;display:block;font-size:22px;margin-top:6px;}
+  .hero .lede{font-size:14.5px;color:#CFE3F2;line-height:1.85;margin:0 0 22px;max-width:680px;}
+  .hero .pitch{font-size:13px;color:#BFD9EC;line-height:1.85;}
+  .hero .pitch b{color:#fff;}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;padding-bottom:32px;}
+  .hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:16px 14px;display:flex;align-items:center;gap:12px;}
+  .hero-stat .donut{flex:none;position:relative;width:64px;height:64px;}
+  .hero-stat .donut svg{width:64px;height:64px;}
+  .hero-stat .donut .dtxt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;}
+  .hero-stat .l{font-size:10px;color:#CFE3F2;line-height:1.5;}
+  .hero-stat .l b{display:block;color:#fff;font-size:10.5px;margin-bottom:2px;}
+
+  .diag{background:#fff;padding:40px 24px 8px;}
+  .diag-inner{max-width:1040px;margin:0 auto;}
+  .diag h2{font-size:17px;font-weight:700;color:var(--navy);text-align:center;margin:0 0 6px;}
+  .diag .sub{font-size:11.5px;color:var(--sub);text-align:center;margin:0 0 22px;}
+  .diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .diag-card{border:1.5px solid var(--line);border-radius:8px;padding:18px 16px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;cursor:pointer;background:#fff;}
+  .diag-card:hover{border-color:var(--blue);transform:translateY(-2px);}
+  .diag-card .icn{width:42px;height:42px;border-radius:9px;background:var(--blue-tint);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .diag-card .icn .ic{width:22px;height:22px;}
+  .diag-card p{font-size:12px;color:var(--ink);font-weight:700;line-height:1.6;margin:0 0 8px;}
+  .diag-card .goto{font-size:10px;color:var(--blue);font-weight:700;}
+
+  .jumpnav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);margin-top:8px;}
+  .jumpnav-inner{max-width:1040px;margin:0 auto;display:flex;gap:0;padding:0 24px;overflow-x:auto;}
+  .jumpnav a{white-space:nowrap;display:block;padding:14px 18px;font-size:12.5px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;}
+  .jumpnav a:hover{color:var(--blue);border-bottom-color:var(--blue-pale);}
+
+  .acc-groupTitle{display:flex;align-items:center;gap:12px;margin:44px 0 16px;font-size:16px;font-weight:700;color:var(--navy);scroll-margin-top:60px;}
+  .acc-groupTitle .gnum{background:var(--navy);color:#fff;font-size:12px;font-weight:700;border-radius:3px;padding:4px 10px;}
+  .wrap > .acc-groupTitle:first-of-type{margin-top:36px;}
+
+  .acc-item{background:#fff;border:1px solid var(--line);border-radius:6px;margin-bottom:10px;overflow:hidden;scroll-margin-top:60px;}
+  .acc-header{width:100%;display:flex;align-items:center;gap:14px;padding:16px 20px;background:#fff;border:none;cursor:pointer;text-align:left;font-family:inherit;}
+  .acc-header:hover{background:#FAFBFC;}
+  .acc-num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue-tint);color:var(--navy);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .acc-headtext{flex:1;min-width:0;}
+  .acc-title{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .acc-teaser{display:block;font-size:11.5px;color:var(--sub);line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .acc-chevron{flex:none;color:var(--blue);font-size:14px;transition:transform .3s ease;}
+  .acc-item.open .acc-chevron{transform:rotate(180deg);}
+  .acc-item.open .acc-header{background:var(--blue-tint);}
+  .acc-item.open .acc-teaser{white-space:normal;}
+
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .acc-item.open .acc-body{max-height:4200px;}
+  .acc-bodyinner{padding:6px 20px 22px;border-top:1px solid var(--line);}
+
+  .footer-cta{background:linear-gradient(120deg,var(--navy) 0%, #0F2A44 60%, var(--blue) 145%);color:#fff;text-align:center;padding:56px 24px;margin-top:40px;}
+  .footer-cta h2{font-size:21px;font-weight:700;line-height:1.7;margin:0 0 10px;}
+  .footer-cta .tag{font-size:12px;color:#AFCFE7;letter-spacing:.08em;margin-bottom:26px;}
+  .footer-cta .btns{display:flex;gap:14px;justify-content:center;}
+  .footer-cta .btn{padding:12px 26px;border-radius:24px;font-size:12.5px;font-weight:700;text-decoration:none;}
+  .footer-cta .btn.primary{background:#fff;color:var(--navy);}
+  .footer-cta .btn.ghost{border:1.3px solid rgba(255,255,255,.55);color:#fff;}
+  .footer-cta .copyright{margin-top:26px;font-size:9.5px;color:#9FB6C8;}
+
+  @media (max-width:720px){
+    .cols3, .wall-grid, .layer4-grid, .strength-grid, .pro-grid, .stat-row, .compare-mini, .om-wrap, .pattern-row, .ba-wrap, .hero-stats, .diag-grid, .arch-bottom-row, .arch-sizerow{grid-template-columns:1fr!important;display:flex!important;flex-direction:column;}
+    .orc-wrap{flex-direction:column;}
+    .orc-diagram{width:100%!important;}
+    .combo-wrap{flex-direction:column;}
+    .roadmap{grid-template-columns:1fr!important;display:flex;flex-direction:column;}
+    .rstep:not(:last-child) .head:after{display:none;}
+    .case-top{flex-direction:column;}
+    .case-badges{width:100%!important;flex-direction:row;flex-wrap:wrap;}
+    .radar-wrap{flex-direction:column;}
+    .radar-wrap svg{width:100%;height:auto;}
+    .arch-bus-wrap{display:none;}
+  }
+
+
+  .gapviz{display:flex;gap:20px;align-items:stretch;margin-top:4px;}
+  .gapviz-left{flex:1.5;}
+  .gap-row{margin-bottom:13px;}
+  .gap-toplabel{font-size:10.3px;color:var(--ink);margin-bottom:5px;}
+  .gap-toplabel b{color:var(--navy);}
+  .gap-bar-wrap{background:#F1F4F7;border-radius:3px;height:22px;position:relative;}
+  .gap-bar{height:22px;border-radius:3px;}
+  .gap-pctlabel{position:absolute;top:1px;transform:translateX(6px);font-size:11px;font-weight:700;color:var(--navy);}
+  .gap-delta{font-size:10px;color:var(--sub);margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);}
+  .gap-delta b{color:var(--navy);font-size:11px;}
+  .gapviz-right{flex:1;background:var(--navy);color:#fff;border-radius:6px;padding:16px 18px;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+  .gapviz-right .num{font-size:34px;font-weight:700;color:#7FD1FF;line-height:1;}
+  .gapviz-right .txt{font-size:10.3px;line-height:1.6;margin-top:8px;}
+  .gapviz-right .txt b{color:#fff;}
+  .gapviz-right .src{font-size:8.3px;color:#9FB6C8;margin-top:10px;line-height:1.5;}
+</style>
+</head>
+<body class="portal">
+
+<svg class="icon-defs" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+<defs>
+  <symbol id="ic-chain" viewBox="0 0 24 24"><ellipse cx="9" cy="12" rx="5" ry="4" transform="rotate(-30 9 12)"/><ellipse cx="15" cy="12" rx="5" ry="4" transform="rotate(-30 15 12)"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="ic-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3 11.2c.6.4 1 1 1 1.8h4c0-.8.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="ic-warning" viewBox="0 0 24 24"><path d="M12 4 21 20H3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="ic-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></symbol>
+  <symbol id="ic-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></symbol>
+  <symbol id="ic-chat" viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4z"/></symbol>
+  <symbol id="ic-bot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="10" rx="2"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M12 4v3M9 4h6"/></symbol>
+  <symbol id="ic-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-5-5"/></symbol>
+  <symbol id="ic-balance" viewBox="0 0 24 24"><path d="M12 3v15M6 8h12M6 8l-3 6h6l-3-6zm12 0l-3 6h6l-3-6z"/><path d="M8 21h8"/></symbol>
+  <symbol id="ic-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M8 15h8"/></symbol>
+  <symbol id="ic-eliminate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6.5 17.5l11-11"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24"><path d="M8 8l-1.8 1.8a3.5 3.5 0 0 0 5 5L13 13"/><path d="M16 16l1.8-1.8a3.5 3.5 0 0 0-5-5L11 11"/></symbol>
+  <symbol id="ic-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5 5l3 3M19 5l-3 3M5 19l3-3M19 19l-3-3"/></symbol>
+  <symbol id="ic-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/></symbol>
+  <symbol id="ic-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5 2 0 3.7 1 4.6 2.5"/><path d="M13.5 20c.3-2.7 2.2-4.5 4.7-4.5 2.4 0 4.3 1.8 4.8 4.5"/></symbol>
+  <symbol id="ic-tower" viewBox="0 0 24 24"><path d="M12 2l8 4-8 4-8-4 8-4z"/><path d="M4 11l8 4 8-4M4 16l8 4 8-4"/></symbol>
+  <symbol id="ic-puzzle" viewBox="0 0 24 24"><path d="M9 4h3.2a1.6 1.6 0 1 1 0 3.2H15v3.6a1.8 1.8 0 1 0 0 3.6V18h-3.6a1.6 1.6 0 1 0-3.2 0H5v-3.6a1.8 1.8 0 1 1 0-3.6V7H9V4z"/></symbol>
+</defs>
+</svg>
+
+
+
+
+
+
+<div class="topbar">
+  <div class="crumb">Hot Topics ／ <b>2026年7月号</b>　「選ぶ」から「育てる」へ ─ 上流設計と現場改善が交わるAI時代のツール戦略</div>
+  <a class="dl" href="tool_strategy_2607.pdf" download>⭳ PDFをダウンロード</a>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="service">SERVICE</div>
+    <h1>「選ぶ」から「育てる」へ<span class="accent">─ 上流設計と現場改善が交わるAI時代のツール戦略</span></h1>
+    <p class="lede">自社のツールを、どう選び、どう使い続けるか。上流の設計と現場の改善を、プロ人材が一体で伴走する。</p>
+    <p class="pitch"><b>プロ人材36,000名 × PKSHAグループ</b>で、貴社のあらゆる事業創出シーンに、必要な時に必要なだけ伴走する。</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="donut"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="34" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="9"/><circle cx="45" cy="45" r="34" fill="none" stroke="#7FD1FF" stroke-width="9" stroke-linecap="round" stroke-dasharray="170.9 213.6" transform="rotate(-90 45 45)"/></svg><div class="dtxt">80%</div></div>
+        <div class="l"><b>非IT部門ユーザー比率</b>2026年までのローコード利用者に占める割合</div>
+      </div>
+      <div class="hero-stat">
+        <div class="donut"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="34" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="9"/><circle cx="45" cy="45" r="34" fill="none" stroke="#7FD1FF" stroke-width="9" stroke-linecap="round" stroke-dasharray="170.9 213.6" transform="rotate(-90 45 45)"/></svg><div class="dtxt">80%</div></div>
+        <div class="l"><b>プラットフォームチーム設置率</b>2026年までに設置する大規模組織の割合</div>
+      </div>
+      <div class="hero-stat">
+        <div class="donut"><svg viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="34" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="7"/>
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#BFE0F5" stroke-width="7" stroke-linecap="round" stroke-dasharray="166.6 213.6" transform="rotate(-90 45 45)"/>
+          <circle cx="45" cy="45" r="24" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="7"/>
+          <circle cx="45" cy="45" r="24" fill="none" stroke="#7FD1FF" stroke-width="7" stroke-linecap="round" stroke-dasharray="21.1 150.8" transform="rotate(-90 45 45)"/>
+        </svg><div class="dtxt" style="font-size:11px;">78→14%</div></div>
+        <div class="l"><b>PoC→本番運用の到達率</b>AIエージェントのパイロット導入に対する割合</div>
+      </div>
+      <div class="hero-stat">
+        <div class="donut" style="display:flex;align-items:center;justify-content:center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7FD1FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-people"/></svg></div>
+        <div class="l"><b>36,000名</b>サーキュレーションが擁するプロ人材ネットワーク</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="diag">
+  <div class="diag-inner">
+    <h2>こんな状態に、心当たりはありませんか？</h2>
+    <p class="sub">1つでも当てはまれば、上流と現場の分断が始まっているサインです</p>
+    <div class="diag-grid">
+      <a class="diag-card" href="#item-wall">
+        <div class="icn"><svg class="ic"><use href="#ic-chain"/></svg></div>
+        <p>現場で使われているAIツールを、情シスが把握できていない</p>
+        <div class="goto">6つの壁を見る →</div>
+      </a>
+      <a class="diag-card" href="#item-exec">
+        <div class="icn"><svg class="ic"><use href="#ic-clock"/></svg></div>
+        <p>PoCはたくさんあるが、本番化したものがほとんどない</p>
+        <div class="goto">生存曲線を見る →</div>
+      </a>
+      <a class="diag-card" href="#item-wall">
+        <div class="icn"><svg class="ic"><use href="#ic-shield"/></svg></div>
+        <p>誰が責任を持つのか、決めないまま導入が進んでいる</p>
+        <div class="goto">6つの壁を見る →</div>
+      </a>
+      <a class="diag-card" href="#item-arch">
+        <div class="icn"><svg class="ic"><use href="#ic-grid"/></svg></div>
+        <p>SaaSが乱立し、何を残すべきか分からない</p>
+        <div class="goto">アーキテクチャ図を見る →</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="jumpnav">
+  <div class="jumpnav-inner">
+    <a href="#sec01">01　大企業が直面する「ツール戦略」の課題</a>
+    <a href="#sec02">02　ツール戦略 ソリューション全体像</a>
+    <a href="#sec03">03　プロ人材による支援体制提案</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="acc-groupTitle" id="sec01"><span class="gnum">01</span>大企業が直面する「ツール戦略」の課題</div>
+  <div class="acc-item" id="item-exec">
+    <button class="acc-header" type="button">
+      <span class="acc-num">01</span>
+      <span class="acc-headtext"><span class="acc-title">エグゼクティブサマリ</span><span class="acc-teaser">ツールの決め方が変わった。上流が選び、現場が使う時代から、両者が同時に動く時代へ。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">ツールの決め方が変わった。上流が選び、現場が使う時代から、<span class="hl">両者が同時に動く時代</span>へ。</div>
+    <div class="cols3">
+      <div class="card"><div class="no">01</div><h4>ツールは「選ぶ」だけでなく「育てる」対象になった</h4><ul><li>一度の選定で終わらせず、継続的な見直しを前提に設計する</li><li>現場の使い方の変化が、ツール構成そのものを変えていく</li></ul></div>
+      <div class="card"><div class="no">02</div><h4>上流の設計と現場の改善は、もう別工程ではない</h4><ul><li>統制の効いた「土台」の上で、現場が自ら組み立てる</li><li>現場の知見が、上流の設計へ継続的に還元される</li></ul></div>
+      <div class="card"><div class="no">03</div><h4>分断されたままでは、シャドーAIが積み上がる</h4><ul><li>統制のない現場発ツールが、負債として蓄積していく</li><li>承認・ログ・認証の設計を、導入前から想定しておく</li></ul></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num">80<span>%以上</span></div><div class="lbl">2026年までにローコード開発ツール利用者に占める、正式なIT部門外ユーザーの割合（2021年は60%）</div><div class="src">Source：Gartner</div></div>
+      <div class="stat"><div class="num">80<span>%</span></div><div class="lbl">2026年までに専任のプラットフォームチームを設置する大規模組織の割合（2022年は45%）</div><div class="src">Source：Gartner</div></div>
+      <div class="stat"><div class="num">82<span>%</span></div><div class="lbl">AIエージェントのセキュリティ対策に「自信がある」と回答した経営層の割合</div><div class="src">Source：Gravitee 2026年調査</div></div>
+    </div>
+    <div class="funnel">
+      <div class="funnel-title">経営層の「自信」と、現場の「実態」には大きな乖離がある</div>
+      <div class="gapviz">
+        <div class="gapviz-left">
+          <div class="gap-row">
+            <div class="gap-toplabel"><b>経営層の自信｜</b>セキュリティ対策に自信があると回答</div>
+            <div class="gap-bar-wrap"><div class="gap-bar" style="width:82%;background:var(--blue-pale);"></div><span class="gap-pctlabel" style="left:82%;">82%</span></div>
+          </div>
+          <div class="gap-row">
+            <div class="gap-toplabel"><b>実際の承認状況｜</b>本番導入の完全なIT承認を取得済み</div>
+            <div class="gap-bar-wrap"><div class="gap-bar" style="width:14.4%;background:var(--navy);"></div><span class="gap-pctlabel" style="left:14.4%;">14.4%</span></div>
+          </div>
+          <div class="gap-delta">認識と実態の差：<b>67.6ポイント</b>　Source：Gravitee 2026年調査</div>
+        </div>
+        <div class="gapviz-right">
+          <div class="num">88%</div>
+          <div class="txt">は、エージェント導入企業のうち<br><b>少なくとも1件のセキュリティインシデントを実際に経験済み</b></div>
+          <div class="src">Source：Digital Applied 2026年<br>／OneReach AI・Hypersense Softwareも同水準</div>
+        </div>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top:10px;">
+      <p>セキュリティはこの資料における特別な論点ではない。経営層の自信と現場の実態がずれるのは、「上流と現場の分断」が数値として最も測りやすい形で表れた一例にすぎない。この分断への向き合い方は、後述の6つの壁とガバナンス設計（見極め〜移行ロードマップ）で扱う。</p>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-wall">
+    <button class="acc-header" type="button">
+      <span class="acc-num">01</span>
+      <span class="acc-headtext"><span class="acc-title">大企業が直面する『ツール戦略』6つの壁</span><span class="acc-teaser">上流と現場、それぞれの構造的な壁を6つに整理</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="wall-grid">
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-chain"/></svg></div><div><div class="no">01</div><h5>ツールの采配が「上流」に閉じている</h5></div></div><p>現場の実態を知らないまま、全社ツールの選定・更新が決まっていく。</p><div class="fix"><b>解決の方向｜</b>現場のヒアリングを、選定プロセスの起点に置く。</div></div>
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-clock"/></svg></div><div><div class="no">02</div><h5>現場発のPoCが、全社の資産にならない</h5></div></div><p>部門ごとに作られたAIエージェントが、他部署や全社基盤に接続されない。</p><div class="fix"><b>解決の方向｜</b>「土台」となるガバナンス・接続基盤を、上流が用意する。</div></div>
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-shield"/></svg></div><div><div class="no">03</div><h5>誰が実行を承認するのか不明確</h5></div></div><p>自律的に動くエージェントの責任の所在が曖昧なまま、導入が先行している。</p><div class="fix"><b>解決の方向｜</b>Human-in-the-loopを、設計の初期段階から組み込む。</div></div>
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-bulb"/></svg></div><div><div class="no">04</div><h5>現場の知見が、言語化されないまま埋もれている</h5></div></div><p>ノウハウが人に紐づいたままで、上流の設計に還元されない。</p><div class="fix"><b>解決の方向｜</b>ヒアリングと言語化に強いプロ人材が、現場と上流を橋渡しする。</div></div>
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-warning"/></svg></div><div><div class="no">05</div><h5>何が「エージェント」か、現場も上流も判別できない</h5></div></div><p>RPA・チャットボットの再ブランドと、真に自律的なエージェントの見極めが難しい。</p><div class="fix"><b>解決の方向｜</b>「何が自律的に判断・実行するか」を基準に、ベンダーを選定する。</div></div>
+      <div class="wall"><div class="whead"><div class="icn"><svg class="ic"><use href="#ic-calendar"/></svg></div><div><div class="no">06</div><h5>8月のEU AI Act適用が迫っている</h5></div></div><p>AI事業者ガイドラインの改訂も進み、様子見を続ける余地がなくなっている。</p><div class="fix"><b>解決の方向｜</b>判断を先送りにしないスケジュールを、逆算で設計する。</div></div>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-groupTitle" id="sec02"><span class="gnum">02</span>ツール戦略 ソリューション全体像</div>
+  <div class="acc-item" id="item-arch">
+    <button class="acc-header" type="button">
+      <span class="acc-num">02</span>
+      <span class="acc-headtext"><span class="acc-title">ツール戦略アーキテクチャ全体図</span><span class="acc-teaser">4つのレイヤーと規模で、意思決定の担い手が変わる</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="arch">
+      <div class="arch-box arch-top">
+        <div class="arch-label">LAYER 1｜汎用LLM</div>
+        <div class="arch-title">ユーザーとの対話窓口（Claude／Copilot／Gemini）</div>
+        <div class="arch-desc">使うものであり差別化にはならない。規模を問わずプロ人材が上流〜定着まで完結。</div>
+      </div>
+      <div class="arch-trunk"></div><div class="arch-arrow-d"></div>
+      <div class="arch-box arch-mid">
+        <div class="arch-label">LAYER 2｜エージェント・オーケストレーション</div>
+        <div class="arch-title">業務ロジック・プロンプト・ツール連携（1〜3ヶ月で作り直す前提）</div>
+        <div class="arch-sizerow">
+          <div class="sz"><b>小規模</b>プロ人材が要件〜実装まで一人〜数名で完結</div>
+          <div class="sz"><b>大規模</b>上流設計はプロ人材＋PKSHAの共同、実装はPKSHAが主導</div>
+        </div>
+      </div>
+      <div class="arch-bus-wrap">
+        <div class="arch-bus-line"></div>
+        <div class="arch-bus-drop l"></div><div class="arch-bus-drop r"></div>
+        <div class="arch-bus-arrow l"></div><div class="arch-bus-arrow r"></div>
+      </div>
+      <div class="arch-bottom-row">
+        <div class="arch-box">
+          <div class="arch-label">LAYER 3｜独自アルゴリズム・データ資産</div>
+          <div class="arch-title">自社データで学習させる予測・検知モデル</div>
+          <div class="arch-desc">陳腐化せず資産として積み上がる層。規模を問わずPKSHA Technologyが必須。プロ人材は要件翻訳と現場定着を担う。</div>
+        </div>
+        <div class="arch-box">
+          <div class="arch-label">LAYER 4｜業務SaaS</div>
+          <div class="arch-title">選んで繋ぐもの（Salesforce／SAP／ServiceNow等）</div>
+          <div class="arch-subgrid">
+            <div class="arch-sub">UI<span>AIへ委譲</span></div>
+            <div class="arch-sub">ロジック<span>要判断</span></div>
+            <div class="arch-sub">データ<span>残す(原本)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span>サイズが効くのはレイヤー②だけ。プロ人材は①②④に規模を問わず関与し、③でも要件翻訳と現場定着を担う。<b>PKSHAが単独で必要になるのは、②の重い実装と③の構築だけである。</b></div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-model">
+    <button class="acc-header" type="button">
+      <span class="acc-num">02</span>
+      <span class="acc-headtext"><span class="acc-title">上流と現場の一体化モデル</span><span class="acc-teaser">ツールを「使う人」と「決める人」が、同じ土俵に立つ時代になった。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">ツールを「使う人」と「決める人」が、<span class="hl">同じ土俵に立つ時代</span>になった。</div>
+    <div class="om-wrap">
+      <div class="om-col om-old">
+        <div class="om-head">OLD｜分業モデル</div>
+        <svg width="100%" height="80" viewBox="0 0 400 80">
+          <circle cx="90" cy="40" r="26" fill="#7D8B98"/>
+          <use href="#ic-tower" x="77" y="27" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="116" y1="40" x2="284" y2="40" stroke="#B7C0CA" stroke-width="2.5" stroke-dasharray="6,7"/>
+          <circle cx="200" cy="40" r="12" fill="#fff" stroke="#B7C0CA" stroke-width="1.5"/>
+          <use href="#ic-warning" x="193" y="33" width="14" height="14" fill="none" stroke="#98A2AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="310" cy="40" r="26" fill="#7D8B98"/>
+          <use href="#ic-person" x="297" y="27" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="90" y="74" text-anchor="middle" font-size="10.5" fill="#5C6A78" font-weight="700">上流</text>
+          <text x="310" y="74" text-anchor="middle" font-size="10.5" fill="#5C6A78" font-weight="700">現場</text>
+        </svg>
+        <div class="om-body">
+          <div class="role">結果</div><p>現場の実態が反映されず、統制のない「シャドーIT／シャドーAI」が常態化する。全社ツールの選定は現場と別工程で完結する。</p>
+        </div>
+      </div>
+      <div class="om-col om-new">
+        <div class="om-head">NEW｜プラットフォームモデル</div>
+        <svg width="100%" height="80" viewBox="0 0 400 80">
+          <circle cx="90" cy="40" r="26" fill="var(--navy)"/>
+          <use href="#ic-tower" x="77" y="27" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="116" y1="40" x2="284" y2="40" stroke="var(--blue)" stroke-width="3"/>
+          <polygon points="280,34 292,40 280,46" fill="var(--blue)"/>
+          <polygon points="120,34 108,40 120,46" fill="var(--blue)"/>
+          <circle cx="310" cy="40" r="26" fill="var(--blue)"/>
+          <use href="#ic-person" x="297" y="27" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="90" y="74" text-anchor="middle" font-size="10.5" fill="var(--navy)" font-weight="700">上流</text>
+          <text x="310" y="74" text-anchor="middle" font-size="10.5" fill="var(--navy)" font-weight="700">現場</text>
+        </svg>
+        <div class="om-body">
+          <div class="role">結果</div><p>上流が統制の効いた「土台（ゴールデンパス）」を用意し、現場はその上で自ら組み立てる。現場の知見が上流の設計へ継続的に還元される。</p>
+        </div>
+      </div>
+    </div>
+    <div class="refbox">
+      <h5>参考｜プラットフォームエンジニアリングという考え方</h5>
+      <p>開発者が日々向き合うツールの複雑さを専門チームが「製品」として整備し、現場の生産性と統制を両立させる手法が、2026年に企業のデファクトになりつつある。Gartnerは大規模組織の80%が専任のプラットフォームチームを設置すると予測しており、これはIT部門主導の一括管理から、<b>現場と共に土台を育てる体制への転換</b>を示している。</p>
+    </div>
+    <div class="insight"><span class="lbl">POINT</span>上流の設計力と現場の実行力を、一人がすべて併せ持つ必要はない。<b>だが、両者を橋渡しする役割を誰かが担わなければ、この一体化は機能しない。</b>ここに、プロ人材の存在価値がある。</div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-ladder">
+    <button class="acc-header" type="button">
+      <span class="acc-num">02</span>
+      <span class="acc-headtext"><span class="acc-title">変革の到達点：半自動化・完全自動化・プロセス消滅</span><span class="acc-teaser">同じ「AIエージェント化」でも、目指す到達点によって必要な投資と体制は一致しない。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">同じ「AIエージェント化」でも、目指す到達点によって<span class="hl">必要な投資と体制は一致しない</span>。</div>
+    <div class="ladder-caption">投資規模・変革の難易度は、右へ進むほど<b>大きくなる</b></div>
+    <div class="ladder-row">
+      <div class="lcol">
+        <div class="lcard">
+          <div class="icn"><svg class="ic"><use href="#ic-person"/></svg></div>
+          <div class="lno">STAGE 1 <span class="who">現場が主導</span></div>
+          <h5>半自動化</h5>
+          <p class="ldef">AIが判断を支援し、実行の主導権は人に残る。</p>
+          <div class="lex-title">代表的な業務例</div>
+          <ul class="lex"><li>営業：商談メモの要約・提案書ドラフト作成</li><li>経理：稟議書・請求書のドラフト自動生成</li></ul>
+        </div>
+        <div class="lbar s1" style="height:40px;">HUMAN IN THE LOOP</div>
+      </div>
+      <div class="lcol">
+        <div class="lcard">
+          <div class="icn"><svg class="ic"><use href="#ic-bot"/></svg></div>
+          <div class="lno">STAGE 2 <span class="who">上流×現場が共同</span></div>
+          <h5>完全自動化</h5>
+          <p class="ldef">定めたルールの範囲内で、AIが実行から完了まで担う。人は例外時のみ介在する。</p>
+          <div class="lex-title">代表的な業務例</div>
+          <ul class="lex"><li>経理：定型の請求書処理を自動実行、例外時のみ人が対応</li><li>人事：入社手続きの申請〜承認〜登録を自動完結</li></ul>
+        </div>
+        <div class="lbar s2" style="height:80px;">AUTONOMOUS EXECUTION</div>
+      </div>
+      <div class="lcol">
+        <div class="lcard">
+          <div class="icn"><svg class="ic"><use href="#ic-eliminate"/></svg></div>
+          <div class="lno">STAGE 3 <span class="who">上流が主導</span></div>
+          <h5>プロセス消滅</h5>
+          <p class="ldef">業務そのものを別の手段に置き換え、工程自体をなくす。</p>
+          <div class="lex-title">代表的な業務例</div>
+          <ul class="lex"><li>経理：請求書という概念を撤廃し、リアルタイム決済に統合</li><li>調達：見積依頼を撤廃し、動的プライシングAPIに統合</li></ul>
+        </div>
+        <div class="lbar s3" style="height:120px;">PROCESS ELIMINATION</div>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top:9px;">
+      <div class="ctitle">典型的な失敗パターン</div>
+      <p>STAGE1（半自動化）の運用実績を積まずにSTAGE2（完全自動化）へ飛び級すると、例外処理の設計が漏れ、本番停止のリスクが高まる。段階を踏むこと自体が、リスク管理である。</p>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-combo">
+    <button class="acc-header" type="button">
+      <span class="acc-num">02</span>
+      <span class="acc-headtext"><span class="acc-title">到達点別・取り組み設計とオーケストレーター実装</span><span class="acc-teaser">到達点が定まれば、必要なケイパビリティと投資規模は逆算できる。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">到達点が定まれば、<span class="hl">必要なケイパビリティと投資規模は逆算できる</span>。</div>
+    <div class="combo-wrap">
+      <div class="combo-steps">
+        <div class="combo-step"><div class="cnum">1</div><div class="clabel">半自動化</div></div>
+        <div class="combo-step"><div class="cnum">2</div><div class="clabel">完全自動化</div></div>
+        <div class="combo-step"><div class="cnum">3</div><div class="clabel">プロセス消滅</div></div>
+      </div>
+      <table class="combo-table">
+        <tr><th style="width:24%;">主な取り組み（例）</th><th style="width:19%;">必要ケイパビリティ</th><th style="width:14%;">投資規模感</th><th style="width:22%;">標準的な支援体制</th><th style="width:9%;">標準期間</th></tr>
+        <tr><td>Copilot／Claude等の業務組み込み、稟議・報告書のドラフト自動生成</td><td>プロンプト設計、業務ヒアリングと言語化</td><td>数百万円規模</td><td>プロ人材が中心</td><td>1〜3ヶ月</td></tr>
+        <tr><td>AIエージェントオーケストレーターの構築、承認・例外処理を含む自律実行の設計</td><td>エージェント設計、認証・ログ基盤構築、ガバナンス設計</td><td>数千万円規模〜</td><td>プロ人材＋PKSHA</td><td>6〜12ヶ月</td></tr>
+        <tr><td>業務プロセスそのものの再設計・撤廃、上位目的を別の手段で実現する構造改革</td><td>経営レベルのBPR設計、業界横断の業務知見</td><td>全社プロジェクト規模</td><td>経営層＋戦略コンサル層</td><td>12ヶ月〜</td></tr>
+      </table>
+    </div>
+    <div class="orc-wrap" style="margin-top:10px;">
+      <div class="orc-diagram" style="width:420px;">
+        <div class="orc-hub">オーケストレーター</div>
+        <div class="orc-trunk"></div>
+        <div class="orc-bus"><span class="lbl">自動振り分け</span></div>
+        <div class="orc-agents">
+          <div class="orc-agent">問い合わせAI（人事）</div>
+          <div class="orc-agent">問い合わせAI（経理）</div>
+          <div class="orc-agent">稟議レビューAI</div>
+          <div class="orc-agent">文章校正AI</div>
+          <div class="orc-agent">ナレッジ検索AI</div>
+          <div class="orc-agent">要約・議事録AI</div>
+        </div>
+      </div>
+      <div class="orc-points">
+        <div class="orc-point"><div class="n">1</div><p><b>認証・ID連携</b>ログイン情報・権限を安全に引き渡す設計</p></div>
+        <div class="orc-point"><div class="n">2</div><p><b>外部サービスの対応状況</b>逐次応答（ストリーミング）への対応確認</p></div>
+        <div class="orc-point"><div class="n">3</div><p><b>ログ収集アーキテクチャ</b>「解決したか」を追跡し改善へつなげる</p></div>
+        <div class="orc-point"><div class="n">4</div><p><b>役割設計</b>一般知識／企業内知識／役割を明確化し重複を防ぐ</p></div>
+      </div>
+    </div>
+    <div class="pattern-row">
+      <div class="pattern"><h5>並列マルチエージェント（1対N）</h5><p>複数の専門エージェントが同時に応答し、アイデアや論点を幅出しする</p></div>
+      <div class="pattern"><h5>直列マルチエージェント</h5><p>前段の出力を次のエージェントが参照しながら深掘りし、最後に取りまとめる</p></div>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-groupTitle" id="sec03"><span class="gnum">03</span>プロ人材による支援体制提案</div>
+  <div class="acc-item" id="item-road">
+    <button class="acc-header" type="button">
+      <span class="acc-num">03</span>
+      <span class="acc-headtext"><span class="acc-title">見極め〜移行ロードマップ</span><span class="acc-teaser">見極めから本番化まで、規模とフェーズに応じてアサインを変える。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">見極めから本番化まで、<span class="hl">規模とフェーズに応じてアサインを変える</span>。</div>
+    <div class="roadmap">
+      <div class="rstep"><div class="head"><svg class="ic"><use href="#ic-search"/></svg><span>STEP 1　棚卸し<span>1〜2ヶ月</span></span></div><div class="body"><ul><li>SaaS×AI利用実態の洗い出し</li><li>UI・ロジック・データの棚卸し</li><li>コスト・利用率・依存度の可視化</li></ul></div><div class="out">成果物｜利用実態マップ／SaaS一覧</div></div>
+      <div class="rstep"><div class="head"><svg class="ic"><use href="#ic-balance"/></svg><span>STEP 2　切り分け設計<span>1〜2ヶ月</span></span></div><div class="body"><ul><li>残す／渡す／やめるの判定</li><li>System of Record領域の特定</li><li>ガバナンス方針の初期設計</li></ul></div><div class="out">成果物｜切り分け方針書</div></div>
+      <div class="rstep"><div class="head"><svg class="ic"><use href="#ic-flask"/></svg><span>STEP 3　PoC・試験実装<span>1〜2ヶ月</span></span></div><div class="body"><ul><li>優先領域からオーケストレーターPoC</li><li>認証・ログ設計の試験実装</li><li>効果測定・KPI検証</li></ul></div><div class="out">成果物｜動くプロト／効果測定結果</div></div>
+      <div class="rstep"><div class="head"><svg class="ic"><use href="#ic-shield"/></svg><span>STEP 4　本番化・定着<span>1〜2ヶ月</span></span></div><div class="body"><ul><li>ガバナンス・権限管理の整備</li><li>全社展開・運用トレーニング</li><li>継続的な改善サイクル構築</li></ul></div><div class="out">成果物｜運用体制／ガバナンス規定</div></div>
+    </div>
+    <div class="rstaff"><b>支援体制：</b>SaaSアーキテクト／エージェント実装プロ／データ移行プロ／BPRコンサルタント／AIガバナンス専門家（プロジェクト規模に応じて柔軟にアサイン）</div>
+    <div class="gantt">
+      <div class="gantt-title">標準的な進行イメージ｜フェーズは一部重複しながら進行する</div>
+      <div class="gantt-row"><div class="gantt-label">STEP1　棚卸し</div><div class="gantt-track"><div class="gantt-fill" style="left:0%;width:24%;background:var(--blue-pale);"></div></div></div>
+      <div class="gantt-row"><div class="gantt-label">STEP2　切り分け設計</div><div class="gantt-track"><div class="gantt-fill" style="left:18%;width:24%;background:var(--blue-mid);"></div></div></div>
+      <div class="gantt-row"><div class="gantt-label">STEP3　PoC・試験実装</div><div class="gantt-track"><div class="gantt-fill" style="left:38%;width:30%;background:var(--blue);"></div></div></div>
+      <div class="gantt-row"><div class="gantt-label">STEP4　本番化・定着</div><div class="gantt-track"><div class="gantt-fill" style="left:64%;width:30%;background:var(--navy);"></div></div></div>
+      <div class="gantt-months"><span>1ヶ月</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8ヶ月</span></div>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-why">
+    <button class="acc-header" type="button">
+      <span class="acc-num">03</span>
+      <span class="acc-headtext"><span class="acc-title">なぜ「プロ人材」なのか：4つの選択肢の評価比較</span><span class="acc-teaser">上流の設計力と、現場の実行力。プロ人材は、その両方を橋渡しできる。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">上流の設計力と、現場の実行力。プロ人材は、<span class="hl">その両方を橋渡しできる</span>。</div>
+    <div class="radar-wrap">
+      <svg width="300" height="240" viewBox="0 0 340 270">
+        <polygon points="170.0,119.5 189.5,133.7 182.0,156.6 158.0,156.6 150.5,133.7" fill="none" stroke="#E3E8EE" stroke-width="1"/>
+        <polygon points="170.0,99.0 209.0,127.3 194.1,173.2 145.9,173.2 131.0,127.3" fill="none" stroke="#E3E8EE" stroke-width="1"/>
+        <polygon points="170.0,78.5 228.5,121.0 206.1,189.8 133.9,189.8 111.5,121.0" fill="none" stroke="#E3E8EE" stroke-width="1"/>
+        <polygon points="170.0,58.0 248.0,114.7 218.2,206.3 121.8,206.3 92.0,114.7" fill="none" stroke="#E3E8EE" stroke-width="1.4"/>
+        <line x1="170" y1="140" x2="170.0" y2="58.0" stroke="#E3E8EE"/>
+        <line x1="170" y1="140" x2="248.0" y2="114.7" stroke="#E3E8EE"/>
+        <line x1="170" y1="140" x2="218.2" y2="206.3" stroke="#E3E8EE"/>
+        <line x1="170" y1="140" x2="121.8" y2="206.3" stroke="#E3E8EE"/>
+        <line x1="170" y1="140" x2="92.0" y2="114.7" stroke="#E3E8EE"/>
+        <polygon points="170.0,119.5 209.0,127.3 182.0,156.6 158.0,156.6 150.5,133.7" fill="#A6B0BA" fill-opacity="0.28" stroke="#A6B0BA" stroke-width="1.5"/>
+        <polygon points="170.0,99.0 209.0,127.3 194.1,173.2 158.0,156.6 131.0,127.3" fill="#7C8894" fill-opacity="0.25" stroke="#7C8894" stroke-width="1.5"/>
+        <polygon points="170.0,99.0 228.5,121.0 218.2,206.3 158.0,156.6 92.0,114.7" fill="var(--blue-mid)" fill-opacity="0.2" stroke="var(--blue-mid)" stroke-width="1.5"/>
+        <polygon points="170.0,58.0 248.0,114.7 218.2,206.3 121.8,206.3 92.0,114.7" fill="var(--blue)" fill-opacity="0.32" stroke="var(--navy)" stroke-width="2"/>
+        <text x="170" y="22" text-anchor="middle" font-size="11" fill="#5C6A78" font-weight="700">上流と現場の橋渡し</text>
+        <text x="271" y="112" text-anchor="start" font-size="11" fill="#5C6A78" font-weight="700">着手スピード</text>
+        <text x="234" y="228" text-anchor="start" font-size="11" fill="#5C6A78" font-weight="700">コスト構造</text>
+        <text x="106" y="228" text-anchor="end" font-size="11" fill="#5C6A78" font-weight="700">体制の柔軟性</text>
+        <text x="69" y="112" text-anchor="end" font-size="11" fill="#5C6A78" font-weight="700">知見の定着先</text>
+      </svg>
+      <div class="radar-legend">
+        <div class="rl-row"><span class="rl-swatch" style="background:var(--navy);"></span>プロ人材（プロシェアリング）</div>
+        <div class="rl-row"><span class="rl-swatch" style="background:var(--blue-mid);"></span>内製（自社人員のみ）</div>
+        <div class="rl-row"><span class="rl-swatch" style="background:#7C8894;"></span>SIer・システム開発ベンダー</div>
+        <div class="rl-row"><span class="rl-swatch" style="background:#A6B0BA;"></span>大手コンサルティング</div>
+        <div class="rl-row" style="margin-top:6px;font-size:10px;color:var(--sub);">面積が大きいほど、総合的な対応力が高い</div>
+      </div>
+    </div>
+    <table class="matrix rating">
+      <tr><th style="width:200px;">評価軸</th><th class="hicol">プロ人材</th><th>大手コンサル</th><th>SIer</th><th>内製</th></tr>
+      <tr><td class="layer">上流と現場の橋渡し</td><td class="hicol sym g">◎ <span class="subtxt">設計と実装を一人が横断</span></td><td class="sym y">△ <span class="subtxt">上流提言のみ、実装は別発注</span></td><td class="sym y">△ <span class="subtxt">実装のみ、上流に不関与</span></td><td class="sym y">△ <span class="subtxt">部門間の壁が残る</span></td></tr>
+      <tr><td class="layer">着手スピード</td><td class="hicol sym g">◎ <span class="subtxt">最短1週間で開始</span></td><td class="sym y">△ <span class="subtxt">契約に1〜2ヶ月</span></td><td class="sym y">△ <span class="subtxt">要件定義後に着手</span></td><td class="sym g">○ <span class="subtxt">早いが人手が不足</span></td></tr>
+      <tr><td class="layer">コスト構造</td><td class="hicol sym g">◎ <span class="subtxt">必要な期間だけ契約可</span></td><td class="sym r">× <span class="subtxt">高額・長期契約が前提</span></td><td class="sym y">△ <span class="subtxt">要件変更で追加費用</span></td><td class="sym g">◎ <span class="subtxt">機会コストは大きい</span></td></tr>
+      <tr><td class="layer">体制の柔軟性</td><td class="hicol sym g">◎ <span class="subtxt">36,000名から補充可</span></td><td class="sym r">× <span class="subtxt">契約チームが固定</span></td><td class="sym r">× <span class="subtxt">契約後の変更が困難</span></td><td class="sym r">× <span class="subtxt">人員は固定される</span></td></tr>
+      <tr><td class="layer">知見の定着先</td><td class="hicol sym g">◎ <span class="subtxt">伴走しながら社内に移転</span></td><td class="sym r">× <span class="subtxt">終了後ゼロリセット</span></td><td class="sym y">△ <span class="subtxt">運用知見が薄い</span></td><td class="sym g">◎ <span class="subtxt">個人に依存する</span></td></tr>
+    </table>
+    <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span><b>プロ人材は必要な期間だけ、上流と現場の両方に関与しながら知見を社内に残す。</b></div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-strength">
+    <button class="acc-header" type="button">
+      <span class="acc-num">03</span>
+      <span class="acc-headtext"><span class="acc-title">サーキュレーションの6つの強みと、対応するプロ人材</span><span class="acc-teaser">専門性 × 実行力 × スピード × 定着支援 × 柔軟性 × コスト</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">専門性 × 実行力 × スピード × 定着支援 × 柔軟性 × コスト</div>
+    <div class="strength-grid">
+      <div class="strength"><span class="tagline">専門性</span><h5>01｜SaaS × AI業務知識</h5><ul><li>SaaS運用とAI実装の両方に強いプロが在籍</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">01　SaaSアーキテクト</div><p>基幹SaaS導入・運用経験を持ち、System of Recordとして残す領域の設計を担う。</p></div></div>
+      </div>
+      <div class="strength"><span class="tagline">実行力</span><h5>02｜設計から実装まで</h5><ul><li>要件定義→PoC→本番まで一気通貫</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">02　エージェント実装エンジニア</div><p>複数AIエージェントの連携設計・認証設計・ログ基盤構築まで対応する。</p></div></div>
+      </div>
+      <div class="strength"><span class="tagline">スピード</span><h5>03｜圧倒的スピード</h5><ul><li>最短1週間でアサイン、即スタート</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">03　AIガバナンス専門家</div><p>Human-in-the-loopの設計、AI利用ガイドライン策定を担当する。</p></div></div>
+      </div>
+      <div class="strength"><span class="tagline">定着支援</span><h5>04｜定着化まで一気通貫</h5><ul><li>運用ルール・マニュアル整備まで対応</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">04　BPRコンサルタント</div><p>業務フローを構造化し、AIエージェントへ渡すインプットを整備する。</p></div></div>
+      </div>
+      <div class="strength"><span class="tagline">柔軟性</span><h5>05｜柔軟な体制設計</h5><ul><li>1名〜複数体制、36,000名から即時補充</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">05　データ移行プロ</div><p>複数SaaS・基幹システム間のデータ移行・統合基盤構築を担う。</p></div></div>
+      </div>
+      <div class="strength"><span class="tagline">コスト</span><h5>06｜コスト優位性</h5><ul><li>大手コンサルの1/3〜1/5の費用感</li></ul>
+        <div class="strength-pro"><div class="avatar"></div><div><div class="role">06　CIO経験者 / IT戦略顧問</div><p>SaaS投資・AI投資の最適化を、経営層と現場の橋渡しで推進する。</p></div></div>
+      </div>
+    </div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-case">
+    <button class="acc-header" type="button">
+      <span class="acc-num">03</span>
+      <span class="acc-headtext"><span class="acc-title">支援イメージ：ツール戦略の統合支援</span><span class="acc-teaser">SaaSの乱立とAI活用の停滞。同じ悩みを抱える企業への支援イメージ。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+<div class="banner">SaaSの乱立とAI活用の停滞。<span class="hl">同じ悩みを抱える企業</span>への支援イメージ。</div>
+    <div class="case-top">
+      <div class="case-badges">
+        <div class="case-badge"><div class="k">対象企業（イメージ）</div><div class="v">大手消費財メーカー</div></div>
+        <div class="case-badge"><div class="k">年商規模</div><div class="v">数千億円規模</div></div>
+        <div class="case-badge"><div class="k">従業員数</div><div class="v">数千名規模</div></div>
+        <div class="case-badge"><div class="k">支援期間</div><div class="v">最大3ヶ月〜</div></div>
+      </div>
+      <div class="case-body">
+        <div class="case-block"><span class="tag">課題</span><ul><li>SFA（Salesforce）を中心に7つ以上のSaaSが部門ごとに乱立している</li><li>現場発のAI活用が、情シスの把握しないまま広がっている</li><li>「上流で統制すべきか、現場に任せるべきか」の線引きができていない</li></ul></div>
+        <div class="case-block"><span class="tag">支援内容</span><ul><li>SaaS・AI利用実態の棚卸しと、上流／現場の役割再整理</li><li>UI・ロジック・データの切り分け設計</li><li>オーケストレーターの試験導入（優先2業務）</li></ul></div>
+      </div>
+    </div>
+    <div class="case-block" style="margin-top:2px;"><span class="tag">成果（イメージ）</span>
+      <div class="metric-row"><div class="metric-label">入力工数（月間）</div><div class="metric-bars"><div class="metric-bar before"><span>支援前</span></div><div class="metric-bar after" style="width:45%;"><span>-55%</span></div></div></div>
+      <div class="metric-row"><div class="metric-label">SaaSライセンスコスト</div><div class="metric-bars"><div class="metric-bar before"><span>支援前</span></div><div class="metric-bar after" style="width:70%;"><span>-30%</span></div></div></div>
+      <div class="metric-row"><div class="metric-label">PoC→本番化までの期間</div><div class="metric-bars"><div class="metric-bar before"><span>支援前：12ヶ月相当</span></div><div class="metric-bar after" style="width:25%;"><span>3ヶ月に短縮</span></div></div></div>
+    </div>
+    <div class="quote-box"><p>「上流と現場、どちらの言い分も分かる立場で整理してもらえたのが良かった。」</p><div class="qwho">情報システム部門責任者（イメージ・支援想定コメント）</div></div>
+    <div class="case-note">※ 本ページの企業属性・成果指標・コメントは支援内容のイメージです。公開前に実際の支援事例へ差し替えてください。</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="footer-cta">
+  <div class="service" style="font-size:11px;letter-spacing:.28em;color:#9FCBEB;font-weight:700;margin-bottom:20px;">CIRCULATION ENTERPRISE TEAM</div>
+  <h2>貴社の事業創出のあらゆるシーンに、<br>プロ人材とAIで伴走します。</h2>
+  <div class="tag">知のめぐりをよくする。</div>
+  <div class="btns">
+    <a class="btn primary" href="#">問い合わせ</a>
+    <a class="btn ghost" href="#">担当者と打合せを設定する</a>
+  </div>
+  <div class="copyright">© 2026 CIRCULATION Inc. All Rights Reserved.</div>
+</div>
+
+<script>
+document.querySelectorAll('.acc-header').forEach(function(h){
+  h.addEventListener('click', function(){
+    var item = h.closest('.acc-item');
+    item.classList.toggle('open');
+  });
+});
+document.addEventListener('DOMContentLoaded', function(){
+  var first = document.querySelector('.acc-item');
+  if(first) first.classList.add('open');
+});
+document.querySelectorAll('.diag-card').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var id = a.getAttribute('href').slice(1);
+    var target = document.getElementById(id);
+    if(target){
+      target.classList.add('open');
+      setTimeout(function(){ target.scrollIntoView({behavior:'smooth', block:'start'}); }, 60);
+    }
+  });
+});
+</script>
+</body>
+</html>
