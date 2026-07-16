@@ -537,7 +537,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-07-01",
-      "thumbnailShot": "images/slide-tool-strategy.png",
+      "thumbnailShot": "images/slide-tool-strategy.png?v=20260716x",
       "detail": {
         "lead": "ツールの決め方が変わりました。上流が選び現場が使う時代から、両者が同時に動く時代へ。選定から定着・改善までを一体で設計します。",
         "background": "ローコード／SaaS／AIエージェントの普及で、現場が自らツールを組む時代に。一方でシャドーIT・PoC止まり・責任の所在の曖昧さなど、上流と現場の分断が新たな負債を生んでいます。",
