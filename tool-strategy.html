@@ -479,6 +479,18 @@
   .gapviz-right .txt{font-size:10.3px;line-height:1.6;margin-top:8px;}
   .gapviz-right .txt b{color:#fff;}
   .gapviz-right .src{font-size:8.3px;color:#9FB6C8;margin-top:10px;line-height:1.5;}
+  /* エグゼクティブサマリ冒頭：EU AI Act */
+  .euact{border:1px solid #C7DCEC;background:linear-gradient(180deg,#F2F8FD,#FFFFFF);border-left:4px solid var(--blue);border-radius:8px;padding:16px 20px 14px;margin:0 0 18px;}
+  .euact-head{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--navy);font-size:15px;margin-bottom:9px;}
+  .euact-head .tag{font-size:10px;font-weight:700;color:#fff;background:var(--blue);border-radius:4px;padding:2px 8px;letter-spacing:.04em;}
+  .euact p{font-size:12.5px;line-height:1.9;color:var(--ink);margin:0 0 10px;}
+  .euact-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:2px 0 12px;}
+  .euf{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px 11px;font-size:11.3px;line-height:1.6;color:var(--sub);}
+  .euf b{display:block;color:var(--navy);font-size:12px;margin-bottom:2px;}
+  .euact-risk{background:#FDF3EE;border:1px solid #F0C9B3;border-radius:6px;padding:10px 13px;color:#8A4B24 !important;}
+  .euact-risk b{color:#B4531F;}
+  .euact-bridge{font-weight:700;color:var(--navy) !important;margin-bottom:0 !important;}
+  @media print{ .euact-facts{grid-template-columns:repeat(4,1fr);} }
 </style>
 </head>
 <body class="portal">
@@ -599,6 +611,18 @@
       <span class="acc-chevron">▾</span>
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
+    <div class="euact">
+      <div class="euact-head"><span class="tag">REGULATION</span>まず、規制の時計が動いている ── EU AI Act</div>
+      <p>EU AI Act（EU AI規則）は、AIをリスクに応じて4段階で規制する世界初の包括的なAI法です。禁止用途は2025年2月、汎用AI（GPAI）の義務は2025年8月に発効し、採用・与信・重要インフラなどの「高リスクAI」を含む中核規定が <b>2026年8月2日</b> に本格適用されます。重要なのは<b>域外適用</b>で、EU域内に製品・サービス、あるいはAIの出力を提供する日本企業も規制の対象になり得ます。違反時の制裁金は最大で<b>全世界年間売上高の7％（または3,500万ユーロ）</b>に達します。</p>
+      <div class="euact-facts">
+        <div class="euf"><b>本格適用</b>2026年8月2日（高リスクAI等の中核規定）</div>
+        <div class="euf"><b>域外適用</b>EU向けに提供する日本企業も対象になり得る</div>
+        <div class="euf"><b>制裁金</b>最大 全世界売上高の7％／3,500万ユーロ</div>
+        <div class="euf"><b>主な義務</b>適合性評価・記録（ログ）・透明性・人間による監督</div>
+      </div>
+      <p class="euact-risk"><b>リスク：</b>これは「現場のAI乱立」と直結します。各部署が個別にAIツールを導入し続けると、どのAIがどの規制区分に該当し、どんな判断根拠・ログが残っているのかを誰も把握できません。上流が方針だけ示して現場任せにした結果が、そのままコンプライアンス違反・制裁・信用毀損のリスクとして経営に跳ね返ります。</p>
+      <p class="euact-bridge">適用開始は目前です。だからこそ、上流のガバナンス設計と、現場で「いま何が起きているか」の把握を“同時に”進める必要があります。── ここから先は、まず現場を見ていきます。</p>
+    </div>
 <div class="banner">ツールの決め方が変わった。上流が選び、現場が使う時代から、<span class="hl">両者が同時に動く時代</span>へ。</div>
     <div class="cols3">
       <div class="card"><div class="no">01</div><h4>ツールを「選ぶ」だけでなく「育てる」</h4><ul><li>一度の選定で終わらせず、継続的な見直しを前提に設計する</li><li>現場の使い方の変化が、ツール構成そのものを変えていく</li></ul></div>
