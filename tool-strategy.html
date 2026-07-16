@@ -485,12 +485,15 @@
   .euact-head{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--navy);font-size:15px;margin-bottom:9px;}
   .euact-head .tag{font-size:10px;font-weight:700;color:#fff;background:var(--blue);border-radius:4px;padding:2px 8px;letter-spacing:.04em;}
   .euact p{font-size:12.5px;line-height:1.9;color:var(--ink);margin:0 0 10px;}
-  .euact-list{display:flex;flex-direction:column;gap:8px;margin:2px 0 12px;}
-  .eul{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:6px;padding:10px 14px;}
-  .eul b{display:block;color:var(--navy);font-size:12.5px;margin-bottom:3px;}
-  .eul p{font-size:11.5px;line-height:1.75;color:var(--sub);margin:0;}
-  .eul-risk{border-left-color:var(--navy);background:var(--blue-tint);}
+  .euact-note{display:inline-flex;align-items:center;gap:7px;background:#FDF3EE;border:1px solid #F0C9B3;border-radius:6px;padding:8px 13px;margin:0 0 12px;font-size:11.5px;font-weight:700;color:#B4531F;line-height:1.6;}
+  .euact-note .nlbl{font-size:8.6px;font-weight:700;color:#fff;background:var(--orange);border-radius:3px;padding:2px 8px;white-space:nowrap;}
+  .euact-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:2px 0 12px;}
+  .eul{background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:8px;padding:14px 16px;box-shadow:0 1px 3px rgba(20,40,60,.05);}
+  .eul b{display:block;color:var(--navy);font-size:12.5px;margin-bottom:6px;}
+  .eul p{font-size:11.3px;line-height:1.75;color:var(--sub);margin:0;}
+  .eul-risk{grid-column:1 / -1;border-top-color:var(--navy);background:var(--blue-tint);}
   .eul-risk b{color:var(--navy);}
+  @media(max-width:720px){ .euact-list{grid-template-columns:1fr;} .eul-risk{grid-column:auto;} }
   .euact-bridge{color:var(--ink) !important;margin-bottom:0 !important;}
   /* 代表的なツールと使い分け */
   .tools-intro{font-size:12px;line-height:1.85;color:var(--ink);margin:2px 0 12px;}
@@ -651,7 +654,9 @@
     <div class="acc-body"><div class="acc-bodyinner">
     <div class="euact">
       <div class="euact-head"><span class="tag">EU AI Act</span>EU AI Act と日本企業への影響</div>
-      <p>EU AI Act（EU AI規則）は、AIをリスクに応じて規制するEUの法律です。段階的に適用され、高リスクAIを含む中核規定は2026年8月2日に本格適用されます。EU域内に拠点がない日本企業も、次のような形で影響を受けます。</p>
+      <p>EU AI Act（EU AI規則）は、AIをリスクに応じて規制するEUの法律です。段階的に適用され、高リスクAIを含む中核規定は2026年8月2日に本格適用されます。</p>
+      <div class="euact-note"><span class="nlbl">POINT</span>国内では「自社には関係ない」と受け止められがちですが、域外適用により、EUに拠点がない日本企業も対象になり得ます。</div>
+      <p>具体的には、次のような形で影響を受けます。</p>
       <div class="euact-list">
         <div class="eul"><b>域外適用による直接的な規制</b><p>EU域内に拠点がない日本企業でも、EUでAIシステム（人事評価AI、医療機器組み込みAIなど）を展開・提供する場合、開発者または提供者として厳格な義務（リスク評価、技術文書の作成、人間による監視など）が課されます。</p></div>
         <div class="eul"><b>サプライチェーンを通じた間接的影響</b><p>自社が直接EUに進出していなくても、EU域内の企業にAIシステムやAIを組み込んだハードウェア・サービスを輸出する場合、取引先からAIに関する情報開示やコンプライアンス遵守を求められる連鎖的な影響が生じます。</p></div>
