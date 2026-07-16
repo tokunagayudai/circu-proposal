@@ -371,6 +371,9 @@
   .arch-sizerow{display:flex;gap:8px;margin-top:8px;font-size:9px;}
   .arch-sizerow .sz{flex:1;background:rgba(255,255,255,.14);border-radius:4px;padding:6px 9px;text-align:left;}
   .arch-sizerow .sz b{display:block;font-size:9px;margin-bottom:2px;color:#BFE0F5;}
+  .arch-fde{display:flex;align-items:center;gap:11px;margin-top:14px;padding:11px 15px;background:var(--blue-tint);border:1px dashed var(--blue-mid);border-left:4px solid var(--blue);border-radius:6px;font-size:11px;color:var(--ink);line-height:1.7;}
+  .arch-fde .afde-tag{flex:none;background:var(--blue);color:#fff;font-size:9px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:3px;}
+  .arch-fde b{color:var(--navy);}
 
   /* ladder progression connector */
   .ladder-flow{display:flex;align-items:center;justify-content:center;gap:4px;margin:6px 0 10px;}
@@ -611,7 +614,7 @@
 <div class="topbar">
   <div class="crumb">Hot Topics ／ <b>2026年7月号</b>　上流設計と現場改善が交わるAI時代のツール戦略</div>
   <div class="tsp-right">
-    <a class="dl" href="tool_strategy_2607.pdf?v=20260716w" download="CIRCULATION Hot Topics 2026年7月号 - AI時代のツール戦略.pdf">⭳ PDFをダウンロード</a>
+    <a class="dl" href="tool_strategy_2607.pdf?v=20260716y" download="CIRCULATION Hot Topics 2026年7月号 - AI時代のツール戦略.pdf">⭳ PDFをダウンロード</a>
     <img class="tsp-logo" src="images/circu-logo-white.png" alt="CIRCULATION">
   </div>
 </div>
@@ -756,9 +759,9 @@
       <div class="arch-box arch-l0">
         <div class="arch-label">LAYER 0｜要件定義・アーキテクト／ガバナンス設計</div>
         <div class="arch-title">何を作り、どう組むかを定義し、統制の前提を敷く最上流</div>
-        <div class="arch-desc">現場の要件を実装可能な設計へ翻訳する層。アーキテクト・FDE（フォワードデプロイエンジニア）に加え、セキュリティ・ガバナンス人材が、AI利用状況の可視化とガードレール（統制の枠組み）を設計する。EU AI Act など規制対応の前提も、この最上流で組み込む。</div>
+        <div class="arch-desc">何を作り、どう組むかを描く最上流。アーキテクト・PM が全体設計を担い、セキュリティ・ガバナンス人材が、AI利用状況の可視化とガードレール（統制の枠組み）を設計する。EU AI Act など規制対応の前提も、この層で組み込む。</div>
         <div class="arch-tools"><span class="atool">Miro</span><span class="atool">draw.io</span><span class="atool">Notion / Confluence</span></div>
-        <div class="arch-how"><span class="how how-pro">アーキテクト・FDE</span><span class="how how-pro">セキュリティ・ガバナンス人材</span></div>
+        <div class="arch-how"><span class="how how-pro">アーキテクト・PM</span><span class="how how-pro">セキュリティ・ガバナンス人材</span></div>
       </div>
       <div class="arch-trunk"></div><div class="arch-arrow-d"></div>
       <div class="arch-box arch-top">
@@ -803,6 +806,10 @@
           <div class="arch-tools"><span class="atool">Salesforce（SFA/CRM）</span><span class="atool">SAP / Oracle（ERP）</span><span class="atool">ServiceNow</span><span class="atool">Workday</span><span class="atool">kintone</span><span class="atool">Notion</span><span class="atool">Power Apps</span></div>
           <div class="arch-how"><span class="how how-pro">専門プロ（選定・接続）</span><span class="how how-citizen">市民開発（簡易アプリ）</span></div>
         </div>
+      </div>
+      <div class="arch-fde">
+        <span class="afde-tag">縦断ロール</span>
+        <span><b>FDE（フォワードデプロイエンジニア）</b>は特定レイヤーに閉じず、<b>LAYER 0 の設計から現場（LAYER 1〜4）の実装・定着まで</b>を縦断的に担い、要件を「動く形」へ翻訳する。</span>
       </div>
     </div>
     <div class="insight" style="margin-top:12px;"><span class="lbl">POINT</span>期待する効果やプロジェクトのサイズ感に応じて、<b>最適な解決体制（プロ人材の役割編成と、必要に応じたPKSHAの組み合わせ）をご提案します。</b></div>
