@@ -534,6 +534,8 @@
   .rm-points li{position:relative;padding-left:14px;font-size:12px;line-height:1.7;color:var(--ink);margin-bottom:5px;}
   .rm-points li:before{content:"・";position:absolute;left:0;color:var(--blue);font-weight:700;}
   .rm-persona{font-size:12px;line-height:1.78;color:var(--ink);margin:0;}
+  .rm-pro{border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:6px;padding:10px 13px;margin-bottom:8px;font-size:11.5px;line-height:1.75;color:var(--ink);}
+  .rm-pro-n{display:inline-block;font-size:8.6px;font-weight:700;color:#fff;background:var(--blue);border-radius:3px;padding:2px 8px;margin-right:8px;vertical-align:1px;}
   .rm-note{margin-top:16px;font-size:10px;color:var(--sub);background:#F4F7FA;border-radius:4px;padding:9px 12px;line-height:1.6;}
   @media(max-width:720px){ .tl-row{grid-template-columns:1fr;} }
   /* LAYER 0（要件定義・アーキテクト設計） */
@@ -1189,27 +1191,47 @@ var ROLE_DATA = {
   architect: { layer:'LAYER 0', name:'アーキテクト',
     summary:'要件定義と全体アーキテクチャ設計を担う、最上流の役割。「何を作り、どう組むか」を描き、上流（経営・企画）と現場（開発・運用）をつなぐ設計の起点になります。',
     points:['ビジネス要件の整理と、実装可能な設計への翻訳','全体アーキテクチャとツール選定方針の策定','上流と現場をつなぐ設計・意思決定の起点'],
-    persona:'事業会社でIT／DX戦略やシステムアーキテクチャの設計を主導した経験を持つ人材、ITコンサルティング出身者 など。' },
+    pros:[
+      '大手SIer（NTTデータ）およびZENRIN出身、現在は自身で設立した企業の技術責任者（CTO）。AWSとDB関連に強く、小規模〜大規模システムのアーキテクト設計経験が豊富。機能要件だけでなく非機能要件も踏まえ、将来を見据えた設計が可能。',
+      '大手SIerでの基幹系システム開発・大規模PM経験を経て、BtoC/BtoBtoCサービス開発へシフト。ソフトウェア開発業界歴25年超のITコンサルタント/ソリューションアーキテクトで、要求定義から技術選定・クラウドインフラ設計までを一貫対応。',
+      'ベンチャー企業やエキサイト、ヤフーを経て事業会社でCTOを歴任し、現職でもエンジニア組織のアーキテクチャ責任者を担当。大規模トラフィックを支える分散システム設計やビッグデータ関連技術に強み、約200名規模のエンジニア組織の技術戦略にも携わってきた。'
+    ] },
   fde: { layer:'LAYER 0–2', name:'FDE（フォワードデプロイエンジニア）',
     summary:'現場に入り込み、業務要件を動くプロダクトへ翻訳・実装し、定着まで伴走する“橋渡し役”。上流の設計力と現場の実行力の両方を持ちます。',
     points:['現場ヒアリングから要件を引き出し、動く形に翻訳','エージェント／オーケストレーションの実装・調整','PoCから本番運用・現場定着までの伴走'],
-    persona:'事業会社での業務理解と、開発・実装の両方を経験したエンジニア、プロダクト開発の実務者 など。' },
+    pros:[
+      '外資系データプロバイダ企業に約8年勤務し、メガバンクや大手保険グループのミッションクリティカルな取引プラットフォームの開発・PMを牽引。LLMを活用したアプリ開発や顧客の業務フロー再設計まで一気通貫で対応可能で、英語ネイティブレベル。',
+      '外資系投資銀行にて10名規模のグローバルチームを率い、株式トレーディングの異常検知システム開発を主導。生成AI/LLMを活用したアプリ開発の経験も豊富で、0→1フェーズでの推進力に長けたFDEとしての適性が最も強いタイプ。',
+      '大手SIerにてAIアドバイザーとしてDify基盤構築や生成AI活用の業務効率化プロジェクトを牽引。超上流のコンサルティングからプリセールス、AIエージェントの実装までを一気通貫で対応できる、ベテランのITコンサルタント/PM。'
+    ] },
   ai: { layer:'LAYER 1–2', name:'AIエンジニア',
     summary:'LLM・エージェントの実装を担う役割。プロンプト設計やツール連携、業務ロジックの構築を通じて、PoC止まりを避け本番運用まで引き上げます。',
     points:['LLM／エージェントアプリの実装','プロンプト設計・ツール連携・業務ロジック構築','PoC→本番化、評価・改善の運用設計'],
-    persona:'生成AI・LLMアプリの開発経験者、機械学習／ソフトウェアエンジニア など。' },
+    pros:[
+      '機械学習エンジニア・フルスタックエンジニアとしての経験を持ち、直近はDifyを活用したチャットボット開発を中心に従事。RAG構成やプロンプト設計、生成AIの精度改善を得意とする。',
+      'SES企業での大規模プロジェクトとベンチャー企業での小規模プロジェクトの両方を経験したフルスタックエンジニア。現在はLLMを用いたAIエージェント開発に従事し、自発的な技術検証・開発を推進している。',
+      '大塚商会、決済代行企業でのCTO歴任を経て独立。生成AI関連プロジェクトのPM/テックリードとして複数案件の実績があり（ChatGPT-4o、Gemini、Cohere等の活用）、RAGやベクトル検索の実装経験も豊富。'
+    ] },
   data: { layer:'LAYER 3–4', name:'データエンジニア',
     summary:'データ基盤・パイプラインの整備と、SaaS横断のデータ統合を担う役割。原本データを整流化し、AI活用と分析の前提をつくります。',
     points:['データ基盤・パイプラインの設計・整備','SaaS横断のデータ統合とデータ品質の担保','AI・分析が乗る前提のデータ整流化'],
-    persona:'データ基盤（Snowflake／Databricks／BigQuery 等）の構築・運用経験者、データエンジニア など。' },
+    pros:[
+      '事業会社にてGoogle Cloudを用いたデータ分析基盤の構築・運用やETL処理の設計実装を一人で担当。データ基盤の品質向上のための運用プロセス改善にも貢献してきた実績。',
+      '銀行のシステム開発者としてキャリアを開始し、ビッグデータ基盤構築や広告配信基盤開発、機械学習を経験。Snowflake・AWS・GCP・BigQueryを用いたETLパイプライン開発と大規模データ処理のパフォーマンスチューニングに強み。',
+      '大手ITベンダー出身で、医療業界向け分析アプリケーション開発やコミュニティ分析基盤構築を経験。BigQuery、Redshift、Snowflakeなど主要クラウドDWHを横断的に扱えるデータ分析エンジニア。'
+    ] },
   pksha: { layer:'LAYER 3', name:'PKSHA（アルゴリズム開発）',
     summary:'自社データで学習する独自の予測・検知モデルを開発する役割。陳腐化せず資産として積み上がる“独自アルゴリズム”の層を担います。',
     points:['独自アルゴリズム・予測／検知モデルの開発','自社データを活かしたモデルの設計・実装','資産として積み上がるAI基盤の構築'],
-    persona:'PKSHA Technology（グループ会社）のアルゴリズム開発チーム。' },
+    persona:'PKSHA Technology（グループ会社）のアルゴリズム開発チームが担います。' },
   citizen: { layer:'現場 / LAYER 1', name:'市民開発イネーブルメント',
     summary:'市民開発（現場の非IT人材によるローコード開発）を安全に回すための、ガードレール・教育・運用設計を担う役割。現場の内製力を育てます。',
     points:['市民開発のガードレール・ルール設計','現場向けの教育・テンプレート整備','安全に活用が広がる運用体制の構築'],
-    persona:'情シス／内製化推進や、ローコード（Power Platform／kintone 等）活用の推進経験者 など。' }
+    pros:[
+      '大手製造業においてPower Apps/Automateを軸に、現場の市民開発者への技術伴走支援やQA対応を担当。属人化・ブラックボックス化した既存アプリの解析・改修と、非エンジニアの自走支援に強み。',
+      'Microsoft 365・Copilot・Power Platformの導入活用支援を50プロジェクト以上手掛けてきたITコンサルタント。市民開発者の育成や運用ルール整備、内製化支援を専門とし、マイクロソフト認定トレーナー資格も保有。',
+      '地方自治体での市民開発プロジェクトを2年経験した後、民間企業でPower Apps/Automate/BIの導入支援や市民開発者育成に従事。Microsoft MVP受賞歴があり、書籍出版やYouTube等での情報発信も行う。'
+    ] }
 };
 (function(){
   var rm = document.getElementById('rmodal');
@@ -1223,9 +1245,11 @@ var ROLE_DATA = {
       + '<p class="rm-summary">'+esc(d.summary)+'</p>'
       + '<div class="rm-sec-label">主な役割</div>'
       + '<ul class="rm-points">'+d.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>'
-      + '<div class="rm-sec-label">想定するプロ人材例</div>'
-      + '<p class="rm-persona">'+esc(d.persona)+'</p>'
-      + '<p class="rm-note">具体的なプロ人材は、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</p>';
+      + '<div class="rm-sec-label">想定するプロ人材例'+(d.pros?'（'+d.pros.length+'名）':'')+'</div>'
+      + (d.pros
+          ? d.pros.map(function(pr,i){ return '<div class="rm-pro"><span class="rm-pro-n">例'+(i+1)+'</span>'+esc(pr)+'</div>'; }).join('')
+          : '<p class="rm-persona">'+esc(d.persona)+'</p>')
+      + '<p class="rm-note">上記はプロ人材の一例です。具体的なアサインは、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</p>';
     rm.hidden = false;
   }
   function close(){ rm.hidden = true; }
