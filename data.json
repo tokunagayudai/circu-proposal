@@ -537,7 +537,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-07-01",
-      "thumbnailShot": "images/slide-tool-strategy.png?v=20260716x",
+      "thumbnailShot": "images/slide-tool-strategy.png?v=20260716y",
       "detail": {
         "lead": "ツールの決め方が変わりました。上流が選び現場が使う時代から、両者が同時に動く時代へ。選定から定着・改善までを一体で設計します。",
         "background": "ローコード／SaaS／AIエージェントの普及で、現場が自らツールを組む時代に。一方でシャドーIT・PoC止まり・責任の所在の曖昧さなど、上流と現場の分断が新たな負債を生んでいます。",
@@ -557,7 +557,7 @@
       },
       "doc": {
         "type": "page",
-        "url": "circulation-hot-topics-2026-07.html?v=20260716w",
+        "url": "circulation-hot-topics-2026-07.html?v=20260716y",
         "title": "AI時代のツール戦略"
       }
     },
@@ -575,7 +575,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-24",
-      "thumbnailShot": "images/slide-ai-ax-training.png",
+      "thumbnailShot": "images/slide-ai-ax-training.png?v=20260716y",
       "thumbnail": "images/theme-ai-ax-training.svg",
       "detail": {
         "lead": "「研修を受けた」で終わらせない。AIを“現場で使われる状態”にし、AX（AI Transformation）として全社へ広げます。",
@@ -653,7 +653,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-22",
-      "thumbnailShot": "images/slide-ai-newbiz-2026.png",
+      "thumbnailShot": "images/slide-ai-newbiz-2026.png?v=20260716y",
       "thumbnail": "images/theme-ai-newbiz-2026.svg",
       "detail": {
         "lead": "AIが事業環境を一変させるいま、“どこで勝つか”の設計から立ち上げまで。経験者が伴走し、構想を事業に変えます。",
@@ -731,7 +731,7 @@
       "pickup": true,
       "isNew": true,
       "updated": "2026-06-20",
-      "thumbnailShot": "images/slide-m365-ai-bpr.png",
+      "thumbnailShot": "images/slide-m365-ai-bpr.png?v=20260716y",
       "thumbnail": "images/theme-m365-ai-bpr.svg",
       "detail": {
         "lead": "Copilotを“入れる”だけでは業務は変わりません。M365×AIを前提に業務プロセスごと作り直し、成果に変えます。",
