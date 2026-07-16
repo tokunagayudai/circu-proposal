@@ -491,6 +491,31 @@
   .eul-risk{border-left-color:#C2571C;background:#FCF5F0;}
   .eul-risk b{color:#B4531F;}
   .euact-bridge{color:var(--ink) !important;margin-bottom:0 !important;}
+  /* 代表的なツールと使い分け */
+  .tools-intro{font-size:12px;line-height:1.85;color:var(--ink);margin:2px 0 12px;}
+  .tools{display:flex;flex-direction:column;gap:8px;}
+  .tl-row{display:grid;grid-template-columns:172px 1fr;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .tl-layer{background:var(--navy);color:#fff;padding:11px 13px;font-size:11px;font-weight:700;display:flex;align-items:center;line-height:1.45;}
+  .tl-body{padding:11px 14px;}
+  .tl-tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+  .tool{font-size:10.4px;font-weight:700;color:var(--navy);background:var(--blue-tint);border:1px solid #D4E6F4;border-radius:4px;padding:3px 9px;}
+  .tl-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px;}
+  .how{font-size:8.6px;font-weight:700;color:#fff;border-radius:3px;padding:2px 8px;white-space:nowrap;}
+  .how-citizen{background:#2E9E6B;}
+  .how-platform{background:var(--blue);}
+  .how-pro{background:var(--navy);}
+  .how-pksha{background:#C2571C;}
+  .tl-note{font-size:10px;color:var(--sub);line-height:1.65;}
+  .tools-legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 2px;font-size:9.4px;color:var(--sub);}
+  .tools-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .tools-legend i{width:11px;height:11px;border-radius:2px;display:inline-block;}
+  .tools-principle{margin-top:12px;background:var(--navy);color:#fff;border-radius:6px;padding:14px 18px;}
+  .tools-principle h5{margin:0 0 9px;font-size:12px;color:#BFE0F5;font-weight:700;}
+  .tp-item{font-size:10.6px;line-height:1.7;margin-bottom:6px;}
+  .tp-item:last-child{margin-bottom:0;}
+  .tp-item b{color:#BFE0F5;}
+  .tools-note{margin-top:8px;font-size:9px;color:var(--sub);line-height:1.55;}
+  @media(max-width:720px){ .tl-row{grid-template-columns:1fr;} }
   /* LAYER 0（要件定義・アーキテクト設計） */
   .arch-l0{background:linear-gradient(135deg,var(--blue),#0a6ea8);text-align:center;}
   /* アサインするプロ人材の役割 */
@@ -740,6 +765,71 @@
       </div>
     </div>
     <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span>期待する効果やプロジェクトのサイズ感に応じて、<b>最適な解決体制（プロ人材の役割編成と、必要に応じたPKSHAの組み合わせ）をご提案します。</b></div>
+    </div></div>
+  </div>
+  <div class="acc-item" id="item-tools">
+    <button class="acc-header" type="button">
+      <span class="acc-num">02</span>
+      <span class="acc-headtext"><span class="acc-title">代表的なツールと、レイヤー別の使い分け</span><span class="acc-teaser">世の中の主要なツールを4レイヤーに整理し、市民開発／プラットフォーム／専門プロの担い分けを示す。</span></span>
+      <span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body"><div class="acc-bodyinner">
+    <p class="tools-intro">AIツール・LLM・SaaSは急増していますが、すべてを同じ土俵で選ぶ必要はありません。役割の異なるレイヤーに整理し、「どこを現場の市民開発に任せ、どこを共通プラットフォームで統制し、どこを専門プロ人材・PKSHAが担うか」を切り分けます。（下記は代表例であり、最適な組み合わせは要件により変わります）</p>
+    <div class="tools-legend">
+      <span><i style="background:#2E9E6B"></i>市民開発（現場が自ら）</span>
+      <span><i style="background:var(--blue)"></i>プラットフォーム／ノーコード（統制された土台）</span>
+      <span><i style="background:var(--navy)"></i>専門プロ人材</span>
+      <span><i style="background:#C2571C"></i>PKSHA（アルゴリズム）</span>
+    </div>
+    <div class="tools">
+      <div class="tl-row">
+        <div class="tl-layer">LAYER 0｜要件定義・アーキテクト設計</div>
+        <div class="tl-body">
+          <div class="tl-tools"><span class="tool">Miro</span><span class="tool">draw.io</span><span class="tool">Notion / Confluence</span></div>
+          <div class="tl-badges"><span class="how how-pro">専門プロ人材</span></div>
+          <div class="tl-note">ツール選定より前の最上流。「何を・どのツールで・誰が作るか」を設計する（アーキテクト・FDE）。</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-layer">LAYER 1｜汎用LLM（対話・生成）</div>
+        <div class="tl-body">
+          <div class="tl-tools"><span class="tool">Claude</span><span class="tool">ChatGPT</span><span class="tool">Gemini</span><span class="tool">Microsoft 365 Copilot</span></div>
+          <div class="tl-badges"><span class="how how-citizen">市民開発</span><span class="how how-pro">利用ルールは専門プロ</span></div>
+          <div class="tl-note">使うもので差別化にはならない層。プロンプトやGPTs等で現場が日常業務に活用。全社の利用ルール・ガードレールは上流で設計する。</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-layer">LAYER 2｜エージェント・オーケストレーション</div>
+        <div class="tl-body">
+          <div class="tl-tools"><span class="tool">Dify</span><span class="tool">n8n</span><span class="tool">Zapier</span><span class="tool">Make</span><span class="tool">Power Automate / Copilot Studio</span><span class="tool">LangChain / LangGraph</span></div>
+          <div class="tl-badges"><span class="how how-citizen">軽い連携＝市民開発</span><span class="how how-platform">共通基盤で統制</span><span class="how how-pro">重い実装＝専門プロ</span></div>
+          <div class="tl-note">LLMと業務・SaaSをつなぐ中心の層。統制された共通基盤（Dify・Power Platform 等）の上で、軽い連携は現場が組み、複雑な実装・全体設計は専門プロが担う。</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-layer">LAYER 3｜独自アルゴリズム・データ資産</div>
+        <div class="tl-body">
+          <div class="tl-tools"><span class="tool">Snowflake</span><span class="tool">Databricks</span><span class="tool">BigQuery</span><span class="tool">Vertex AI / SageMaker</span><span class="tool">PKSHA（独自モデル）</span></div>
+          <div class="tl-badges"><span class="how how-pksha">PKSHA</span><span class="how how-pro">専門プロ人材</span></div>
+          <div class="tl-note">自社データで学習する予測・検知モデルとデータ基盤。資産として積み上がる層で、市民開発の対象外。専門性が必須。</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-layer">LAYER 4｜業務SaaS（選んで繋ぐ・記録の原本）</div>
+        <div class="tl-body">
+          <div class="tl-tools"><span class="tool">Salesforce（SFA/CRM）</span><span class="tool">SAP / Oracle（ERP）</span><span class="tool">ServiceNow</span><span class="tool">Workday</span><span class="tool">kintone</span><span class="tool">Notion</span><span class="tool">Power Apps</span></div>
+          <div class="tl-badges"><span class="how how-pro">選定・接続＝専門プロ</span><span class="how how-citizen">簡易アプリ＝市民開発</span></div>
+          <div class="tl-note">基幹・業務の記録を原本として残す層。選定・接続は専門プロ、簡易な業務アプリ（kintone・Notion・Power Apps 等）は現場が内製できる。</div>
+        </div>
+      </div>
+    </div>
+    <div class="tools-principle">
+      <h5>使い分けの原則</h5>
+      <div class="tp-item"><b>市民開発に任せる</b>：LAYER 1 のLLM活用、LAYER 2 の軽量ノーコード連携（Dify／n8n／Power Automate）、LAYER 4 の簡易アプリ（kintone／Notion／Power Apps）。</div>
+      <div class="tp-item"><b>プラットフォームで統制する</b>：Power Platform・Copilot Studio・Dify 等を「共通の土台」として情シス／専門プロが用意し、その上で現場が安全に組む。</div>
+      <div class="tp-item"><b>専門プロ・PKSHAが担う</b>：LAYER 0 の設計、LAYER 2 の重い実装・全体オーケストレーション、LAYER 3 の独自アルゴリズム。</div>
+    </div>
+    <div class="tools-note">※ ツール名は各社の商標です。掲載は代表例で、特定ツールの推奨を意味しません。最適な構成は貴社の要件・既存資産に応じてご提案します。</div>
     </div></div>
   </div>
   <div class="acc-item" id="item-model">
