@@ -491,6 +491,20 @@
   .euact-risk b{color:#B4531F;}
   .euact-bridge{font-weight:700;color:var(--navy) !important;margin-bottom:0 !important;}
   @media print{ .euact-facts{grid-template-columns:repeat(4,1fr);} }
+  /* LAYER 0（要件定義・アーキテクト設計） */
+  .arch-l0{background:linear-gradient(135deg,var(--blue),#0a6ea8);text-align:center;}
+  /* アサインするプロ人材の役割 */
+  .role-intro{font-size:12.5px;line-height:1.85;color:var(--ink);margin:2px 0 14px;}
+  .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .role-card{border:1px solid var(--line);border-radius:6px;padding:14px 15px;background:#fff;border-top:3px solid var(--blue);display:flex;flex-direction:column;}
+  .role-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px;}
+  .role-name{font-size:13px;font-weight:700;color:var(--navy);}
+  .role-layer{font-size:8.6px;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--blue);border-radius:3px;padding:2px 7px;white-space:nowrap;}
+  .role-desc{font-size:10.4px;line-height:1.72;color:var(--sub);margin:0 0 12px;flex:1;}
+  .role-assign{border-top:1px dashed var(--line);padding-top:9px;font-size:9.4px;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .role-tbd{font-size:8.8px;font-weight:700;color:var(--blue);background:var(--blue-tint);border-radius:10px;padding:2px 9px;}
+  .role-foot{margin-top:11px;font-size:9.2px;color:var(--sub);background:#F4F7FA;border-radius:3px;padding:8px 11px;line-height:1.6;}
+  @media(max-width:720px){ .role-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body class="portal">
@@ -678,11 +692,17 @@
   <div class="acc-item" id="item-arch">
     <button class="acc-header" type="button">
       <span class="acc-num">02</span>
-      <span class="acc-headtext"><span class="acc-title">ツール戦略アーキテクチャ全体図</span><span class="acc-teaser">4つのレイヤーと規模で、意思決定の担い手が変わる</span></span>
+      <span class="acc-headtext"><span class="acc-title">ツール戦略アーキテクチャ全体図</span><span class="acc-teaser">要件定義から業務SaaSまで、レイヤーごとに意思決定の担い手が変わる</span></span>
       <span class="acc-chevron">▾</span>
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
 <div class="arch">
+      <div class="arch-box arch-l0">
+        <div class="arch-label">LAYER 0｜要件定義・アーキテクト設計</div>
+        <div class="arch-title">何を作り、どう組むかを定義する最上流</div>
+        <div class="arch-desc">現場の要件を実装可能な設計へ翻訳する層。アーキテクトと FDE（フォワードデプロイエンジニア）が担い、市民開発で増えた現場ツールも含めて全体設計に接続する。</div>
+      </div>
+      <div class="arch-trunk"></div><div class="arch-arrow-d"></div>
       <div class="arch-box arch-top">
         <div class="arch-label">LAYER 1｜汎用LLM</div>
         <div class="arch-title">ユーザーとの対話窓口（Claude／Copilot／Gemini）</div>
@@ -719,7 +739,7 @@
         </div>
       </div>
     </div>
-    <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span>サイズが効くのはレイヤー②だけ。プロ人材は①②④に規模を問わず関与し、③でも要件翻訳と現場定着を担う。<b>PKSHAが単独で必要になるのは、②の重い実装と③の構築だけである。</b></div>
+    <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span>期待する効果やプロジェクトのサイズ感に応じて、<b>最適な解決体制（プロ人材の役割編成と、必要に応じたPKSHAの組み合わせ）をご提案します。</b></div>
     </div></div>
   </div>
   <div class="acc-item" id="item-model">
@@ -978,30 +998,45 @@
   <div class="acc-item" id="item-case">
     <button class="acc-header" type="button">
       <span class="acc-num">03</span>
-      <span class="acc-headtext"><span class="acc-title">支援イメージ：ツール戦略の統合支援</span><span class="acc-teaser">SaaSの乱立とAI活用の停滞。同じ悩みを抱える企業への支援イメージ。</span></span>
+      <span class="acc-headtext"><span class="acc-title">アサインするプロ人材の役割</span><span class="acc-teaser">各レイヤーに、専門役割のプロ人材を編成する。</span></span>
       <span class="acc-chevron">▾</span>
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
-<div class="banner">SaaSの乱立とAI活用の停滞。<span class="hl">同じ悩みを抱える企業</span>への支援イメージ。</div>
-    <div class="case-top">
-      <div class="case-badges">
-        <div class="case-badge"><div class="k">対象企業（イメージ）</div><div class="v">大手消費財メーカー</div></div>
-        <div class="case-badge"><div class="k">年商規模</div><div class="v">数千億円規模</div></div>
-        <div class="case-badge"><div class="k">従業員数</div><div class="v">数千名規模</div></div>
-        <div class="case-badge"><div class="k">支援期間</div><div class="v">最大3ヶ月〜</div></div>
+<div class="banner">支援は「誰か一人」ではなく、<span class="hl">各レイヤーに専門役割のプロ人材を編成</span>してご提供します。</div>
+    <p class="role-intro">アーキテクトが最上流を描き、FDE（フォワードデプロイエンジニア）が現場に入り込んで要件を動く形へ翻訳。AI／データエンジニア、独自アルゴリズムのPKSHAが各レイヤーを担い、市民開発の現場も安全に束ねます。ご状況に応じて、役割の組み合わせと比重を調整します。</p>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">LAYER 0</span><span class="role-name">アーキテクト</span></div>
+        <p class="role-desc">要件定義と全体アーキテクチャ設計。「何を作り、どう組むか」の最上流を描き、上流と現場をつなぐ設計の起点になる。</p>
+        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
       </div>
-      <div class="case-body">
-        <div class="case-block"><span class="tag">課題</span><ul><li>SFA（Salesforce）を中心に7つ以上のSaaSが部門ごとに乱立している</li><li>現場発のAI活用が、情シスの把握しないまま広がっている</li><li>「上流で統制すべきか、現場に任せるべきか」の線引きができていない</li></ul></div>
-        <div class="case-block"><span class="tag">支援内容</span><ul><li>SaaS・AI利用実態の棚卸しと、上流／現場の役割再整理</li><li>UI・ロジック・データの切り分け設計</li><li>オーケストレーターの試験導入（優先2業務）</li></ul></div>
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">LAYER 0–2</span><span class="role-name">FDE（フォワードデプロイエンジニア）</span></div>
+        <p class="role-desc">現場に入り込み、業務要件を動くプロダクト（エージェント／オーケストレーション）へ翻訳・実装し、現場定着まで伴走する“橋渡し役”。</p>
+        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">LAYER 1–2</span><span class="role-name">AIエンジニア</span></div>
+        <p class="role-desc">LLM・エージェントの実装、プロンプト／ツール連携、業務ロジックの構築。PoC止まりを避け、本番運用まで引き上げる。</p>
+        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">LAYER 3–4</span><span class="role-name">データエンジニア</span></div>
+        <p class="role-desc">データ基盤・パイプライン整備とSaaS横断のデータ統合。原本データを整流化し、AI活用と分析の前提をつくる。</p>
+        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">LAYER 3</span><span class="role-name">PKSHA（アルゴリズム開発）</span></div>
+        <p class="role-desc">自社データで学習する独自の予測・検知モデルを開発。陳腐化せず資産として積み上がる“独自アルゴリズム”の層を担う。</p>
+        <div class="role-assign">担当<span class="role-tbd">PKSHA Technology</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><span class="role-layer">現場 / LAYER 1</span><span class="role-name">市民開発イネーブルメント</span></div>
+        <p class="role-desc">市民開発（現場の非IT人材によるローコード開発）を安全に回すためのガードレール・教育・運用設計。現場の内製力を育てる。</p>
+        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
       </div>
     </div>
-    <div class="case-block" style="margin-top:2px;"><span class="tag">成果（イメージ）</span>
-      <div class="metric-row"><div class="metric-label">入力工数（月間）</div><div class="metric-bars"><div class="metric-bar before"><span>支援前</span></div><div class="metric-bar after" style="width:45%;"><span>-55%</span></div></div></div>
-      <div class="metric-row"><div class="metric-label">SaaSライセンスコスト</div><div class="metric-bars"><div class="metric-bar before"><span>支援前</span></div><div class="metric-bar after" style="width:70%;"><span>-30%</span></div></div></div>
-      <div class="metric-row"><div class="metric-label">PoC→本番化までの期間</div><div class="metric-bars"><div class="metric-bar before"><span>支援前：12ヶ月相当</span></div><div class="metric-bar after" style="width:25%;"><span>3ヶ月に短縮</span></div></div></div>
-    </div>
-    <div class="quote-box"><p>「上流と現場、どちらの言い分も分かる立場で整理してもらえたのが良かった。」</p><div class="qwho">情報システム部門責任者（イメージ・支援想定コメント）</div></div>
-    <div class="case-note">※ 本ページの企業属性・成果指標・コメントは支援内容のイメージです。公開前に実際の支援事例へ差し替えてください。</div>
+    <div class="role-foot">※ 上記は代表的な役割です。具体的な担当プロ人材は、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</div>
     </div></div>
   </div>
 </div>
