@@ -438,7 +438,7 @@
   .acc-item.open .acc-teaser{white-space:normal;}
 
   .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-  .acc-item.open .acc-body{max-height:4200px;}
+  .acc-item.open .acc-body{max-height:9000px;}
   .acc-bodyinner{padding:6px 20px 22px;border-top:1px solid var(--line);}
 
   .footer-cta{background:linear-gradient(120deg,var(--navy) 0%, #0F2A44 60%, var(--blue) 145%);color:#fff;text-align:center;padding:56px 24px;margin-top:40px;}
@@ -516,6 +516,25 @@
   .tp-item:last-child{margin-bottom:0;}
   .tp-item b{color:#BFE0F5;}
   .tools-note{margin-top:8px;font-size:9px;color:var(--sub);line-height:1.55;}
+  .tools-subhead{margin:20px 0 8px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;font-weight:700;color:var(--navy);}
+  /* 役割カード：クリックでプロ人材例モーダル */
+  .role-card{cursor:pointer;transition:box-shadow .15s,transform .15s,border-color .15s;}
+  .role-card:hover{box-shadow:0 4px 14px rgba(20,40,60,.12);border-color:var(--blue);transform:translateY(-1px);}
+  .role-cta{margin-top:auto;border-top:1px dashed var(--line);padding-top:9px;font-size:10px;font-weight:700;color:var(--blue);display:flex;align-items:center;justify-content:space-between;}
+  .role-chev{font-size:16px;line-height:1;}
+  .rmodal{position:fixed;inset:0;background:rgba(15,30,45,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:24px;}
+  .rmodal[hidden]{display:none;}
+  .rmodal-box{background:#fff;border-radius:10px;max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:26px 30px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+  .rmodal-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:22px;color:var(--sub);cursor:pointer;line-height:1;}
+  .rm-layer{display:inline-block;font-size:9.5px;font-weight:700;color:#fff;background:var(--blue);border-radius:3px;padding:3px 9px;margin-bottom:8px;}
+  .rm-name{font-size:18px;font-weight:700;color:var(--navy);margin:0 0 10px;}
+  .rm-summary{font-size:12.5px;line-height:1.85;color:var(--ink);margin:0 0 6px;}
+  .rm-sec-label{font-size:11px;font-weight:700;color:var(--blue);margin:15px 0 7px;}
+  .rm-points{margin:0;padding:0;list-style:none;}
+  .rm-points li{position:relative;padding-left:14px;font-size:12px;line-height:1.7;color:var(--ink);margin-bottom:5px;}
+  .rm-points li:before{content:"・";position:absolute;left:0;color:var(--blue);font-weight:700;}
+  .rm-persona{font-size:12px;line-height:1.78;color:var(--ink);margin:0;}
+  .rm-note{margin-top:16px;font-size:10px;color:var(--sub);background:#F4F7FA;border-radius:4px;padding:9px 12px;line-height:1.6;}
   @media(max-width:720px){ .tl-row{grid-template-columns:1fr;} }
   /* LAYER 0（要件定義・アーキテクト設計） */
   .arch-l0{background:linear-gradient(135deg,var(--blue),#0a6ea8);text-align:center;}
@@ -718,7 +737,7 @@
   <div class="acc-item" id="item-arch">
     <button class="acc-header" type="button">
       <span class="acc-num">02</span>
-      <span class="acc-headtext"><span class="acc-title">ツール戦略アーキテクチャ全体図</span><span class="acc-teaser">要件定義から業務SaaSまで、レイヤーごとに意思決定の担い手が変わる</span></span>
+      <span class="acc-headtext"><span class="acc-title">ツール戦略アーキテクチャと、レイヤー別の代表ツール</span><span class="acc-teaser">レイヤーごとに意思決定の担い手が変わる。各レイヤーの代表ツールと担い分けまでを一枚で。</span></span>
       <span class="acc-chevron">▾</span>
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
@@ -766,16 +785,8 @@
       </div>
     </div>
     <div class="insight" style="margin-top:9px;"><span class="lbl">POINT</span>期待する効果やプロジェクトのサイズ感に応じて、<b>最適な解決体制（プロ人材の役割編成と、必要に応じたPKSHAの組み合わせ）をご提案します。</b></div>
-    </div></div>
-  </div>
-  <div class="acc-item" id="item-tools">
-    <button class="acc-header" type="button">
-      <span class="acc-num">02</span>
-      <span class="acc-headtext"><span class="acc-title">代表的なツールと、レイヤー別の使い分け</span><span class="acc-teaser">世の中の主要なツールを4レイヤーに整理し、市民開発／プラットフォーム／専門プロの担い分けを示す。</span></span>
-      <span class="acc-chevron">▾</span>
-    </button>
-    <div class="acc-body"><div class="acc-bodyinner">
-    <p class="tools-intro">AIツール・LLM・SaaSは急増していますが、すべてを同じ土俵で選ぶ必要はありません。役割の異なるレイヤーに整理し、「どこを現場の市民開発に任せ、どこを共通プラットフォームで統制し、どこを専門プロ人材・PKSHAが担うか」を切り分けます。（下記は代表例であり、最適な組み合わせは要件により変わります）</p>
+    <div class="tools-subhead">レイヤー別の代表ツールと使い分け</div>
+    <p class="tools-intro">上記のレイヤーごとに、世の中の主要なツールを整理します。「どこを現場の市民開発に任せ、どこを共通プラットフォームで統制し、どこを専門プロ人材・PKSHAが担うか」を切り分けます。（代表例であり、最適な組み合わせは要件により変わります）</p>
     <div class="tools-legend">
       <span><i style="background:#2E9E6B"></i>市民開発（現場が自ら）</span>
       <span><i style="background:var(--blue)"></i>プラットフォーム／ノーコード（統制された土台）</span>
@@ -1094,41 +1105,48 @@
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
 <div class="banner">支援は「誰か一人」ではなく、<span class="hl">各レイヤーに専門役割のプロ人材を編成</span>してご提供します。</div>
-    <p class="role-intro">アーキテクトが最上流を描き、FDE（フォワードデプロイエンジニア）が現場に入り込んで要件を動く形へ翻訳。AI／データエンジニア、独自アルゴリズムのPKSHAが各レイヤーを担い、市民開発の現場も安全に束ねます。ご状況に応じて、役割の組み合わせと比重を調整します。</p>
+    <p class="role-intro">アーキテクトが最上流を描き、FDE（フォワードデプロイエンジニア）が現場に入り込んで要件を動く形へ翻訳。AI／データエンジニア、独自アルゴリズムのPKSHAが各レイヤーを担い、市民開発の現場も安全に束ねます。各カードをクリックすると、役割の詳細と想定するプロ人材例が開きます。</p>
     <div class="role-grid">
-      <div class="role-card">
+      <div class="role-card" data-role="architect" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">LAYER 0</span><span class="role-name">アーキテクト</span></div>
         <p class="role-desc">要件定義と全体アーキテクチャ設計。「何を作り、どう組むか」の最上流を描き、上流と現場をつなぐ設計の起点になる。</p>
-        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
-      <div class="role-card">
+      <div class="role-card" data-role="fde" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">LAYER 0–2</span><span class="role-name">FDE（フォワードデプロイエンジニア）</span></div>
         <p class="role-desc">現場に入り込み、業務要件を動くプロダクト（エージェント／オーケストレーション）へ翻訳・実装し、現場定着まで伴走する“橋渡し役”。</p>
-        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
-      <div class="role-card">
+      <div class="role-card" data-role="ai" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">LAYER 1–2</span><span class="role-name">AIエンジニア</span></div>
         <p class="role-desc">LLM・エージェントの実装、プロンプト／ツール連携、業務ロジックの構築。PoC止まりを避け、本番運用まで引き上げる。</p>
-        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
-      <div class="role-card">
+      <div class="role-card" data-role="data" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">LAYER 3–4</span><span class="role-name">データエンジニア</span></div>
         <p class="role-desc">データ基盤・パイプライン整備とSaaS横断のデータ統合。原本データを整流化し、AI活用と分析の前提をつくる。</p>
-        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
-      <div class="role-card">
+      <div class="role-card" data-role="pksha" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">LAYER 3</span><span class="role-name">PKSHA（アルゴリズム開発）</span></div>
         <p class="role-desc">自社データで学習する独自の予測・検知モデルを開発。陳腐化せず資産として積み上がる“独自アルゴリズム”の層を担う。</p>
-        <div class="role-assign">担当<span class="role-tbd">PKSHA Technology</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
-      <div class="role-card">
+      <div class="role-card" data-role="citizen" role="button" tabindex="0">
         <div class="role-top"><span class="role-layer">現場 / LAYER 1</span><span class="role-name">市民開発イネーブルメント</span></div>
         <p class="role-desc">市民開発（現場の非IT人材によるローコード開発）を安全に回すためのガードレール・教育・運用設計。現場の内製力を育てる。</p>
-        <div class="role-assign">担当プロ人材<span class="role-tbd">追って掲載</span></div>
+        <div class="role-cta">プロ人材例を見る<span class="role-chev">›</span></div>
       </div>
     </div>
-    <div class="role-foot">※ 上記は代表的な役割です。具体的な担当プロ人材は、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</div>
+    <div class="role-foot">※ 上記は代表的な役割・プロ人材例です。具体的なプロ人材は、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</div>
     </div></div>
+  </div>
+</div>
+
+<div class="rmodal" id="rmodal" hidden>
+  <div class="rmodal-box" role="dialog" aria-modal="true" aria-labelledby="rm-name">
+    <button class="rmodal-close" id="rmodal-close" aria-label="閉じる">×</button>
+    <div class="rmodal-body" id="rmodal-body"></div>
   </div>
 </div>
 
@@ -1165,6 +1183,60 @@ document.querySelectorAll('.diag-card').forEach(function(a){
     }
   });
 });
+
+/* 役割カード → プロ人材例モーダル */
+var ROLE_DATA = {
+  architect: { layer:'LAYER 0', name:'アーキテクト',
+    summary:'要件定義と全体アーキテクチャ設計を担う、最上流の役割。「何を作り、どう組むか」を描き、上流（経営・企画）と現場（開発・運用）をつなぐ設計の起点になります。',
+    points:['ビジネス要件の整理と、実装可能な設計への翻訳','全体アーキテクチャとツール選定方針の策定','上流と現場をつなぐ設計・意思決定の起点'],
+    persona:'事業会社でIT／DX戦略やシステムアーキテクチャの設計を主導した経験を持つ人材、ITコンサルティング出身者 など。' },
+  fde: { layer:'LAYER 0–2', name:'FDE（フォワードデプロイエンジニア）',
+    summary:'現場に入り込み、業務要件を動くプロダクトへ翻訳・実装し、定着まで伴走する“橋渡し役”。上流の設計力と現場の実行力の両方を持ちます。',
+    points:['現場ヒアリングから要件を引き出し、動く形に翻訳','エージェント／オーケストレーションの実装・調整','PoCから本番運用・現場定着までの伴走'],
+    persona:'事業会社での業務理解と、開発・実装の両方を経験したエンジニア、プロダクト開発の実務者 など。' },
+  ai: { layer:'LAYER 1–2', name:'AIエンジニア',
+    summary:'LLM・エージェントの実装を担う役割。プロンプト設計やツール連携、業務ロジックの構築を通じて、PoC止まりを避け本番運用まで引き上げます。',
+    points:['LLM／エージェントアプリの実装','プロンプト設計・ツール連携・業務ロジック構築','PoC→本番化、評価・改善の運用設計'],
+    persona:'生成AI・LLMアプリの開発経験者、機械学習／ソフトウェアエンジニア など。' },
+  data: { layer:'LAYER 3–4', name:'データエンジニア',
+    summary:'データ基盤・パイプラインの整備と、SaaS横断のデータ統合を担う役割。原本データを整流化し、AI活用と分析の前提をつくります。',
+    points:['データ基盤・パイプラインの設計・整備','SaaS横断のデータ統合とデータ品質の担保','AI・分析が乗る前提のデータ整流化'],
+    persona:'データ基盤（Snowflake／Databricks／BigQuery 等）の構築・運用経験者、データエンジニア など。' },
+  pksha: { layer:'LAYER 3', name:'PKSHA（アルゴリズム開発）',
+    summary:'自社データで学習する独自の予測・検知モデルを開発する役割。陳腐化せず資産として積み上がる“独自アルゴリズム”の層を担います。',
+    points:['独自アルゴリズム・予測／検知モデルの開発','自社データを活かしたモデルの設計・実装','資産として積み上がるAI基盤の構築'],
+    persona:'PKSHA Technology（グループ会社）のアルゴリズム開発チーム。' },
+  citizen: { layer:'現場 / LAYER 1', name:'市民開発イネーブルメント',
+    summary:'市民開発（現場の非IT人材によるローコード開発）を安全に回すための、ガードレール・教育・運用設計を担う役割。現場の内製力を育てます。',
+    points:['市民開発のガードレール・ルール設計','現場向けの教育・テンプレート整備','安全に活用が広がる運用体制の構築'],
+    persona:'情シス／内製化推進や、ローコード（Power Platform／kintone 等）活用の推進経験者 など。' }
+};
+(function(){
+  var rm = document.getElementById('rmodal');
+  var body = document.getElementById('rmodal-body');
+  if(!rm || !body) return;
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function open(key){
+    var d = ROLE_DATA[key]; if(!d) return;
+    body.innerHTML = '<div class="rm-layer">'+esc(d.layer)+'</div>'
+      + '<h3 class="rm-name" id="rm-name">'+esc(d.name)+'</h3>'
+      + '<p class="rm-summary">'+esc(d.summary)+'</p>'
+      + '<div class="rm-sec-label">主な役割</div>'
+      + '<ul class="rm-points">'+d.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>'
+      + '<div class="rm-sec-label">想定するプロ人材例</div>'
+      + '<p class="rm-persona">'+esc(d.persona)+'</p>'
+      + '<p class="rm-note">具体的なプロ人材は、貴社の要件・到達点・プロジェクト規模に合わせてご提案します。</p>';
+    rm.hidden = false;
+  }
+  function close(){ rm.hidden = true; }
+  document.querySelectorAll('.role-card[data-role]').forEach(function(card){
+    card.addEventListener('click', function(){ open(card.getAttribute('data-role')); });
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(card.getAttribute('data-role')); } });
+  });
+  document.getElementById('rmodal-close').addEventListener('click', close);
+  rm.addEventListener('click', function(e){ if(e.target===rm) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !rm.hidden) close(); });
+})();
 </script>
 </body>
 </html>
