@@ -408,7 +408,7 @@ function assignCluster(a) {
         <span class="cc-title">${esc(a.hub || "1つのプロジェクト")}</span>
         ${a.hubSub ? `<span class="cc-sub">${esc(a.hubSub)}</span>` : ""}
       </div>
-      <div class="cluster-grid">
+      <div class="cluster-grid" style="grid-template-columns:repeat(${Math.max(1, (a.items || []).length)}, 1fr)">
         ${(a.items || []).map((it) => `
           <div class="cluster-chip">
             <span class="ch-label">${esc(it.label)}</span>
