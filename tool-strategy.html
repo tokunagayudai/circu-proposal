@@ -390,13 +390,14 @@
 
   body.portal{background:#F3F6F9;}
   .wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px;}
-  .hero{background:linear-gradient(120deg,var(--navy) 0%, #0F2A44 60%, var(--blue) 145%);color:#fff;padding:56px 40px 0;}
-  .hero-inner{max-width:1040px;margin:0 auto;}
-  .hero .service{font-size:12px;letter-spacing:.28em;color:#9FCBEB;font-weight:700;margin-bottom:20px;}
-  .hero h1{font-size:32px;font-weight:700;line-height:1.5;margin:0 0 18px;}
-  .hero h1 .accent{color:#BFE0F5;display:block;font-size:17px;font-weight:700;margin:0 0 10px;letter-spacing:.02em;}
-  .hero .lede{font-size:14.5px;color:#CFE3F2;line-height:1.85;margin:0 0 22px;max-width:680px;}
-  .hero .pitch{font-size:13px;color:#BFD9EC;line-height:1.85;}
+  .hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#2F79C0 0%, #3E88CD 55%, #4F9BDA 125%);color:#fff;padding:56px 40px 0;}
+  .hero-c{position:absolute;top:50%;right:-70px;transform:translateY(-50%);height:560px;width:auto;opacity:.16;pointer-events:none;z-index:0;}
+  .hero-inner{position:relative;z-index:1;max-width:1040px;margin:0 auto;}
+  .hero .service{font-size:13px;letter-spacing:.3em;color:#fff;font-weight:700;margin-bottom:20px;}
+  .hero h1{font-size:32px;font-weight:700;line-height:1.5;margin:0 0 18px;color:#fff;}
+  .hero h1 .accent{color:#DDEBFA;display:block;font-size:17px;font-weight:700;margin:0 0 10px;letter-spacing:.02em;}
+  .hero .lede{font-size:14.5px;color:#EAF3FC;line-height:1.85;margin:0 0 22px;max-width:680px;}
+  .hero .pitch{font-size:13px;color:#D5E7F7;line-height:1.85;}
   .hero .pitch b{color:#fff;}
   .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;padding-bottom:32px;}
   .hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:16px 14px;display:flex;align-items:center;gap:12px;}
@@ -616,6 +617,7 @@
 </div>
 
 <div class="hero">
+  <img class="hero-c" src="images/circu-c-white.png" alt="" aria-hidden="true">
   <div class="hero-inner">
     <div class="service">SERVICE</div>
     <h1><span class="accent">「選ぶ」から「育てる」へ</span>上流設計と現場改善が交わる<br>AI時代のツール戦略</h1>
