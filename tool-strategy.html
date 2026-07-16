@@ -484,13 +484,13 @@
   .euact-head{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--navy);font-size:15px;margin-bottom:9px;}
   .euact-head .tag{font-size:10px;font-weight:700;color:#fff;background:var(--blue);border-radius:4px;padding:2px 8px;letter-spacing:.04em;}
   .euact p{font-size:12.5px;line-height:1.9;color:var(--ink);margin:0 0 10px;}
-  .euact-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:2px 0 12px;}
-  .euf{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px 11px;font-size:11.3px;line-height:1.6;color:var(--sub);}
-  .euf b{display:block;color:var(--navy);font-size:12px;margin-bottom:2px;}
-  .euact-risk{background:#FDF3EE;border:1px solid #F0C9B3;border-radius:6px;padding:10px 13px;color:#8A4B24 !important;}
-  .euact-risk b{color:#B4531F;}
-  .euact-bridge{font-weight:700;color:var(--navy) !important;margin-bottom:0 !important;}
-  @media print{ .euact-facts{grid-template-columns:repeat(4,1fr);} }
+  .euact-list{display:flex;flex-direction:column;gap:8px;margin:2px 0 12px;}
+  .eul{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:6px;padding:10px 14px;}
+  .eul b{display:block;color:var(--navy);font-size:12.5px;margin-bottom:3px;}
+  .eul p{font-size:11.5px;line-height:1.75;color:var(--sub);margin:0;}
+  .eul-risk{border-left-color:#C2571C;background:#FCF5F0;}
+  .eul-risk b{color:#B4531F;}
+  .euact-bridge{color:var(--ink) !important;margin-bottom:0 !important;}
   /* LAYER 0（要件定義・アーキテクト設計） */
   .arch-l0{background:linear-gradient(135deg,var(--blue),#0a6ea8);text-align:center;}
   /* アサインするプロ人材の役割 */
@@ -626,16 +626,16 @@
     </button>
     <div class="acc-body"><div class="acc-bodyinner">
     <div class="euact">
-      <div class="euact-head"><span class="tag">REGULATION</span>まず、規制の時計が動いている ── EU AI Act</div>
-      <p>EU AI Act（EU AI規則）は、AIをリスクに応じて4段階で規制する世界初の包括的なAI法です。禁止用途は2025年2月、汎用AI（GPAI）の義務は2025年8月に発効し、採用・与信・重要インフラなどの「高リスクAI」を含む中核規定が <b>2026年8月2日</b> に本格適用されます。重要なのは<b>域外適用</b>で、EU域内に製品・サービス、あるいはAIの出力を提供する日本企業も規制の対象になり得ます。違反時の制裁金は最大で<b>全世界年間売上高の7％（または3,500万ユーロ）</b>に達します。</p>
-      <div class="euact-facts">
-        <div class="euf"><b>本格適用</b>2026年8月2日（高リスクAI等の中核規定）</div>
-        <div class="euf"><b>域外適用</b>EU向けに提供する日本企業も対象になり得る</div>
-        <div class="euf"><b>制裁金</b>最大 全世界売上高の7％／3,500万ユーロ</div>
-        <div class="euf"><b>主な義務</b>適合性評価・記録（ログ）・透明性・人間による監督</div>
+      <div class="euact-head"><span class="tag">EU AI Act</span>EU AI Act と日本企業への影響</div>
+      <p>EU AI Act（EU AI規則）は、AIをリスクに応じて規制するEUの法律です。段階的に適用され、高リスクAIを含む中核規定は2026年8月2日に本格適用されます。EU域内に拠点がない日本企業も、次のような形で影響を受けます。</p>
+      <div class="euact-list">
+        <div class="eul"><b>域外適用による直接的な規制</b><p>EU域内に拠点がない日本企業でも、EUでAIシステム（人事評価AI、医療機器組み込みAIなど）を展開・提供する場合、開発者または提供者として厳格な義務（リスク評価、技術文書の作成、人間による監視など）が課されます。</p></div>
+        <div class="eul"><b>サプライチェーンを通じた間接的影響</b><p>自社が直接EUに進出していなくても、EU域内の企業にAIシステムやAIを組み込んだハードウェア・サービスを輸出する場合、取引先からAIに関する情報開示やコンプライアンス遵守を求められる連鎖的な影響が生じます。</p></div>
+        <div class="eul"><b>高額な制裁金リスク</b><p>規制に違反した場合、最大で3,500万ユーロ（または全世界年間売上高の7%のいずれか高い方）という制裁金が科される可能性があります。</p></div>
+        <div class="eul"><b>既存の汎用目的AIモデルの再利用も対象になり得る</b><p>AIモデルを新規開発していない企業であっても、既存の汎用目的AIモデルを自社の業務で再学習させて使用・提供するだけで規制対象となる可能性があります。まず社内のAI利用状況を可視化することが求められます。</p></div>
+        <div class="eul eul-risk"><b>セキュリティ・ガバナンスのリスク</b><p>現場が個別にAIを導入・再学習している状態では、どのAIがどのデータを扱い、どの規制区分に当たるかを社内で把握できません。情報漏えい・不適切な利用・監査への対応不能といったリスクにつながるため、AI利用状況の可視化と統制の枠組みづくりが前提になります。</p></div>
       </div>
-      <p class="euact-risk"><b>リスク：</b>これは「現場のAI乱立」と直結します。各部署が個別にAIツールを導入し続けると、どのAIがどの規制区分に該当し、どんな判断根拠・ログが残っているのかを誰も把握できません。上流が方針だけ示して現場任せにした結果が、そのままコンプライアンス違反・制裁・信用毀損のリスクとして経営に跳ね返ります。</p>
-      <p class="euact-bridge">適用開始は目前です。だからこそ、上流のガバナンス設計と、現場で「いま何が起きているか」の把握を“同時に”進める必要があります。── ここから先は、まず現場を見ていきます。</p>
+      <p class="euact-bridge">以降では、こうした規制・統制の前提を踏まえたうえで、まず現場で何が起きているかを整理します。</p>
     </div>
 <div class="banner">ツールの決め方が変わった。上流が選び、現場が使う時代から、<span class="hl">両者が同時に動く時代</span>へ。</div>
     <div class="cols3">
