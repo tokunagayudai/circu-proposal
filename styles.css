@@ -983,8 +983,8 @@ body.no-scroll { overflow: hidden; }
 /* ---------- プロ人材アサイン体制例（4象限） ---------- */
 .assign-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 .assign-card { padding: 22px 22px 22px; }
 .assign-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
