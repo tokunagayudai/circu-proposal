@@ -349,6 +349,18 @@ section { scroll-margin-top: 84px; }
 .agenda-band:last-child { margin-bottom: 0; }
 .agenda-transform { background: rgba(237, 125, 49, 0.07); border: 1px solid rgba(237, 125, 49, 0.22); }
 .agenda-function { background: var(--blue-l); border: 1px solid rgba(0, 121, 192, 0.16); }
+/* 組織ドメイン別 5グループの配色 */
+.agenda-g1 { background: rgba(26, 58, 92, 0.05); border: 1px solid rgba(26, 58, 92, 0.16); }
+.agenda-g1 .ab-label { color: #1A3A5C; }
+.agenda-g2 { background: rgba(237, 125, 49, 0.07); border: 1px solid rgba(237, 125, 49, 0.22); }
+.agenda-g2 .ab-label { color: #C2571C; }
+.agenda-g3 { background: rgba(46, 158, 107, 0.08); border: 1px solid rgba(46, 158, 107, 0.22); }
+.agenda-g3 .ab-label { color: #1F8A5B; }
+.agenda-g4 { background: var(--blue-l); border: 1px solid rgba(0, 121, 192, 0.16); }
+.agenda-g4 .ab-label { color: var(--blue-d); }
+.agenda-g5 { background: rgba(96, 108, 124, 0.08); border: 1px solid rgba(96, 108, 124, 0.20); }
+.agenda-g5 .ab-label { color: #55606E; }
+.agenda-g6 { background: #f7fafc; border: 1px solid var(--line); }
 .agenda-band-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
 .ab-label { font-weight: 700; font-size: 1rem; color: var(--blue-d); }
 .agenda-transform .ab-label { color: #c2571c; }
