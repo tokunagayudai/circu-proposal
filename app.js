@@ -111,6 +111,7 @@ function renderAgendaMap(categories) {
       <span class="at-body">
         <span class="at-name">${esc(c.name)}</span>
         ${c.tagline ? `<span class="at-tag">${esc(c.tagline)}</span>` : ""}
+        ${(c.keywords || []).length ? `<span class="at-kws">${c.keywords.map((k) => `<span class="at-kw">${esc(k)}</span>`).join("")}</span>` : ""}
       </span>
     </button>`;
   const bands = AGENDA_GROUPS.map((b) => {
