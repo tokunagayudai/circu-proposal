@@ -1632,41 +1632,25 @@
       "key": "Project",
       "subtitle": "担当者の複数案件に「専任プロ人材」",
       "diagram": "staffed",
-      "hub": "デジタル部門",
-      "hubSub": "複数担当者 × 8案件を横断",
+      "hub": "ご担当者さま",
+      "hubSub": "お一人で複数案件を兼務",
       "caption": "お一人のご担当者が抱える複数の案件それぞれに、専任のプロ人材を配置します。",
       "items": [
         {
-          "label": "ビジョン策定",
-          "detail": "DXコンサル"
+          "label": "新規事業の立ち上げ",
+          "detail": "事業開発Pro / PM"
         },
         {
-          "label": "採用ページ刷新",
-          "detail": "採用UI/UX"
+          "label": "基幹システム刷新",
+          "detail": "PM・PMO"
         },
         {
-          "label": "マーケティング戦略",
+          "label": "マーケDX推進",
           "detail": "マーケター"
         },
         {
-          "label": "CRM実行戦略",
-          "detail": "CRM／メルマガ・チャネル施策"
-        },
-        {
-          "label": "業務プロセス改善",
-          "detail": "BPR"
-        },
-        {
-          "label": "AI活用検討",
-          "detail": "AI専門家"
-        },
-        {
-          "label": "新規技術の活用検討",
-          "detail": "業界専門家・事業企画"
-        },
-        {
-          "label": "データ分析・基盤",
-          "detail": "データサイエンティスト／アプリ開発"
+          "label": "業務改善・BPR",
+          "detail": "BPR・情シスPro"
         }
       ],
       "case": {
