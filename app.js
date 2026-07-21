@@ -85,15 +85,26 @@ function renderPickup(themes) {
 /* ---------------- 経営テーマ俯瞰マップ ---------------- */
 /* 全社を横断する「変革テーマ」と、部門・機能ごとの「機能テーマ」に分けて一覧表示。
    タイルをクリックすると data-category 経由でテーマ詳細（課題・解決策・事例）が開く。 */
-const TRANSFORM_CATS = new Set(["newbiz", "dx", "ai", "bpr", "manda", "esg", "global", "midterm"]);
+/* 顧客が“自分の部署・役割”で探せるよう、組織ドメイン別に再編（誰の課題か軸） */
+const AGENDA_GROUPS = [
+  { key: "g1", label: "経営・成長戦略", sub: "経営層・経営企画｜攻めの全社テーマ",
+    ids: ["midterm", "manda", "newbiz", "global", "esg"] },
+  { key: "g2", label: "営業・マーケ・顧客・ブランド", sub: "事業部／マーケ・営業・CMO",
+    ids: ["marketing", "sales", "retail", "cs", "branding", "pr"] },
+  { key: "g3", label: "生産・購買・業務改革", sub: "製造・調達・オペレーション",
+    ids: ["manufactur", "scm", "bpr"] },
+  { key: "g4", label: "IT・DX・データ・セキュリティ", sub: "情シス・DX・CTO／CDO",
+    ids: ["dx", "ai", "dev", "cloud", "datagov", "security"] },
+  { key: "g5", label: "管理・ガバナンス（コーポレート）", sub: "人事・財務・法務・IR｜守りの基盤",
+    ids: ["hr", "finance", "legal", "governance", "ir"] },
+];
 
 function renderAgendaMap(categories) {
   const wrap = $("#agenda-map");
   if (!wrap) return;
-  const bands = [
-    { key: "transform", label: "全社・変革テーマ", sub: "事業全体を横断して変える", filter: (c) => TRANSFORM_CATS.has(c.id) },
-    { key: "function", label: "部門・機能テーマ", sub: "部門・機能ごとに強化する", filter: (c) => !TRANSFORM_CATS.has(c.id) },
-  ];
+  const byId = {};
+  (categories || []).forEach((c) => { byId[c.id] = c; });
+  const used = new Set();
   const tile = (c) => `
     <button class="agenda-tile" data-category="${esc(c.id)}" aria-label="${esc(c.name)} の課題・解決策・事例を見る">
       <span class="at-ic"><i class="ti ${esc(c.icon)}"></i></span>
@@ -102,18 +113,26 @@ function renderAgendaMap(categories) {
         ${c.tagline ? `<span class="at-tag">${esc(c.tagline)}</span>` : ""}
       </span>
     </button>`;
+  const bands = AGENDA_GROUPS.map((b) => {
+    const items = b.ids.map((id) => byId[id]).filter(Boolean);
+    items.forEach((c) => used.add(c.id));
+    return { ...b, items };
+  });
+  // 未分類カテゴリは末尾に「その他」でフォールバック表示（取りこぼし防止）
+  const rest = (categories || []).filter((c) => !used.has(c.id));
+  if (rest.length) bands.push({ key: "g6", label: "その他のテーマ", sub: "", items: rest });
+
   wrap.innerHTML = `
     <div class="agenda-top"><i class="ti ti-building-skyscraper"></i>全社経営 / 事業成長</div>
     ${bands.map((b) => {
-      const items = (categories || []).filter(b.filter);
-      if (!items.length) return "";
+      if (!b.items.length) return "";
       return `
         <div class="agenda-band agenda-${b.key}">
           <div class="agenda-band-head">
             <span class="ab-label">${b.label}</span>
-            <span class="ab-sub">${b.sub}</span>
+            ${b.sub ? `<span class="ab-sub">${b.sub}</span>` : ""}
           </div>
-          <div class="agenda-tiles">${items.map(tile).join("")}</div>
+          <div class="agenda-tiles">${b.items.map(tile).join("")}</div>
         </div>`;
     }).join("")}`;
 }
