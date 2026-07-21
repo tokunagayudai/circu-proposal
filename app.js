@@ -236,7 +236,7 @@ function renderAssign(items) {
       </div>
       <div class="assign-diagram">${diagram(a)}</div>
       ${a.caption ? `<p class="assign-caption">${esc(a.caption)}</p>` : ""}
-      ${has ? `<div class="card-cta assign-cta">この切り口の匿名事例を見る<i class="ti ti-arrow-right"></i></div>` : ""}
+      ${has ? `<div class="card-cta assign-cta">アサイン体制事例を見る<i class="ti ti-arrow-right"></i></div>` : ""}
     </article>`;
   }).join("");
 }
