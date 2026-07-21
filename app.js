@@ -171,21 +171,9 @@ function openCategoryModal(catId) {
           <i class="ti ti-chevron-right"></i>
         </button>`).join("")}
     </div>` : "";
-  const prosWithRole = cases.filter((p) => p.role);
-  const proBlock = prosWithRole.length ? `
-    <p class="modal-section-label"><i class="ti ti-user-star"></i>参画するプロ人材（例）</p>
-    <div class="hub-pros">
-      ${prosWithRole.map((p) => `
-        <button class="hub-pro" data-case="${esc(p.id)}" data-from-cat="${esc(catId)}">
-          <span class="hp-role"><i class="ti ti-user-star"></i>${esc(p.role)}</span>
-          <span class="hp-ctx">${esc(p.title)}</span>
-          <i class="ti ti-chevron-right hp-arrow"></i>
-        </button>`).join("")}
-    </div>` : "";
   const talents = c.proTalents || [];
   const talentBlock = talents.length ? `
     <p class="modal-section-label"><i class="ti ti-user-star"></i>参考プロ人材（匿名・例）</p>
-    <p class="talent-note">このテーマの課題に対して、こうした経歴のプロ人材をアサインします。カードを押すと経歴・実績が開きます（実名は伏せた代表的なプロフィール例）。</p>
     <div class="talent-list">
       ${talents.map((p) => `
         <div class="talent-item">
@@ -199,8 +187,8 @@ function openCategoryModal(catId) {
           </div>
         </div>`).join("")}
     </div>` : "";
-  const solutionPanel = (solThemes || talentBlock || proBlock)
-    ? solThemes + talentBlock + proBlock
+  const solutionPanel = (solThemes || talentBlock)
+    ? solThemes + talentBlock
     : `<p class="hub-note">ご状況に合わせて最適なプロ人材を編成し、解決策を設計します。まずはご相談ください。</p>`;
 
   // タブ3：支援事例
