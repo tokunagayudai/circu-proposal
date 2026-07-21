@@ -1370,6 +1370,25 @@ body.no-scroll { overflow: hidden; }
 .hp-ctx { grid-area: ctx; color: var(--ink-soft); font-size: 0.82rem; line-height: 1.5; }
 .hp-arrow { grid-area: arrow; color: var(--blue-mid); }
 
+/* 解決策タブ：参考プロ人材（匿名・経歴サマリ／折りたたみ） */
+.talent-note { color: var(--ink-soft); font-size: 0.84rem; line-height: 1.6; margin: 2px 0 10px; }
+.talent-list { display: flex; flex-direction: column; gap: 8px; }
+.talent-item { border: 1px solid var(--line); border-left: 3px solid var(--navy); border-radius: 9px; background: #fff; overflow: hidden; }
+.talent-item.open { border-left-color: var(--blue); box-shadow: var(--shadow); }
+.talent-head {
+  appearance: none; cursor: pointer; text-align: left; width: 100%; background: transparent; border: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 15px;
+}
+.talent-head:hover { background: var(--blue-l); }
+.talent-title { font-weight: 700; color: var(--navy); font-size: 0.92rem; line-height: 1.45; display: inline-flex; align-items: center; gap: 8px; }
+.talent-title i { color: var(--blue); }
+.talent-chev { color: var(--blue-mid); transition: transform 0.2s; flex: none; }
+.talent-item.open .talent-chev { transform: rotate(180deg); }
+.talent-body { padding: 0 15px 15px; }
+.talent-career { font-size: 0.82rem; color: var(--ink); line-height: 1.6; background: var(--blue-l); border-radius: 7px; padding: 9px 12px; margin-bottom: 10px; }
+.talent-career .tc-lbl { font-weight: 700; color: var(--blue-d); margin-right: 8px; }
+.talent-sum { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.85; margin: 0; }
+
 /* ---------- レスポンシブ ---------- */
 @media (max-width: 640px) {
   .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
