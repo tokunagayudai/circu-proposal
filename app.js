@@ -182,8 +182,25 @@ function openCategoryModal(catId) {
           <i class="ti ti-chevron-right hp-arrow"></i>
         </button>`).join("")}
     </div>` : "";
-  const solutionPanel = (solThemes || proBlock)
-    ? solThemes + proBlock
+  const talents = c.proTalents || [];
+  const talentBlock = talents.length ? `
+    <p class="modal-section-label"><i class="ti ti-user-star"></i>参考プロ人材（匿名・例）</p>
+    <p class="talent-note">このテーマの課題に対して、こうした経歴のプロ人材をアサインします。カードを押すと経歴・実績が開きます（実名は伏せた代表的なプロフィール例）。</p>
+    <div class="talent-list">
+      ${talents.map((p) => `
+        <div class="talent-item">
+          <button class="talent-head" type="button" aria-expanded="false">
+            <span class="talent-title"><i class="ti ti-user-star"></i>${esc(p.title)}</span>
+            <i class="ti ti-chevron-down talent-chev"></i>
+          </button>
+          <div class="talent-body" hidden>
+            <div class="talent-career"><span class="tc-lbl">経歴</span><span>${esc(p.career)}</span></div>
+            <p class="talent-sum">${esc(p.summary)}</p>
+          </div>
+        </div>`).join("")}
+    </div>` : "";
+  const solutionPanel = (solThemes || talentBlock || proBlock)
+    ? solThemes + talentBlock + proBlock
     : `<p class="hub-note">ご状況に合わせて最適なプロ人材を編成し、解決策を設計します。まずはご相談ください。</p>`;
 
   // タブ3：支援事例
@@ -724,6 +741,16 @@ function wireEvents() {
   document.addEventListener("click", (e) => {
     const tab = e.target.closest(".hub-tab");
     if (tab) { switchHubTab(tab); return; }
+    const talentHead = e.target.closest(".talent-head");
+    if (talentHead) {
+      const item = talentHead.closest(".talent-item");
+      const body = item.querySelector(".talent-body");
+      const open = talentHead.getAttribute("aria-expanded") === "true";
+      talentHead.setAttribute("aria-expanded", String(!open));
+      body.hidden = open;
+      item.classList.toggle("open", !open);
+      return;
+    }
     const assignEl = e.target.closest("[data-assign]");
     if (assignEl) { openAssignCase(assignEl.dataset.assign); return; }
     const caseEl = e.target.closest("[data-case]");
