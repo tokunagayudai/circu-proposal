@@ -158,19 +158,7 @@ function openCategoryModal(catId) {
     ? `<ul class="modal-points">${ch.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
     : `<p class="hub-note">ヒアリングの上で、課題を一緒に整理します。</p>`;
 
-  // タブ2：解決策・プロ人材（深掘りテーマ＋参画するプロ人材）
-  const solThemes = themes.length ? `
-    <p class="modal-section-label"><i class="ti ti-bulb"></i>深掘りテーマ</p>
-    <div class="sol-list">
-      ${themes.map((t) => `
-        <button class="sol-row" data-theme="${esc(t.id)}">
-          <span class="sol-row-main">
-            <span class="sol-row-title">${esc(t.title)}</span>
-            <span class="sol-row-sum">${esc(t.summary)}</span>
-          </span>
-          <i class="ti ti-chevron-right"></i>
-        </button>`).join("")}
-    </div>` : "";
+  // タブ2：解決策・プロ人材（参考プロ人材）
   const talents = c.proTalents || [];
   const talentBlock = talents.length ? `
     <p class="modal-section-label"><i class="ti ti-user-star"></i>参考プロ人材（匿名・例）</p>
@@ -187,8 +175,8 @@ function openCategoryModal(catId) {
           </div>
         </div>`).join("")}
     </div>` : "";
-  const solutionPanel = (solThemes || talentBlock)
-    ? solThemes + talentBlock
+  const solutionPanel = talentBlock
+    ? talentBlock
     : `<p class="hub-note">ご状況に合わせて最適なプロ人材を編成し、解決策を設計します。まずはご相談ください。</p>`;
 
   // タブ3：支援事例
