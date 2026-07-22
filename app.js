@@ -589,17 +589,6 @@ function openCaseModal(caseId, fromCat) {
   document.body.classList.add("no-scroll");
 }
 
-/* ---------------- セクション5：PKSHA ---------------- */
-function renderPksha(items) {
-  $("#pksha-grid").innerHTML = (items || []).map((p) => `
-    <article class="card pksha-card">
-      <i class="ti ${esc(p.icon)} lead"></i>
-      <h3>${esc(p.title)}</h3>
-      <p>${esc(p.desc)}</p>
-    </article>
-  `).join("");
-}
-
 /* ---------------- テーマ詳細モーダル ---------------- */
 const modal = () => $("#theme-modal");
 
@@ -792,7 +781,6 @@ function wireEvents() {
     renderCatalog(data);
     renderAssign(data.assignExamples);
     renderCases(data);
-    renderPksha(data.pksha);
     wireEvents();
   } catch (err) {
     console.error(err);
