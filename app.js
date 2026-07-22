@@ -266,7 +266,7 @@ function openAssignCase(key) {
   const a = (DATA.assignExamples || []).find((x) => x.key === key);
   if (!a || !a.case) return;
   const cs = a.case;
-  const profile = [["業界", cs.industry], ["部門", cs.dept], ["支援期間", cs.period]].filter(([, v]) => v);
+  const profile = [["業界", cs.industry], ["部門", cs.dept]].filter(([, v]) => v);
 
   $("#modal-body").innerHTML = `
     <div class="modal-eyebrow">Case / アサイン体制の匿名事例</div>
