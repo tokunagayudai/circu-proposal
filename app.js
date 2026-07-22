@@ -584,7 +584,6 @@ function openCaseModal(caseId, fromCat) {
         <i class="ti ti-user-star"></i>
         <div><span class="cpro-k">参画したプロ人材</span><span class="cpro-v">${esc(p.role)}</span></div>
       </div>` : "")}
-    <p class="modal-doc-note"><i class="ti ti-info-circle"></i>個社が特定されないよう加工した匿名事例です。</p>
   `;
   modal().hidden = false;
   document.body.classList.add("no-scroll");
